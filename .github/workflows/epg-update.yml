@@ -1,5 +1,7 @@
 name: EPG Update
-  
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
@@ -85,13 +87,13 @@ jobs:
 
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
         run: |
-          git remote add gitee git@gitee.com:magihub/epg.git
-          git checkout --orphan temp_epg_only
+          mkdir /tmp/gitee_push
+          cp epg.xml epg.xml.gz /tmp/gitee_push/
+          cd /tmp/gitee_push
+          git init
           git config user.name 'github-actions'
-          git config user.email 'github-actions@github.com'          
+          git config user.email 'github-actions@github.com'
           git add epg.xml epg.xml.gz
-          git clean -fdx
           git commit -m "Update EPG data only"
-          git push gitee temp_epg_only:main --force
-          git checkout main
-          git branch -D temp_epg_only
+          git remote add gitee git@gitee.com:magihub/epg.git
+          git push gitee main --force
