@@ -28,11 +28,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
         with:
@@ -48,9 +43,11 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install selenium lxml webdriver-manager
+          pip install selenium lxml webdriver-manager requests curl_cffi
 
       - name: Run EPG scraper
+        env:
+          RUDONG_RADIO_TOKEN: ${{ secrets.RUDONG_RADIO_TOKEN }}
         run: |
           python rudong-epg.py   # 生成 epg.xml（如东）
           python nantong-epg.py  # 合并到同一个 epg.xml
