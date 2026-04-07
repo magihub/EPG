@@ -1,4 +1,3 @@
-import requests
 import json
 import datetime
 import xml.etree.ElementTree as ET
@@ -7,15 +6,31 @@ import time
 import os
 from typing import List, Dict, Any
 
+# 尝试导入 curl_cffi 的 requests，如果失败则回退到标准 requests
+try:
+    from curl_cffi import requests
+    print("使用 curl_cffi 库（模拟浏览器 TLS 指纹）")
+except ImportError:
+    import requests
+    print("使用标准 requests 库")
+
 API_URL = "https://web.ntjoy.com/website/external/externalService"
 
+# 更完整的请求头，模拟真实浏览器
 HEADERS = {
-    'accept': 'application/json, text/javascript, */*; q=0.01',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-    'origin': 'https://www.ntjoy.com',
-    'referer': 'https://www.ntjoy.com/',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0'
+    'Accept': 'application/json, text/javascript, */*; q=0.01',
+    'Accept-Encoding': 'gzip, deflate, br, zstd',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+    'Connection': 'keep-alive',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Host': 'web.ntjoy.com',
+    'Origin': 'https://www.ntjoy.com',
+    'Referer': 'https://www.ntjoy.com/',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'same-site',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0',
+    'X-Requested-With': 'XMLHttpRequest',
 }
 
 MENU_CONFIGS = [
@@ -24,48 +39,27 @@ MENU_CONFIGS = [
 ]
 
 def fetch_api(service: str, params_dict: Dict) -> Any:
-    """自动尝试JSON和表单两种请求格式"""
+    """使用 POST 表单方式请求"""
     payload = {'service': service, 'params': json.dumps(params_dict)}
-    
-    # 方法1：使用 JSON 格式（Content-Type: application/json）
-    headers_json = HEADERS.copy()
-    headers_json['Content-Type'] = 'application/json'
-    print(f"  [尝试] POST JSON 到 {API_URL}")
+    # 使用 Session 保持 Cookie
+    session = requests.Session()
+    session.headers.update(HEADERS)
     try:
-        resp = requests.post(API_URL, headers=headers_json, json=payload, timeout=15)
+        resp = session.post(API_URL, data=payload, timeout=15)
         resp.encoding = 'utf-8'
-        print(f"  响应状态码: {resp.status_code}")
         if resp.status_code == 200:
             result = resp.json()
             if result.get('state') == 1000:
                 return result.get('data')
             else:
                 print(f"  API错误: {result.get('message')}")
+                return None
         else:
             print(f"  HTTP {resp.status_code}, 响应内容: {resp.text[:200]}")
+            return None
     except Exception as e:
-        print(f"  JSON请求异常: {e}")
-
-    # 方法2：使用表单格式（application/x-www-form-urlencoded）
-    headers_form = HEADERS.copy()
-    headers_form['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
-    print(f"  [回退] POST 表单到 {API_URL}")
-    try:
-        resp2 = requests.post(API_URL, headers=headers_form, data=payload, timeout=15)
-        resp2.encoding = 'utf-8'
-        print(f"  响应状态码: {resp2.status_code}")
-        if resp2.status_code == 200:
-            result2 = resp2.json()
-            if result2.get('state') == 1000:
-                return result2.get('data')
-            else:
-                print(f"  API错误: {result2.get('message')}")
-        else:
-            print(f"  HTTP {resp2.status_code}, 响应内容: {resp2.text[:200]}")
-    except Exception as e2:
-        print(f"  表单请求异常: {e2}")
-
-    return None
+        print(f"  请求异常: {e}")
+        return None
 
 def fetch_channels(menu_code: str) -> List[Dict]:
     print(f"\n正在获取{menu_code}频道列表...")

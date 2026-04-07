@@ -17,14 +17,14 @@ import re
 # ==================== 配置区域 ====================
 CHANNELS = [
     {
-        "id": "1",
-        "name": "如东电视台",
+        "id": "如东新闻综合",
+        "name": "如东新闻综合",
         "type": "tv",
         "url": "https://www.rdxmt.com/pc.html?topid=54172"
     },
     {
-        "id": "2",
-        "name": "如东广播 (FM896)",
+        "id": "如东综合广播",
+        "name": "如东综合广播",
         "type": "radio",
         "url": "https://www.rdxmt.com/pc.html?topid=21400",
         "api_url": "https://live.cm.jstv.com/api/Channel/ChannelInfoAudio",
