@@ -86,10 +86,20 @@ jobs:
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git
+          # 保存当前工作区的两个文件到临时目录
+          mkdir -p /tmp/epg_files
+          cp epg.xml epg.xml.gz /tmp/epg_files/
+          # 创建孤儿分支
           git checkout --orphan temp_epg_only
+          # 删除所有文件（包括暂存区和工作区）
           git rm -rf .
+          # 从临时目录复制回两个文件
+          cp /tmp/epg_files/* .
+          # 添加并提交
           git add epg.xml epg.xml.gz
           git commit -m "Update EPG data only"
+          # 强制推送
           git push gitee temp_epg_only:main --force
+          # 清理
           git checkout main
           git branch -D temp_epg_only
