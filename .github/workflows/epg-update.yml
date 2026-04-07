@@ -1,5 +1,7 @@
 name: EPG Update
-
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  
 permissions:
   contents: write
 
@@ -87,4 +89,7 @@ jobs:
       - name: Push to Gitee repository
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git
-          git push gitee main         
+        # 只添加这两个文件
+          git add epg.xml epg.xml.gz
+          git commit -m "Update EPG data only [skip ci]" || echo "No changes"          
+          git push gitee main
