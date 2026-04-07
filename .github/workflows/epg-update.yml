@@ -69,7 +69,6 @@ jobs:
   sync-to-gitee:
     runs-on: ubuntu-latest
     needs: update-epg          # 只有主任务成功后才运行
-    if: always() && !cancelled() && !failure()   # 确保主任务成功
 
     steps:
       - name: Checkout latest code
@@ -89,21 +88,10 @@ jobs:
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git
-          
-        # 创建孤儿分支（没有历史）
           git checkout --orphan temp_epg_only
-          
-          # 删除所有文件
           git rm -rf .
-          
-          # 只添加需要的两个文件
           git add epg.xml epg.xml.gz
-          
           git commit -m "Update EPG data only"
-          
-          # 强制推送到 Gitee 的 main 分支（覆盖远程内容）
           git push gitee temp_epg_only:main --force
-          
-          # 清理临时分支
           git checkout main
           git branch -D temp_epg_only
