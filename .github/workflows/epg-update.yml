@@ -62,3 +62,29 @@ jobs:
           git add epg.xml epg.xml.gz 2>/dev/null || true
           git commit -m "Update EPG data (skip ci)" || echo "No changes to commit"
           git push
+          
+          
+  sync-to-gitee:
+    runs-on: ubuntu-latest
+    needs: update-epg          # 只有主任务成功后才运行
+    if: always() && !cancelled() && !failure()   # 确保主任务成功
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup SSH key for Gitee
+        env:
+          GITEE_SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$GITEE_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
+
+      - name: Push to Gitee repository
+        run: |
+          git remote add gitee git@gitee.com:magihub/epg.git
+          git push gitee main         
