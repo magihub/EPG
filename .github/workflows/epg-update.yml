@@ -86,10 +86,24 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
 
-      - name: Push to Gitee repository
+      - name: Push ONLY epg.xml and epg.xml.gz to Gitee
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git
-        # 只添加这两个文件
+          
+          # 创建孤儿分支（没有历史）
+          git checkout --orphan temp_epg_only
+          
+          # 删除所有文件
+          git rm -rf .
+          
+          # 只添加需要的两个文件
           git add epg.xml epg.xml.gz
-          git commit -m "Update EPG data only [skip ci]" || echo "No changes"          
-          git push gitee main
+          
+          git commit -m "Update EPG data only"
+          
+          # 强制推送到 Gitee 的 main 分支（覆盖远程内容）
+          git push gitee temp_epg_only:main --force
+          
+          # 清理临时分支
+          git checkout main
+          git branch -D temp_epg_only
