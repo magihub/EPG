@@ -25,10 +25,9 @@ MENU_CONFIGS = [
 ]
 
 def fetch_api(service: str, params_dict: Dict) -> Any:
-    params = {'service': service, 'params': json.dumps(params_dict)}
+    payload = {'service': service, 'params': json.dumps(params_dict)}
     try:
-        # 改用 GET 方法
-        resp = requests.get(API_URL, headers=HEADERS, params=params, timeout=15)
+        resp = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15)
         resp.encoding = 'utf-8'
         if resp.status_code == 200:
             result = resp.json()
