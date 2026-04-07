@@ -83,9 +83,29 @@ jobs:
       - name: Checkout latest code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          #  fetch-depth: 0
+          fetch-depth: 2   # 需要获取前一次提交，用于对比
 
+      - name: Check if epg.xml changed
+        id: check_changes
+        run: |
+          # 检查是否有上一次提交
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            if git diff --quiet HEAD^ HEAD -- epg.xml; then
+              echo "epg.xml 无变化，跳过同步"
+              echo "changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "epg.xml 已变化，开始同步到 Gitee"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            # 第一次提交，没有上一次提交，视为有变化
+            echo "首次运行，epg.xml 需要同步"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+          
       - name: Setup SSH key for Gitee
+        if: steps.check_changes.outputs.changed == 'true'      
         env:
           GITEE_SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
         run: |
@@ -95,6 +115,7 @@ jobs:
           ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
 
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
+        if: steps.check_changes.outputs.changed == 'true'      
         run: |
           # 创建临时目录
           mkdir /tmp/gitee_push

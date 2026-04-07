@@ -13,7 +13,6 @@ HEADERS = {
     'accept': 'application/json, text/javascript, */*; q=0.01',
     'accept-encoding': 'gzip, deflate, br, zstd',
     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
     'origin': 'https://www.ntjoy.com',
     'referer': 'https://www.ntjoy.com/',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0'
@@ -25,23 +24,48 @@ MENU_CONFIGS = [
 ]
 
 def fetch_api(service: str, params_dict: Dict) -> Any:
+    """自动尝试JSON和表单两种请求格式"""
     payload = {'service': service, 'params': json.dumps(params_dict)}
+    
+    # 方法1：使用 JSON 格式（Content-Type: application/json）
+    headers_json = HEADERS.copy()
+    headers_json['Content-Type'] = 'application/json'
+    print(f"  [尝试] POST JSON 到 {API_URL}")
     try:
-        resp = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15)
+        resp = requests.post(API_URL, headers=headers_json, json=payload, timeout=15)
         resp.encoding = 'utf-8'
+        print(f"  响应状态码: {resp.status_code}")
         if resp.status_code == 200:
             result = resp.json()
             if result.get('state') == 1000:
                 return result.get('data')
             else:
                 print(f"  API错误: {result.get('message')}")
-                return None
         else:
-            print(f"  HTTP {resp.status_code}")
-            return None
+            print(f"  HTTP {resp.status_code}, 响应内容: {resp.text[:200]}")
     except Exception as e:
-        print(f"  请求异常: {e}")
-        return None
+        print(f"  JSON请求异常: {e}")
+
+    # 方法2：使用表单格式（application/x-www-form-urlencoded）
+    headers_form = HEADERS.copy()
+    headers_form['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+    print(f"  [回退] POST 表单到 {API_URL}")
+    try:
+        resp2 = requests.post(API_URL, headers=headers_form, data=payload, timeout=15)
+        resp2.encoding = 'utf-8'
+        print(f"  响应状态码: {resp2.status_code}")
+        if resp2.status_code == 200:
+            result2 = resp2.json()
+            if result2.get('state') == 1000:
+                return result2.get('data')
+            else:
+                print(f"  API错误: {result2.get('message')}")
+        else:
+            print(f"  HTTP {resp2.status_code}, 响应内容: {resp2.text[:200]}")
+    except Exception as e2:
+        print(f"  表单请求异常: {e2}")
+
+    return None
 
 def fetch_channels(menu_code: str) -> List[Dict]:
     print(f"\n正在获取{menu_code}频道列表...")
