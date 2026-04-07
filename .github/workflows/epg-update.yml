@@ -90,7 +90,7 @@ jobs:
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git
           
-          # 创建孤儿分支（没有历史）
+        # 创建孤儿分支（没有历史）
           git checkout --orphan temp_epg_only
           
           # 删除所有文件
