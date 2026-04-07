@@ -9,7 +9,8 @@ concurrency:
 
 on:
   schedule:
-    - cron: '0 3/12 * * *'
+    - cron: '0 19 * * *'        # UTC时间：19点，北京时间：次日凌晨3点
+    - cron: '0 07 * * *'        # UTC时间：7点，北京时间：当天下午15点
   workflow_dispatch:
  
 jobs:
