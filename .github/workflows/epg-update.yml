@@ -40,12 +40,13 @@ jobs:
         with:
           chrome-version: 'stable'
           
-
-- name: Display Chrome path (debug)
-  run: |
-    which chrome
-    which chromedriver
-    chrome --version
+          
+      - name: Display Chrome path (debug)
+        run: |
+          which chrome
+          which chromedriver
+          chrome --version
+          
 
       - name: Install Python dependencies
         run: |
