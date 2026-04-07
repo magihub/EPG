@@ -1,0 +1,77 @@
+name: EPG Update
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-update
+  cancel-in-progress: false
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'epg.xml'
+
+jobs:
+  update-epg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Verify epg.xml exists
+        run: ls -la epg.xml
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install requests lxml beautifulsoup4 selenium schedule
+
+
+      - name: Generate data
+           
+                                     
+                          
+                                                
+                      
+                   
+    
+                         
+                                   
+           
+                              
+    
+                                
+            
+                                                
+    
+                         
+            
+                      
+                                                                                    
+                                                          
+    
+                                      
+        run: |
+            
+                      
+          python rd-epg.py
+      - name: Compress epg.xml
+        run: |
+          gzip -c epg.xml > epg.xml.gz
+
+      - name: Configure git and push changes
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git epg.xml.gz
+          git commit -m "Update EPG data and compress epg.xml" || echo "No changes to commit"
+          git push
