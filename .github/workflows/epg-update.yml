@@ -96,6 +96,7 @@ jobs:
           git init
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
+          git branch -m master main   # 将默认的 master 分支重命名为 main
           git add epg.xml epg.xml.gz
           git commit -m "Update EPG data only"
           # 强制推送到 Gitee 的 main 分支（会覆盖远程所有内容）
