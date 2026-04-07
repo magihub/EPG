@@ -25,19 +25,34 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Chrome and ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
-          echo "CHROME_BIN=/usr/bin/chromium-browser" >> $GITHUB_ENV
-          echo "PATH=$PATH:/usr/lib/chromium-browser/" >> $GITHUB_ENV
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: 'stable'
+
+      - name: Setup ChromeDriver
+        uses: browser-actions/setup-chromedriver@v1
+        with:
+          chrome-version: 'stable'
+          
+
+- name: Display Chrome path (debug)
+  run: |
+    which chrome
+    which chromedriver
+    chrome --version
 
       - name: Install Python dependencies
         run: |
           pip install selenium lxml
 
       - name: Run EPG scraper
-        run: python rudong-epg.py   # 这里改成你的脚本文件名
+        run: python rudong-epg.py   # 这里指定需要执行的脚本文件名
 
       - name: Compress epg.xml (optional)
         run: gzip -c epg.xml > epg.xml.gz || true
