@@ -53,20 +53,27 @@ jobs:
       - name: Run EPG scraper
         run: |
           python rudong-epg.py   # 生成 epg.xml（如东）
-          python nantong-epg.py  # 合并南通电视+广播到同一个 epg.xml
-
-      - name: Compress epg.xml (optional)
-        run: gzip -c epg.xml > epg.xml.gz || true
-
-      - name: Commit and push changes
+          python nantong-epg.py  # 合并到同一个 epg.xml
+          
+      - name: Commit and push changes (only if epg.xml changed)
         run: |
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git add epg.xml epg.xml.gz 2>/dev/null || true
-          git commit -m "Update EPG data (skip ci)" || echo "No changes to commit"
-          git push
           
+          # 将 epg.xml 加入暂存区
+          git add epg.xml 2>/dev/null || true
+          
+          # 检查暂存区是否有变化（即 epg.xml 内容是否改变）
+          if git diff --cached --quiet; then
+            echo "epg.xml 无变化，跳过压缩和提交"
+          else
+            echo "epg.xml 已更新，开始压缩并提交"
+            gzip -c epg.xml > epg.xml.gz
+            git add epg.xml.gz
+            git commit -m "Update EPG data [skip ci]"
+            git push
+          fi
           
   sync-to-gitee:
     runs-on: ubuntu-latest
@@ -99,7 +106,6 @@ jobs:
           git init
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
-          git branch -m master main   # 将默认的 master 分支重命名为 main
           git add epg.xml epg.xml.gz
           git commit -m "Update EPG data only"
           # 强制推送到 Gitee 的 main 分支（会覆盖远程所有内容）

@@ -25,9 +25,10 @@ MENU_CONFIGS = [
 ]
 
 def fetch_api(service: str, params_dict: Dict) -> Any:
-    payload = {'service': service, 'params': json.dumps(params_dict)}
+    params = {'service': service, 'params': json.dumps(params_dict)}
     try:
-        resp = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15)
+        # 改用 GET 方法
+        resp = requests.get(API_URL, headers=HEADERS, params=params, timeout=15)
         resp.encoding = 'utf-8'
         if resp.status_code == 200:
             result = resp.json()
@@ -93,20 +94,18 @@ def format_epg_time(time_str: str) -> str:
         return time_str
 
 def merge_into_epg(channels: List[Dict], programs: List[Dict], output_file="epg.xml"):
-    """将南通电视+广播的频道和节目合并到现有的 epg.xml 中"""
     if os.path.exists(output_file):
         try:
             tree = ET.parse(output_file)
             tv = tree.getroot()
             print(f"已读取现有 {output_file}")
         except Exception as e:
-            print(f"读取现有文件失败，将创建新文件: {e}")
+            print(f"读取失败，创建新文件: {e}")
             tv = ET.Element("tv")
     else:
         tv = ET.Element("tv")
         print(f"创建新的 {output_file}")
 
-    # 获取已存在的频道ID集合，避免重复添加
     existing_ids = {ch.get('id') for ch in tv.findall('channel')}
     for ch in channels:
         if ch['id'] not in existing_ids:
@@ -117,7 +116,6 @@ def merge_into_epg(channels: List[Dict], programs: List[Dict], output_file="epg.
                 ET.SubElement(ch_elem, "icon", src=ch['cover'])
             print(f"  添加频道: {ch['name']} ({ch['type']})")
 
-    # 添加节目（不检查重复，因为不同频道的节目不会重复）
     for prog in programs:
         prog_elem = ET.SubElement(tv, "programme",
                                   start=prog['start_time'],
@@ -129,7 +127,6 @@ def merge_into_epg(channels: List[Dict], programs: List[Dict], output_file="epg.
             desc = ET.SubElement(prog_elem, "desc", lang="zh")
             desc.text = prog['desc']
 
-    # 格式化输出
     xml_str = ET.tostring(tv, encoding='utf-8')
     dom = minidom.parseString(xml_str)
     pretty = dom.toprettyxml(indent="    ", encoding='utf-8').decode('utf-8')
