@@ -51,7 +51,9 @@ jobs:
           pip install selenium lxml webdriver-manager
 
       - name: Run EPG scraper
-        run: python rudong-epg.py   # 这里指定需要执行的脚本文件名
+        run: |
+          python rudong-epg.py   # 生成 epg.xml（如东）
+          python nantong-epg.py  # 合并南通电视+广播到同一个 epg.xml
 
       - name: Compress epg.xml (optional)
         run: gzip -c epg.xml > epg.xml.gz || true
@@ -93,6 +95,7 @@ jobs:
           cp epg.xml epg.xml.gz /tmp/gitee_push/
           cd /tmp/gitee_push
           # 初始化一个全新的仓库
+          git config --global init.defaultBranch main
           git init
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
