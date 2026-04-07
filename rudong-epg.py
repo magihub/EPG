@@ -1,32 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import xml.etree.ElementTree as ET
-from xml.dom import minidom
-import datetime
-
-def format_epg_time(time_string):
-    if not time_string:
-        return ""
-    try:
-        dt = datetime.datetime.strptime(time_string.strip(), "%Y-%m-%d %H:%M:%S")
-        return dt.strftime("%Y%m%d%H%M%S +0800")
-    except ValueError:
-        return time_string
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 def fetch_epg_data():
     print("正在启动无头 Chrome 浏览器...")
     chrome_options = Options()
-    chrome_options.add_argument('--headless')               # 无头模式
+    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--log-level=3')
-
-    driver = webdriver.Chrome(options=chrome_options)
-
+    
+    # 自动下载并管理 ChromeDriver
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    
+    # ... 其余代码不变
     try:
         url = "https://www.rdxmt.com/pc.html?topid=54172"
         print("正在请求网页并等待 JS 渲染数据...")
