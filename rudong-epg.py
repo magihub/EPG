@@ -122,6 +122,7 @@ def extract_token_from_page(url):
 
 def fetch_radio_epg(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
+    print(f"  访问地址: {channel_info['url']}")
     token = extract_token_from_page(channel_info['url'])
     if not token:
         print("  无法获取 token，跳过广播抓取")
