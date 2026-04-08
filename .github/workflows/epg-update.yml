@@ -40,13 +40,12 @@ jobs:
           pip install selenium lxml curl_cffi beautifulsoup4 requests
           # 注意：不再安装 webdriver_manager
 
-          
       - name: Run EPG scraper
         run: |
-        #  echo "=== 运行 rudong-epg.py ==="
+          #  echo "=== 运行 rudong-epg.py ==="
           python rudong-epg.py
-        #  echo "=== 运行 nantong-epg.py ==="
-        #  python nantong-epg.py
+          #  echo "=== 运行 nantong-epg.py ==="
+          #  python nantong-epg.py
     
       - name: Upload debug artifacts
         uses: actions/upload-artifact@v4
