@@ -10,7 +10,6 @@ import datetime
 import time
 import os
 import sys
-import json
 
 # ==================== 配置区域 ====================
 CHANNELS = [
@@ -141,7 +140,6 @@ def fetch_radio_epg(channel_info):
             return None
 
         data = resp.json()
-        print(f"完整返回: {json.dumps(data, ensure_ascii=False, indent=2)}")  # 需要 import json
 
         programs = []
         # 节目列表在 data['data']['epg']['epg'] 中，每个元素有 'date' 和 'data'
