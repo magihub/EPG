@@ -47,7 +47,7 @@ def format_epg_time(time_string):
 # -------------------- 电视抓取（无头 Chrome）--------------------
 def fetch_tv_epg(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
-    print(f"  访问地址: {channel_info['url']}")
+    print(f"访问地址: {channel_info['url']}")
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
@@ -74,16 +74,16 @@ def fetch_tv_epg(channel_info):
                     "desc": ""
                 })
         if not programs:
-            print("  警告：未能抓取到节目单数据。")
+            print("警告：未能抓取到节目单数据。")
             return None
-        print(f"  成功抓取到 {len(programs)} 条电视节目数据！")
+        print(f"成功抓取到 {len(programs)} 条电视节目数据！")
         return {
             "channel_id": channel_info["id"],
             "channel_name": channel_info["name"],
             "programs": programs
         }
     except Exception as e:
-        print(f"  抓取时出错: {e}")
+        print(f"抓取时出错: {e}")
         return None
     finally:
         driver.quit()
@@ -110,20 +110,20 @@ def extract_token_from_page(url):
             }
             return null;
         """)
-        print(f"  获取到的 token 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}")
+        print(f"获取到的 token 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}")
         return token
     except Exception as e:
-        print(f"  获取 token 时失败: {e}")
+        print(f"获取 token 时失败: {e}")
         return None
     finally:
         driver.quit()
 
 def fetch_radio_epg_with_token(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
-    print(f"  访问地址: {channel_info['url']}")
+    print(f"访问地址: {channel_info['url']}")
     token = extract_token_from_page(channel_info['url'])
     if not token:
-        print("  无法获取 token，跳过广播抓取")
+        print("无法获取 token，跳过广播抓取")
         return None
 
     headers = {
@@ -135,7 +135,7 @@ def fetch_radio_epg_with_token(channel_info):
     try:
         response = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
         if response.status_code != 200:
-            print(f"  API 请求失败，状态码: {response.status_code}")
+            print(f"API 请求失败，状态码: {response.status_code}")
             return None
 
         data = response.json()
@@ -144,7 +144,7 @@ def fetch_radio_epg_with_token(channel_info):
         # 节目列表在 data['data']['epg']['epg'] 中，每个元素有 'date' 和 'data'
         epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
         if not epg_days:
-            print("  未找到广播节目列表")
+            print("未找到广播节目列表")
             return None
 
         for day in epg_days:
@@ -161,17 +161,17 @@ def fetch_radio_epg_with_token(channel_info):
                     })
 
         if not programs:
-            print("  解析后无节目数据")
+            print("解析后无节目数据")
             return None
 
-        print(f"  成功抓取到 {len(programs)} 条广播节目数据！")
+        print(f"成功抓取到 {len(programs)} 条广播节目数据！")
         return {
             "channel_id": channel_info["id"],
             "channel_name": channel_info["name"],
             "programs": programs
         }
     except Exception as e:
-        print(f"  抓取出错: {e}")
+        print(f"抓取出错: {e}")
         return None
 
 # -------------------- 生成 XML --------------------
@@ -204,7 +204,7 @@ def generate_xmltv(epg_data_list, output_file="epg.xml"):
 
     xml_str = ET.tostring(tv, encoding='utf-8')
     parsed_xml = minidom.parseString(xml_str)
-    pretty_xml = parsed_xml.toprettyxml(indent="    ")
+    pretty_xml = parsed_xml.toprettyxml(indent="  ")
     pretty_xml = pretty_xml.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(pretty_xml)
@@ -214,10 +214,10 @@ def generate_xmltv(epg_data_list, output_file="epg.xml"):
 
 # ==================== 主程序 ====================
 def main():
-    print("\n")
+    print()
     print("=" * 50)
     # print("如东电视 & 如东广播 EPG 抓取工具")
-    print(f"执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"      程序执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
 
     all_epg_data = []
