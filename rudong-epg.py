@@ -90,32 +90,27 @@ def fetch_tv_epg(channel_info):
 
 # -------------------- 广播抓取（自动获取 Token）--------------------
 def extract_token_from_page(url):
-    """使用 Selenium 从页面 LocalStorage 提取 token"""
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(options=chrome_options)
+    driver.set_page_load_timeout(30)  # 关键：避免无限等待
     try:
         driver.get(url)
-        # 等待页面加载完成，给 JS 足够时间写入 localStorage
         time.sleep(3)
-        # 尝试多种可能的 token 键名
         token = driver.execute_script("""
             let keys = ['token', 'access_token', 'jwt', 'authorization'];
             for (let key of keys) {
                 let val = localStorage.getItem(key) || sessionStorage.getItem(key);
                 if (val) return val;
             }
-            // 如果都没有，尝试从 window 对象中找
             if (window.__INITIAL_STATE__ && window.__INITIAL_STATE__.token) {
                 return window.__INITIAL_STATE__.token;
             }
             return null;
         """)
-        # print(f"  获取到的 token: {token}")
-        print(f"  获取到的 token 类型: {type(token).__name__}, 长度: {len(token) if token else 0}, 尾部: {token[-10:]}")
-    
+        print(f"  获取到的 token 类型: {type(token).__name__}, 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}")
         return token
     except Exception as e:
         print(f"  获取 token 时出错: {e}")
