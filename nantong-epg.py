@@ -4,87 +4,89 @@ import time
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import os
-import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-API_URL = "https://web.ntjoy.com/website/external/externalService"
+def setup_driver():
+    """配置无头 Chrome 浏览器"""
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--window-size=1920,1080')
+    return webdriver.Chrome(options=chrome_options)
 
-# 固定签名参数（从您成功的 curl 命令中提取，已验证可用）
-FIXED_SIGN = "914f958127d0791d8edfa52ae11d990e"
-FIXED_TST = 1775627561657
-
-def fetch_api(service: str, params_dict: dict):
-    """使用固定签名发送 POST 请求"""
-    payload = {
-        'service': service,
-        'params': json.dumps(params_dict, separators=(',', ':')),  # 紧凑格式，无空格
-        'apiVersion': '1.0',
-        'terminalType': 'website',
-        'butelAppkey': 'webntjoy',
-        'butelTst': FIXED_TST,
-        'butelSign': FIXED_SIGN
-    }
-    headers = {
-        'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Accept-Language': 'zh-CN,zh;q=0.9',
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Origin': 'https://www.ntjoy.com',
-        'Referer': 'https://www.ntjoy.com/',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0'
-    }
+def fetch_channels_and_programs(menu_code: str, channel_type: str):
+    """根据 menuId 获取频道列表及节目单"""
+    url = f"https://www.ntjoy.com/ntw/broadcastTvs.html?menuId={menu_code}"
+    driver = setup_driver()
     try:
-        resp = requests.post(API_URL, data=payload, headers=headers, timeout=15)
-        # 打印响应状态和部分内容，便于调试
-        print(f"    [DEBUG] 响应状态码: {resp.status_code}")
-        if resp.status_code != 200:
-            print(f"    [DEBUG] 响应内容: {resp.text[:300]}")
-            return None
-        result = resp.json()
-        if result.get('state') == 1000:
-            return result.get('data')
-        else:
-            print(f"    API错误: {result.get('message')}")
-            return None
-    except Exception as e:
-        print(f"    请求异常: {e}")
-        return None
-
-def fetch_channels(menu_code: str):
-    print(f"正在获取 {menu_code} 频道列表...")
-    data = fetch_api("getMenuContentList", {"menuId": menu_code, "idx": 0, "size": 50})
-    if data and 'rows' in data:
-        channels = [{'id': row['id'], 'name': row['title']} for row in data['rows']]
+        driver.get(url)
+        # 等待频道列表加载（根据实际页面结构调整选择器）
+        # 常见的频道列表容器：.channel-list ul li 或 .tv-channel-list .channel-item
+        WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, ".channel-list li, .tv-channel-list .channel-item"))
+        )
+        # 获取所有频道元素
+        channel_elements = driver.find_elements(By.CSS_SELECTOR, ".channel-list li, .tv-channel-list .channel-item")
+        channels = []
+        for elem in channel_elements:
+            # 提取频道名称和ID（根据实际页面属性调整）
+            name = elem.text.strip()
+            if not name:
+                name = elem.find_element(By.CSS_SELECTOR, ".channel-name").text.strip()
+            channel_id = elem.get_attribute("data-id") or elem.get_attribute("id")
+            if name and channel_id:
+                channels.append({"id": channel_id, "name": name})
         print(f"  发现 {len(channels)} 个频道")
-        # 打印前几个频道ID，便于核对
-        for ch in channels[:3]:
-            print(f"    示例频道: {ch['name']} (ID: {ch['id']})")
-        return channels
-    else:
-        print("  获取频道列表失败")
-        return []
+        if not channels:
+            return [], []
 
-def fetch_programs(channel_id: str, channel_name: str):
-    print(f"  正在获取 {channel_name} 节目单...")
-    data = fetch_api("getBroadcastList", {"id": channel_id})
-    programs = []
-    if data and isinstance(data, list):
-        for item in data:
-            start = item.get('startTime')
-            end = item.get('endTime')
-            title = item.get('programName')
-            if start and end and title:
-                programs.append({
-                    'title': title,
-                    'start_time': start.replace(' ', '') + ' +0800',
-                    'end_time': end.replace(' ', '') + ' +0800',
-                    'desc': item.get('remark', '')
-                })
-        print(f"    获取 {len(programs)} 条节目")
-    else:
-        print("    无节目数据或数据格式异常")
-    return programs
+        all_programs = []
+        for idx, ch in enumerate(channels):
+            print(f"  [{idx+1}/{len(channels)}] 正在获取 {ch['name']} 节目单...")
+            # 点击频道以加载节目单
+            try:
+                # 重新定位元素（防止过期）
+                current_channel = driver.find_element(By.XPATH, f"//*[@data-id='{ch['id']}']")
+                current_channel.click()
+                time.sleep(1.5)  # 等待节目单加载
+                # 获取节目列表（根据实际页面结构调整）
+                program_items = driver.find_elements(By.CSS_SELECTOR, ".program-list .program-item, .epg-list .epg-item")
+                programs = []
+                for prog in program_items:
+                    # 提取节目名称和时间
+                    title_elem = prog.find_element(By.CSS_SELECTOR, ".program-name, .title")
+                    start_elem = prog.find_element(By.CSS_SELECTOR, ".start-time, .start")
+                    end_elem = prog.find_element(By.CSS_SELECTOR, ".end-time, .end")
+                    title = title_elem.text.strip()
+                    start = start_elem.text.strip()
+                    end = end_elem.text.strip()
+                    if title and start and end:
+                        # 格式化时间：将 "2026-04-08 13:00:00" -> "20260408130000 +0800"
+                        start_fmt = start.replace("-", "").replace(":", "").replace(" ", "") + " +0800"
+                        end_fmt = end.replace("-", "").replace(":", "").replace(" ", "") + " +0800"
+                        programs.append({
+                            "title": title,
+                            "start_time": start_fmt,
+                            "end_time": end_fmt,
+                            "desc": ""
+                        })
+                print(f"    获取 {len(programs)} 条节目")
+                all_programs.extend([{**p, "channel_id": ch["id"]} for p in programs])
+            except Exception as e:
+                print(f"    获取 {ch['name']} 节目失败: {e}")
+                continue
+        return channels, all_programs
+    finally:
+        driver.quit()
 
 def merge_into_epg(all_channels, all_programs, output_file="epg.xml"):
-    # 如果文件已存在，则读取现有内容；否则创建新根
+    """合并数据到 epg.xml（保留原有频道和节目）"""
     if os.path.exists(output_file):
         try:
             tree = ET.parse(output_file)
@@ -115,7 +117,6 @@ def merge_into_epg(all_channels, all_programs, output_file="epg.xml"):
             desc = ET.SubElement(prog_elem, "desc", lang="zh")
             desc.text = prog['desc']
     
-    # 写入文件
     xml_str = ET.tostring(tv, encoding='utf-8')
     dom = minidom.parseString(xml_str)
     pretty = dom.toprettyxml(indent="    ", encoding='utf-8').decode('utf-8')
@@ -135,16 +136,13 @@ def main():
     all_programs = []
     for menu_code, name in [("ntw005", "电视"), ("ntw006", "广播")]:
         print(f"\n--- 处理 {name} ---")
-        channels = fetch_channels(menu_code)
+        channels, programs = fetch_channels_and_programs(menu_code, name)
         if not channels:
+            print(f"  获取{name}频道列表失败")
             continue
         all_channels.extend(channels)
-        for ch in channels:
-            progs = fetch_programs(ch['id'], ch['name'])
-            for p in progs:
-                p['channel_id'] = ch['id']
-            all_programs.extend(progs)
-            time.sleep(0.3)  # 避免请求过快
+        all_programs.extend(programs)
+        time.sleep(1)  # 避免请求过快
     
     if all_programs:
         merge_into_epg(all_channels, all_programs)
