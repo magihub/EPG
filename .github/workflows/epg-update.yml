@@ -138,7 +138,7 @@ jobs:
           git add epg.xml epg.xml.gz
           git commit -m "Update EPG data"
           git remote add gitee git@gitee.com:magihub/epg.git
-          git push gitee main
+          git push --force gitee main
 
       # ---------- 新增：推送成功后更新本地哈希文件（缓存会自动保存） ----------
       - name: Update hash after successful push
