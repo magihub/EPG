@@ -20,76 +20,47 @@ def setup_driver():
     chrome_options.add_argument('--window-size=1920,1080')
     return webdriver.Chrome(options=chrome_options)
 
-def fetch_channels_and_programs(menu_code: str, channel_type: str):
-    """根据 menuId 获取频道列表及节目单"""
-    url = f"https://www.ntjoy.com/ntw/broadcastTvs.html?menuId={menu_code}"
-    driver = setup_driver()
+def fetch_channels_and_programs(menu_code, name):
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import time
+
+    url = f"https://www.rdxmt.com/pc.html?topid={menu_code}"
+
+    # 配置浏览器选项
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')  # 无头模式
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')
+    
+    # 隐藏自动化特征
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
+    
+    # 设置一个现代浏览器的User-Agent
+    chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+
+    # 设置页面加载超时时间为 30 秒
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_page_load_timeout(30)
+
     try:
         driver.get(url)
-        # 等待频道列表加载（根据实际页面结构调整选择器）
-        # 常见的频道列表容器：.channel-list ul li 或 .tv-channel-list .channel-item
-        
-        print(f"当前页面标题: {driver.title}")
-
-        # 保存页面源代码
-        with open("page_source.html", "w", encoding="utf-8") as f:
-            f.write(driver.page_source)
-    
-        
-        WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, ".channel-list li, .tv-channel-list .channel-item"))
+        # 等待关键元素加载
+        WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "body"))
         )
-        # 获取所有频道元素
-        channel_elements = driver.find_elements(By.CSS_SELECTOR, ".channel-list li, .tv-channel-list .channel-item")
-        channels = []
-        for elem in channel_elements:
-            # 提取频道名称和ID（根据实际页面属性调整）
-            name = elem.text.strip()
-            if not name:
-                name = elem.find_element(By.CSS_SELECTOR, ".channel-name").text.strip()
-            channel_id = elem.get_attribute("data-id") or elem.get_attribute("id")
-            if name and channel_id:
-                channels.append({"id": channel_id, "name": name})
-        print(f"  发现 {len(channels)} 个频道")
-        if not channels:
-            return [], []
-
-        all_programs = []
-        for idx, ch in enumerate(channels):
-            print(f"  [{idx+1}/{len(channels)}] 正在获取 {ch['name']} 节目单...")
-            # 点击频道以加载节目单
-            try:
-                # 重新定位元素（防止过期）
-                current_channel = driver.find_element(By.XPATH, f"//*[@data-id='{ch['id']}']")
-                current_channel.click()
-                time.sleep(1.5)  # 等待节目单加载
-                # 获取节目列表（根据实际页面结构调整）
-                program_items = driver.find_elements(By.CSS_SELECTOR, ".program-list .program-item, .epg-list .epg-item")
-                programs = []
-                for prog in program_items:
-                    # 提取节目名称和时间
-                    title_elem = prog.find_element(By.CSS_SELECTOR, ".program-name, .title")
-                    start_elem = prog.find_element(By.CSS_SELECTOR, ".start-time, .start")
-                    end_elem = prog.find_element(By.CSS_SELECTOR, ".end-time, .end")
-                    title = title_elem.text.strip()
-                    start = start_elem.text.strip()
-                    end = end_elem.text.strip()
-                    if title and start and end:
-                        # 格式化时间：将 "2026-04-08 13:00:00" -> "20260408130000 +0800"
-                        start_fmt = start.replace("-", "").replace(":", "").replace(" ", "") + " +0800"
-                        end_fmt = end.replace("-", "").replace(":", "").replace(" ", "") + " +0800"
-                        programs.append({
-                            "title": title,
-                            "start_time": start_fmt,
-                            "end_time": end_fmt,
-                            "desc": ""
-                        })
-                print(f"    获取 {len(programs)} 条节目")
-                all_programs.extend([{**p, "channel_id": ch["id"]} for p in programs])
-            except Exception as e:
-                print(f"    获取 {ch['name']} 节目失败: {e}")
-                continue
-        return channels, all_programs
+        # ... 剩下的抓取逻辑 ...
+        # 你的 token 获取代码也可以放在这里
+        
+    except Exception as e:
+        print(f"抓取失败 ({name}): {e}")
+        return None, None
     finally:
         driver.quit()
 
