@@ -91,7 +91,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: epg_hash.txt
-          key: epg-hash-${{ github.ref }}-${{ github.run_id }}   # 按分支缓存
+          key: epg-hash-${{ github.ref }}   # 按分支缓存
           restore-keys: |
             epg-hash-
 
@@ -136,7 +136,7 @@ jobs:
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
           git add epg.xml epg.xml.gz
-          git commit -m "Update EPG data only"
+          git commit -m "Update EPG data"
           git remote add gitee git@gitee.com:magihub/epg.git
           git push gitee main
 
