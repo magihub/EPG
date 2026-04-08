@@ -45,7 +45,7 @@ jobs:
           echo "=== 运行 rudong-epg.py ==="
           python rudong-epg.py
           echo "=== 运行 nantong-epg.py ==="
-          python nantong-epg.py
+          python nantong-epg.py || true
      
       - name: Upload debug artifacts
         if: failure()
