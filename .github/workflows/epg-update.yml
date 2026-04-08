@@ -37,7 +37,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install selenium lxml curl_cffi beautifulsoup4
+          pip install selenium lxml curl_cffi beautifulsoup4 requests
           # 注意：不再安装 webdriver_manager
 
       - name: Run EPG scraper
