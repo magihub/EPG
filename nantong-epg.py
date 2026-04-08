@@ -17,22 +17,35 @@ HEADERS = {
     'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
     'origin': 'https://www.ntjoy.com',
     'referer': 'https://www.ntjoy.com/',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0'
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0',
+    'sec-ch-ua': '"Chromium";v="146", "Microsoft Edge";v="146", "Not;A=Brand";v="99"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
 }
+
+# 创建 Session 并先访问首页获取 Cookie
+session = requests.Session()
+try:
+    session.get('https://www.ntjoy.com/', headers=HEADERS, timeout=10)
+    print("已访问首页获取 Cookie")
+except Exception as e:
+    print(f"访问首页失败: {e}")
 
 MENU_CONFIGS = [
     {"menu_code": "ntw005", "name": "电视", "channel_type": "tv"},
     {"menu_code": "ntw006", "name": "广播", "channel_type": "radio"}
 ]
 
-# ==================== 通用API请求函数 ====================
 def fetch_api(service: str, params_dict: Dict) -> Any:
     payload = {
         'service': service,
         'params': json.dumps(params_dict)
     }
     try:
-        response = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15)
+        response = session.post(API_URL, headers=HEADERS, data=payload, timeout=15)
         response.encoding = 'utf-8'
         if response.status_code == 200:
             result = response.json()
@@ -43,6 +56,8 @@ def fetch_api(service: str, params_dict: Dict) -> Any:
                 return None
         else:
             print(f"  HTTP请求失败，状态码: {response.status_code}")
+            # 打印响应内容以便调试
+            print(f"  响应内容: {response.text[:200]}")
             return None
     except Exception as e:
         print(f"  请求API时发生异常: {e}")
