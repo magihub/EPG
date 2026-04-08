@@ -10,6 +10,7 @@ import datetime
 import time
 import os
 import sys
+import json
 
 # ==================== 配置区域 ====================
 CHANNELS = [
