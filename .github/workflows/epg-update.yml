@@ -40,20 +40,20 @@ jobs:
           pip install selenium lxml curl_cffi beautifulsoup4 requests
           # 注意：不再安装 webdriver_manager
 
-    - name: Diagnose API with curl
-      run: |
-        echo "=== 测试 POST 请求 ==="
-        curl -v -X POST 'https://web.ntjoy.com/website/external/externalService' \
-          -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
-          -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0' \
-          -H 'Origin: https://www.ntjoy.com' \
-          -H 'Referer: https://www.ntjoy.com/' \
-          --data 'service=getMenuContentList&params={"menuId":"ntw005","idx":0,"size":50}'
-        
-        echo "=== 测试 GET 请求 ==="
-        curl -v 'https://web.ntjoy.com/website/external/externalService?service=getMenuContentList&params={"menuId":"ntw005","idx":0,"size":50}' \
-          -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0' \
-          -H 'Referer: https://www.ntjoy.com/'
+      - name: Diagnose API with curl
+        run: |
+          echo "=== 测试 POST 请求 ==="
+          curl -v -X POST 'https://web.ntjoy.com/website/external/externalService' \
+            -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0' \
+            -H 'Origin: https://www.ntjoy.com' \
+            -H 'Referer: https://www.ntjoy.com/' \
+            --data 'service=getMenuContentList&params={"menuId":"ntw005","idx":0,"size":50}'
+          
+          echo "=== 测试 GET 请求 ==="
+          curl -v 'https://web.ntjoy.com/website/external/externalService?service=getMenuContentList&params={"menuId":"ntw005","idx":0,"size":50}' \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0' \
+            -H 'Referer: https://www.ntjoy.com/'
           
       - name: Run EPG scraper
         run: |
