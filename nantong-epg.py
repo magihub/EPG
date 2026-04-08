@@ -20,7 +20,7 @@ def setup_driver():
     chrome_options.add_argument('--window-size=1920,1080')
     return webdriver.Chrome(options=chrome_options)
 
-def fetch_channels_and_programs(menu_code, name):
+def fetch_channels_and_programs(menu_code, name, retries=3):
     from selenium import webdriver
     from selenium.webdriver.chrome.options import Options
     from selenium.webdriver.common.by import By
@@ -28,41 +28,34 @@ def fetch_channels_and_programs(menu_code, name):
     from selenium.webdriver.support import expected_conditions as EC
     import time
 
-    url = f"https://www.rdxmt.com/pc.html?topid={menu_code}"
-
-    # 配置浏览器选项
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')  # 无头模式
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
-    
-    # 隐藏自动化特征
-    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    chrome_options.add_experimental_option('useAutomationExtension', False)
-    
-    # 设置一个现代浏览器的User-Agent
-    chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-
-    # 设置页面加载超时时间为 30 秒
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.set_page_load_timeout(30)
-
-    try:
-        driver.get(url)
-        # 等待关键元素加载
-        WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "body"))
-        )
-        # ... 剩下的抓取逻辑 ...
-        # 你的 token 获取代码也可以放在这里
-        
-    except Exception as e:
-        print(f"抓取失败 ({name}): {e}")
-        return None, None
-    finally:
-        driver.quit()
+    for attempt in range(retries):
+        driver = None
+        try:
+            url = f"https://www.rdxmt.com/pc.html?topid={menu_code}"
+            options = Options()
+            options.add_argument('--headless')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--disable-gpu')
+            options.add_argument('--disable-blink-features=AutomationControlled')
+            options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            options.add_experimental_option('useAutomationExtension', False)
+            options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+            driver = webdriver.Chrome(options=options)
+            driver.set_page_load_timeout(30)
+            driver.get(url)
+            WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CSS_SELECTOR, "body")))
+            # 你的数据提取逻辑...
+            # 如果成功，返回 channels, programs
+            return channels, programs
+        except Exception as e:
+            print(f"尝试 {attempt+1}/{retries} 失败 ({name}): {e}")
+            if attempt == retries - 1:
+                return None, None
+            time.sleep(10)
+        finally:
+            if driver:
+                driver.quit()
 
 def merge_into_epg(all_channels, all_programs, output_file="epg.xml"):
     """合并数据到 epg.xml（保留原有频道和节目）"""
