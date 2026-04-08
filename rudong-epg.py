@@ -113,6 +113,7 @@ def extract_token_from_page(url):
             }
             return null;
         """)
+        print(f"获取到的 token: {token}")
         return token
     except Exception as e:
         print(f"  获取 token 时出错: {e}")
