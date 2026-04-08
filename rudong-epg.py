@@ -76,7 +76,7 @@ def fetch_tv_epg(channel_info):
         if not programs:
             print("  警告：未能抓取到节目单数据。")
             return None
-        print(f"  成功抓取到 {len(programs)} 条节目数据！")
+        print(f"  成功抓取到 {len(programs)} 条电视节目数据！")
         return {
             "channel_id": channel_info["id"],
             "channel_name": channel_info["name"],
@@ -144,7 +144,7 @@ def fetch_radio_epg_with_token(channel_info):
         # 节目列表在 data['data']['epg']['epg'] 中，每个元素有 'date' 和 'data'
         epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
         if not epg_days:
-            print("  未找到节目列表")
+            print("  未找到广播节目列表")
             return None
 
         for day in epg_days:
@@ -177,7 +177,7 @@ def fetch_radio_epg_with_token(channel_info):
 # -------------------- 生成 XML --------------------
 def generate_xmltv(epg_data_list, output_file="epg.xml"):
     if not epg_data_list:
-        print("没有数据，无法生成 XML 文件。")
+        print("没有数据，无法生成 XML 文件")
         return False
 
     tv = ET.Element("tv")
@@ -214,8 +214,9 @@ def generate_xmltv(epg_data_list, output_file="epg.xml"):
 
 # ==================== 主程序 ====================
 def main():
+    print("\n")
     print("=" * 50)
-    print("如东电视台 & 如东广播 EPG 抓取工具")
+    # print("如东电视 & 如东广播 EPG 抓取工具")
     print(f"执行时间: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
 
@@ -235,9 +236,9 @@ def main():
 
     if all_epg_data:
         generate_xmltv(all_epg_data)
-        print("\n🎉 如东所有任务完成！")
+        print("\n🎉 如东电视/广播已抓取完成\n")
     else:
-        print("\n⚠️ 未能抓取到任何数据")
+        print("\n⚠️ 未能抓取到任何有效数据！\n")
 
 if __name__ == "__main__":
     main()
