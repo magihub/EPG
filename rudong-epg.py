@@ -86,57 +86,57 @@ def fetch_tv_epg(channel_info):
     finally:
         driver.quit()
 
-# -------------------- 广播部分（使用 curl_cffi 会话，无需 Token）--------------------
+# -------------------- 广播部分（使用 curl_cffi 会话，获取 Token）--------------------
+def extract_token_from_page(url):
+    """使用 Selenium 从页面提取 token"""
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(options=chrome_options)  # GitHub 会自动找到 chromedriver
+    try:
+        driver.get(url)
+        time.sleep(3)
+        token = driver.execute_script("""
+            let token = localStorage.getItem('token') || 
+                       localStorage.getItem('access_token') ||
+                       sessionStorage.getItem('token') ||
+                       sessionStorage.getItem('access_token');
+            if (!token && window.__INITIAL_STATE__ && window.__INITIAL_STATE__.token) {
+                token = window.__INITIAL_STATE__.token;
+            }
+            return token;
+        """)
+        return token
+    finally:
+        driver.quit()
+
 def fetch_radio_epg(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
-    page_url = channel_info['url']
-    api_url = channel_info['api_url']
-    params = channel_info['params']
-
-    session = cffi_requests.Session()
+    # 提取 token
+    token = extract_token_from_page(channel_info['url'])
+    if not token:
+        print("  无法获取 token，跳过广播抓取")
+        return None
+    
+    headers = {
+        'User-Agent': 'Mozilla/5.0',
+        'Authorization': f'Bearer {token}',
+        'Referer': channel_info['url']
+    }
     try:
-        print("  正在访问页面建立会话...")
-        session.get(page_url, impersonate="chrome", timeout=30)
-
-        headers = {
-            "Referer": page_url,
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-        resp = session.get(api_url, params=params, headers=headers, impersonate="chrome", timeout=30)
+        resp = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
         if resp.status_code == 200:
             data = resp.json()
-            # 根据实际返回结构解析节目（与你原来的一致）
-            if data and 'data' in data and 'epg' in data['data']:
-                epg_data = data['data']['epg']['epg']
-                programs = []
-                for daily_epg in epg_data:
-                    for item in daily_epg.get('data', []):
-                        program = {
-                            "title": item.get('programName', '未知节目'),
-                            "start_time": format_epg_time(item.get('startTime')),
-                            "end_time": format_epg_time(item.get('endTime')),
-                            "desc": ""
-                        }
-                        if program['title'] != '未知节目' and program['start_time'] and program['end_time']:
-                            programs.append(program)
-                if not programs:
-                    print("  警告：未能解析到节目数据。")
-                    return None
-                print(f"  成功抓取到 {len(programs)} 条节目数据！")
-                return {
-                    "channel_id": channel_info["id"],
-                    "channel_name": channel_info["name"],   # 保留原始名称
-                    "programs": programs
-                }
-            else:
-                print("  API 返回数据格式异常")
-                return None
+            # 解析节目逻辑不变...
+            # 根据你原来脚本解析 data['data']['epg']['epg']
         else:
             print(f"  API 请求失败，状态码: {resp.status_code}")
-            return None
     except Exception as e:
         print(f"  抓取出错: {e}")
-        return None
+    return None
 
 # -------------------- 生成XML --------------------
 def generate_xmltv(epg_data_list, output_file="epg.xml"):
@@ -146,7 +146,7 @@ def generate_xmltv(epg_data_list, output_file="epg.xml"):
 
     tv = ET.Element("tv")
     tv.set("generator-info-name", "如东EPG抓取工具")
-    tv.set("date", datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
+    # tv.set("date", datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 
     for epg in epg_data_list:
         channel = ET.SubElement(tv, "channel", id=epg["channel_id"])

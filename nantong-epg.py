@@ -6,7 +6,7 @@ import time
 import os
 from typing import List, Dict, Any
 
-# 尝试导入 curl_cffi 的 requests（模拟浏览器 TLS 指纹）
+# 使用 curl_cffi 代替标准 requests（模拟浏览器指纹）
 try:
     from curl_cffi import requests
     print("使用 curl_cffi 库（模拟浏览器 TLS 指纹）")
@@ -15,9 +15,7 @@ except ImportError:
     print("使用标准 requests 库")
 
 API_URL = "https://web.ntjoy.com/website/external/externalService"
-HOME_URL = "https://www.ntjoy.com/"   # 需要先访问的主页
 
-# 更完整的请求头，模拟真实浏览器
 HEADERS = {
     'Accept': 'application/json, text/javascript, */*; q=0.01',
     'Accept-Encoding': 'gzip, deflate, br, zstd',
@@ -39,37 +37,15 @@ MENU_CONFIGS = [
     {"menu_code": "ntw006", "name": "广播", "channel_type": "radio"}
 ]
 
-# 全局 Session，复用 Cookie
-_session = None
-_home_visited = False
-
-def get_session():
-    global _session, _home_visited
-    if _session is None:
-        _session = requests.Session()
-        _session.headers.update(HEADERS)
-    # 确保先访问主页，获取必要的 Cookie
-    if not _home_visited:
-        try:
-            print("正在访问主页建立会话...")
-            resp = _session.get(HOME_URL, timeout=15)
-            if resp.status_code == 200:
-                _home_visited = True
-                print("主页访问成功，会话已建立")
-            else:
-                print(f"主页访问失败，状态码: {resp.status_code}，可能仍能继续")
-                _home_visited = True   # 避免重复尝试
-        except Exception as e:
-            print(f"访问主页异常: {e}，将尝试直接请求 API")
-            _home_visited = True
-    return _session
+# 全局 Session，复用连接
+_session = requests.Session()
+_session.headers.update(HEADERS)
 
 def fetch_api(service: str, params_dict: Dict) -> Any:
-    """使用 POST 表单方式请求，复用全局 Session"""
+    """使用 POST 表单方式请求"""
     payload = {'service': service, 'params': json.dumps(params_dict)}
-    session = get_session()   # 获取全局 Session（已访问主页）
     try:
-        resp = session.post(API_URL, data=payload, timeout=15)
+        resp = _session.post(API_URL, data=payload, timeout=15)
         resp.encoding = 'utf-8'
         if resp.status_code == 200:
             result = resp.json()
@@ -135,6 +111,7 @@ def format_epg_time(time_str: str) -> str:
         return time_str
 
 def merge_into_epg(channels: List[Dict], programs: List[Dict], output_file="epg.xml"):
+    # 保持不变（你原有的合并函数）
     if os.path.exists(output_file):
         try:
             tree = ET.parse(output_file)
