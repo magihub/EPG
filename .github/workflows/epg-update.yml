@@ -32,8 +32,8 @@ jobs:
       # 无需额外安装，只需确保 chromedriver 在 PATH 中
       - name: Verify Chrome and chromedriver
         run: |
-          chrome --version
-          chromedriver --version || echo "chromedriver not in PATH, but will be found by selenium"
+          google-chrome --version
+          chromedriver --version
 
       - name: Install Python dependencies
         run: |
