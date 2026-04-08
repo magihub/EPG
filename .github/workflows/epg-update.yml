@@ -28,17 +28,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: 'stable'
+      # GitHub Actions 的 ubuntu-latest 已经预装了 Chrome 和 chromedriver
+      # 无需额外安装，只需确保 chromedriver 在 PATH 中
+      - name: Verify Chrome and chromedriver
+        run: |
+          chrome --version
+          chromedriver --version || echo "chromedriver not in PATH, but will be found by selenium"
 
-                   
-    #   - name: Display Chrome path (debug)
-    #     run: |
-    #       which chrome
-    #       which chromedriver
-    #       chrome --version
+      - name: Install Python dependencies
+        run: |
+          pip install selenium lxml curl_cffi beautifulsoup4
+          # 注意：不再安装 webdriver_manager
           
 
       - name: Install Python dependencies
@@ -46,11 +46,11 @@ jobs:
           pip install selenium lxml webdriver-manager requests curl_cffi
 
       - name: Run EPG scraper
-        env:
-          RUDONG_RADIO_TOKEN: ${{ secrets.RUDONG_RADIO_TOKEN }}
         run: |
-          python rudong-epg.py   # 生成 epg.xml（如东）
-          python nantong-epg.py  # 合并到同一个 epg.xml
+          echo "=== 运行 rudong-epg.py ==="
+          python rudong-epg.py
+          echo "=== 运行 nantong-epg.py ==="
+          python nantong-epg.py
           
       - name: Commit and push changes (only if epg.xml changed)
         run: |
