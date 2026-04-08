@@ -28,6 +28,14 @@ def fetch_channels_and_programs(menu_code: str, channel_type: str):
         driver.get(url)
         # 等待频道列表加载（根据实际页面结构调整选择器）
         # 常见的频道列表容器：.channel-list ul li 或 .tv-channel-list .channel-item
+        
+        print(f"当前页面标题: {driver.title}")
+
+        # 保存页面源代码
+        with open("page_source.html", "w", encoding="utf-8") as f:
+            f.write(driver.page_source)
+    
+        
         WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".channel-list li, .tv-channel-list .channel-item"))
         )
