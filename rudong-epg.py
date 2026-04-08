@@ -48,45 +48,62 @@ def format_epg_time(time_string):
 def fetch_tv_epg(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
     print(f"访问地址: {channel_info['url']}")
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
-    driver = webdriver.Chrome(options=chrome_options)
-    try:
-        driver.get(channel_info['url'])
-        WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "li[data-starttime]"))
-        )
-        li_elements = driver.find_elements(By.CSS_SELECTOR, "li[data-starttime]")
-        programs = []
-        for li in li_elements:
-            start_time_raw = li.get_attribute('data-starttime')
-            end_time_raw = li.get_attribute('data-endtime')
-            spans = li.find_elements(By.TAG_NAME, 'span')
-            title = spans[1].get_attribute('textContent').strip() if len(spans) >= 2 else "未知节目"
-            if title and start_time_raw and end_time_raw:
-                programs.append({
-                    "title": title,
-                    "start_time": format_epg_time(start_time_raw),
-                    "end_time": format_epg_time(end_time_raw),
-                    "desc": ""
-                })
-        if not programs:
-            print("警告：未能抓取到节目单数据。")
-            return None
-        print(f"成功抓取到 {len(programs)} 条电视节目数据！")
-        return {
-            "channel_id": channel_info["id"],
-            "channel_name": channel_info["name"],
-            "programs": programs
-        }
-    except Exception as e:
-        print(f"抓取时出错: {e}")
-        return None
-    finally:
-        driver.quit()
+
+    max_attempts = 2          # 最多尝试2次（第一次 + 1次重试）
+    wait_seconds = 5          # 失败后等待5秒再重试
+
+    for attempt in range(1, max_attempts + 1):
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--disable-gpu')
+        driver = webdriver.Chrome(options=chrome_options)
+
+        try:
+            driver.get(channel_info['url'])
+            WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "li[data-starttime]"))
+            )
+            li_elements = driver.find_elements(By.CSS_SELECTOR, "li[data-starttime]")
+            programs = []
+            for li in li_elements:
+                start_time_raw = li.get_attribute('data-starttime')
+                end_time_raw = li.get_attribute('data-endtime')
+                spans = li.find_elements(By.TAG_NAME, 'span')
+                title = spans[1].get_attribute('textContent').strip() if len(spans) >= 2 else "未知节目"
+                if title and start_time_raw and end_time_raw:
+                    programs.append({
+                        "title": title,
+                        "start_time": format_epg_time(start_time_raw),
+                        "end_time": format_epg_time(end_time_raw),
+                        "desc": ""
+                    })
+
+            if not programs:
+                print("警告：未能抓取到节目单数据。")
+                return None
+
+            print(f"成功抓取到 {len(programs)} 条电视节目数据！")
+            return {
+                "channel_id": channel_info["id"],
+                "channel_name": channel_info["name"],
+                "programs": programs
+            }
+
+        except Exception as e:
+            print(f"第 {attempt} 次抓取失败: {e}")
+            if attempt < max_attempts:
+                print(f"🔄 等待 {wait_seconds} 秒后重试...")
+                time.sleep(wait_seconds)
+            else:
+                print("❌ 重试次数已用完，放弃抓取该频道")
+                return None
+
+        finally:
+            driver.quit()
+
+    return None   # 理论上不会走到这里，但保留
 
 # -------------------- 广播抓取（自动获取 Token）--------------------
 def extract_token_from_page(url):
