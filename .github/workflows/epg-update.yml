@@ -46,7 +46,16 @@ jobs:
           python rudong-epg.py
           echo "=== 运行 nantong-epg.py ==="
           python nantong-epg.py
-          
+     
+      - name: Upload debug artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-page
+          path: |
+            page_source.html
+            debug.png
+              
       - name: Commit and push changes (only if epg.xml changed)
         run: |
           git config user.name 'github-actions'
