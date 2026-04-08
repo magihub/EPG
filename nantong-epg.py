@@ -21,7 +21,7 @@ HEADERS = {
     'Accept-Encoding': 'gzip, deflate, br, zstd',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
     'Connection': 'keep-alive',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    # 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
     'Host': 'web.ntjoy.com',
     'Origin': 'https://www.ntjoy.com',
     'Referer': 'https://www.ntjoy.com/',
@@ -42,10 +42,16 @@ _session = requests.Session()
 _session.headers.update(HEADERS)
 
 def fetch_api(service: str, params_dict: Dict) -> Any:
-    """使用 POST 表单方式请求"""
-    payload = {'service': service, 'params': json.dumps(params_dict)}
+    """使用 GET 请求，参数嵌套传递"""
+    url = API_URL
+    # 注意：params 字段的值直接是字典，不要用 json.dumps
+    params = {
+        'service': service,
+        'params': params_dict
+    }
     try:
-        resp = _session.post(API_URL, data=payload, timeout=15)
+        # 使用 session.get，参数自动 urlencode
+        resp = _session.get(url, params=params, timeout=15)
         resp.encoding = 'utf-8'
         if resp.status_code == 200:
             result = resp.json()

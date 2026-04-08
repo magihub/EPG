@@ -8,9 +8,10 @@ from xml.dom import minidom
 import requests
 import datetime
 import time
-from curl_cffi import requests as cffi_requests
+import os
+import sys
 
-# ==================== 配置区域（频道名称保持不变）====================
+# ==================== 配置区域 ====================
 CHANNELS = [
     {
         "id": "如东新闻综合",
@@ -37,12 +38,13 @@ def format_epg_time(time_string):
     if not time_string:
         return ""
     try:
+        # 尝试解析 "2026-04-08 13:00:00" 格式
         dt = datetime.datetime.strptime(time_string.strip(), "%Y-%m-%d %H:%M:%S")
         return dt.strftime("%Y%m%d%H%M%S +0800")
     except ValueError:
         return time_string
 
-# -------------------- 电视部分（使用 GitHub Actions 预装的 Chrome）--------------------
+# -------------------- 电视抓取（无头 Chrome）--------------------
 def fetch_tv_epg(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
     print(f"  访问地址: {channel_info['url']}")
@@ -51,7 +53,6 @@ def fetch_tv_epg(channel_info):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--disable-gpu')
-    # 直接使用 Chrome，无需 Service 和 webdriver_manager
     driver = webdriver.Chrome(options=chrome_options)
     try:
         driver.get(channel_info['url'])
@@ -78,7 +79,7 @@ def fetch_tv_epg(channel_info):
         print(f"  成功抓取到 {len(programs)} 条节目数据！")
         return {
             "channel_id": channel_info["id"],
-            "channel_name": channel_info["name"],   # 保留原始名称
+            "channel_name": channel_info["name"],
             "programs": programs
         }
     except Exception as e:
@@ -87,59 +88,114 @@ def fetch_tv_epg(channel_info):
     finally:
         driver.quit()
 
-# -------------------- 广播部分（使用 curl_cffi 会话，获取 Token）--------------------
+# -------------------- 广播抓取（自动获取 Token）--------------------
 def extract_token_from_page(url):
-    """使用 Selenium 从页面提取 token"""
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
+    """使用 Selenium 从页面 LocalStorage 提取 token"""
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-    driver = webdriver.Chrome(options=chrome_options)  # GitHub 会自动找到 chromedriver
+    driver = webdriver.Chrome(options=chrome_options)
     try:
         driver.get(url)
+        # 等待页面加载完成，给 JS 足够时间写入 localStorage
         time.sleep(3)
+        # 尝试多种可能的 token 键名
         token = driver.execute_script("""
-            let token = localStorage.getItem('token') || 
-                       localStorage.getItem('access_token') ||
-                       sessionStorage.getItem('token') ||
-                       sessionStorage.getItem('access_token');
-            if (!token && window.__INITIAL_STATE__ && window.__INITIAL_STATE__.token) {
-                token = window.__INITIAL_STATE__.token;
+            let keys = ['token', 'access_token', 'jwt', 'authorization'];
+            for (let key of keys) {
+                let val = localStorage.getItem(key) || sessionStorage.getItem(key);
+                if (val) return val;
             }
-            return token;
+            // 如果都没有，尝试从 window 对象中找
+            if (window.__INITIAL_STATE__ && window.__INITIAL_STATE__.token) {
+                return window.__INITIAL_STATE__.token;
+            }
+            return null;
         """)
         return token
+    except Exception as e:
+        print(f"  获取 token 时出错: {e}")
+        return None
     finally:
         driver.quit()
 
 def fetch_radio_epg(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
-    # 提取 token
     token = extract_token_from_page(channel_info['url'])
     if not token:
         print("  无法获取 token，跳过广播抓取")
         return None
-    
+
     headers = {
-        'User-Agent': 'Mozilla/5.0',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
         'Authorization': f'Bearer {token}',
-        'Referer': channel_info['url']
+        'Referer': channel_info['url'],
+        'Accept': 'application/json, text/plain, */*'
     }
     try:
         resp = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
-        if resp.status_code == 200:
-            data = resp.json()
-            # 解析节目逻辑不变...
-            # 根据你原来脚本解析 data['data']['epg']['epg']
-        else:
+        if resp.status_code != 200:
             print(f"  API 请求失败，状态码: {resp.status_code}")
+            return None
+
+        data = resp.json()
+        # 打印前 300 字符到日志，方便调试
+        print(f"  API 返回示例: {str(data)[:300]}")
+
+        # 兼容多种可能的 JSON 结构
+        epg_list = None
+        if isinstance(data, dict):
+            # 结构1: {"data":{"epg":{"epg":[...]}}}
+            if 'data' in data and isinstance(data['data'], dict):
+                if 'epg' in data['data']:
+                    epg_obj = data['data']['epg']
+                    if isinstance(epg_obj, dict) and 'epg' in epg_obj:
+                        epg_list = epg_obj['epg']
+                    elif isinstance(epg_obj, list):
+                        epg_list = epg_obj
+                elif 'list' in data['data']:
+                    epg_list = data['data']['list']
+            # 结构2: {"epg":[...]}
+            elif 'epg' in data:
+                epg_list = data['epg']
+            # 结构3: {"list":[...]}
+            elif 'list' in data:
+                epg_list = data['list']
+
+        if not epg_list or not isinstance(epg_list, list):
+            print("  未找到节目列表，请检查 API 返回结构")
+            return None
+
+        programs = []
+        for item in epg_list:
+            # 尝试多种字段名
+            start = item.get('startTime') or item.get('start_time') or item.get('start')
+            end = item.get('endTime') or item.get('end_time') or item.get('end')
+            title = item.get('programName') or item.get('title') or item.get('name')
+            if start and end and title:
+                programs.append({
+                    "title": title,
+                    "start_time": format_epg_time(start),
+                    "end_time": format_epg_time(end),
+                    "desc": item.get('desc', '')
+                })
+
+        if not programs:
+            print("  解析后无节目数据")
+            return None
+
+        print(f"  成功抓取到 {len(programs)} 条广播节目数据！")
+        return {
+            "channel_id": channel_info["id"],
+            "channel_name": channel_info["name"],
+            "programs": programs
+        }
     except Exception as e:
         print(f"  抓取出错: {e}")
-    return None
+        return None
 
-# -------------------- 生成XML --------------------
+# -------------------- 生成 XML --------------------
 def generate_xmltv(epg_data_list, output_file="epg.xml"):
     if not epg_data_list:
         print("没有数据，无法生成 XML 文件。")
@@ -147,13 +203,14 @@ def generate_xmltv(epg_data_list, output_file="epg.xml"):
 
     tv = ET.Element("tv")
     tv.set("generator-info-name", "如东EPG抓取工具")
-    # tv.set("date", datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 
+    # 添加频道
     for epg in epg_data_list:
         channel = ET.SubElement(tv, "channel", id=epg["channel_id"])
         display_name = ET.SubElement(channel, "display-name", lang="zh")
-        display_name.text = epg["channel_name"]   # 这里输出中文名称
+        display_name.text = epg["channel_name"]
 
+    # 添加节目
     for epg in epg_data_list:
         for prog in epg["programs"]:
             programme = ET.SubElement(tv, "programme",
@@ -185,12 +242,14 @@ def main():
 
     all_epg_data = []
 
+    # 抓取电视
     tv_epg = fetch_tv_epg(CHANNELS[0])
     if tv_epg:
         all_epg_data.append(tv_epg)
 
     time.sleep(2)
 
+    # 抓取广播
     radio_epg = fetch_radio_epg(CHANNELS[1])
     if radio_epg:
         all_epg_data.append(radio_epg)
