@@ -1,11 +1,11 @@
-import requests
 import json
 import datetime
-import xml.etree.ElementTree as ET
-from xml.dom import minidom
 import time
 import os
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
 from typing import List, Dict, Any
+from curl_cffi import requests  # 替换原来的 requests
 
 # ==================== 配置区域 ====================
 API_URL = "https://web.ntjoy.com/website/external/externalService"
@@ -18,21 +18,7 @@ HEADERS = {
     'origin': 'https://www.ntjoy.com',
     'referer': 'https://www.ntjoy.com/',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0',
-    'sec-ch-ua': '"Chromium";v="146", "Microsoft Edge";v="146", "Not;A=Brand";v="99"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
 }
-
-# 创建 Session 并先访问首页获取 Cookie
-session = requests.Session()
-try:
-    session.get('https://www.ntjoy.com/', headers=HEADERS, timeout=10)
-    print("已访问首页获取 Cookie")
-except Exception as e:
-    print(f"访问首页失败: {e}")
 
 MENU_CONFIGS = [
     {"menu_code": "ntw005", "name": "电视", "channel_type": "tv"},
@@ -45,8 +31,8 @@ def fetch_api(service: str, params_dict: Dict) -> Any:
         'params': json.dumps(params_dict)
     }
     try:
-        response = session.post(API_URL, headers=HEADERS, data=payload, timeout=15)
-        response.encoding = 'utf-8'
+        # 使用 curl_cffi 模拟 Chrome 120 的指纹
+        response = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15, impersonate="chrome120")
         if response.status_code == 200:
             result = response.json()
             if result.get('state') == 1000:
@@ -56,12 +42,13 @@ def fetch_api(service: str, params_dict: Dict) -> Any:
                 return None
         else:
             print(f"  HTTP请求失败，状态码: {response.status_code}")
-            # 打印响应内容以便调试
             print(f"  响应内容: {response.text[:200]}")
             return None
     except Exception as e:
         print(f"  请求API时发生异常: {e}")
         return None
+
+# ... 其余函数保持不变（fetch_channels, fetch_channel_programs, format_epg_time, merge_into_epg, main）
 
 # ==================== 抓取频道和节目 ====================
 def fetch_channels(menu_code: str) -> List[Dict]:
