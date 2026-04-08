@@ -137,12 +137,14 @@ def extract_token_from_page(url):
 
 def fetch_radio_epg_with_token(channel_info):
     max_attempts = 2          # 最多尝试2次（第一次 + 1次重试）
-    wait_seconds = 5          # 失败后等待5秒再重试    
+    wait_seconds = 5          # 失败后等待5秒再重试
 
     for attempt in range(1, max_attempts + 1):
         print(f"\n--- 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ---")
         print(f"访问地址: {channel_info['url']}")
-        token = extract_token_from_page(channel_info['url'])   # 这个函数内部也可能失败
+
+        # 1. 获取 token
+        token = extract_token_from_page(channel_info['url'])
         if not token:
             print(f"第 {attempt} 次获取 token 失败")
             if attempt < max_attempts:
@@ -153,56 +155,72 @@ def fetch_radio_epg_with_token(channel_info):
                 print("❌ 重试次数已用完，跳过广播抓取")
                 return None
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-        'Authorization': f'Bearer {token}',
-        'Referer': channel_info['url'],
-        'Accept': 'application/json, text/plain, */*'
-    }
-    try:
-        response = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
-        if response.status_code != 200:
-            print(f"API 请求失败，状态码: {response.status_code}")
-            return None
-
-        data = response.json()
-
-        programs = []
-        # 节目列表在 data['data']['epg']['epg'] 中，每个元素有 'date' 和 'data'
-        epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
-        if not epg_days:
-            print("未找到广播节目列表")
-            return None
-
-        for day in epg_days:
-            for item in day.get('data', []):
-                title = item.get('programName')
-                start = item.get('startTime')
-                end = item.get('endTime')
-                if title and start and end:
-                    programs.append({
-                        "title": title,
-                        "start_time": format_epg_time(start),
-                        "end_time": format_epg_time(end),
-                        "desc": item.get('remark', '')
-                    })
-
-        if not programs:
-            print("解析后无节目数据")
-            return None
-
-        print(f"成功抓取到 {len(programs)} 条广播节目数据！")
-        return {
-            "channel_id": channel_info["id"],
-            "channel_name": channel_info["name"],
-            "programs": programs
+        # 2. 使用 token 请求 API
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Authorization': f'Bearer {token}',
+            'Referer': channel_info['url'],
+            'Accept': 'application/json, text/plain, */*'
         }
+        try:
+            response = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
+            if response.status_code != 200:
+                print(f"第 {attempt} 次 API 请求失败，状态码: {response.status_code}")
+                if attempt < max_attempts:
+                    print(f"🔄 等待 {wait_seconds} 秒后重试...")
+                    time.sleep(wait_seconds)
+                    continue
+                else:
+                    return None
+
+            data = response.json()
+            programs = []
+            epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
+            if not epg_days:
+                print("第 {attempt} 次未找到广播节目列表")
+                if attempt < max_attempts:
+                    print(f"🔄 等待 {wait_seconds} 秒后重试...")
+                    time.sleep(wait_seconds)
+                    continue
+                else:
+                    return None
+
+            for day in epg_days:
+                for item in day.get('data', []):
+                    title = item.get('programName')
+                    start = item.get('startTime')
+                    end = item.get('endTime')
+                    if title and start and end:
+                        programs.append({
+                            "title": title,
+                            "start_time": format_epg_time(start),
+                            "end_time": format_epg_time(end),
+                            "desc": item.get('remark', '')
+                        })
+
+            if not programs:
+                print(f"第 {attempt} 次解析后无节目数据")
+                if attempt < max_attempts:
+                    print(f"🔄 等待 {wait_seconds} 秒后重试...")
+                    time.sleep(wait_seconds)
+                    continue
+                else:
+                    return None
+
+            print(f"✅ 成功抓取到 {len(programs)} 条广播节目数据！")
+            return {
+                "channel_id": channel_info["id"],
+                "channel_name": channel_info["name"],
+                "programs": programs
+            }
         except Exception as e:
-            print(f"第 {attempt} 次 API 请求失败: {e}")
+            print(f"第 {attempt} 次 API 请求或解析异常: {e}")
             if attempt < max_attempts:
+                print(f"🔄 等待 {wait_seconds} 秒后重试...")
                 time.sleep(wait_seconds)
                 continue
             else:
+                print("❌ 重试次数已用完，放弃广播抓取")
                 return None
 
     return None
