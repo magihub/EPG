@@ -46,13 +46,13 @@ def format_epg_time(time_string):
 
 # -------------------- 电视抓取（无头 Chrome）--------------------
 def fetch_tv_epg(channel_info):
-    print(f"\n--- 开始抓取: {channel_info['name']} ---")
-    print(f"访问地址: {channel_info['url']}")
-
     max_attempts = 2          # 最多尝试2次（第一次 + 1次重试）
     wait_seconds = 5          # 失败后等待5秒再重试
 
     for attempt in range(1, max_attempts + 1):
+        print(f"\n--- 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ---")
+        print(f"访问地址: {channel_info['url']}")
+        
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
