@@ -141,47 +141,27 @@ def fetch_radio_epg(channel_info):
             return None
 
         data = resp.json()
-        # 打印前 300 字符到日志，方便调试
-        print(f"  API 返回示例: {str(data)[:300]}")
         print(f"完整返回: {json.dumps(data, ensure_ascii=False, indent=2)}")  # 需要 import json
 
-        # 兼容多种可能的 JSON 结构
-        epg_list = None
-        if isinstance(data, dict):
-            # 结构1: {"data":{"epg":{"epg":[...]}}}
-            if 'data' in data and isinstance(data['data'], dict):
-                if 'epg' in data['data']:
-                    epg_obj = data['data']['epg']
-                    if isinstance(epg_obj, dict) and 'epg' in epg_obj:
-                        epg_list = epg_obj['epg']
-                    elif isinstance(epg_obj, list):
-                        epg_list = epg_obj
-                elif 'list' in data['data']:
-                    epg_list = data['data']['list']
-            # 结构2: {"epg":[...]}
-            elif 'epg' in data:
-                epg_list = data['epg']
-            # 结构3: {"list":[...]}
-            elif 'list' in data:
-                epg_list = data['list']
-
-        if not epg_list or not isinstance(epg_list, list):
-            print("  未找到节目列表，请检查 API 返回结构")
+        programs = []
+        # 节目列表在 data['data']['epg']['epg'] 中，每个元素有 'date' 和 'data'
+        epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
+        if not epg_days:
+            print("  未找到节目列表")
             return None
 
-        programs = []
-        for item in epg_list:
-            # 尝试多种字段名
-            start = item.get('startTime') or item.get('start_time') or item.get('start')
-            end = item.get('endTime') or item.get('end_time') or item.get('end')
-            title = item.get('programName') or item.get('title') or item.get('name')
-            if start and end and title:
-                programs.append({
-                    "title": title,
-                    "start_time": format_epg_time(start),
-                    "end_time": format_epg_time(end),
-                    "desc": item.get('desc', '')
-                })
+        for day in epg_days:
+            for item in day.get('data', []):
+                title = item.get('programName')
+                start = item.get('startTime')
+                end = item.get('endTime')
+                if title and start and end:
+                    programs.append({
+                        "title": title,
+                        "start_time": format_epg_time(start),
+                        "end_time": format_epg_time(end),
+                        "desc": item.get('remark', '')
+                    })
 
         if not programs:
             print("  解析后无节目数据")
