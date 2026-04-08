@@ -113,7 +113,14 @@ def extract_token_from_page(url):
             }
             return null;
         """)
-        print(f"获取到的 token: {token}")
+        print(f"  获取到的 token: {token}")
+        print(f"  获取到的 token 类型: {type(token)}, 长度: {len(token) if token else 0}")
+        if token:
+            print(f"  token 前10位: {token[:10]}, 后10位: {token[-10:]}")
+        
+        with open("token_debug.txt", "w") as f:
+            f.write(token)
+    
         return token
     except Exception as e:
         print(f"  获取 token 时出错: {e}")
