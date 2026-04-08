@@ -49,9 +49,17 @@ def fetch_channels_and_programs(menu_code, name, retries=3):
             # 如果成功，返回 channels, programs
             return channels, programs
         except Exception as e:
-            print(f"尝试 {attempt+1}/{retries} 失败 ({name}): {e}")
-            if attempt == retries - 1:
-                return None, None
+            print(f"抓取失败 ({name}): {e}")
+            # 尝试保存当前页面状态（如果 driver 已创建）
+            if driver:
+                try:
+                    with open("page_source.html", "w", encoding="utf-8") as f:
+                        f.write(driver.page_source)
+                    driver.save_screenshot("debug.png")
+                    print("已保存页面源码 page_source.html 和截图 debug.png")
+                except Exception as save_err:
+                    print(f"保存调试信息失败: {save_err}")
+            return None, None
             time.sleep(10)
         finally:
             if driver:
