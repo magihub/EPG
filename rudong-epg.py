@@ -142,6 +142,7 @@ def fetch_radio_epg(channel_info):
         data = resp.json()
         # 打印前 300 字符到日志，方便调试
         print(f"  API 返回示例: {str(data)[:300]}")
+        print(f"完整返回: {json.dumps(data, ensure_ascii=False, indent=2)}")  # 需要 import json
 
         # 兼容多种可能的 JSON 结构
         epg_list = None
