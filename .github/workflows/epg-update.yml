@@ -39,11 +39,6 @@ jobs:
         run: |
           pip install selenium lxml curl_cffi beautifulsoup4
           # 注意：不再安装 webdriver_manager
-          
-
-      - name: Install Python dependencies
-        run: |
-          pip install selenium lxml webdriver-manager requests curl_cffi
 
       - name: Run EPG scraper
         run: |
