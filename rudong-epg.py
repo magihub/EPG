@@ -136,12 +136,22 @@ def extract_token_from_page(url):
         driver.quit()
 
 def fetch_radio_epg_with_token(channel_info):
-    print(f"\n--- 开始抓取: {channel_info['name']} ---")
-    print(f"访问地址: {channel_info['url']}")
-    token = extract_token_from_page(channel_info['url'])
-    if not token:
-        print("无法获取 token，跳过广播抓取")
-        return None
+    max_attempts = 2          # 最多尝试2次（第一次 + 1次重试）
+    wait_seconds = 5          # 失败后等待5秒再重试    
+
+    for attempt in range(1, max_attempts + 1):
+        print(f"\n--- 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ---")
+        print(f"访问地址: {channel_info['url']}")
+        token = extract_token_from_page(channel_info['url'])   # 这个函数内部也可能失败
+        if not token:
+            print(f"第 {attempt} 次获取 token 失败")
+            if attempt < max_attempts:
+                print(f"🔄 等待 {wait_seconds} 秒后重试...")
+                time.sleep(wait_seconds)
+                continue
+            else:
+                print("❌ 重试次数已用完，跳过广播抓取")
+                return None
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
@@ -187,9 +197,15 @@ def fetch_radio_epg_with_token(channel_info):
             "channel_name": channel_info["name"],
             "programs": programs
         }
-    except Exception as e:
-        print(f"抓取出错: {e}")
-        return None
+        except Exception as e:
+            print(f"第 {attempt} 次 API 请求失败: {e}")
+            if attempt < max_attempts:
+                time.sleep(wait_seconds)
+                continue
+            else:
+                return None
+
+    return None
 
 # -------------------- 生成 XML --------------------
 def generate_xmltv(epg_data_list, output_file="epg.xml"):
