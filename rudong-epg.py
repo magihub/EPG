@@ -217,7 +217,7 @@ def main():
     print("\n")
     print("=" * 50)
     # print("如东电视 & 如东广播 EPG 抓取工具")
-    print(f"执行时间: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
 
     all_epg_data = []
@@ -236,7 +236,7 @@ def main():
 
     if all_epg_data:
         generate_xmltv(all_epg_data)
-        print("\n🎉 如东电视/广播已抓取完成\n")
+        print("\n🎉 如东电视、广播均已抓取完成\n")
     else:
         print("\n⚠️ 未能抓取到任何有效数据！\n")
 
