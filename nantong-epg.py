@@ -8,7 +8,7 @@ import requests
 
 API_URL = "https://web.ntjoy.com/website/external/externalService"
 
-# 固定签名参数（从成功的 curl 命令中提取）
+# 固定签名参数（从您成功的 curl 命令中提取，已验证可用）
 FIXED_SIGN = "914f958127d0791d8edfa52ae11d990e"
 FIXED_TST = 1775627561657
 
@@ -16,7 +16,7 @@ def fetch_api(service: str, params_dict: dict):
     """使用固定签名发送 POST 请求"""
     payload = {
         'service': service,
-        'params': json.dumps(params_dict, separators=(',', ':')),  # 紧凑格式
+        'params': json.dumps(params_dict, separators=(',', ':')),  # 紧凑格式，无空格
         'apiVersion': '1.0',
         'terminalType': 'website',
         'butelAppkey': 'webntjoy',
@@ -33,18 +33,19 @@ def fetch_api(service: str, params_dict: dict):
     }
     try:
         resp = requests.post(API_URL, data=payload, headers=headers, timeout=15)
-        if resp.status_code == 200:
-            result = resp.json()
-            if result.get('state') == 1000:
-                return result.get('data')
-            else:
-                print(f"  API错误: {result.get('message')}")
-                return None
+        # 打印响应状态和部分内容，便于调试
+        print(f"    [DEBUG] 响应状态码: {resp.status_code}")
+        if resp.status_code != 200:
+            print(f"    [DEBUG] 响应内容: {resp.text[:300]}")
+            return None
+        result = resp.json()
+        if result.get('state') == 1000:
+            return result.get('data')
         else:
-            print(f"  HTTP {resp.status_code}")
+            print(f"    API错误: {result.get('message')}")
             return None
     except Exception as e:
-        print(f"  请求异常: {e}")
+        print(f"    请求异常: {e}")
         return None
 
 def fetch_channels(menu_code: str):
@@ -53,6 +54,9 @@ def fetch_channels(menu_code: str):
     if data and 'rows' in data:
         channels = [{'id': row['id'], 'name': row['title']} for row in data['rows']]
         print(f"  发现 {len(channels)} 个频道")
+        # 打印前几个频道ID，便于核对
+        for ch in channels[:3]:
+            print(f"    示例频道: {ch['name']} (ID: {ch['id']})")
         return channels
     else:
         print("  获取频道列表失败")
@@ -76,11 +80,11 @@ def fetch_programs(channel_id: str, channel_name: str):
                 })
         print(f"    获取 {len(programs)} 条节目")
     else:
-        print("    无节目数据")
+        print("    无节目数据或数据格式异常")
     return programs
 
 def merge_into_epg(all_channels, all_programs, output_file="epg.xml"):
-    # 请复制您原有的 merge_into_epg 函数（这里简单实现一个）
+    # 如果文件已存在，则读取现有内容；否则创建新根
     if os.path.exists(output_file):
         try:
             tree = ET.parse(output_file)
@@ -90,13 +94,14 @@ def merge_into_epg(all_channels, all_programs, output_file="epg.xml"):
     else:
         tv = ET.Element("tv")
     
-    # 添加频道
+    # 添加新频道（避免重复）
     existing_ids = {ch.get('id') for ch in tv.findall('channel')}
     for ch in all_channels:
         if ch['id'] not in existing_ids:
             ch_elem = ET.SubElement(tv, "channel", id=ch['id'])
             name_elem = ET.SubElement(ch_elem, "display-name", lang="zh")
             name_elem.text = ch['name']
+            print(f"  添加频道: {ch['name']}")
     
     # 添加节目
     for prog in all_programs:
@@ -110,13 +115,19 @@ def merge_into_epg(all_channels, all_programs, output_file="epg.xml"):
             desc = ET.SubElement(prog_elem, "desc", lang="zh")
             desc.text = prog['desc']
     
+    # 写入文件
     xml_str = ET.tostring(tv, encoding='utf-8')
     dom = minidom.parseString(xml_str)
     pretty = dom.toprettyxml(indent="    ", encoding='utf-8').decode('utf-8')
     pretty = pretty.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(pretty)
-    print(f"✅ 已合并写入 {output_file}")
+    
+    total_channels = len(tv.findall('channel'))
+    total_programs = len(tv.findall('programme'))
+    print(f"\n✅ 已合并写入 {output_file}")
+    print(f"   总频道数: {total_channels}")
+    print(f"   总节目数: {total_programs}")
 
 def main():
     print("开始抓取南通电视+广播 EPG")
@@ -133,7 +144,7 @@ def main():
             for p in progs:
                 p['channel_id'] = ch['id']
             all_programs.extend(progs)
-        time.sleep(0.5)
+            time.sleep(0.3)  # 避免请求过快
     
     if all_programs:
         merge_into_epg(all_channels, all_programs)
