@@ -110,7 +110,7 @@ def extract_token_from_page(url):
             }
             return null;
         """)
-        print(f"  获取到的 token 类型: {type(token).__name__}, 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}")
+        print(f"  获取到的 token 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}")
         return token
     except Exception as e:
         print(f"  获取 token 时出错: {e}")
