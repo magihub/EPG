@@ -110,15 +110,15 @@ def extract_token_from_page(url):
             }
             return null;
         """)
-        print(f"  获取到的 token 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}")
+        print(f"  获取到的 token 长度: {len(token) if token else 0}, 首尾: {token[:10]}...{token[-10:] if token else 'None'}")
         return token
     except Exception as e:
-        print(f"  获取 token 时出错: {e}")
+        print(f"  获取 token 时失败: {e}")
         return None
     finally:
         driver.quit()
 
-def fetch_radio_epg(channel_info):
+def fetch_radio_epg_with_token(channel_info):
     print(f"\n--- 开始抓取: {channel_info['name']} ---")
     print(f"  访问地址: {channel_info['url']}")
     token = extract_token_from_page(channel_info['url'])
@@ -133,12 +133,12 @@ def fetch_radio_epg(channel_info):
         'Accept': 'application/json, text/plain, */*'
     }
     try:
-        resp = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
-        if resp.status_code != 200:
-            print(f"  API 请求失败，状态码: {resp.status_code}")
+        response = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
+        if response.status_code != 200:
+            print(f"  API 请求失败，状态码: {response.status_code}")
             return None
 
-        data = resp.json()
+        data = response.json()
 
         programs = []
         # 节目列表在 data['data']['epg']['epg'] 中，每个元素有 'date' 和 'data'
@@ -229,7 +229,7 @@ def main():
     time.sleep(2)
 
     # 抓取广播
-    radio_epg = fetch_radio_epg(CHANNELS[1])
+    radio_epg = fetch_radio_epg_with_token(CHANNELS[1])
     if radio_epg:
         all_epg_data.append(radio_epg)
 
