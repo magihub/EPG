@@ -67,60 +67,79 @@ jobs:
             git push
           fi
           
-  sync-to-gitee:
-    runs-on: ubuntu-latest
-    needs: update-epg          # 只有主任务成功后才运行
+sync-to-gitee:
+  runs-on: ubuntu-latest
+  needs: update-epg
 
-    steps:
-      - name: Checkout latest code
-        uses: actions/checkout@v4
-        with:
-          #  fetch-depth: 0
-          fetch-depth: 2   # 需要获取前一次提交，用于对比
+  steps:
+    - name: Checkout latest code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1          # 只需要最新代码，不需要历史
 
-      - name: Check if epg.xml changed
-        id: check_changes
-        run: |
-          # 检查是否有上一次提交
-          if git rev-parse HEAD^ >/dev/null 2>&1; then
-            if git diff --quiet HEAD^ HEAD -- epg.xml; then
-              echo "epg.xml 无变化，跳过同步"
-              echo "changed=false" >> $GITHUB_OUTPUT
-            else
-              echo "epg.xml 已变化，开始同步到 Gitee"
-              echo "changed=true" >> $GITHUB_OUTPUT
-            fi
+    # ---------- 新增：计算当前文件的 MD5 ----------
+    - name: Calculate current hash
+      id: hash
+      run: |
+        echo "hash=$(md5sum epg.xml | cut -d' ' -f1)" >> $GITHUB_OUTPUT
+
+    # ---------- 新增：恢复上次成功推送时的 MD5 ----------
+    - name: Restore previous hash from cache
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: epg_hash.txt
+        key: epg-hash-${{ github.ref }}   # 按分支缓存
+        restore-keys: |
+          epg-hash-
+
+    # ---------- 替换原有的变化检测步骤 ----------
+    - name: Check if epg.xml changed
+      id: check_changes
+      run: |
+        current="${{ steps.hash.outputs.hash }}"
+        if [ -f epg_hash.txt ]; then
+          previous=$(cat epg_hash.txt)
+          if [ "$current" = "$previous" ]; then
+            echo "epg.xml 内容无变化，跳过同步"
+            echo "changed=false" >> $GITHUB_OUTPUT
           else
-            # 第一次提交，没有上一次提交，视为有变化
-            echo "首次运行，epg.xml 需要同步"
+            echo "epg.xml 已变化（$previous → $current），开始同步到 Gitee"
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-          
-      - name: Setup SSH key for Gitee
-        if: steps.check_changes.outputs.changed == 'true'      
-        env:
-          GITEE_SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$GITEE_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
+        else
+          echo "首次运行或缓存缺失，epg.xml 需要同步"
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
 
-      - name: Push ONLY epg.xml and epg.xml.gz to Gitee
-        if: steps.check_changes.outputs.changed == 'true'      
-        run: |
-          # 创建临时目录
-          mkdir /tmp/gitee_push
-          # 复制需要的两个文件
-          cp epg.xml epg.xml.gz /tmp/gitee_push/
-          cd /tmp/gitee_push
-          # 初始化一个全新的仓库
-          git config --global init.defaultBranch main
-          git init
-          git config user.name 'github-actions'
-          git config user.email 'github-actions@github.com'
-          git add epg.xml epg.xml.gz
-          git commit -m "Update EPG data only"
-          # 强制推送到 Gitee 的 main 分支（会覆盖远程所有内容）
-          git remote add gitee git@gitee.com:magihub/epg.git
-          git push gitee main --force
+    - name: Setup SSH key for Gitee
+      if: steps.check_changes.outputs.changed == 'true'      
+      env:
+        GITEE_SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$GITEE_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
+
+    - name: Push ONLY epg.xml and epg.xml.gz to Gitee
+      if: steps.check_changes.outputs.changed == 'true'
+      id: push
+      run: |
+        mkdir /tmp/gitee_push
+        cp epg.xml epg.xml.gz /tmp/gitee_push/
+        cd /tmp/gitee_push
+        git config --global init.defaultBranch main
+        git init
+        git config user.name 'github-actions'
+        git config user.email 'github-actions@github.com'
+        git add epg.xml epg.xml.gz
+        git commit -m "Update EPG data only"
+        git remote add gitee git@gitee.com:magihub/epg.git
+        git push gitee main --force
+
+    # ---------- 新增：推送成功后更新本地哈希文件（缓存会自动保存） ----------
+    - name: Update hash after successful push
+      if: steps.push.outcome == 'success' && steps.check_changes.outputs.changed == 'true'
+      run: |
+        echo "${{ steps.hash.outputs.hash }}" > epg_hash.txt
