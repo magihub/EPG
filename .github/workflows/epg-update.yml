@@ -45,13 +45,7 @@ jobs:
           echo "=== 运行 rudong-epg.py ==="
           python rudong-epg.py
           echo "=== 运行 nantong-epg.py ==="
-          python nantong-epg.py || true
-
-      - name: Upload token debug
-        uses: actions/upload-artifact@v4
-        with:
-          name: token_debug
-          path: token_debug.txt
+          python nantong-epg.py
     
       - name: Upload debug artifacts
         uses: actions/upload-artifact@v4
