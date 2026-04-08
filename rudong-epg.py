@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
+import requests
 import datetime
 import time
 from curl_cffi import requests as cffi_requests
