@@ -1,11 +1,17 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+南通广播电视台 电视+广播 EPG 抓取工具
+使用通用合并函数，频道ID规范命名
+"""
+
 import json
 import datetime
 import time
 import os
-import xml.etree.ElementTree as ET
-from xml.dom import minidom
 from typing import List, Dict, Any
-from curl_cffi import requests  # 替换原来的 requests
+from curl_cffi import requests
+from epg_common import merge_and_write   # 导入公共合并函数
 
 # ==================== 配置区域 ====================
 API_URL = "https://web.ntjoy.com/website/external/externalService"
@@ -25,32 +31,56 @@ MENU_CONFIGS = [
     {"menu_code": "ntw006", "name": "广播", "channel_type": "radio"}
 ]
 
-def fetch_api(service: str, params_dict: Dict) -> Any:
+# ==================== 频道ID映射表（原始ID -> 规范ID和显示名称） ====================
+CHANNEL_MAPPING = {
+    # 电视
+    "ff8081818bcbe7c2018bcc9bf4f20015": {"id": "南通新闻综合", "display": "南通新闻综合"},
+    "ff8081818bcbe7c2018bcc9cb7390018": {"id": "南通社教频道", "display": "南通社会教育"},
+    "ff8081818bcbe7c2018bcc9d12f0001b": {"id": "南通公共频道", "display": "南通公共崇川"},
+    # 广播
+    "ff8081818bcbe7c2018bcc97451e0009": {"id": "南通FM97.0", "display": "南通综合广播"},
+    "ff8081818bcbe7c2018bcc9a0de6000c": {"id": "南通FM92.9", "display": "南通交通广播"},
+    "ff8081818bcbe7c2018bcc9afba60012": {"id": "南通FM106.1", "display": "南通经济广播"},
+    "ff8081818bcbe7c2018bcc9a82f4000f": {"id": "南通FM91.8", "display": "南通生活广播"},
+}
+
+def get_mapped_channel(raw_id: str, raw_name: str = "", raw_cover: str = ""):
+    """根据原始ID返回映射后的 (规范ID, 显示名称, 封面URL)"""
+    if raw_id in CHANNEL_MAPPING:
+        mapping = CHANNEL_MAPPING[raw_id]
+        return mapping["id"], mapping["display"], raw_cover
+    else:
+        print(f"警告：未找到映射的频道 ID={raw_id}, 名称={raw_name}，将使用原始ID")
+        return raw_id, raw_name, raw_cover
+
+# ==================== API 请求 ====================
+def fetch_api(service: str, params_dict: Dict, retries=2) -> Any:
     payload = {
         'service': service,
         'params': json.dumps(params_dict)
     }
-    try:
-        # 使用 curl_cffi 模拟 Chrome 120 的指纹
-        response = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15, impersonate="chrome120")
-        if response.status_code == 200:
-            result = response.json()
-            if result.get('state') == 1000:
-                return result.get('data')
+    for attempt in range(1, retries + 1):
+        try:
+            response = requests.post(API_URL, headers=HEADERS, data=payload, timeout=15, impersonate="chrome120")
+            if response.status_code == 200:
+                result = response.json()
+                if result.get('state') == 1000:
+                    return result.get('data')
+                else:
+                    print(f"  API返回错误 (state: {result.get('state')}): {result.get('message', '未知错误')}")
+                    return None
             else:
-                print(f"  API返回错误 (state: {result.get('state')}): {result.get('message', '未知错误')}")
+                print(f"  HTTP请求失败，状态码: {response.status_code}")
+                if attempt == retries:
+                    return None
+                time.sleep(3)
+        except Exception as e:
+            print(f"  第 {attempt} 次请求API时发生异常: {e}")
+            if attempt == retries:
                 return None
-        else:
-            print(f"  HTTP请求失败，状态码: {response.status_code}")
-            print(f"  响应内容: {response.text[:200]}")
-            return None
-    except Exception as e:
-        print(f"  请求API时发生异常: {e}")
-        return None
+            time.sleep(3)
+    return None
 
-# ... 其余函数保持不变（fetch_channels, fetch_channel_programs, format_epg_time, merge_into_epg, main）
-
-# ==================== 抓取频道和节目 ====================
 def fetch_channels(menu_code: str) -> List[Dict]:
     print(f"\n正在获取{menu_code}的频道列表...")
     params = {'menuId': menu_code, 'idx': 0, 'size': 50}
@@ -58,117 +88,54 @@ def fetch_channels(menu_code: str) -> List[Dict]:
     channels = []
     if data and isinstance(data, dict) and 'rows' in data:
         for item in data['rows']:
-            channel = {
-                'id': item.get('id'),
-                'name': item.get('title', '未知频道'),
+            raw_id = item.get('id')
+            raw_name = item.get('title', '未知频道')
+            raw_cover = item.get('coverUrl', '')
+            ch_id, ch_display, ch_cover = get_mapped_channel(raw_id, raw_name, raw_cover)
+            channels.append({
+                'id': ch_id,
+                'name': ch_display,
                 'type': 'tv' if menu_code == 'ntw005' else 'radio',
-                'cover': item.get('coverUrl', ''),
-            }
-            channels.append(channel)
-            print(f"  发现频道: {channel['name']} (ID: {channel['id']})")
+                'cover': ch_cover,
+                'raw_id': raw_id   # 保留原始ID用于节目请求
+            })
+            print(f"  发现频道: {ch_display} (ID: {ch_id})")
         print(f"成功获取 {len(channels)} 个频道。")
     else:
         print(f"获取频道列表失败，返回数据: {data}")
     return channels
 
-def fetch_channel_programs(channel_id: str, channel_name: str) -> List[Dict]:
+def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]:
     print(f"  正在获取 {channel_name} 的节目单...")
-    params = {'id': channel_id}
+    params = {'id': raw_channel_id}
     data = fetch_api("getBroadcastList", params)
     programs = []
     if data and isinstance(data, list):
         for item in data:
+            start_time_str = item.get('startTime')
+            end_time_str = item.get('endTime')
+            if not start_time_str or not end_time_str:
+                continue
+            try:
+                dt = datetime.datetime.strptime(start_time_str.strip(), "%Y-%m-%d %H:%M:%S")
+                start_formatted = dt.strftime("%Y%m%d%H%M%S +0800")
+                dt = datetime.datetime.strptime(end_time_str.strip(), "%Y-%m-%d %H:%M:%S")
+                end_formatted = dt.strftime("%Y%m%d%H%M%S +0800")
+            except:
+                continue
             program = {
                 'title': item.get('programName', '未知节目'),
-                'start_time': format_epg_time(item.get('startTime')),
-                'end_time': format_epg_time(item.get('endTime')),
+                'start_time': start_formatted,
+                'end_time': end_formatted,
                 'desc': item.get('remark', ''),
                 'status': item.get('status', 0),
             }
-            if program['start_time'] and program['end_time'] and program['title'] != '未知节目':
+            if program['title'] != '未知节目':
                 programs.append(program)
         print(f"    成功获取 {len(programs)} 条节目数据。")
     else:
         print(f"    未获取到节目数据或数据格式错误。")
     return programs
-
-def format_epg_time(time_str: str) -> str:
-    if not time_str:
-        return ""
-    try:
-        dt = datetime.datetime.strptime(time_str.strip(), "%Y-%m-%d %H:%M:%S")
-        return dt.strftime("%Y%m%d%H%M%S +0800")
-    except ValueError:
-        return time_str
-
-# ==================== 合并到现有 epg.xml（不覆盖） ====================
-def merge_into_epg(all_channels: List[Dict], all_programs: List[Dict], output_file="epg.xml"):
-    """将南通数据合并到现有的 epg.xml 中（保留原有频道和节目，避免重复）"""
-    # 如果文件存在则解析，否则创建新根
-    if os.path.exists(output_file):
-        try:
-            tree = ET.parse(output_file)
-            tv = tree.getroot()
-        except:
-            tv = ET.Element("tv")
-            tv.set("generator-info-name", "EPG合并工具")
-            tv.set("date", datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
-    else:
-        tv = ET.Element("tv")
-        tv.set("generator-info-name", "EPG合并工具")
-        tv.set("date", datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
-
-    # 记录已有频道ID
-    existing_channel_ids = {ch.get('id') for ch in tv.findall('channel') if ch.get('id')}
-
-    # 添加新频道（南通）
-    for ch in all_channels:
-        if ch['id'] not in existing_channel_ids:
-            ch_elem = ET.SubElement(tv, "channel", id=ch['id'])
-            name_elem = ET.SubElement(ch_elem, "display-name", lang="zh")
-            name_elem.text = ch['name']
-            if ch.get('cover'):
-                ET.SubElement(ch_elem, "icon", src=ch['cover'])
-            existing_channel_ids.add(ch['id'])
-            print(f"  添加频道: {ch['name']}")
-
-    # 记录已有节目（使用 channel+start+stop 作为唯一键）
-    existing_programs = set()
-    for prog in tv.findall('programme'):
-        key = (prog.get('channel'), prog.get('start'), prog.get('stop'))
-        existing_programs.add(key)
-
-    # 添加新节目（南通）
-    added_count = 0
-    for prog in all_programs:
-        key = (prog['channel_id'], prog['start_time'], prog['end_time'])
-        if key not in existing_programs:
-            prog_elem = ET.SubElement(tv, "programme",
-                                      start=prog['start_time'],
-                                      stop=prog['end_time'],
-                                      channel=prog['channel_id'])
-            title = ET.SubElement(prog_elem, "title", lang="zh")
-            title.text = prog['title']
-            if prog.get('desc'):
-                desc = ET.SubElement(prog_elem, "desc", lang="zh")
-                desc.text = prog['desc']
-            existing_programs.add(key)
-            added_count += 1
-
-    # 格式化输出
-    xml_str = ET.tostring(tv, encoding='utf-8')
-    dom = minidom.parseString(xml_str)
-    pretty = dom.toprettyxml(indent="    ", encoding='utf-8').decode('utf-8')
-    pretty = pretty.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
-    with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(pretty)
-
-    total_channels = len(tv.findall('channel'))
-    total_programs = len(tv.findall('programme'))
-    print(f"\n✅ 已合并写入 {output_file}")
-    print(f"   总频道数: {total_channels}")
-    print(f"   总节目数: {total_programs}")
-    print(f"   本次新增节目数: {added_count}")
 
 # ==================== 主任务 ====================
 def main():
@@ -177,8 +144,8 @@ def main():
     print(f"{'='*50}")
     
     start_time = time.time()
-    all_channels = []
-    all_programs = []
+    all_new_channels = []   # 存储 (ch_id, display_name)
+    all_new_programs = []   # 存储节目字典
     
     for config in MENU_CONFIGS:
         print(f"\n--- 开始处理 {config['name']} 频道 ---")
@@ -187,19 +154,24 @@ def main():
             print(f"⚠️ 未能获取 {config['name']} 频道列表，跳过。")
             continue
         
-        all_channels.extend(channels)
-        
-        for idx, channel in enumerate(channels, 1):
-            print(f"\n[{idx}/{len(channels)}] 处理{config['name']}频道: {channel['name']}")
-            programs = fetch_channel_programs(channel['id'], channel['name'])
+        for channel in channels:
+            # 记录新频道（规范ID，显示名称）
+            all_new_channels.append((channel['id'], channel['name']))
+            # 抓取节目（使用原始ID请求）
+            programs = fetch_channel_programs(channel['raw_id'], channel['name'])
             for prog in programs:
-                prog['channel_id'] = channel['id']
-                all_programs.append(prog)
-            if idx < len(channels):
-                time.sleep(0.3)
+                all_new_programs.append({
+                    'start': prog['start_time'],
+                    'stop': prog['end_time'],
+                    'channel': channel['id'],
+                    'title': prog['title']
+                })
+            time.sleep(0.3)
     
-    if all_programs:
-        merge_into_epg(all_channels, all_programs)
+    if all_new_programs:
+        output_file = "epg.xml"
+        # 调用公共合并函数（紧凑输出，自动保留原有 generator-info-name）
+        merge_and_write(output_file, all_new_channels, all_new_programs)
         elapsed = time.time() - start_time
         print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
         return 0
