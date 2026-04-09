@@ -41,7 +41,7 @@ jobs:
           # 注意：不再安装 webdriver_manager
 
       - name: Join ZeroTier Network
-        uses: zerotier/github-action@v1
+        uses: zerotier/zerotier-action@v1
         with:
           network: ${{ secrets.ZEROTIER_NETWORK_ID }}
           secret: ${{ secrets.ZEROTIER_CENTRAL_TOKEN }}
