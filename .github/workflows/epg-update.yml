@@ -53,15 +53,15 @@ jobs:
           sleep 10
           sudo zerotier-cli listnetworks   
         
-      # 如东脚本（不需要代理，如果失败继续）
-      - name: Run rudong-epg
+      # 如东脚本（无需代理，如果失败继续）
+      - name: Run Rudong EPG
         run: |
           echo "=== 运行 rudong-epg.py ==="
           python scripts/rudong-epg.py
         continue-on-error: true
         
       # 南通脚本（需要代理，如果失败继续）
-      - name: Fetch Nantong EPG via Proxy
+      - name: Run Nantong EPG via Proxy
         run: |
           echo "=== 运行 nantong-epg.py ==="
           export http_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
@@ -69,13 +69,13 @@ jobs:
           python scripts/nantong-epg.py
         continue-on-error: true
 
-      - name: Run suzhou-epg
+      - name: Run Suzhou EPG
         run: |      
           echo "=== 运行 suzhou-epg.py ==="
           python scripts/suzhou-epg.py
         continue-on-error: true
 
-      - name: Run zhenjiang-epg
+      - name: Run Zhenjiang EPG
         run: |           
           echo "=== 运行 zhenjiang-epg.py ==="
           python scripts/zhenjiang-epg.py
