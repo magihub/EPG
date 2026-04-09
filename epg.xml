@@ -6,141 +6,6 @@
   <channel id="如东综合广播">
     <display-name lang="zh">如东综合广播</display-name>
   </channel>
-  <programme start="20260402060000 +0800" stop="20260402061000 +0800" channel="如东新闻综合">
-    <title lang="zh">开机晨曲</title>
-  </programme>
-  <programme start="20260402061000 +0800" stop="20260402062000 +0800" channel="如东新闻综合">
-    <title lang="zh">开机广告</title>
-  </programme>
-  <programme start="20260402062000 +0800" stop="20260402062500 +0800" channel="如东新闻综合">
-    <title lang="zh">定点节目预告</title>
-  </programme>
-  <programme start="20260402062500 +0800" stop="20260402064000 +0800" channel="如东新闻综合">
-    <title lang="zh">《如东新闻》</title>
-  </programme>
-  <programme start="20260402064000 +0800" stop="20260402070000 +0800" channel="如东新闻综合">
-    <title lang="zh">《每周一刻》</title>
-  </programme>
-  <programme start="20260402070000 +0800" stop="20260402071000 +0800" channel="如东新闻综合">
-    <title lang="zh">国歌</title>
-  </programme>
-  <programme start="20260402071000 +0800" stop="20260402071500 +0800" channel="如东新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260402071500 +0800" stop="20260402073500 +0800" channel="如东新闻综合">
-    <title lang="zh">《广告部专题》</title>
-  </programme>
-  <programme start="20260402073500 +0800" stop="20260402080500 +0800" channel="如东新闻综合">
-    <title lang="zh">《省市台联播节目》</title>
-  </programme>
-  <programme start="20260402080500 +0800" stop="20260402081500 +0800" channel="如东新闻综合">
-    <title lang="zh">广告加节目预告</title>
-  </programme>
-  <programme start="20260402081500 +0800" stop="20260402100000 +0800" channel="如东新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260402100000 +0800" stop="20260402101500 +0800" channel="如东新闻综合">
-    <title lang="zh">节目预告加广告</title>
-  </programme>
-  <programme start="20260402101500 +0800" stop="20260402111500 +0800" channel="如东新闻综合">
-    <title lang="zh">《观点致胜》</title>
-  </programme>
-  <programme start="20260402111500 +0800" stop="20260402113000 +0800" channel="如东新闻综合">
-    <title lang="zh">联办栏目：《扶海纵横》</title>
-  </programme>
-  <programme start="20260402113000 +0800" stop="20260402114500 +0800" channel="如东新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260402114500 +0800" stop="20260402115800 +0800" channel="如东新闻综合">
-    <title lang="zh">《周日幽默一刻》</title>
-  </programme>
-  <programme start="20260402115800 +0800" stop="20260402120000 +0800" channel="如东新闻综合">
-    <title lang="zh">定点节目预告加广告</title>
-  </programme>
-  <programme start="20260402120000 +0800" stop="20260402121500 +0800" channel="如东新闻综合">
-    <title lang="zh">《如东新闻》</title>
-  </programme>
-  <programme start="20260402121500 +0800" stop="20260402122000 +0800" channel="如东新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260402122000 +0800" stop="20260402124000 +0800" channel="如东新闻综合">
-    <title lang="zh">《每周一刻》</title>
-  </programme>
-  <programme start="20260402124000 +0800" stop="20260402124500 +0800" channel="如东新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260402124500 +0800" stop="20260402130000 +0800" channel="如东新闻综合">
-    <title lang="zh">《广告部专题》</title>
-  </programme>
-  <programme start="20260402130000 +0800" stop="20260402131000 +0800" channel="如东新闻综合">
-    <title lang="zh">《新华纵横》</title>
-  </programme>
-  <programme start="20260402131000 +0800" stop="20260402131500 +0800" channel="如东新闻综合">
-    <title lang="zh">节目预告加广告（宣传片）</title>
-  </programme>
-  <programme start="20260402131500 +0800" stop="20260402151000 +0800" channel="如东新闻综合">
-    <title lang="zh">联办栏目：《扶海纵横》</title>
-  </programme>
-  <programme start="20260402151000 +0800" stop="20260402165000 +0800" channel="如东新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260402165000 +0800" stop="20260402172000 +0800" channel="如东新闻综合">
-    <title lang="zh">《省市台联播节目》</title>
-  </programme>
-  <programme start="20260402172000 +0800" stop="20260402173500 +0800" channel="如东新闻综合">
-    <title lang="zh">《大沈阳说如东》</title>
-  </programme>
-  <programme start="20260402173500 +0800" stop="20260402182500 +0800" channel="如东新闻综合">
-    <title lang="zh">《广告部专题》</title>
-  </programme>
-  <programme start="20260402182500 +0800" stop="20260402183000 +0800" channel="如东新闻综合">
-    <title lang="zh">节目预告加广告</title>
-  </programme>
-  <programme start="20260402183000 +0800" stop="20260402184500 +0800" channel="如东新闻综合">
-    <title lang="zh">《如东新闻》</title>
-  </programme>
-  <programme start="20260402184500 +0800" stop="20260402185000 +0800" channel="如东新闻综合">
-    <title lang="zh">天气预报+广告</title>
-  </programme>
-  <programme start="20260402185000 +0800" stop="20260402190000 +0800" channel="如东新闻综合">
-    <title lang="zh">《新华纵横》</title>
-  </programme>
-  <programme start="20260402190000 +0800" stop="20260402193000 +0800" channel="如东新闻综合">
-    <title lang="zh">转播中央台新闻联播</title>
-  </programme>
-  <programme start="20260402193000 +0800" stop="20260402193500 +0800" channel="如东新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260402193500 +0800" stop="20260402195500 +0800" channel="如东新闻综合">
-    <title lang="zh">《直通民生》|政务专题</title>
-  </programme>
-  <programme start="20260402195500 +0800" stop="20260402201000 +0800" channel="如东新闻综合">
-    <title lang="zh">联办栏目《扶海纵横》</title>
-  </programme>
-  <programme start="20260402201000 +0800" stop="20260402214500 +0800" channel="如东新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260402214500 +0800" stop="20260402220000 +0800" channel="如东新闻综合">
-    <title lang="zh">《新华纵横》</title>
-  </programme>
-  <programme start="20260402220000 +0800" stop="20260402221500 +0800" channel="如东新闻综合">
-    <title lang="zh">如东新闻【重播】</title>
-  </programme>
-  <programme start="20260402221500 +0800" stop="20260402222000 +0800" channel="如东新闻综合">
-    <title lang="zh">天气预报+广告</title>
-  </programme>
-  <programme start="20260402222000 +0800" stop="20260402231000 +0800" channel="如东新闻综合">
-    <title lang="zh">《观点致胜》</title>
-  </programme>
-  <programme start="20260402231000 +0800" stop="20260402232500 +0800" channel="如东新闻综合">
-    <title lang="zh">《大沈阳说如东》</title>
-  </programme>
-  <programme start="20260402232500 +0800" stop="20260402235500 +0800" channel="如东新闻综合">
-    <title lang="zh">《省市台联播节目》</title>
-  </programme>
-  <programme start="20260402235500 +0800" stop="20260402235900 +0800" channel="如东新闻综合">
-    <title lang="zh">关机广告</title>
-  </programme>
   <programme start="20260403060000 +0800" stop="20260403061000 +0800" channel="如东新闻综合">
     <title lang="zh">开机晨曲</title>
   </programme>
@@ -1086,92 +951,140 @@
   <programme start="20260409235500 +0800" stop="20260409235900 +0800" channel="如东新闻综合">
     <title lang="zh">关机广告</title>
   </programme>
-  <programme start="20260402053000 +0800" stop="20260402053500 +0800" channel="如东综合广播">
-    <title lang="zh">报时+开始曲</title>
+  <programme start="20260410060000 +0800" stop="20260410061000 +0800" channel="如东新闻综合">
+    <title lang="zh">开机晨曲</title>
   </programme>
-  <programme start="20260402053500 +0800" stop="20260402060000 +0800" channel="如东综合广播">
-    <title lang="zh">《金色年华》</title>
+  <programme start="20260410061000 +0800" stop="20260410062000 +0800" channel="如东新闻综合">
+    <title lang="zh">开机广告</title>
   </programme>
-  <programme start="20260402060000 +0800" stop="20260402062500 +0800" channel="如东综合广播">
-    <title lang="zh">《365健康派》</title>
+  <programme start="20260410062000 +0800" stop="20260410062500 +0800" channel="如东新闻综合">
+    <title lang="zh">定点节目预告</title>
   </programme>
-  <programme start="20260402062500 +0800" stop="20260402063000 +0800" channel="如东综合广播">
-    <title lang="zh">《天气早知道》</title>
-  </programme>
-  <programme start="20260402063000 +0800" stop="20260402070000 +0800" channel="如东综合广播">
-    <title lang="zh">转播《新闻和报纸摘要》</title>
-  </programme>
-  <programme start="20260402070000 +0800" stop="20260402073500 +0800" channel="如东综合广播">
-    <title lang="zh">转播《江苏新闻联播》</title>
-  </programme>
-  <programme start="20260402073500 +0800" stop="20260402075000 +0800" channel="如东综合广播">
+  <programme start="20260410062500 +0800" stop="20260410064000 +0800" channel="如东新闻综合">
     <title lang="zh">《如东新闻》</title>
   </programme>
-  <programme start="20260402075000 +0800" stop="20260402080000 +0800" channel="如东综合广播">
-    <title lang="zh">《理财微剧》</title>
+  <programme start="20260410064000 +0800" stop="20260410070000 +0800" channel="如东新闻综合">
+    <title lang="zh">《每周一刻》</title>
   </programme>
-  <programme start="20260402080000 +0800" stop="20260402090000 +0800" channel="如东综合广播">
-    <title lang="zh">《Hi，早高峰》(直播)</title>
+  <programme start="20260410070000 +0800" stop="20260410071000 +0800" channel="如东新闻综合">
+    <title lang="zh">国歌</title>
   </programme>
-  <programme start="20260402090000 +0800" stop="20260402100000 +0800" channel="如东综合广播">
-    <title lang="zh">《文静的音乐时间》(直播)</title>
+  <programme start="20260410071000 +0800" stop="20260410071500 +0800" channel="如东新闻综合">
+    <title lang="zh">广告</title>
   </programme>
-  <programme start="20260402100000 +0800" stop="20260402110000 +0800" channel="如东综合广播">
-    <title lang="zh">《汽车原动力》(直播)</title>
+  <programme start="20260410071500 +0800" stop="20260410073500 +0800" channel="如东新闻综合">
+    <title lang="zh">《广告部专题》</title>
   </programme>
-  <programme start="20260402110000 +0800" stop="20260402112000 +0800" channel="如东综合广播">
+  <programme start="20260410073500 +0800" stop="20260410080500 +0800" channel="如东新闻综合">
+    <title lang="zh">《省市台联播节目》</title>
+  </programme>
+  <programme start="20260410080500 +0800" stop="20260410081500 +0800" channel="如东新闻综合">
+    <title lang="zh">广告加节目预告</title>
+  </programme>
+  <programme start="20260410081500 +0800" stop="20260410100000 +0800" channel="如东新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260410100000 +0800" stop="20260410101500 +0800" channel="如东新闻综合">
+    <title lang="zh">节目预告加广告</title>
+  </programme>
+  <programme start="20260410101500 +0800" stop="20260410111500 +0800" channel="如东新闻综合">
+    <title lang="zh">《观点致胜》</title>
+  </programme>
+  <programme start="20260410111500 +0800" stop="20260410113000 +0800" channel="如东新闻综合">
+    <title lang="zh">联办栏目：《扶海纵横》</title>
+  </programme>
+  <programme start="20260410113000 +0800" stop="20260410114500 +0800" channel="如东新闻综合">
+    <title lang="zh">广告</title>
+  </programme>
+  <programme start="20260410114500 +0800" stop="20260410115800 +0800" channel="如东新闻综合">
+    <title lang="zh">《周日幽默一刻》</title>
+  </programme>
+  <programme start="20260410115800 +0800" stop="20260410120000 +0800" channel="如东新闻综合">
+    <title lang="zh">定点节目预告加广告</title>
+  </programme>
+  <programme start="20260410120000 +0800" stop="20260410121500 +0800" channel="如东新闻综合">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260410121500 +0800" stop="20260410122000 +0800" channel="如东新闻综合">
+    <title lang="zh">广告</title>
+  </programme>
+  <programme start="20260410122000 +0800" stop="20260410124000 +0800" channel="如东新闻综合">
+    <title lang="zh">《每周一刻》</title>
+  </programme>
+  <programme start="20260410124000 +0800" stop="20260410124500 +0800" channel="如东新闻综合">
+    <title lang="zh">广告</title>
+  </programme>
+  <programme start="20260410124500 +0800" stop="20260410130000 +0800" channel="如东新闻综合">
+    <title lang="zh">《广告部专题》</title>
+  </programme>
+  <programme start="20260410130000 +0800" stop="20260410131000 +0800" channel="如东新闻综合">
+    <title lang="zh">《新华纵横》</title>
+  </programme>
+  <programme start="20260410131000 +0800" stop="20260410131500 +0800" channel="如东新闻综合">
+    <title lang="zh">节目预告加广告（宣传片）</title>
+  </programme>
+  <programme start="20260410131500 +0800" stop="20260410151000 +0800" channel="如东新闻综合">
+    <title lang="zh">联办栏目：《扶海纵横》</title>
+  </programme>
+  <programme start="20260410151000 +0800" stop="20260410165000 +0800" channel="如东新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260410165000 +0800" stop="20260410172000 +0800" channel="如东新闻综合">
+    <title lang="zh">《省市台联播节目》</title>
+  </programme>
+  <programme start="20260410172000 +0800" stop="20260410173500 +0800" channel="如东新闻综合">
     <title lang="zh">《大沈阳说如东》</title>
   </programme>
-  <programme start="20260402112000 +0800" stop="20260402120000 +0800" channel="如东综合广播">
-    <title lang="zh">《午间特别节目》</title>
+  <programme start="20260410173500 +0800" stop="20260410182500 +0800" channel="如东新闻综合">
+    <title lang="zh">《广告部专题》</title>
   </programme>
-  <programme start="20260402120000 +0800" stop="20260402122000 +0800" channel="如东综合广播">
+  <programme start="20260410182500 +0800" stop="20260410183000 +0800" channel="如东新闻综合">
+    <title lang="zh">节目预告加广告</title>
+  </programme>
+  <programme start="20260410183000 +0800" stop="20260410184500 +0800" channel="如东新闻综合">
     <title lang="zh">《如东新闻》</title>
   </programme>
-  <programme start="20260402122000 +0800" stop="20260402130000 +0800" channel="如东综合广播">
-    <title lang="zh">《只听好歌不说话》</title>
+  <programme start="20260410184500 +0800" stop="20260410185000 +0800" channel="如东新闻综合">
+    <title lang="zh">天气预报+广告</title>
   </programme>
-  <programme start="20260402130000 +0800" stop="20260402140000 +0800" channel="如东综合广播">
-    <title lang="zh">《FM 剧场》（两集之间《理财微剧》）</title>
+  <programme start="20260410185000 +0800" stop="20260410190000 +0800" channel="如东新闻综合">
+    <title lang="zh">《新华纵横》</title>
   </programme>
-  <programme start="20260402140000 +0800" stop="20260402150000 +0800" channel="如东综合广播">
-    <title lang="zh">《汽车原动力》（重播）</title>
+  <programme start="20260410190000 +0800" stop="20260410193000 +0800" channel="如东新闻综合">
+    <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260402150000 +0800" stop="20260402160000 +0800" channel="如东综合广播">
-    <title lang="zh">《一路有的聊》</title>
+  <programme start="20260410193000 +0800" stop="20260410193500 +0800" channel="如东新闻综合">
+    <title lang="zh">广告</title>
   </programme>
-  <programme start="20260402160000 +0800" stop="20260402170000 +0800" channel="如东综合广播">
-    <title lang="zh">《宇你悦读》(直播)</title>
+  <programme start="20260410193500 +0800" stop="20260410195500 +0800" channel="如东新闻综合">
+    <title lang="zh">《直通民生》|政务专题</title>
   </programme>
-  <programme start="20260402170000 +0800" stop="20260402180000 +0800" channel="如东综合广播">
-    <title lang="zh">《Hi，晚高峰》(直播)</title>
+  <programme start="20260410195500 +0800" stop="20260410201000 +0800" channel="如东新闻综合">
+    <title lang="zh">联办栏目《扶海纵横》</title>
   </programme>
-  <programme start="20260402180000 +0800" stop="20260402182000 +0800" channel="如东综合广播">
-    <title lang="zh">《如东新闻》</title>
+  <programme start="20260410201000 +0800" stop="20260410214500 +0800" channel="如东新闻综合">
+    <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260402182000 +0800" stop="20260402183000 +0800" channel="如东综合广播">
-    <title lang="zh">行业之声</title>
+  <programme start="20260410214500 +0800" stop="20260410220000 +0800" channel="如东新闻综合">
+    <title lang="zh">《新华纵横》</title>
   </programme>
-  <programme start="20260402183000 +0800" stop="20260402190000 +0800" channel="如东综合广播">
-    <title lang="zh">转播《新闻和报纸摘要》</title>
+  <programme start="20260410220000 +0800" stop="20260410221500 +0800" channel="如东新闻综合">
+    <title lang="zh">如东新闻【重播】</title>
   </programme>
-  <programme start="20260402190000 +0800" stop="20260402192000 +0800" channel="如东综合广播">
+  <programme start="20260410221500 +0800" stop="20260410222000 +0800" channel="如东新闻综合">
+    <title lang="zh">天气预报+广告</title>
+  </programme>
+  <programme start="20260410222000 +0800" stop="20260410231000 +0800" channel="如东新闻综合">
+    <title lang="zh">《观点致胜》</title>
+  </programme>
+  <programme start="20260410231000 +0800" stop="20260410232500 +0800" channel="如东新闻综合">
     <title lang="zh">《大沈阳说如东》</title>
   </programme>
-  <programme start="20260402192000 +0800" stop="20260402200000 +0800" channel="如东综合广播">
-    <title lang="zh">重播《午间特别节目》</title>
+  <programme start="20260410232500 +0800" stop="20260410235500 +0800" channel="如东新闻综合">
+    <title lang="zh">《省市台联播节目》</title>
   </programme>
-  <programme start="20260402200000 +0800" stop="20260402210000 +0800" channel="如东综合广播">
-    <title lang="zh">《电台情歌》</title>
-  </programme>
-  <programme start="20260402210200 +0800" stop="20260402220200 +0800" channel="如东综合广播">
-    <title lang="zh">《城市树洞》</title>
-  </programme>
-  <programme start="20260402220200 +0800" stop="20260402223000 +0800" channel="如东综合广播">
-    <title lang="zh">《悦读时间》</title>
-  </programme>
-  <programme start="20260402223000 +0800" stop="20260402233000 +0800" channel="如东综合广播">
-    <title lang="zh">夜曲</title>
+  <programme start="20260410235500 +0800" stop="20260410235900 +0800" channel="如东新闻综合">
+    <title lang="zh">关机广告</title>
   </programme>
   <programme start="20260403053000 +0800" stop="20260403053500 +0800" channel="如东综合广播">
     <title lang="zh">报时+开始曲</title>
@@ -1786,6 +1699,93 @@
     <title lang="zh">《悦读时间》</title>
   </programme>
   <programme start="20260409223000 +0800" stop="20260409233000 +0800" channel="如东综合广播">
+    <title lang="zh">夜曲</title>
+  </programme>
+  <programme start="20260410053000 +0800" stop="20260410053500 +0800" channel="如东综合广播">
+    <title lang="zh">报时+开始曲</title>
+  </programme>
+  <programme start="20260410053500 +0800" stop="20260410060000 +0800" channel="如东综合广播">
+    <title lang="zh">《金色年华》</title>
+  </programme>
+  <programme start="20260410060000 +0800" stop="20260410062500 +0800" channel="如东综合广播">
+    <title lang="zh">《365健康派》</title>
+  </programme>
+  <programme start="20260410062500 +0800" stop="20260410063000 +0800" channel="如东综合广播">
+    <title lang="zh">《天气早知道》</title>
+  </programme>
+  <programme start="20260410063000 +0800" stop="20260410070000 +0800" channel="如东综合广播">
+    <title lang="zh">转播《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260410070000 +0800" stop="20260410073500 +0800" channel="如东综合广播">
+    <title lang="zh">转播《江苏新闻联播》</title>
+  </programme>
+  <programme start="20260410073500 +0800" stop="20260410075000 +0800" channel="如东综合广播">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260410075000 +0800" stop="20260410080000 +0800" channel="如东综合广播">
+    <title lang="zh">《理财微剧》</title>
+  </programme>
+  <programme start="20260410080000 +0800" stop="20260410090000 +0800" channel="如东综合广播">
+    <title lang="zh">《Hi，早高峰》(直播)</title>
+  </programme>
+  <programme start="20260410090000 +0800" stop="20260410100000 +0800" channel="如东综合广播">
+    <title lang="zh">《文静的音乐时间》(直播)</title>
+  </programme>
+  <programme start="20260410100000 +0800" stop="20260410110000 +0800" channel="如东综合广播">
+    <title lang="zh">《汽车原动力》(直播)</title>
+  </programme>
+  <programme start="20260410110000 +0800" stop="20260410112000 +0800" channel="如东综合广播">
+    <title lang="zh">《大沈阳说如东》</title>
+  </programme>
+  <programme start="20260410112000 +0800" stop="20260410120000 +0800" channel="如东综合广播">
+    <title lang="zh">《午间特别节目》</title>
+  </programme>
+  <programme start="20260410120000 +0800" stop="20260410122000 +0800" channel="如东综合广播">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260410122000 +0800" stop="20260410130000 +0800" channel="如东综合广播">
+    <title lang="zh">《只听好歌不说话》</title>
+  </programme>
+  <programme start="20260410130000 +0800" stop="20260410140000 +0800" channel="如东综合广播">
+    <title lang="zh">《FM 剧场》（两集之间《理财微剧》）</title>
+  </programme>
+  <programme start="20260410140000 +0800" stop="20260410150000 +0800" channel="如东综合广播">
+    <title lang="zh">《汽车原动力》（重播）</title>
+  </programme>
+  <programme start="20260410150000 +0800" stop="20260410160000 +0800" channel="如东综合广播">
+    <title lang="zh">《一路有的聊》</title>
+  </programme>
+  <programme start="20260410160000 +0800" stop="20260410170000 +0800" channel="如东综合广播">
+    <title lang="zh">《宇你悦读》(直播)</title>
+  </programme>
+  <programme start="20260410170000 +0800" stop="20260410180000 +0800" channel="如东综合广播">
+    <title lang="zh">《Hi，晚高峰》(直播)</title>
+  </programme>
+  <programme start="20260410180000 +0800" stop="20260410182000 +0800" channel="如东综合广播">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260410182000 +0800" stop="20260410183000 +0800" channel="如东综合广播">
+    <title lang="zh">行业之声</title>
+  </programme>
+  <programme start="20260410183000 +0800" stop="20260410190000 +0800" channel="如东综合广播">
+    <title lang="zh">转播《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260410190000 +0800" stop="20260410192000 +0800" channel="如东综合广播">
+    <title lang="zh">《大沈阳说如东》</title>
+  </programme>
+  <programme start="20260410192000 +0800" stop="20260410200000 +0800" channel="如东综合广播">
+    <title lang="zh">重播《午间特别节目》</title>
+  </programme>
+  <programme start="20260410200000 +0800" stop="20260410210000 +0800" channel="如东综合广播">
+    <title lang="zh">《电台情歌》</title>
+  </programme>
+  <programme start="20260410210200 +0800" stop="20260410220200 +0800" channel="如东综合广播">
+    <title lang="zh">《城市树洞》</title>
+  </programme>
+  <programme start="20260410220200 +0800" stop="20260410223000 +0800" channel="如东综合广播">
+    <title lang="zh">《悦读时间》</title>
+  </programme>
+  <programme start="20260410223000 +0800" stop="20260410233000 +0800" channel="如东综合广播">
     <title lang="zh">夜曲</title>
   </programme>
 </tv>
