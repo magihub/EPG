@@ -8,9 +8,9 @@
 
 import requests
 import re
-import datetime
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
+import datetime
 import time
 import ssl
 import urllib3
