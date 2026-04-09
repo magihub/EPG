@@ -8,8 +8,8 @@ from xml.dom import minidom
 import requests
 import datetime
 import time
-import os
 import sys
+import os
 
 # ==================== 配置区域 ====================
 CHANNELS = [
