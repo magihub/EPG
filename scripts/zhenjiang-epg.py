@@ -82,7 +82,12 @@ def fetch_daily_program(url, date_obj, retries=2):
 
 
 def main():
-    output_file = "../epg.xml"
+    print()
+    print("=" * 50)
+    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 50)    
+    
+    output_file = "epg.xml"
 
     # 1. 抓取镇江数据
     print("=" * 50)
@@ -126,7 +131,8 @@ def main():
     # 2. 合并写入
     if zhenjiang_programs:
         merge_and_write(output_file, zhenjiang_channels, zhenjiang_programs)
-        print("\n🎉 镇江数据已合并到 epg.xml")
+        elapsed = time.time() - start_time
+        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
     else:
         print("❌ 未抓取到镇江数据，文件未更新")
 

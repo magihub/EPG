@@ -139,10 +139,13 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
 
 # ==================== 主任务 ====================
 def main():
-    print(f"\n{'='*50}")
-    print(f"开始抓取南通任务 - {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{'='*50}")
+    print()
+    print("=" * 50)
+    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 50)
     
+    output_file = "epg.xml"    
+        
     start_time = time.time()
     all_new_channels = []   # 存储 (ch_id, display_name)
     all_new_programs = []   # 存储节目字典
@@ -169,7 +172,7 @@ def main():
             time.sleep(0.3)
     
     if all_new_programs:
-        output_file = "../epg.xml"
+
         # 调用公共合并函数（紧凑输出，自动保留原有 generator-info-name）
         merge_and_write(output_file, all_new_channels, all_new_programs)
         elapsed = time.time() - start_time
@@ -180,8 +183,5 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    print("=" * 50)
-    print("南通广播电视台 电视+广播 EPG 抓取工具（合并模式）")
-    print("=" * 50)
     exit_code = main()
     exit(exit_code)

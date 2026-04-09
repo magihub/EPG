@@ -212,7 +212,12 @@ def parse_radio_programs(html):
 
 # -------------------- 主程序 --------------------
 def main():
-    output_file = "../epg.xml"
+    print()
+    print("=" * 50)
+    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 50)   
+    
+    output_file = "epg.xml"
 
     # 抓取电视
     print("=" * 50)
@@ -262,7 +267,8 @@ def main():
         all_new_channels = tv_channels + radio_channels
         all_new_programs = tv_programs + radio_programs
         merge_and_write(output_file, all_new_channels, all_new_programs)
-        print("\n🎉 苏州数据已追加到 epg.xml")
+        elapsed = time.time() - start_time
+        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
     else:
         print("❌ 未抓取到任何数据")
 

@@ -233,7 +233,7 @@ def fetch_radio_epg_with_token(channel_info):
     return None
 
 # -------------------- 生成 XML --------------------
-def generate_xmltv(epg_data_list, output_file="../epg.xml"):
+def generate_xmltv(epg_data_list, output_file="epg.xml"):
     if not epg_data_list:
         print("⚠️ 没有数据，无法生成 XML 文件")
         return False
@@ -274,8 +274,7 @@ def generate_xmltv(epg_data_list, output_file="../epg.xml"):
 def main():
     print()
     print("=" * 50)
-    # print("如东电视 & 如东广播 EPG 抓取工具")
-    print(f"      程序执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
 
     all_epg_data = []
@@ -294,9 +293,10 @@ def main():
 
     if all_epg_data:
         generate_xmltv(all_epg_data)
-        print("\n🎉 如东电视、广播均已抓取完成\n")
+        elapsed = time.time() - start_time
+        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
     else:
-        print("\n⚠️ 未能抓取到任何有效数据！\n")
+        print("\n⚠️ 未能抓取到任何有效数据！")
 
 if __name__ == "__main__":
     main()
