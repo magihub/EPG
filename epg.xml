@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tv generator-info-name="苏州EPG合并至现有XML文件中">
+<tv generator-info-name="广播电视 EPG 爬虫工具">
   <channel id="如东新闻综合">
     <display-name lang="zh">如东新闻综合</display-name>
   </channel>
