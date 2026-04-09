@@ -5,10 +5,10 @@
 使用通用合并函数，频道ID规范命名
 """
 
+import os
 import json
 import datetime
 import time
-import os
 from typing import List, Dict, Any
 from curl_cffi import requests
 from epg_common import merge_and_write   # 导入公共合并函数
