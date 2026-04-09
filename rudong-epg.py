@@ -50,7 +50,7 @@ def fetch_tv_epg(channel_info):
     wait_seconds = 5          # 失败后等待5秒再重试
 
     for attempt in range(1, max_attempts + 1):
-        print(f"\n--- 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ---")
+        print(f"\n------ 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ------")
         print(f"访问地址: {channel_info['url']}")
         
         chrome_options = Options()
@@ -81,10 +81,10 @@ def fetch_tv_epg(channel_info):
                     })
 
             if not programs:
-                print("警告：未能抓取到节目单数据。")
+                print("⚠️ 警告：未能抓取到电视节目单数据。")
                 return None
 
-            print(f"成功抓取到 {len(programs)} 条电视节目数据！")
+            print(f"✅ 成功抓取到 {len(programs)} 条电视节目数据！")
             return {
                 "channel_id": channel_info["id"],
                 "channel_name": channel_info["name"],
@@ -92,7 +92,7 @@ def fetch_tv_epg(channel_info):
             }
 
         except Exception as e:
-            print(f"第 {attempt} 次抓取失败: {e}")
+            print(f"⚠️ 第 {attempt} 次抓取失败: {e}")
             if attempt < max_attempts:
                 print(f"🔄 等待 {wait_seconds} 秒后重试...")
                 time.sleep(wait_seconds)
@@ -140,13 +140,13 @@ def fetch_radio_epg_with_token(channel_info):
     wait_seconds = 5          # 失败后等待5秒再重试
 
     for attempt in range(1, max_attempts + 1):
-        print(f"\n--- 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ---")
+        print(f"\n------ 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ------")
         print(f"访问地址: {channel_info['url']}")
 
         # 1. 获取 token
         token = extract_token_from_page(channel_info['url'])
         if not token:
-            print(f"第 {attempt} 次获取 token 失败")
+            print(f"⚠️ 第 {attempt} 次获取 token 失败")
             if attempt < max_attempts:
                 print(f"🔄 等待 {wait_seconds} 秒后重试...")
                 time.sleep(wait_seconds)
@@ -165,7 +165,7 @@ def fetch_radio_epg_with_token(channel_info):
         try:
             response = requests.get(channel_info['api_url'], params=channel_info['params'], headers=headers, timeout=15)
             if response.status_code != 200:
-                print(f"第 {attempt} 次 API 请求失败，状态码: {response.status_code}")
+                print(f"⚠️ 第 {attempt} 次 API 请求失败，状态码: {response.status_code}")
                 if attempt < max_attempts:
                     print(f"🔄 等待 {wait_seconds} 秒后重试...")
                     time.sleep(wait_seconds)
@@ -177,7 +177,7 @@ def fetch_radio_epg_with_token(channel_info):
             programs = []
             epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
             if not epg_days:
-                print("第 {attempt} 次未找到广播节目列表")
+                print("⚠️ 第 {attempt} 次未找到广播节目列表")
                 if attempt < max_attempts:
                     print(f"🔄 等待 {wait_seconds} 秒后重试...")
                     time.sleep(wait_seconds)
@@ -199,7 +199,7 @@ def fetch_radio_epg_with_token(channel_info):
                         })
 
             if not programs:
-                print(f"第 {attempt} 次解析后无节目数据")
+                print(f"⚠️ 第 {attempt} 次解析后无广播节目数据")
                 if attempt < max_attempts:
                     print(f"🔄 等待 {wait_seconds} 秒后重试...")
                     time.sleep(wait_seconds)
@@ -214,7 +214,7 @@ def fetch_radio_epg_with_token(channel_info):
                 "programs": programs
             }
         except Exception as e:
-            print(f"第 {attempt} 次 API 请求或解析异常: {e}")
+            print(f"⚠️ 第 {attempt} 次 API 请求或解析异常: {e}")
             if attempt < max_attempts:
                 print(f"🔄 等待 {wait_seconds} 秒后重试...")
                 time.sleep(wait_seconds)
@@ -228,7 +228,7 @@ def fetch_radio_epg_with_token(channel_info):
 # -------------------- 生成 XML --------------------
 def generate_xmltv(epg_data_list, output_file="epg.xml"):
     if not epg_data_list:
-        print("没有数据，无法生成 XML 文件")
+        print("⚠️ 没有数据，无法生成 XML 文件")
         return False
 
     tv = ET.Element("tv")
