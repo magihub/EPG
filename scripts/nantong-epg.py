@@ -169,7 +169,7 @@ def main():
             time.sleep(0.3)
     
     if all_new_programs:
-        output_file = "epg.xml"
+        output_file = "../epg.xml"
         # 调用公共合并函数（紧凑输出，自动保留原有 generator-info-name）
         merge_and_write(output_file, all_new_channels, all_new_programs)
         elapsed = time.time() - start_time

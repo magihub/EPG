@@ -82,7 +82,7 @@ def fetch_daily_program(url, date_obj, retries=2):
 
 
 def main():
-    output_file = "epg.xml"
+    output_file = "../epg.xml"
 
     # 1. 抓取镇江数据
     print("=" * 50)

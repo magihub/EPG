@@ -41,7 +41,7 @@ jobs:
           # 注意：不再安装 webdriver_manager
 
       - name: Join ZeroTier Network
-        uses: zerotier/zerotier-action@v1
+        uses: zerotier/github-action@v1
         with:
           network: ${{ secrets.ZEROTIER_NETWORK_ID }}
           secret: ${{ secrets.ZEROTIER_CENTRAL_TOKEN }}
@@ -78,7 +78,7 @@ jobs:
       - name: Run rudong-epg
         run: |
           echo "=== 运行 rudong-epg.py ==="
-          python rudong-epg.py
+          python scripts/rudong-epg.py
         continue-on-error: true
         
       # 南通脚本（需要代理，如果失败继续）
@@ -87,15 +87,18 @@ jobs:
           echo "=== 运行 nantong-epg.py ==="
           export http_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           export https_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
-          python nantong-epg.py
+          python scripts/nantong-epg.py
         continue-on-error: true
 
       - name: Run suzhou-epg
-        run: python suzhou-epg.py
+        run: |      
+          echo "=== 运行 suzhou-epg.py ==="
+          python scripts/suzhou-epg.py
         continue-on-error: true
 
       - name: Run zhenjiang-epg
-        run: python zhenjiang-epg.py
+          echo "=== 运行 zhenjiang-epg.py ==="
+          python scripts/zhenjiang-epg.py
         continue-on-error: true
 
           

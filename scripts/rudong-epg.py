@@ -233,7 +233,7 @@ def fetch_radio_epg_with_token(channel_info):
     return None
 
 # -------------------- 生成 XML --------------------
-def generate_xmltv(epg_data_list, output_file="epg.xml"):
+def generate_xmltv(epg_data_list, output_file="../epg.xml"):
     if not epg_data_list:
         print("⚠️ 没有数据，无法生成 XML 文件")
         return False

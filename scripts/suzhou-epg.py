@@ -212,7 +212,7 @@ def parse_radio_programs(html):
 
 # -------------------- 主程序 --------------------
 def main():
-    output_file = "epg.xml"
+    output_file = "../epg.xml"
 
     # 抓取电视
     print("=" * 50)
