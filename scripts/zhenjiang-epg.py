@@ -1,112 +1,49 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-镇江电视台 EPG 爬虫（新闻频道 + 民生频道 + 资讯频道 + 影视频道）
-基于 epg.sports8.cc 的 HTML 结构解析
-读取现有 epg.xml，替换镇江频道数据，保留其他频道，输出到 epg.xml
+镇江电视台电视 EPG 爬虫（复用浏览器实例，含计时）
 """
 
-import requests
-import re
-import xml.etree.ElementTree as ET
-from xml.dom import minidom
 import datetime
 import time
-import ssl
-import urllib3
 import os
-from epg_common import parse_existing_xml, merge_and_write
-from epg_common import add_end_times, parse_existing_xml, merge_and_write
+import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# 抑制SSL警告
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+from epg_common import merge_and_write
 
-# 禁用SSL验证（因为证书过期）
-ssl._create_default_https_context = ssl._create_unverified_context
-
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-}
-
-# 频道配置：频道名称 -> (基础URL, 频道ID用于XML, 频道显示名称)
-CHANNELS = {
-    "镇江新闻综合": {
-        "base_url": "https://epg.sports8.cc/2118/",
-        "channel_id": "镇江新闻综合"
-    },
-    "镇江教育民生": {
-        "base_url": "https://epg.sports8.cc/2119/",
-        "channel_id": "镇江教育民生"
-    },
-    "镇江资讯频道": {
-        "base_url": "https://epg.sports8.cc/2120/",
-        "channel_id": "镇江资讯频道"
-    },
-    "镇江影视频道": {
-        "base_url": "https://epg.sports8.cc/2121/",
-        "channel_id": "镇江影视频道"
-    }
+TV_CHANNELS = {
+    "镇江新闻综合": "https://epg.sports8.cc/2118/",
+    "镇江教育民生": "https://epg.sports8.cc/2119/",
+    "镇江资讯频道": "https://epg.sports8.cc/2120/",
+    "镇江影视频道": "https://epg.sports8.cc/2121/",
 }
 
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
 
-def fetch_daily_program(url, date_obj, retries=2):
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--log-level=3')
-    chrome_options.add_argument('--silent')
-    # 忽略证书错误（解决 SSL handshake failed）
-    chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.add_argument('--ignore-ssl-errors')
-    chrome_options.add_argument('--allow-insecure-localhost')
-    # 避免被检测为自动化工具
-    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-    chrome_options.add_experimental_option('useAutomationExtension', False)
-    # 设置明确的 User-Agent
-    chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-    
-    for attempt in range(1, retries + 1):
-        driver = None
+def get_week_dates():
+    today = datetime.datetime.now().date()
+    monday = today - datetime.timedelta(days=today.weekday())
+    return [monday + datetime.timedelta(days=i) for i in range(7)]
+
+def fetch_week_programs(channel_name, base_url, week_dates, driver):
+    """使用同一个 driver 抓取某频道一周的节目单"""
+    programs = []
+    for idx, date_obj in enumerate(week_dates):
+        day_num = idx + 1
+        url = f"{base_url}{day_num}.htm"
         try:
-            driver = webdriver.Chrome(options=chrome_options)
-            driver.set_page_load_timeout(30)
-            # 执行额外的 CDP 命令来隐藏 webdriver 属性
-            driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
-                "source": """
-                    Object.defineProperty(navigator, 'webdriver', {
-                        get: () => undefined
-                    });
-                """
-            })
             driver.get(url)
-            # 等待页面中的某个元素出现，例如 body 存在即可
             WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.TAG_NAME, "body"))
+                EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo"))
             )
-            # 额外等待，确保动态内容加载
-            time.sleep(2)
-            # 获取页面源代码，检查是否包含节目信息
-            html = driver.page_source
-            if "epgInfo" not in html:
-                print(f"第 {attempt} 次尝试：页面中未找到 epgInfo，可能加载失败")
-                raise Exception("Page content missing")
-            # 提取节目
             items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
-            programs = []
+            day_progs = []
             for item in items:
                 time_elem = item.find_element(By.CSS_SELECTOR, "em.time")
                 time_str = time_elem.text.strip()
@@ -116,76 +53,82 @@ def fetch_daily_program(url, date_obj, retries=2):
                 try:
                     hour, minute = map(int, time_str.split(':'))
                     start_dt = datetime.datetime(date_obj.year, date_obj.month, date_obj.day, hour, minute)
-                    programs.append((start_dt, title))
+                    day_progs.append((start_dt, title))
                 except:
                     continue
-            programs.sort(key=lambda x: x[0])
-            return programs
+            day_progs.sort(key=lambda x: x[0])
+            programs.extend(day_progs)
+            print(f"  {WEEKDAY_NAMES[idx]}: {len(day_progs)} 个节目")
         except Exception as e:
-            print(f"第 {attempt} 次 Selenium 抓取失败 {url}: {e}")
-            if attempt == retries:
-                return []
-            time.sleep(5)
-        finally:
-            if driver:
-                driver.quit()
-    return []
+            print(f"  {WEEKDAY_NAMES[idx]}: 失败 - {e}")
+        time.sleep(0.3)
+    return programs
+
+def add_end_times(programs):
+    result = []
+    for i, (start, title) in enumerate(programs):
+        if i + 1 < len(programs):
+            end = programs[i+1][0]
+        else:
+            end = start + datetime.timedelta(minutes=30)
+        result.append({'title': title, 'start_dt': start, 'end_dt': end})
+    return result
 
 def main():
     print()
     print("=" * 50)
     print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 50)    
+    print("=" * 50)
 
-    start_time = time.time()      
-    output_file = "epg.xml"
+    start_time = time.time()
+    output_file = "../epg.xml"   # 输出到根目录
+    week_dates = get_week_dates()
+    all_new_channels = []
+    all_new_programs = []
 
-    # 1. 抓取镇江数据
-    print()
-    print("抓取镇江电视台节目单...")
-    today = datetime.datetime.now().date()
-    monday = today - datetime.timedelta(days=today.weekday())
-    week_dates = [monday + datetime.timedelta(days=i) for i in range(7)]
+    # 配置 Chrome
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--log-level=3')
+    chrome_options.add_argument('--silent')
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--ignore-ssl-errors')
+    chrome_options.add_argument('--allow-insecure-localhost')
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
 
-    zhenjiang_channels = []
-    zhenjiang_programs = []
-
-    for ch_name, cfg in CHANNELS.items():
-        print(f"\n正在抓取 {ch_name} ...")
-        weekly_programs = []
-        for day_offset in range(7):
-            day_num = day_offset + 1
-            url = f"{cfg['base_url']}{day_num}.htm"
-            date_obj = week_dates[day_offset]
-            day_programs = fetch_daily_program(url, date_obj)
-            if day_programs:
-                day_programs_with_end = add_end_times(day_programs)
-                weekly_programs.extend(day_programs_with_end)
-                print(f"  {WEEKDAY_NAMES[day_offset]}: {len(day_programs)} 个节目")
+    driver = webdriver.Chrome(options=chrome_options)
+    try:
+        for ch_name, base_url in TV_CHANNELS.items():
+            print(f"\n正在抓取 {ch_name} ...")
+            weekly_programs = fetch_week_programs(ch_name, base_url, week_dates, driver)
+            if weekly_programs:
+                weekly_programs.sort(key=lambda x: x[0])
+                enriched = add_end_times(weekly_programs)
+                all_new_channels.append((ch_name, ch_name))
+                for prog in enriched:
+                    all_new_programs.append({
+                        'start': prog['start_dt'].strftime("%Y%m%d%H%M%S +0800"),
+                        'stop': prog['end_dt'].strftime("%Y%m%d%H%M%S +0800"),
+                        'channel': ch_name,
+                        'title': prog['title']
+                    })
+                print(f"{ch_name} 共抓取 {len(enriched)} 个节目")
             else:
-                print(f"  {WEEKDAY_NAMES[day_offset]}: 无数据")
-            time.sleep(0.5)
-        if weekly_programs:
-            ch_id = cfg['channel_id']
-            zhenjiang_channels.append((ch_id, ch_id))  # ID和显示名相同
-            for prog in weekly_programs:
-                zhenjiang_programs.append({
-                    'start': prog['start_dt'].strftime("%Y%m%d%H%M%S +0800"),
-                    'stop': prog['end_dt'].strftime("%Y%m%d%H%M%S +0800"),
-                    'channel': ch_id,
-                    'title': prog['title']
-                })
-            print(f"{ch_name} 共抓取 {len(weekly_programs)} 个电视节目")
-        else:
-            print(f"{ch_name} 未抓取到任何数据")
+                print(f"{ch_name} 未抓取到任何数据")
+    finally:
+        driver.quit()
 
-    # 2. 合并写入
-    if zhenjiang_programs:
-        merge_and_write(output_file, zhenjiang_channels, zhenjiang_programs)
+    if all_new_programs:
+        merge_and_write(output_file, all_new_channels, all_new_programs)
         elapsed = time.time() - start_time
         print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
     else:
-        print("❌ 未抓取到镇江数据，文件未更新")
+        print("❌ 未抓取到镇江电视数据")
 
 if __name__ == "__main__":
     main()
