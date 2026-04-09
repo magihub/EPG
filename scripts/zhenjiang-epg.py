@@ -94,8 +94,8 @@ def main():
     print("=" * 50)
     print("抓取镇江电视台节目单...")
     today = datetime.datetime.now().date()
-    monday = today - timedelta(days=today.weekday())
-    week_dates = [monday + timedelta(days=i) for i in range(7)]
+    monday = today - datetime.timedelta(days=today.weekday())
+    week_dates = [monday + datetime.timedelta(days=i) for i in range(7)]
 
     zhenjiang_channels = []
     zhenjiang_programs = []
