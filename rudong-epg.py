@@ -20,7 +20,7 @@ CHANNELS = [
         "url": "https://www.rdxmt.com/pc.html?topid=54172"
     },
     {
-        "id": "如东综合广播",
+        "id": "如东FM89.6",
         "name": "如东综合广播",
         "type": "radio",
         "url": "https://www.rdxmt.com/pc.html?topid=21400",
