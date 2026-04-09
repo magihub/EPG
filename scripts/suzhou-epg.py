@@ -8,8 +8,8 @@ import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
-import datetime
 import re
+import datetime
 import time
 import os
 from epg_common import parse_existing_xml, merge_and_write
