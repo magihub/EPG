@@ -58,6 +58,9 @@ def fetch_tv_epg(channel_info):
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--disable-gpu')
+        chrome_options.add_argument('--log-level=3')              # 只显示致命错误
+        chrome_options.add_argument('--silent')                   # 静默模式
+        chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁用 DevTools 日志
         driver = webdriver.Chrome(options=chrome_options)
 
         try:
@@ -111,6 +114,10 @@ def extract_token_from_page(url):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')           # 可选但建议加上
+    chrome_options.add_argument('--log-level=3')           # 抑制 INFO/WARNING 日志
+    chrome_options.add_argument('--silent')                # 静默模式
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁用 DevTools 监听输出   
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_page_load_timeout(30)  # 关键：避免无限等待
     try:
@@ -232,7 +239,7 @@ def generate_xmltv(epg_data_list, output_file="epg.xml"):
         return False
 
     tv = ET.Element("tv")
-    tv.set("generator-info-name", "如东EPG抓取工具")
+    tv.set("generator-info-name", "广播电视 EPG 爬虫工具")
 
     # 添加频道
     for epg in epg_data_list:
