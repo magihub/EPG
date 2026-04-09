@@ -277,6 +277,7 @@ def main():
     print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
 
+    start_time = time.time() 
     all_epg_data = []
 
     # 抓取电视
