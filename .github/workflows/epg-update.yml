@@ -42,11 +42,13 @@ jobs:
 
       - name: Run EPG scraper
         run: |
-          #  echo "=== 运行 rudong-epg.py ==="
+          echo "=== 运行 rudong-epg.py ==="
           python rudong-epg.py
           #  echo "=== 运行 nantong-epg.py ==="
           #  python nantong-epg.py
-    
+          echo "=== 运行 suzhou-epg.py ==="
+          python suzhou-epg.py
+          
       - name: Commit and push changes (only if epg.xml changed)
         run: |
           git config user.name 'github-actions'
