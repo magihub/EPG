@@ -8,7 +8,7 @@
 
 import requests
 import re
-from datetime import datetime, timedelta
+import datetime
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import time
@@ -86,7 +86,8 @@ def main():
     print("=" * 50)
     print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)    
-    
+
+    start_time = time.time()      
     output_file = "epg.xml"
 
     # 1. 抓取镇江数据
