@@ -68,7 +68,7 @@ def fetch_page(url, retries=2):
 
 # -------------------- 电视抓取 --------------------
 def get_week_dates():
-    today = datetime.now().date()
+    today = datetime.datetime.now().date()
     monday = today - timedelta(days=today.weekday())
     return [monday + timedelta(days=i) for i in range(7)]
 
@@ -164,7 +164,7 @@ def parse_radio_programs(html):
     if not event_list:
         return {}, []
     radio_divs = event_list.find_all('div', recursive=False)
-    base_date = datetime.now().date()
+    base_date = datetime.datetime.now().date()
     weekday = base_date.weekday()
     all_programs = {}
     channel_order = []
