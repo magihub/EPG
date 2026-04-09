@@ -80,8 +80,7 @@ jobs:
           echo "=== 运行 zhenjiang-epg.py ==="
           python scripts/zhenjiang-epg.py
         continue-on-error: true
-
-          
+        
       - name: Commit and push changes (only if epg.xml changed)
         run: |
           git config user.name 'github-actions'
