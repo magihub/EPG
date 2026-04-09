@@ -25,7 +25,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ssl._create_default_https_context = ssl._create_unverified_context
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
 }
 
 # 频道配置：频道名称 -> (基础URL, 频道ID用于XML, 频道显示名称)
@@ -54,13 +59,9 @@ def fetch_daily_program(url, date_obj, retries=2):
     """抓取某一天的节目单，支持重试"""
     for attempt in range(1, retries + 1):
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=10, verify=False)
+            resp = requests.get(url, headers=HEADERS, timeout=10, verify=False, allow_redirects=True)
             resp.encoding = 'utf-8'
             html = resp.text
-            
-            # 调试：打印前2000字符
-            print(f"URL: {url}")
-            print(f"HTML snippet (first 2000 chars): {html[:2000]}")
             
             # 继续解析...
             pattern = re.compile(r'<p class="pc_[12]"><em class="time">(\d{2}:\d{2})</em>(.*?)</p>')
