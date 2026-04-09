@@ -57,6 +57,11 @@ def fetch_daily_program(url, date_obj, retries=2):
             resp = requests.get(url, headers=HEADERS, timeout=10, verify=False)
             resp.encoding = 'utf-8'
             html = resp.text
+            
+            # 调试：打印前2000字符
+            print(f"URL: {url}")
+            print(f"HTML snippet (first 2000 chars): {html[:2000]}")
+            
             # 继续解析...
             pattern = re.compile(r'<p class="pc_[12]"><em class="time">(\d{2}:\d{2})</em>(.*?)</p>')
             matches = re.findall(pattern, html)
@@ -91,7 +96,7 @@ def main():
     output_file = "epg.xml"
 
     # 1. 抓取镇江数据
-    print("=" * 50)
+    print()
     print("抓取镇江电视台节目单...")
     today = datetime.datetime.now().date()
     monday = today - datetime.timedelta(days=today.weekday())
