@@ -49,7 +49,7 @@ jobs:
           echo "=== 运行 suzhou-epg.py ==="
           python suzhou-epg.py || true
           echo "=== 运行 zhenjiang-epg.py ==="
-          python zhenjiang.py || true    
+          python zhenjiang-epg.py || true    
           
       - name: Commit and push changes (only if epg.xml changed)
         run: |
