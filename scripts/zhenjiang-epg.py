@@ -61,7 +61,6 @@ CHANNELS = {
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
 
 def fetch_daily_program(url, date_obj, retries=2):
-    """使用 Selenium 抓取某一天的节目单，支持重试"""
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
@@ -69,17 +68,43 @@ def fetch_daily_program(url, date_obj, retries=2):
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--log-level=3')
     chrome_options.add_argument('--silent')
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
+    # 忽略证书错误（解决 SSL handshake failed）
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--ignore-ssl-errors')
+    chrome_options.add_argument('--allow-insecure-localhost')
+    # 避免被检测为自动化工具
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
+    chrome_options.add_experimental_option('useAutomationExtension', False)
+    # 设置明确的 User-Agent
+    chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+    
     for attempt in range(1, retries + 1):
         driver = None
         try:
             driver = webdriver.Chrome(options=chrome_options)
+            driver.set_page_load_timeout(30)
+            # 执行额外的 CDP 命令来隐藏 webdriver 属性
+            driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
+                "source": """
+                    Object.defineProperty(navigator, 'webdriver', {
+                        get: () => undefined
+                    });
+                """
+            })
             driver.get(url)
-            # 等待节目列表出现（可根据页面结构调整选择器）
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo p"))
+            # 等待页面中的某个元素出现，例如 body 存在即可
+            WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.TAG_NAME, "body"))
             )
+            # 额外等待，确保动态内容加载
+            time.sleep(2)
+            # 获取页面源代码，检查是否包含节目信息
+            html = driver.page_source
+            if "epgInfo" not in html:
+                print(f"第 {attempt} 次尝试：页面中未找到 epgInfo，可能加载失败")
+                raise Exception("Page content missing")
+            # 提取节目
             items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
             programs = []
             for item in items:
@@ -100,7 +125,7 @@ def fetch_daily_program(url, date_obj, retries=2):
             print(f"第 {attempt} 次 Selenium 抓取失败 {url}: {e}")
             if attempt == retries:
                 return []
-            time.sleep(3)
+            time.sleep(5)
         finally:
             if driver:
                 driver.quit()
