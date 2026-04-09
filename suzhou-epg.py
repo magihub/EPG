@@ -12,6 +12,8 @@ from datetime import datetime, timedelta
 import re
 import time
 import os
+from epg_common import parse_existing_xml, merge_and_write
+from epg_common import add_end_times, parse_existing_xml, merge_and_write
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
@@ -52,15 +54,15 @@ def parse_time(time_str, base_date):
         return None
     return datetime(base_date.year, base_date.month, base_date.day, hour, minute)
 
-def fetch_page(url):
-    for attempt in range(1, 3):
+def fetch_page(url, retries=2):
+    for attempt in range(1, retries + 1):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=10)
             resp.encoding = 'utf-8'
             return resp.text
         except requests.RequestException as e:
-            print(f"第 {attempt} 次请求失败: {e}")
-            if attempt == 2:
+            print(f"第 {attempt} 次请求 {url} 失败: {e}")
+            if attempt == retries:
                 raise
             time.sleep(3)
 
@@ -87,13 +89,6 @@ def parse_table(table, base_date):
     programs.sort(key=lambda x: x[0])
     return programs
 
-def add_end_times(programs):
-    result = []
-    for i, (start, title) in enumerate(programs):
-        end = programs[i+1][0] if i+1 < len(programs) else start + timedelta(minutes=30)
-        result.append({'title': title, 'start_dt': start, 'end_dt': end})
-    return result
-
 def extract_tv_programs(html, channel_index, week_dates):
     soup = BeautifulSoup(html, 'html.parser')
     tablist_id = f"tablist{channel_index+1}"
@@ -103,19 +98,50 @@ def extract_tv_programs(html, channel_index, week_dates):
         if channel_index < len(all_tablists):
             tablist_div = all_tablists[channel_index]
         else:
+            print(f"未找到第 {channel_index+1} 个频道的数据块")
             return []
     pic_scroll = tablist_div.find('div', class_='picScroll')
     if not pic_scroll:
+        print(f"频道数据块中没有 .picScroll")
         return []
     days = pic_scroll.find_all('li')
+    # 星期名称映射（支持周一、星期二等）
+    weekday_map = {
+        '星期一': 0, '周一': 0,
+        '星期二': 1, '周二': 1,
+        '星期三': 2, '周三': 2,
+        '星期四': 3, '周四': 3,
+        '星期五': 4, '周五': 4,
+        '星期六': 5, '周六': 5,
+        '星期日': 6, '周日': 6
+    }
+    # 建立日期映射：从表格中提取星期几，找到对应的 week_dates 中的日期
     all_programs = []
-    for idx, day_li in enumerate(days):
-        if idx >= len(week_dates):
-            break
-        base_date = week_dates[idx]
+    for day_li in days:
         table = day_li.find('table', class_='table_solid')
-        if table:
-            all_programs.extend(parse_table(table, base_date))
+        if not table:
+            continue
+        # 获取星期标题（通常是第一行第一列的 th）
+        th = table.find('th')
+        if not th:
+            continue
+        weekday_text = th.get_text().strip()
+        # 提取星期几数字
+        target_weekday = None
+        for key, val in weekday_map.items():
+            if key in weekday_text:
+                target_weekday = val
+                break
+        if target_weekday is None:
+            print(f"无法识别星期: {weekday_text}，跳过")
+            continue
+        # 找到对应的日期（week_dates 列表索引与星期几一致，因为 week_dates[0]是周一）
+        if target_weekday < len(week_dates):
+            base_date = week_dates[target_weekday]
+        else:
+            continue
+        programs = parse_table(table, base_date)
+        all_programs.extend(programs)
     all_programs.sort(key=lambda x: x[0])
     return add_end_times(all_programs)
 
@@ -184,72 +210,6 @@ def parse_radio_programs(html):
 
     return all_programs, channel_order
 
-# -------------------- 合并现有XML --------------------
-def parse_existing_xml(filepath):
-    if not os.path.exists(filepath):
-        return {}, []
-    try:
-        tree = ET.parse(filepath)
-        root = tree.getroot()
-        channels = {}
-        for ch in root.findall('channel'):
-            ch_id = ch.get('id')
-            dn = ch.find('display-name')
-            if ch_id:
-                channels[ch_id] = dn.text if dn is not None else ch_id
-        programs = []
-        for prog in root.findall('programme'):
-            start = prog.get('start')
-            stop = prog.get('stop')
-            channel = prog.get('channel')
-            title_elem = prog.find('title')
-            title = title_elem.text if title_elem is not None else ''
-            if start and stop and channel:
-                programs.append({'start': start, 'stop': stop, 'channel': channel, 'title': title})
-        return channels, programs
-    except Exception as e:
-        print(f"解析现有XML失败: {e}")
-        return {}, []
-
-def merge_and_write(output_file, tv_channels, tv_programs, radio_channels, radio_programs):
-    # 读取现有
-    exist_channels, exist_programs = parse_existing_xml(output_file)
-
-    # 合并频道（去重）
-    all_channels = dict(exist_channels)
-    for ch_id, disp in tv_channels:
-        if ch_id not in all_channels:
-            all_channels[ch_id] = disp
-    for ch_id, disp in radio_channels:
-        if ch_id not in all_channels:
-            all_channels[ch_id] = disp
-
-    # 合并节目
-    all_programs = exist_programs + tv_programs + radio_programs
-
-    # 生成XML
-    tv = ET.Element("tv")
-    tv.set("generator-info-name", "苏州EPG合并至现有XML文件中")
-    for ch_id, disp in all_channels.items():
-        ch = ET.SubElement(tv, "channel", id=ch_id)
-        dn = ET.SubElement(ch, "display-name", lang="zh")
-        dn.text = disp
-    for prog in all_programs:
-        programme = ET.SubElement(tv, "programme",
-                                  start=prog['start'],
-                                  stop=prog['stop'],
-                                  channel=prog['channel'])
-        title_elem = ET.SubElement(programme, "title", lang="zh")
-        title_elem.text = prog['title']
-
-    xml_str = ET.tostring(tv, encoding='utf-8')
-    dom = minidom.parseString(xml_str)
-    pretty = dom.toprettyxml(indent="  ")
-    pretty = pretty.replace('<?xml version="1.0" ?>', '<?xml version="1.0" encoding="UTF-8"?>')
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write(pretty)
-    print(f"✅ 合并保存至 {output_file} (总频道: {len(all_channels)}, 总节目: {len(all_programs)})")
-
 # -------------------- 主程序 --------------------
 def main():
     output_file = "epg.xml"
@@ -298,7 +258,10 @@ def main():
 
     # 合并写入
     if tv_programs or radio_programs:
-        merge_and_write(output_file, tv_channels, tv_programs, radio_channels, radio_programs)
+        # 合并电视和广播的频道、节目
+        all_new_channels = tv_channels + radio_channels
+        all_new_programs = tv_programs + radio_programs
+        merge_and_write(output_file, all_new_channels, all_new_programs)
         print("\n🎉 苏州数据已追加到 epg.xml")
     else:
         print("❌ 未抓取到任何数据")
