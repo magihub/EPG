@@ -52,7 +52,7 @@ def parse_time(time_str, base_date):
         base_date += datetime.timedelta(days=1)
     if hour < 0 or hour > 23:
         return None
-    return datetime(base_date.year, base_date.month, base_date.day, hour, minute)
+    return datetime.datetime(base_date.year, base_date.month, base_date.day, hour, minute)
 
 def fetch_page(url, retries=2):
     for attempt in range(1, retries + 1):
@@ -221,7 +221,7 @@ def main():
     output_file = "epg.xml"
 
     # 抓取电视
-    print("=" * 50)
+    print()
     print("抓取苏州电视节目单...")
     tv_html = fetch_page(TV_URL)
     week_dates = get_week_dates()
