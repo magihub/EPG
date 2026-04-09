@@ -49,7 +49,7 @@ def parse_time(time_str, base_date):
     minute = int(match.group(2))
     if hour >= 24:
         hour -= 24
-        base_date += timedelta(days=1)
+        base_date += datetime.timedelta(days=1)
     if hour < 0 or hour > 23:
         return None
     return datetime(base_date.year, base_date.month, base_date.day, hour, minute)
@@ -69,8 +69,8 @@ def fetch_page(url, retries=2):
 # -------------------- 电视抓取 --------------------
 def get_week_dates():
     today = datetime.datetime.now().date()
-    monday = today - timedelta(days=today.weekday())
-    return [monday + timedelta(days=i) for i in range(7)]
+    monday = today - datetime.timedelta(days=today.weekday())
+    return [monday + datetime.timedelta(days=i) for i in range(7)]
 
 def parse_table(table, base_date):
     programs = []
@@ -203,7 +203,7 @@ def parse_radio_programs(html):
         programs.sort(key=lambda x: x['start_dt'])
         enriched = []
         for i, prog in enumerate(programs):
-            end_dt = programs[i+1]['start_dt'] if i+1 < len(programs) else prog['start_dt'] + timedelta(minutes=30)
+            end_dt = programs[i+1]['start_dt'] if i+1 < len(programs) else prog['start_dt'] + datetime.timedelta(minutes=30)
             enriched.append({'title': prog['title'], 'start_dt': prog['start_dt'], 'end_dt': end_dt})
         all_programs[ch_id] = enriched
         print(f"  广播 {ch_id}: {len(enriched)} 个节目")
