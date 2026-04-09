@@ -40,16 +40,63 @@ jobs:
           pip install selenium lxml curl_cffi beautifulsoup4 requests
           # 注意：不再安装 webdriver_manager
 
-      - name: Run EPG scraper
+      - name: Join ZeroTier Network
+        uses: zerotier/action@v1
+        with:
+          network: ${{ secrets.ZEROTIER_NETWORK_ID }}
+          secret: ${{ secrets.ZEROTIER_CENTRAL_TOKEN }}
+          identity_secret: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
+          
+      - name: Wait for ZeroTier IP and authorize
+        env:
+          ZT_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
+          ZT_API_TOKEN: ${{ secrets.ZEROTIER_CENTRAL_TOKEN }}
+          FIXED_IP: "192.168.192.5"   # 你为 Runner 分配的固定 IP
+        run: |
+          # 获取 Node ID
+          for i in {1..30}; do
+            if command -v zerotier-cli &> /dev/null; then
+              NODE_ID=$(sudo zerotier-cli info | awk '{print $3}')
+              if [ -n "$NODE_ID" ] && [ "$NODE_ID" != "info" ]; then
+                break
+              fi
+            fi
+            sleep 2
+          done
+          if [ -z "$NODE_ID" ]; then
+            echo "Failed to get Node ID"
+            exit 1
+          fi
+          echo "Node ID: $NODE_ID"
+          # 授权并分配固定 IP（可选，如果已固定身份则不需要每次都授权，但保留无妨）
+          curl -X POST -H "Authorization: Bearer $ZT_API_TOKEN" -H "Content-Type: application/json" \
+            -d "{\"config\": {\"authorized\": true, \"ipAssignments\": [\"$FIXED_IP\"]}}" \
+            https://api.zerotier.com/api/v1/network/$ZT_NETWORK_ID/member/$NODE_ID
+        
+        
+      # 如东脚本（可能不需要代理，如果失败继续）
+      - name: Run rudong-epg
         run: |
           echo "=== 运行 rudong-epg.py ==="
-          python rudong-epg.py || true
+          python rudong-epg.py
+        continue-on-error: true
+
+      - name: Fetch Nantong EPG via OP Proxy
+        run: |
           echo "=== 运行 nantong-epg.py ==="
-          python nantong-epg.py || true
-          echo "=== 运行 suzhou-epg.py ==="
-          python suzhou-epg.py || true
-          echo "=== 运行 zhenjiang-epg.py ==="
-          python zhenjiang-epg.py || true    
+          export http_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
+          export https_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
+          python nantong-epg.py
+        continue-on-error: true
+
+      - name: Run suzhou-epg
+        run: python suzhou-epg.py
+        continue-on-error: true
+
+      - name: Run zhenjiang-epg
+        run: python zhenjiang-epg.py
+        continue-on-error: true
+
           
       - name: Commit and push changes (only if epg.xml changed)
         run: |
