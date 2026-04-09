@@ -17,6 +17,11 @@ import urllib3
 import os
 from epg_common import parse_existing_xml, merge_and_write
 from epg_common import add_end_times, parse_existing_xml, merge_and_write
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # 抑制SSL警告
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -56,36 +61,50 @@ CHANNELS = {
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
 
 def fetch_daily_program(url, date_obj, retries=2):
-    """抓取某一天的节目单，支持重试"""
+    """使用 Selenium 抓取某一天的节目单，支持重试"""
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--log-level=3')
+    chrome_options.add_argument('--silent')
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
     for attempt in range(1, retries + 1):
+        driver = None
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=10, verify=False, allow_redirects=True)
-            resp.encoding = 'utf-8'
-            html = resp.text
-            
-            # 继续解析...
-            pattern = re.compile(r'<p class="pc_[12]"><em class="time">(\d{2}:\d{2})</em>(.*?)</p>')
-            matches = re.findall(pattern, html)
+            driver = webdriver.Chrome(options=chrome_options)
+            driver.get(url)
+            # 等待节目列表出现（可根据页面结构调整选择器）
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo p"))
+            )
+            items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
             programs = []
-            for time_str, title in matches:
-                title = title.strip()
+            for item in items:
+                time_elem = item.find_element(By.CSS_SELECTOR, "em.time")
+                time_str = time_elem.text.strip()
+                title = item.text.replace(time_str, '').strip()
                 if not title:
                     continue
                 try:
-                    hour = int(time_str.split(':')[0])
-                    minute = int(time_str.split(':')[1])
-                    start_dt = datetime(date_obj.year, date_obj.month, date_obj.day, hour, minute)
+                    hour, minute = map(int, time_str.split(':'))
+                    start_dt = datetime.datetime(date_obj.year, date_obj.month, date_obj.day, hour, minute)
                     programs.append((start_dt, title))
                 except:
                     continue
             programs.sort(key=lambda x: x[0])
             return programs
         except Exception as e:
-            print(f"第 {attempt} 次抓取失败 {url}: {e}")
+            print(f"第 {attempt} 次 Selenium 抓取失败 {url}: {e}")
             if attempt == retries:
                 return []
             time.sleep(3)
-
+        finally:
+            if driver:
+                driver.quit()
+    return []
 
 def main():
     print()
