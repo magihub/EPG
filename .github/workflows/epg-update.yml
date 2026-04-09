@@ -97,6 +97,7 @@ jobs:
         continue-on-error: true
 
       - name: Run zhenjiang-epg
+        run: |           
           echo "=== 运行 zhenjiang-epg.py ==="
           python scripts/zhenjiang-epg.py
         continue-on-error: true
