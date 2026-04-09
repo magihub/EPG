@@ -74,14 +74,15 @@ jobs:
             https://api.zerotier.com/api/v1/network/$ZT_NETWORK_ID/member/$NODE_ID
         
         
-      # 如东脚本（可能不需要代理，如果失败继续）
+      # 如东脚本（不需要代理，如果失败继续）
       - name: Run rudong-epg
         run: |
           echo "=== 运行 rudong-epg.py ==="
           python rudong-epg.py
         continue-on-error: true
-
-      - name: Fetch Nantong EPG via OP Proxy
+        
+      # 南通脚本（需要代理，如果失败继续）
+      - name: Fetch Nantong EPG via Proxy
         run: |
           echo "=== 运行 nantong-epg.py ==="
           export http_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
