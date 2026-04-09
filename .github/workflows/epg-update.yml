@@ -43,13 +43,13 @@ jobs:
       - name: Run EPG scraper
         run: |
           echo "=== 运行 rudong-epg.py ==="
-          python rudong-epg.py
+          python rudong-epg.py || true
           echo "=== 运行 nantong-epg.py ==="
-          python nantong-epg.py
+          python nantong-epg.py || true
           echo "=== 运行 suzhou-epg.py ==="
-          python suzhou-epg.py
+          python suzhou-epg.py || true
           echo "=== 运行 zhenjiang-epg.py ==="
-          python zhenjiang.py          
+          python zhenjiang.py || true    
           
       - name: Commit and push changes (only if epg.xml changed)
         run: |
