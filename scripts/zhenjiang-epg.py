@@ -93,7 +93,7 @@ def main():
     # 1. 抓取镇江数据
     print("=" * 50)
     print("抓取镇江电视台节目单...")
-    today = datetime.now().date()
+    today = datetime.datetime.now().date()
     monday = today - timedelta(days=today.weekday())
     week_dates = [monday + timedelta(days=i) for i in range(7)]
 
