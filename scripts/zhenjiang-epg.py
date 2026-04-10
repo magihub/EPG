@@ -24,8 +24,8 @@ from epg_common import merge_and_write
 TV_CHANNELS = {
     "镇江新闻综合": "https://epg.sports8.cc/2118/",
     "镇江教育民生": "https://epg.sports8.cc/2119/",
-    "镇江资讯频道": "https://epg.sports8.cc/2120/",
-    "镇江影视频道": "https://epg.sports8.cc/2121/",
+    # "镇江资讯频道": "https://epg.sports8.cc/2120/",
+    # "镇江影视频道": "https://epg.sports8.cc/2121/",
 }
 
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
@@ -78,7 +78,7 @@ def fetch_today_programs(channel_name, base_url, driver):
     """抓取当天的节目单"""
     day_num = get_today_weekday_num()
     url = f"{base_url}{day_num}.htm"
-    print(f"  抓取当天 (周{day_num}) ...")
+    # print(f"  抓取当天 (周{day_num}) ...")
     try:
         driver.get(url)
         WebDriverWait(driver, 15).until(
@@ -117,7 +117,7 @@ def fetch_radio_programs(driver, target_date):
     3. 使用页面原生的 requestExtApi 函数获取节目单，自动处理签名，无需手动构造 AJAX。
     4. 增加了详细的错误输出和调试信息。
     """
-    print("\n正在抓取广播节目单...")
+    print("\n抓取镇江广播节目单...")
     # 确保当前页面是广播页
     current_url = driver.current_url
     if "broadcastTvs.html" not in current_url:
@@ -184,7 +184,7 @@ def fetch_radio_programs(driver, target_date):
             ch_code = ch_name
         display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
         all_channels.append((ch_code, display_name))
-        print(f"  正在抓取 {ch_name} ...")
+        print(f"正在抓取 {ch_name} ...")
 
         # 使用页面原生的 requestExtApi 获取节目单（自动处理签名）
         programs_js = f"""
@@ -220,19 +220,19 @@ def fetch_radio_programs(driver, target_date):
         try:
             ret = driver.execute_script(programs_js)
         except Exception as e:
-            print(f"    执行 JS 获取节目单异常: {e}")
+            print(f"  执行 JS 获取节目单异常: {e}")
             continue
 
         # 处理可能的错误返回
         if isinstance(ret, dict) and not ret.get('success'):
-            print(f"    API 错误: {ret.get('error')}")
+            print(f"  API 错误: {ret.get('error')}")
             if ret.get('fullResponse'):
-                print(f"    完整响应: {ret['fullResponse']}")
+                print(f"  完整响应: {ret['fullResponse']}")
             continue
 
         programs_data = ret if not isinstance(ret, dict) else []
         if not programs_data:
-            print(f"    未获取到节目")
+            print(f"  未获取到节目")
             continue
 
         # 解析节目数据
@@ -252,7 +252,7 @@ def fetch_radio_programs(driver, target_date):
                 continue
 
         if not programs:
-            print(f"    无当天节目")
+            print(f"  无当天节目")
             continue
 
         programs.sort(key=lambda x: x[0])
@@ -263,7 +263,7 @@ def fetch_radio_programs(driver, target_date):
                 'channel': ch_code,
                 'title': title
             })
-        print(f"    获取到 {len(programs)} 个节目")
+        print(f"  获取到 {len(programs)} 个节目")
 
     return all_channels, all_programs
     
@@ -273,7 +273,7 @@ def main():
     print("=" * 50)
     print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
-
+    
     start_time = time.time()
     output_file = "epg.xml"   # 输出到根目录
     week_dates = get_week_dates()
@@ -298,8 +298,12 @@ def main():
     driver = webdriver.Chrome(options=chrome_options)
     try:
         # ---------- 电视 ----------
+    
+        print()
+        print("抓取镇江电视节目单...")    
+        
         for ch_name, base_url in TV_CHANNELS.items():
-            print(f"\n正在抓取电视 {ch_name} ...")
+            print(f"正在解析 {ch_name} ...")
             
             # 抓取一周节目单
             # weekly_programs = fetch_week_programs(ch_name, base_url, week_dates, driver)
@@ -322,9 +326,9 @@ def main():
                         'channel': ch_name,
                         'title': prog['title']
                     })
-                print(f"{ch_name} 共抓取 {len(enriched)} 个节目")
+                print(f"  获取到 {len(enriched)} 个节目")
             else:
-                print(f"{ch_name} 未抓取到任何数据")
+                print(f"  未抓取到任何数据")
 
         # ---------- 广播 ----------
         # 广播节目单通常是当天数据，使用今天日期
