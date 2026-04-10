@@ -28,6 +28,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      # GitHub Actions 的 ubuntu-latest 已经预装了 Chrome 和 chromedriver
+      # 无需额外安装，只需确保 chromedriver 在 PATH 中
+    #  - name: Verify Chrome and chromedriver
+    #    run: |
+    #      google-chrome --version
+    #      chromedriver --version
+
       - name: Install Python dependencies
         run: |
           pip install selenium lxml curl_cffi beautifulsoup4 requests
@@ -45,7 +52,7 @@ jobs:
           sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
           sleep 10
           # 只显示网络状态，不显示 IP
-          sudo zerotier-cli listnetworks | grep -v 'ZT assigned ips' || true
+          sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
         
       # 如东脚本（无需代理，如果失败继续）
       - name: Run Rudong EPG
