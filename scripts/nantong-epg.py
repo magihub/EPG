@@ -15,7 +15,7 @@ from curl_cffi import requests
 from epg_common import merge_and_write   # 导入公共合并函数
 
 # ==================== 配置区域 ====================
-API_URL = "https://web.ntjoy.com/website/external/externalService"
+API_URL = "https://web.ntjoy.com/website/external/externalService"      # 海外 GitHub Actions 无法直接访问，会被 网站应用防火墙 WAF 拦截（405）
 
 HEADERS = {
     'accept': 'application/json, text/javascript, */*; q=0.01',
