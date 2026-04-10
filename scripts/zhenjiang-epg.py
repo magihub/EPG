@@ -121,7 +121,7 @@ def fetch_radio_programs(driver, target_date):
 
     max_attempts = 2
     for attempt in range(1, max_attempts + 1):
-        print(f"尝试 {attempt}/{max_attempts} 获取广播数据...")
+        # print(f"第 {attempt}/{max_attempts} 尝试获取...")
         try:
             # 等待 jQuery 加载
             WebDriverWait(driver, 10).until(
@@ -131,7 +131,7 @@ def fetch_radio_programs(driver, target_date):
             WebDriverWait(driver, 20).until(
                 lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
             )
-            print("页面 Vue 数据已加载")
+            # print("页面 Vue 数据已加载")
 
             # 获取频道列表（优先从 Vue 数据取）
             channels_js = """
@@ -164,7 +164,7 @@ def fetch_radio_programs(driver, target_date):
                 else:
                     return [], []
 
-            print(f"获取到 {len(channels)} 个广播频道")
+            #  print(f"获取到 {len(channels)} 个广播频道")
             all_channels = []
             all_programs = []
 
@@ -285,7 +285,7 @@ def main():
         print("抓取镇江电视节目单...")    
         
         for ch_name, base_url in TV_CHANNELS.items():
-            print(f"正在解析 {ch_name} ...")
+            print(f"  正在解析 {ch_name} ...")
             
             # 抓取一周节目单
             # weekly_programs = fetch_week_programs(ch_name, base_url, week_dates, driver)
@@ -308,9 +308,9 @@ def main():
                         'channel': ch_name,
                         'title': prog['title']
                     })
-                print(f"  获取到 {len(enriched)} 个节目")
+                print(f"    获取到 {len(enriched)} 个节目")
             else:
-                print(f"  未抓取到任何数据")
+                print(f"    未抓取到任何数据")
 
         # ---------- 广播 ----------
         # 广播节目单通常是当天数据，使用今天日期
