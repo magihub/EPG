@@ -48,9 +48,12 @@ def format_epg_time(time_string):
 def fetch_tv_epg(channel_info, driver):
     max_attempts = 2
     wait_seconds = 5
+
+    print("\n抓取如东电视节目单...")
+    print(f"  开始解析 {channel_info['name']} ...")
     
     for attempt in range(1, max_attempts + 1):
-        print(f"\n开始解析 {channel_info['name']} ...")
+        
         try:
             driver.get(channel_info['url'])
             WebDriverWait(driver, 15).until(
@@ -79,10 +82,10 @@ def fetch_tv_epg(channel_info, driver):
                     })
 
             if not programs:
-                print("  未能获取到节目单")
+                print("    未能获取到节目单")
                 return None
 
-            print(f"  获取到 {len(programs)} 个节目")
+            print(f"    获取到 {len(programs)} 个节目")
             return {
                 "channel_id": channel_info["id"],
                 "channel_name": channel_info["name"],
@@ -116,15 +119,18 @@ def extract_token_from_page(driver, url):
         return null;
     """)
     # print(f"获取到的 token 类型： {type(token).__name__ if token else 'None'}, 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}") 
-    print(f"获取到的 token 尾部: {token[-10:] if token else 'None'}")
+    print(f"  token 尾值: {token[-10:] if token else 'None'}")
     return token
 
 def fetch_radio_epg_with_token(channel_info, driver):
     max_attempts = 2
     wait_seconds = 5
 
+    print("\n抓取如东广播节目单...")
+    print(f"  开始解析 {channel_info['name']} ...")
+    
     for attempt in range(1, max_attempts + 1):
-        print(f"\n开始解析 {channel_info['name']} ...")
+        
         token = extract_token_from_page(driver, channel_info['url'])
         if not token:
             print(f"⚠️ 第 {attempt} 次获取 token 失败")
@@ -195,7 +201,7 @@ def fetch_radio_epg_with_token(channel_info, driver):
                 else:
                     return None
 
-            print(f"  获取到 {len(programs)} 个节目")
+            print(f"    获取到 {len(programs)} 个节目")
             return {
                 "channel_id": channel_info["id"],
                 "channel_name": channel_info["name"],
