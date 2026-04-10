@@ -12,8 +12,7 @@ import re
 import datetime
 import time
 import os
-from epg_common import parse_existing_xml, merge_and_write
-from epg_common import add_end_times, parse_existing_xml, merge_and_write
+from epg_common import merge_and_write, add_end_times
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
