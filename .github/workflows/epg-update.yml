@@ -69,7 +69,7 @@ jobs:
             -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
             --connect-timeout 10 \
             https://web.ntjoy.com)
-          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "405" ]; then
+          if [ "$HTTP_CODE" = "200" ]; then
             echo "代理测试成功 (HTTP $HTTP_CODE)"
             echo "proxy_ok=true" >> $GITHUB_OUTPUT
           else
