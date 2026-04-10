@@ -246,8 +246,8 @@ def parse_radio_programs(html):
         all_programs[ch_id] = enriched
         raw_id = ch_id[2:]  # 去掉"苏州"前缀
         display = RADIO_DISPLAY_RAW.get(raw_id, raw_id)
-        print(f"正在解析 {display} ...")        
-        print(f"  获取到 {len(enriched)} 个节目")
+        print(f"  正在解析 {display} ...")        
+        print(f"    获取到 {len(enriched)} 个节目")
 
     return all_programs, channel_order
 
@@ -269,7 +269,7 @@ def main():
     tv_channels = []
     tv_programs = []
     for idx, ch_name in enumerate(TV_CHANNELS):
-        print(f"正在解析 {ch_name} ...")
+        print(f"  正在解析 {ch_name} ...")
         
         # 获取一周节目单
         # programs = extract_tv_programs(tv_html, idx, week_dates)
@@ -286,7 +286,7 @@ def main():
                     'channel': ch_name,
                     'title': prog['title']
                 })
-            print(f"  获取到 {len(programs)} 个节目")
+            print(f"    获取到 {len(programs)} 个节目")
 
     # 抓取广播（ID已加苏州前缀）
 
