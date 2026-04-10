@@ -4,7 +4,7 @@
 苏州广电 EPG 爬虫（电视 + 广播整合版）—— 追加模式，广播ID加苏州前缀
 """
 
-import requests
+from curl_cffi import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
@@ -12,6 +12,7 @@ import re
 import datetime
 import time
 import os
+import ssl
 from epg_common import merge_and_write, add_end_times
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
@@ -56,10 +57,10 @@ def parse_time(time_str, base_date):
 def fetch_page(url, retries=2):
     for attempt in range(1, retries + 1):
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=10)
+            resp = requests.get(url, headers=HEADERS, timeout=10, impersonate="chrome120", verify=False)
             resp.encoding = 'utf-8'
             return resp.text
-        except requests.RequestException as e:
+        except Exception as e:
             print(f"第 {attempt} 次请求 {url} 失败: {e}")
             if attempt == retries:
                 raise
@@ -144,6 +145,44 @@ def extract_tv_programs(html, channel_index, week_dates):
     all_programs.sort(key=lambda x: x[0])
     return add_end_times(all_programs)
 
+# 当天版本：只抓取当前星期几对应的节目
+def extract_tv_programs_today(html, channel_index):
+    soup = BeautifulSoup(html, 'html.parser')
+    tablist_id = f"tablist{channel_index+1}"
+    tablist_div = soup.find('div', id=tablist_id)
+    if not tablist_div:
+        all_tablists = soup.find_all('div', class_='tablist')
+        if channel_index < len(all_tablists):
+            tablist_div = all_tablists[channel_index]
+        else:
+            print(f"未找到第 {channel_index+1} 个频道的数据块")
+            return []
+    pic_scroll = tablist_div.find('div', class_='picScroll')
+    if not pic_scroll:
+        print(f"频道数据块中没有 .picScroll")
+        return []
+
+    days = pic_scroll.find_all('li')
+    # 获取当天星期几（周一=0，周日=6）
+    today_weekday = datetime.datetime.now().weekday()
+    # 确保索引有效
+    if today_weekday >= len(days):
+        print(f"当天星期索引 {today_weekday} 超出范围，跳过")
+        return []
+
+    target_li = days[today_weekday]
+    table = target_li.find('table', class_='table_solid')
+    if not table:
+        print(f"当天表格未找到")
+        return []
+
+    base_date = datetime.datetime.now().date()
+    programs = parse_table(table, base_date)
+    if not programs:
+        return []
+    # 补充结束时间
+    return add_end_times(programs)
+    
 # -------------------- 广播抓取（ID加苏州前缀）--------------------
 def refine_title(title, weekday):
     title = title.strip()
@@ -228,7 +267,13 @@ def main():
     tv_programs = []
     for idx, ch_name in enumerate(TV_CHANNELS):
         print(f"正在解析 {ch_name} ...")
-        programs = extract_tv_programs(tv_html, idx, week_dates)
+        
+        # 获取一周节目单
+        # programs = extract_tv_programs(tv_html, idx, week_dates)
+        
+        # 获取当天节目单
+        programs = extract_tv_programs_today(tv_html, idx)
+                
         if programs:
             tv_channels.append((ch_name, ch_name))
             for prog in programs:
@@ -241,7 +286,7 @@ def main():
             print(f"  获取到 {len(programs)} 个节目")
 
     # 抓取广播（ID已加苏州前缀）
-    print("\n" + "=" * 50)
+
     print("抓取苏州广播节目单...")
     radio_html = fetch_page(RADIO_URL)
     radio_epg, radio_order = parse_radio_programs(radio_html)
