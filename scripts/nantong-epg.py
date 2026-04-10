@@ -89,7 +89,7 @@ def fetch_api(service: str, params_dict: Dict, retries=2) -> Any:
     return None
 
 def fetch_channels(menu_code: str) -> List[Dict]:
-    print(f"\n正在获取{menu_code}的频道列表...")
+    # print(f"\n正在获取{menu_code}的频道列表...")
     params = {'menuId': menu_code, 'idx': 0, 'size': 50}
     data = fetch_api("getMenuContentList", params)
     channels = []
@@ -106,8 +106,8 @@ def fetch_channels(menu_code: str) -> List[Dict]:
                 'cover': ch_cover,
                 'raw_id': raw_id   # 保留原始ID用于节目请求
             })
-            print(f"  发现频道: {ch_display} (ID: {ch_id})")
-        print(f"成功获取 {len(channels)} 个频道。\n")
+        #    print(f"  发现频道: {ch_display} (ID: {ch_id})")
+        # print(f"成功获取 {len(channels)} 个频道。\n")
     else:
         print(f"获取频道列表失败，返回数据: {data}")
     return channels
@@ -148,7 +148,7 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
 def main():
     print()
     print("=" * 50)
-    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"        开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
     
     output_file = "epg.xml"    
@@ -158,10 +158,10 @@ def main():
     all_new_programs = []   # 存储节目字典
     
     for config in MENU_CONFIGS:
-        print(f"\n--- 开始处理 {config['name']} 频道 ---")
+        print(f"\n抓取南通{config['name']}节目单...")
         channels = fetch_channels(config['menu_code'])
         if not channels:
-            print(f"⚠️ 未能获取 {config['name']} 频道列表，跳过。")
+            print(f"⚠️ 未能获取南通{config['name']}节目单，跳过。")
             continue
         
         for channel in channels:
