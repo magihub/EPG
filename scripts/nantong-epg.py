@@ -39,10 +39,10 @@ CHANNEL_MAPPING = {
     "ff8081818bcbe7c2018bcc9cb7390018": {"id": "南通社教频道", "display": "南通社会教育"},
     "ff8081818bcbe7c2018bcc9d12f0001b": {"id": "南通公共频道", "display": "南通公共崇川"},
     # 广播
-    "ff8081818bcbe7c2018bcc97451e0009": {"id": "南通FM97.0", "display": "南通综合广播"},
+    "ff8081818bcbe7c2018bcc97451e0009": {"id": "南通FM97.0", "display": "南通新闻广播"},
     "ff8081818bcbe7c2018bcc9a0de6000c": {"id": "南通FM92.9", "display": "南通交通广播"},
+    "ff8081818bcbe7c2018bcc9a82f4000f": {"id": "南通FM91.8", "display": "南通音乐广播"},
     "ff8081818bcbe7c2018bcc9afba60012": {"id": "南通FM106.1", "display": "南通经济广播"},
-    "ff8081818bcbe7c2018bcc9a82f4000f": {"id": "南通FM91.8", "display": "南通生活广播"},
 }
 
 def get_mapped_channel(raw_id: str, raw_name: str = "", raw_cover: str = ""):
