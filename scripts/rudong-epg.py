@@ -92,13 +92,23 @@ def fetch_tv_epg(channel_info, driver):
                 "programs": programs
             }
 
-        except Exception as e:
+        except (ConnectionResetError, TimeoutException, WebDriverException) as e:
             print(f"⚠️ 第 {attempt} 次抓取失败: {e}")
             if attempt < max_attempts:
                 print(f"🔄 等待 {wait_seconds} 秒后重试...")
                 time.sleep(wait_seconds)
+                driver.refresh()
             else:
                 print("❌ 重试次数已用完，放弃抓取该频道")
+                return None
+                
+        except Exception as e:
+            print(f"⚠️ 第 {attempt} 次抓取失败: {e}")
+            if attempt < max_attempts:
+								  
+                time.sleep(wait_seconds)
+                driver.refresh()
+            else:									
                 return None
 
     return None
@@ -119,7 +129,7 @@ def extract_token_from_page(driver, url):
         return null;
     """)
     # print(f"获取到的 token 类型： {type(token).__name__ if token else 'None'}, 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}") 
-    print(f"  token 尾值: {token[-10:] if token else 'None'}")
+    print(f"    token 尾值: {token[-10:] if token else 'None'}")
     return token
 
 def fetch_radio_epg_with_token(channel_info, driver):
@@ -238,12 +248,17 @@ def main():
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--log-level=3')
     chrome_options.add_argument('--silent')
-    chrome_options.add_argument('--disable-background-networking')  # 新增
-    chrome_options.add_argument('--disable-component-update')      # 新增
+    chrome_options.add_argument('--ignore-ssl-errors')
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--allow-insecure-localhost')
+    chrome_options.add_argument('--disable-background-networking')
+    chrome_options.add_argument('--disable-component-update')
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')    
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    
     driver = webdriver.Chrome(options=chrome_options)
-
+    driver.set_page_load_timeout(30)
+    
     try:
         # 抓取电视
         tv_epg = fetch_tv_epg(CHANNELS[0], driver)
