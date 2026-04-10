@@ -107,13 +107,13 @@ def fetch_channels(menu_code: str) -> List[Dict]:
                 'raw_id': raw_id   # 保留原始ID用于节目请求
             })
             print(f"  发现频道: {ch_display} (ID: {ch_id})")
-        print(f"成功获取 {len(channels)} 个频道。")
+        print(f"成功获取 {len(channels)} 个频道。\n")
     else:
         print(f"获取频道列表失败，返回数据: {data}")
     return channels
 
 def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]:
-    print(f"  正在获取 {channel_name} 的节目单...")
+    print(f"  正在解析 {channel_name} ...")
     params = {'id': raw_channel_id}
     data = fetch_api("getBroadcastList", params)
     programs = []
@@ -139,9 +139,9 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
             }
             if program['title'] != '未知节目':
                 programs.append(program)
-        print(f"    成功获取 {len(programs)} 条节目数据。")
+        print(f"    获取到 {len(programs)} 个节目")
     else:
-        print(f"    未获取到节目数据或数据格式错误。")
+        print(f"    未获取到节目数据")
     return programs
 
 # ==================== 主任务 ====================
