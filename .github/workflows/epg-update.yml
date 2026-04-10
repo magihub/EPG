@@ -51,7 +51,8 @@ jobs:
           # 加入网络
           sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
           sleep 10
-          sudo zerotier-cli listnetworks   
+          # 只显示网络状态，不显示 IP
+          sudo zerotier-cli listnetworks | grep -v 'ZT assigned ips' || true
         
       # 如东脚本（无需代理，如果失败继续）
       - name: Run Rudong EPG
