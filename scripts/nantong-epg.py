@@ -4,7 +4,8 @@
 南通广播电视台 电视+广播 EPG 抓取工具
 使用通用合并函数，频道ID规范命名
 """
-
+import socket
+import requests.exceptions
 import os
 import json
 import datetime
@@ -71,13 +72,19 @@ def fetch_api(service: str, params_dict: Dict, retries=2) -> Any:
                     return None
             else:
                 print(f"  HTTP请求失败，状态码: {response.status_code}")
-                if attempt == retries:
-                    return None
-                time.sleep(3)
         except Exception as e:
-            print(f"  第 {attempt} 次请求API时发生异常: {e}")
-            if attempt == retries:
-                return None
+            # 分析异常类型
+            err_str = str(e).lower()
+            if "proxy" in err_str or "tunnel" in err_str or "connection refused" in err_str:
+                print(f"  代理连接失败: {e}")
+            elif "timeout" in err_str:
+                print(f"  连接超时: {e}")
+            elif "certificate" in err_str:
+                print(f"  SSL 证书错误: {e} (已忽略验证)")
+            else:
+                print(f"  第 {attempt} 次请求API时发生未知异常: {e}")
+        if attempt < retries:
+            print(f"  等待3秒后重试...")
             time.sleep(3)
     return None
 
