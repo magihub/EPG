@@ -61,14 +61,35 @@ jobs:
         continue-on-error: true
         
       # 南通脚本（需要代理，如果失败继续）
+      - name: Test TinyProxy connectivity
+        id: test_proxy
+        run: |
+          set +e
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
+            --connect-timeout 10 \
+            https://web.ntjoy.com)
+          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "405" ]; then
+            echo "代理测试成功 (HTTP $HTTP_CODE)"
+            echo "proxy_ok=true" >> $GITHUB_OUTPUT
+          else
+            echo "代理测试失败 (HTTP $HTTP_CODE)"
+            echo "proxy_ok=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
+          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+          
       - name: Run Nantong EPG via Proxy
+        # if: steps.test_proxy.outputs.proxy_ok == 'true'      
         run: |
           echo "=== 运行 nantong-epg.py ==="
-          export http_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
-          export https_proxy="http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           python scripts/nantong-epg.py
+        env:
+          http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
+          https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"        
         continue-on-error: true
-
+        
       - name: Run Suzhou EPG
         run: |      
           echo "=== 运行 suzhou-epg.py ==="
