@@ -27,7 +27,7 @@ CHANNELS = [
         "api_url": "https://live.cm.jstv.com/api/Channel/ChannelInfoAudio",
         "params": {
             "channelId": 85,
-            "days": 7,
+            "days": 1,          # 7为一周，1为当天
             "globalId": "1244448"
         }
     }
@@ -51,7 +51,7 @@ def fetch_tv_epg(channel_info):
 
     for attempt in range(1, max_attempts + 1):
         print(f"\n------ 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ------")
-        print(f"访问地址: {channel_info['url']}")
+        # print(f"访问地址: {channel_info['url']}")
         
         chrome_options = Options()
         chrome_options.add_argument('--headless')
@@ -69,9 +69,17 @@ def fetch_tv_epg(channel_info):
                 EC.presence_of_element_located((By.CSS_SELECTOR, "li[data-starttime]"))
             )
             li_elements = driver.find_elements(By.CSS_SELECTOR, "li[data-starttime]")
+            
+            # ========== 当天版本（只抓取今天） ==========
+            today_str = datetime.datetime.now().strftime("%Y-%m-%d")
             programs = []
             for li in li_elements:
                 start_time_raw = li.get_attribute('data-starttime')
+                if not start_time_raw:
+                    continue
+                # 提取日期部分（格式如 "2026-04-10 06:00:00"）
+                if not start_time_raw.startswith(today_str):
+                    continue   # 跳过非今天的节目
                 end_time_raw = li.get_attribute('data-endtime')
                 spans = li.find_elements(By.TAG_NAME, 'span')
                 title = spans[1].get_attribute('textContent').strip() if len(spans) >= 2 else "未知节目"
@@ -83,11 +91,26 @@ def fetch_tv_epg(channel_info):
                         "desc": ""
                     })
 
+            # ========== 原一周版本（注释，需要时可恢复） ==========
+            # programs = []
+            # for li in li_elements:
+            #     start_time_raw = li.get_attribute('data-starttime')
+            #     end_time_raw = li.get_attribute('data-endtime')
+            #     spans = li.find_elements(By.TAG_NAME, 'span')
+            #     title = spans[1].get_attribute('textContent').strip() if len(spans) >= 2 else "未知节目"
+            #     if title and start_time_raw and end_time_raw:
+            #         programs.append({
+            #             "title": title,
+            #             "start_time": format_epg_time(start_time_raw),
+            #             "end_time": format_epg_time(end_time_raw),
+            #             "desc": ""
+            #         })
+
             if not programs:
-                print("⚠️ 警告：未能抓取到电视节目单数据。")
+                print("⚠️ 警告：未能抓取到电视节目单数据（当天）。")
                 return None
 
-            print(f"✅ 成功抓取到 {len(programs)} 条电视节目数据！")
+            print(f"✅ 成功抓取到 {len(programs)} 条电视节目数据（当天）！")
             return {
                 "channel_id": channel_info["id"],
                 "channel_name": channel_info["name"],
@@ -148,7 +171,7 @@ def fetch_radio_epg_with_token(channel_info):
 
     for attempt in range(1, max_attempts + 1):
         print(f"\n------ 开始抓取: {channel_info['name']} (第 {attempt} 次尝试) ------")
-        print(f"访问地址: {channel_info['url']}")
+        # print(f"访问地址: {channel_info['url']}")
 
         # 1. 获取 token
         token = extract_token_from_page(channel_info['url'])
