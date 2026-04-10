@@ -244,7 +244,10 @@ def parse_radio_programs(html):
             end_dt = programs[i+1]['start_dt'] if i+1 < len(programs) else prog['start_dt'] + datetime.timedelta(minutes=30)
             enriched.append({'title': prog['title'], 'start_dt': prog['start_dt'], 'end_dt': end_dt})
         all_programs[ch_id] = enriched
-        print(f"  广播 {ch_id}: {len(enriched)} 个节目")
+        raw_id = ch_id[2:]  # 去掉"苏州"前缀
+        display = RADIO_DISPLAY_RAW.get(raw_id, raw_id)
+        print(f"正在解析 {display} ...")        
+        print(f"  获取到 {len(enriched)} 个节目")
 
     return all_programs, channel_order
 
@@ -252,7 +255,7 @@ def parse_radio_programs(html):
 def main():
     print()
     print("=" * 50)
-    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"        开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)   
 
     start_time = time.time()    
@@ -287,7 +290,7 @@ def main():
 
     # 抓取广播（ID已加苏州前缀）
 
-    print("抓取苏州广播节目单...")
+    print("\n抓取苏州广播节目单...")
     radio_html = fetch_page(RADIO_URL)
     radio_epg, radio_order = parse_radio_programs(radio_html)
     radio_channels = []
