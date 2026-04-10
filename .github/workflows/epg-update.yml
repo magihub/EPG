@@ -97,10 +97,13 @@ jobs:
           python scripts/suzhou-epg.py
         continue-on-error: true
 
-      - name: Run Zhenjiang EPG
+      - name: Run Zhenjiang EPG via Proxy
         run: |           
           echo "=== 运行 zhenjiang-epg.py ==="
           python scripts/zhenjiang-epg.py
+        env:
+          http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
+          https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"              
         continue-on-error: true
         
       - name: Commit and push changes (only if epg.xml changed)
