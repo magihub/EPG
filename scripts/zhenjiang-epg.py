@@ -24,7 +24,7 @@ from epg_common import merge_and_write
 TV_CHANNELS = {
     "镇江新闻综合": "https://epg.sports8.cc/2118/",
     "镇江教育民生": "https://epg.sports8.cc/2119/",
-    "镇江资讯频道": "https://epg.sports8.cc/2120/",
+    # "镇江资讯频道": "https://epg.sports8.cc/2120/",
     # "镇江影视频道": "https://epg.sports8.cc/2121/",
 }
 
