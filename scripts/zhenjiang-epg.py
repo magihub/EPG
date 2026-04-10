@@ -81,7 +81,7 @@ def main():
     print("=" * 50)
 
     start_time = time.time()
-    output_file = "../epg.xml"   # 输出到根目录
+    output_file = "epg.xml"   # 输出到根目录
     week_dates = get_week_dates()
     all_new_channels = []
     all_new_programs = []
