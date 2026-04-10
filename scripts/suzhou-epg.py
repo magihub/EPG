@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-苏州广电 EPG 爬虫（电视 + 广播整合版）—— 追加模式，广播ID加苏州前缀
+苏州 电视 + 广播 EPG 爬虫（整合版）
 """
 
 from curl_cffi import requests
@@ -57,14 +57,14 @@ def parse_time(time_str, base_date):
 def fetch_page(url, retries=2):
     for attempt in range(1, retries + 1):
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=10, impersonate="chrome120", verify=False)
+            resp = requests.get(url, headers=HEADERS, timeout=30, impersonate="chrome120", verify=False)
             resp.encoding = 'utf-8'
             return resp.text
         except Exception as e:
             print(f"第 {attempt} 次请求 {url} 失败: {e}")
             if attempt == retries:
                 raise
-            time.sleep(3)
+            time.sleep(5)
 
 # -------------------- 电视抓取 --------------------
 def get_week_dates():

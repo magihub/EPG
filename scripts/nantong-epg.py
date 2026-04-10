@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-南通广播电视台 电视+广播 EPG 抓取工具
-使用通用合并函数，频道ID规范命名
+南通 电视 + 广播 EPG 抓取工具
 """
+
 import socket
 import requests.exceptions
 import os

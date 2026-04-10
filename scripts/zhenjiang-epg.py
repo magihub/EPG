@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-镇江电视台电视 + 广播 EPG 爬虫（复用浏览器实例，含计时）
+镇江 电视 + 广播 EPG 爬虫（复用浏览器实例）
 """
 
 import datetime
@@ -113,7 +113,7 @@ def fetch_radio_programs(driver, target_date):
     # 确保当前页面是广播页
     current_url = driver.current_url
     if "broadcastTvs.html" not in current_url:
-        driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")
+        driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")      # 海外 GitHub Actions 无法直接访问，会被 网站应用防火墙 WAF 拦截（405）
         time.sleep(5)
     else:
         driver.refresh()
