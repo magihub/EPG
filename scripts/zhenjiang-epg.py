@@ -109,163 +109,140 @@ def fetch_today_programs(channel_name, base_url, driver):
 # ==================== 广播抓取 ====================
 
 def fetch_radio_programs(driver, target_date):
-    """
-    使用 Selenium 调用页面内的 requestExtApi 获取广播节目单
-    主要改动点：
-    1. 复用电视抓取的 driver，避免重复启动浏览器。
-    2. 优先从 Vue 数据 (window.pageData.liveList) 获取频道列表，快速可靠。
-    3. 使用页面原生的 requestExtApi 函数获取节目单，自动处理签名，无需手动构造 AJAX。
-    4. 增加了详细的错误输出和调试信息。
-    """
-    print("\n抓取镇江广播节目单...")
+    print("\n正在抓取广播节目单...")
     # 确保当前页面是广播页
     current_url = driver.current_url
     if "broadcastTvs.html" not in current_url:
         driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")
-        time.sleep(5)          # 等待页面初始加载
+        time.sleep(5)
     else:
-        driver.refresh()       # 刷新确保状态最新
+        driver.refresh()
         time.sleep(3)
 
-    # 等待 Vue 数据加载完成（pageData.liveList 存在且有内容）
-    try:
-        WebDriverWait(driver, 20).until(
-            lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
-        )
-        print("页面 Vue 数据已加载")
-    except Exception as e:
-        print(f"等待 Vue 数据超时: {e}")
-
-    # 获取频道列表：优先从 Vue 数据取，失败时降级为 AJAX
-    channels_js = """
-        if (window.pageData && window.pageData.liveList) {
-            return window.pageData.liveList;
-        } else {
-            var result = [];
-            var param = {menuId: 'zhj004', idx: 0, size: 50};
-            var request = {service: 'getMenuContentList', params: JSON.stringify(param)};
-            $.ajax({
-                url: window.staticConfig.apiUrl,
-                type: 'POST',
-                data: request,
-                async: false,
-                success: function(data) {
-                    if (data.state === 1000 && data.data && data.data.rows) {
-                        result = data.data.rows;
-                    }
-                }
-            });
-            return result;
-        }
-    """
-    try:
-        channels = driver.execute_script(channels_js)
-    except Exception as e:
-        print(f"获取频道列表异常: {e}")
-        return [], []
-
-    if not channels:
-        print("未获取到广播频道列表")
-        return [], []
-
-    print(f"获取到 {len(channels)} 个广播频道")
-    all_channels = []
-    all_programs = []
-
-    for ch in channels:
-        ch_id = ch['id']
-        ch_name = ch['title']
-        # 提取频率生成标准频道 ID，例如 "镇江FM96.3"
-        freq_match = re.search(r'(FM|AM)\d+(\.\d+)?', ch_name)
-        if freq_match:
-            freq = freq_match.group(0)
-            ch_code = f"镇江{freq}"
-        else:
-            ch_code = ch_name
-        display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
-        all_channels.append((ch_code, display_name))
-        print(f"正在抓取 {ch_name} ...")
-
-        # 使用页面原生的 requestExtApi 获取节目单（自动处理签名）
-        programs_js = f"""
-            var result = [];
-            var param = {{id: '{ch_id}'}};
-            var requestData = {{service: 'getBroadcastList', params: JSON.stringify(param)}};
-            var output = {{success: false, data: null, error: null, fullResponse: null}};
-            if (typeof requestExtApi === 'function') {{
-                requestExtApi({{
-                    url: window.staticConfig.apiUrl,
-                    data: requestData,
-                    success: function(data) {{
-                        output.fullResponse = data;
-                        if (data.state === 1000 && data.data) {{
-                            result = data.data;
-                            output.success = true;
-                        }} else {{
-                            output.error = 'API returned state ' + data.state + ': ' + (data.message || '');
-                        }}
-                    }},
-                    error: function(res) {{
-                        output.error = 'requestExtApi error: ' + JSON.stringify(res);
-                    }}
-                }});
-            }} else {{
-                output.error = 'requestExtApi not defined';
-            }}
-            if (!output.success) {{
-                return output;
-            }}
-            return result;
-        """
+    max_attempts = 2
+    for attempt in range(1, max_attempts + 1):
+        print(f"尝试 {attempt}/{max_attempts} 获取广播数据...")
         try:
-            ret = driver.execute_script(programs_js)
+            # 等待 jQuery 加载
+            WebDriverWait(driver, 10).until(
+                lambda d: d.execute_script("return typeof jQuery !== 'undefined'")
+            )
+            # 等待 Vue 数据加载
+            WebDriverWait(driver, 20).until(
+                lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
+            )
+            print("页面 Vue 数据已加载")
+
+            # 获取频道列表（优先从 Vue 数据取）
+            channels_js = """
+                if (window.pageData && window.pageData.liveList) {
+                    return window.pageData.liveList;
+                } else {
+                    var result = [];
+                    var param = {menuId: 'zhj004', idx: 0, size: 50};
+                    var request = {service: 'getMenuContentList', params: JSON.stringify(param)};
+                    $.ajax({
+                        url: window.staticConfig.apiUrl,
+                        type: 'POST',
+                        data: request,
+                        async: false,
+                        success: function(data) {
+                            if (data.state === 1000 && data.data && data.data.rows) {
+                                result = data.data.rows;
+                            }
+                        }
+                    });
+                    return result;
+                }
+            """
+            channels = driver.execute_script(channels_js)
+            if not channels:
+                print(f"第 {attempt} 次获取频道列表为空")
+                if attempt < max_attempts:
+                    time.sleep(3)
+                    continue
+                else:
+                    return [], []
+
+            print(f"获取到 {len(channels)} 个广播频道")
+            all_channels = []
+            all_programs = []
+
+            for ch in channels:
+                ch_id = ch['id']
+                ch_name = ch['title']
+                freq_match = re.search(r'(FM|AM)\d+(\.\d+)?', ch_name)
+                if freq_match:
+                    freq = freq_match.group(0)
+                    ch_code = f"镇江{freq}"
+                else:
+                    ch_code = ch_name
+                all_channels.append((ch_code, ch_name))
+                print(f"  正在抓取 {ch_name} ...")
+
+                # 获取节目单（使用 requestExtApi）
+                programs_js = f"""
+                    var result = [];
+                    var param = {{id: '{ch_id}'}};
+                    var requestData = {{service: 'getBroadcastList', params: JSON.stringify(param)}};
+                    if (typeof requestExtApi === 'function') {{
+                        requestExtApi({{
+                            url: window.staticConfig.apiUrl,
+                            data: requestData,
+                            success: function(data) {{
+                                if (data.state === 1000 && data.data) {{
+                                    result = data.data;
+                                }}
+                            }}
+                        }});
+                    }}
+                    return result;
+                """
+                programs_data = driver.execute_script(programs_js)
+                if not programs_data:
+                    print(f"    未获取到节目")
+                    continue
+
+                programs = []
+                for item in programs_data:
+                    start_str = item.get('startTime')
+                    end_str = item.get('endTime')
+                    title = item.get('programName', '').strip()
+                    if not start_str or not end_str or not title:
+                        continue
+                    try:
+                        start_dt = datetime.datetime.strptime(start_str, "%Y-%m-%d %H:%M:%S")
+                        end_dt = datetime.datetime.strptime(end_str, "%Y-%m-%d %H:%M:%S")
+                        if start_dt.date() == target_date:
+                            programs.append((start_dt, title, end_dt))
+                    except:
+                        continue
+                if not programs:
+                    print(f"    无当天节目")
+                    continue
+                programs.sort(key=lambda x: x[0])
+                for start_dt, title, end_dt in programs:
+                    all_programs.append({
+                        'start': start_dt.strftime("%Y%m%d%H%M%S +0800"),
+                        'stop': end_dt.strftime("%Y%m%d%H%M%S +0800"),
+                        'channel': ch_code,
+                        'title': title
+                    })
+                print(f"    获取到 {len(programs)} 个节目")
+
+            return all_channels, all_programs
+
         except Exception as e:
-            print(f"  执行 JS 获取节目单异常: {e}")
-            continue
+            print(f"第 {attempt} 次广播抓取失败: {e}")
+            if attempt < max_attempts:
+                print("等待 5 秒后重试...")
+                time.sleep(5)
+                driver.refresh()
+            else:
+                print("重试次数已用完，广播抓取失败")
+                return [], []
 
-        # 处理可能的错误返回
-        if isinstance(ret, dict) and not ret.get('success'):
-            print(f"  API 错误: {ret.get('error')}")
-            if ret.get('fullResponse'):
-                print(f"  完整响应: {ret['fullResponse']}")
-            continue
-
-        programs_data = ret if not isinstance(ret, dict) else []
-        if not programs_data:
-            print(f"  未获取到节目")
-            continue
-
-        # 解析节目数据
-        programs = []
-        for item in programs_data:
-            start_str = item.get('startTime')
-            end_str = item.get('endTime')
-            title = item.get('programName', '').strip()
-            if not start_str or not end_str or not title:
-                continue
-            try:
-                start_dt = datetime.datetime.strptime(start_str, "%Y-%m-%d %H:%M:%S")
-                end_dt = datetime.datetime.strptime(end_str, "%Y-%m-%d %H:%M:%S")
-                if start_dt.date() == target_date:
-                    programs.append((start_dt, title, end_dt))
-            except:
-                continue
-
-        if not programs:
-            print(f"  无当天节目")
-            continue
-
-        programs.sort(key=lambda x: x[0])
-        for start_dt, title, end_dt in programs:
-            all_programs.append({
-                'start': start_dt.strftime("%Y%m%d%H%M%S +0800"),
-                'stop': end_dt.strftime("%Y%m%d%H%M%S +0800"),
-                'channel': ch_code,
-                'title': title
-            })
-        print(f"  获取到 {len(programs)} 个节目")
-
-    return all_channels, all_programs
+    return [], []
     
 # ==================== 主函数 ====================
 def main():
@@ -291,6 +268,8 @@ def main():
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--ignore-ssl-errors')
     chrome_options.add_argument('--allow-insecure-localhost')
+    chrome_options.add_argument('--disable-background-networking')  # 新增
+    chrome_options.add_argument('--disable-component-update')      # 新增
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
     chrome_options.add_experimental_option('useAutomationExtension', False)
