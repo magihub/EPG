@@ -124,14 +124,14 @@ def fetch_radio_programs(driver, target_date):
         # print(f"第 {attempt}/{max_attempts} 尝试获取...")
         try:
             # 等待 jQuery 加载
-            WebDriverWait(driver, 10).until(
+            WebDriverWait(driver, 15).until(
                 lambda d: d.execute_script("return typeof jQuery !== 'undefined'")
             )
             # 等待 Vue 数据加载
-            WebDriverWait(driver, 20).until(
+            WebDriverWait(driver, 30).until(
                 lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
             )
-            # print("页面 Vue 数据已加载")
+            print("页面 Vue 数据已加载")
 
             # 获取频道列表（优先从 Vue 数据取）
             channels_js = """
@@ -239,6 +239,8 @@ def fetch_radio_programs(driver, target_date):
 
         except Exception as e:
             print(f"第 {attempt} 次广播抓取失败: {e}")
+            # 打印页面源码片段
+            print("页面源码片段:", driver.page_source[:500])                      
             if attempt < max_attempts:
                 print("等待 5 秒后重试...")
                 time.sleep(5)
@@ -266,15 +268,20 @@ def main():
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--log-level=3')
     chrome_options.add_argument('--silent')
     chrome_options.add_argument('--ignore-ssl-errors')
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--allow-insecure-localhost')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--disable-background-networking')
     chrome_options.add_argument('--disable-component-update')
+    chrome_options.add_argument('--disable-domain-reliability')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-sync')
+    chrome_options.add_argument('--disable-breakpad')
+    chrome_options.add_argument('--disable-default-apps')
+    chrome_options.add_argument('--disable-crash-reporter')
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
     chrome_options.add_experimental_option('useAutomationExtension', False)
