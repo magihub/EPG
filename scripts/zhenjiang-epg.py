@@ -177,10 +177,12 @@ def fetch_radio_programs(driver, target_date):
                     ch_code = f"镇江{freq}"
                 else:
                     ch_code = ch_name
-                all_channels.append((ch_code, ch_name))
-                
+
                 # 去掉频率前缀，例如 "FM96.3镇江文艺广播" -> "镇江文艺广播"
                 display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
+                    
+                all_channels.append((ch_code, display_name))
+                
                 print(f"  正在解析 {display_name} ...")
 
                 # 获取节目单（使用 requestExtApi）
