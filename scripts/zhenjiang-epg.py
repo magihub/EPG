@@ -268,16 +268,18 @@ def main():
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--log-level=3')
     chrome_options.add_argument('--silent')
-    chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--ignore-ssl-errors')
+    chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--allow-insecure-localhost')
-    chrome_options.add_argument('--disable-background-networking')  # 新增
-    chrome_options.add_argument('--disable-component-update')      # 新增
+    chrome_options.add_argument('--disable-background-networking')
+    chrome_options.add_argument('--disable-component-update')
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
     chrome_options.add_experimental_option('useAutomationExtension', False)
 
     driver = webdriver.Chrome(options=chrome_options)
+    driver.set_page_load_timeout(30)
+    
     try:
         # ---------- 电视 ----------
     
