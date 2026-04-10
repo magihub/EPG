@@ -286,6 +286,15 @@ def main():
     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
     chrome_options.add_experimental_option('useAutomationExtension', False)
 
+    # ========== 添加代理（仅在 GitHub Actions 环境中） ==========
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        proxy_ip = os.environ.get('TINY_PROXY_IP')
+        proxy_port = os.environ.get('TINY_PROXY_PORT')
+        if proxy_ip and proxy_port:
+            chrome_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
+            print(f"已为 Chrome 设置代理: {proxy_ip}:{proxy_port}")
+    # =========================================================
+
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_page_load_timeout(30)
     
