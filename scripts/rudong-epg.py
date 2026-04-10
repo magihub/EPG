@@ -129,7 +129,7 @@ def extract_token_from_page(driver, url):
         return null;
     """)
     # print(f"获取到的 token 类型： {type(token).__name__ if token else 'None'}, 长度: {len(token) if token else 0}, 尾部: {token[-10:] if token else 'None'}") 
-    print(f"    token 尾值: {token[-10:] if token else 'None'}")
+    print(f"    Token 尾: {token[-10:] if token else 'None'}")
     return token
 
 def fetch_radio_epg_with_token(channel_info, driver):
