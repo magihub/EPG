@@ -109,7 +109,7 @@ def fetch_today_programs(channel_name, base_url, driver):
 # ==================== 广播抓取 ====================
 
 def fetch_radio_programs(driver, target_date):
-    print("\n正在抓取广播节目单...")
+    print("\n抓取镇江广播节目单...")
     # 确保当前页面是广播页
     current_url = driver.current_url
     if "broadcastTvs.html" not in current_url:
@@ -178,7 +178,10 @@ def fetch_radio_programs(driver, target_date):
                 else:
                     ch_code = ch_name
                 all_channels.append((ch_code, ch_name))
-                print(f"  正在抓取 {ch_name} ...")
+                
+                # 去掉频率前缀，例如 "FM96.3镇江文艺广播" -> "镇江文艺广播"
+                display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
+                print(f"  正在解析 {display_name} ...")
 
                 # 获取节目单（使用 requestExtApi）
                 programs_js = f"""
@@ -248,7 +251,7 @@ def fetch_radio_programs(driver, target_date):
 def main():
     print()
     print("=" * 50)
-    print(f"      开始执行时间（UTC）: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"        开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 50)
     
     start_time = time.time()
