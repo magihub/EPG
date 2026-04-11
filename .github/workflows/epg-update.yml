@@ -111,6 +111,26 @@ jobs:
           echo "=== 运行 suzhou-epg.py ==="
           python scripts/suzhou-epg.py
         continue-on-error: true
+    
+      - name: Test TinyProxy connectivity
+        id: test_proxy
+        run: |
+          set +e
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
+            --connect-timeout 10 \
+            https://www.zjmc.tv)
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "代理测试成功 (HTTP $HTTP_CODE)"
+            echo "proxy_ok=true" >> $GITHUB_OUTPUT
+          else
+            echo "代理测试失败 (HTTP $HTTP_CODE)"
+            echo "proxy_ok=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
+          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+        continue-on-error: true
 
       - name: Run Zhenjiang EPG via Proxy
         run: |           
