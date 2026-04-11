@@ -74,6 +74,17 @@ jobs:
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
         continue-on-error: true
         
+      - name: Debug file location
+        run: |
+          echo "=== Current directory ==="
+          pwd
+          echo "=== epg.xml in root ==="
+          ls -la epg.xml 2>/dev/null || echo "NOT FOUND"
+          echo "=== epg.xml in scripts ==="
+          ls -la scripts/epg.xml 2>/dev/null || echo "NOT FOUND"
+          echo "=== Find all epg.xml ==="
+          find . -name "epg.xml" -type f
+    
       - name: Run zhenjiang-epg
         run: python scripts/zhenjiang-epg.py
         env:
