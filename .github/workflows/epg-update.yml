@@ -44,6 +44,9 @@ jobs:
         if: steps.cache-pip.outputs.cache-hit != 'true'
         run: pip install selenium lxml curl_cffi beautifulsoup4 requests
         
+      - name: Fix permissions for ZeroTier cache
+        run: sudo chmod -R a+r /var/lib/zerotier-one
+      
       - name: Cache ZeroTier installation
         uses: actions/cache@v3
         id: cache-zerotier
