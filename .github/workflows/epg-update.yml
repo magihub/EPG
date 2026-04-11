@@ -120,6 +120,7 @@ jobs:
           else
             echo "代理测试失败 (HTTP $HTTP_CODE)"
             echo "proxy_ok=false" >> $GITHUB_OUTPUT
+          fi  
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
