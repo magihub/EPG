@@ -287,6 +287,11 @@ def main():
         # opts.add_argument('--disable-blink-features=AutomationControlled')
         opts.add_experimental_option('excludeSwitches', ['enable-automation'])
         opts.add_experimental_option('useAutomationExtension', False)
+        
+        # 禁用图片加载
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        opts.add_experimental_option("prefs", prefs)
+        
         return opts
     
     tv_driver = None
@@ -295,11 +300,7 @@ def main():
     try:
         # ---------- 电视 driver（无代理） ----------
         tv_options = get_base_chrome_options()
-
-        # 禁用图片加载
-        prefs = {"profile.managed_default_content_settings.images": 2}
-        chrome_options.add_experimental_option("prefs", prefs)
-        
+     
         tv_driver = webdriver.Chrome(options=tv_options)
         tv_driver.set_page_load_timeout(30)
 
@@ -357,10 +358,6 @@ def main():
                 print("未设置代理环境变量")
         else:
             print("本地运行，广播不使用代理")
-
-        # 禁用图片加载
-        prefs = {"profile.managed_default_content_settings.images": 2}
-        chrome_options.add_experimental_option("prefs", prefs)
 
         radio_driver = webdriver.Chrome(options=radio_options)
         radio_driver.set_page_load_timeout(60)
