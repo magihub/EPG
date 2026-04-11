@@ -279,10 +279,10 @@ def main():
         opts.add_argument('--disable-background-networking')                # 禁用后台网络请求
         opts.add_argument('--disable-component-update')                     # 禁用组件更新
         opts.add_argument('--disable-domain-reliability')                   # 禁用域名可靠性上报
-        # opts.add_argument('--disable-gpu')                                  # 禁用 GPU 加速
-        # opts.add_argument('--disable-gpu-sandbox')                          # 禁用 GPU 沙箱
-        # opts.add_argument('--disable-gpu-compositing')                      # 禁用 GPU 合成
-        # opts.add_argument('--disable-sync')                                 # 禁用同步服务
+        opts.add_argument('--disable-gpu')                                  # 禁用 GPU 加速
+        opts.add_argument('--disable-gpu-sandbox')                          # 禁用 GPU 沙箱
+        opts.add_argument('--disable-gpu-compositing')                      # 禁用 GPU 合成
+        opts.add_argument('--disable-sync')                                 # 禁用同步服务
         opts.add_argument('--disable-breakpad')                             # 禁用崩溃报告
         opts.add_argument('--disable-default-apps')                         # 禁用默认应用
         opts.add_argument('--disable-crash-reporter')                       # 禁用崩溃报告器
