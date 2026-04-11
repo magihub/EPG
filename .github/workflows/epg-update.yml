@@ -39,7 +39,7 @@ jobs:
         id: cache-zerotier
         with:
           path: |
-          #  /var/lib/zerotier-one
+            # /var/lib/zerotier-one
             /usr/sbin/zerotier-cli
             /usr/sbin/zerotier-idtool
             /usr/lib/systemd/system/zerotier-one.service
