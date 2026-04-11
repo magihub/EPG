@@ -51,11 +51,6 @@ jobs:
         env:
           ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
           ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
-        
-      - name: Test connectivity to proxy
-        run: |
-          ping -c 3 ${{ secrets.TINY_PROXY_IP }} 2>&1 | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.*.*.\4/g'
-        continue-on-error: true
     
       - name: Test TinyProxy connectivity
         id: test_proxy
@@ -77,18 +72,6 @@ jobs:
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
         continue-on-error: true
         
-      - name: Debug file location
-        run: |
-          echo "=== Current directory ==="
-          pwd
-          echo "=== epg.xml in root ==="
-          ls -la epg.xml 2>/dev/null || echo "NOT FOUND"
-          echo "=== epg.xml in scripts ==="
-          ls -la scripts/epg.xml 2>/dev/null || echo "NOT FOUND"
-          echo "=== Find all epg.xml ==="
-          find . -name "epg.xml" -type f
-        continue-on-error: true
-        
       - name: Run zhenjiang-epg
         run: python scripts/zhenjiang-epg.py
         env:
@@ -96,13 +79,6 @@ jobs:
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}          
         continue-on-error: true
 
-      - name: Find epg.xml
-        run: |
-          echo "=== Current directory ==="
-          pwd
-          echo "=== Find epg.xml ==="
-          find /home/runner -name "epg.xml" -type f 2>/dev/null
-        continue-on-error: true    
          
       - name: Commit and push changes (only if epg.xml changed)
         run: |
@@ -125,15 +101,5 @@ jobs:
           fi
         continue-on-error: true
         
-      - name: Check epg.xml content
-        run: |
-          grep -c "镇江FM" epg.xml || echo "No Zhenjiang radio found"
-        continue-on-error: true
-        
-      - name: Run zhenjiang-radio
-        run: python scripts/zhenjiang-radio.py
-        env:
-          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
-          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-        continue-on-error: true
+
     
