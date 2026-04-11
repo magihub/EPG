@@ -133,17 +133,14 @@ jobs:
           git config user.email 'github-actions@github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           
-          # 将 epg.xml 加入暂存区
-          git add epg.xml 2>/dev/null || true
-          
-          # 检查暂存区是否有变化（即 epg.xml 内容是否改变）
-          if git diff --cached --quiet; then
+          if git diff --quiet epg.xml; then
             echo "epg.xml 无变化，跳过压缩和提交"
           else
             echo "epg.xml 已更新，开始压缩并提交"
             gzip -c epg.xml > epg.xml.gz
-            git add epg.xml.gz
-            git commit -m "Update EPG data"
+            git add epg.xml epg.xml.gz
+            export TZ='Asia/Shanghai
+            git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
             git push
           fi
         continue-on-error: true          
@@ -216,7 +213,8 @@ jobs:
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
           git add epg.xml epg.xml.gz
-          git commit -m "Update EPG data"
+          export TZ='Asia/Shanghai'
+          git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
           git remote add gitee git@gitee.com:magihub/epg.git
           git push --force gitee main
         continue-on-error: true          
