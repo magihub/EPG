@@ -177,11 +177,8 @@ def main():
     all_new_programs = []   # 存储节目字典
 
     if os.environ.get('GITHUB_ACTIONS') == 'true':
-        proxy_ip = os.environ.get('TINY_PROXY_IP')
-        proxy_port = os.environ.get('TINY_PROXY_PORT')
-        if proxy_ip and proxy_port:
-            test_tiny_proxy(proxy_ip, proxy_port)  # 仅打印结果
-            # 注意：不需要设置环境变量，因为 workflow 中已经设置了 http_proxy
+        if os.environ.get('http_proxy') or os.environ.get('HTTP_PROXY'):
+            test_tiny_proxy()  # 仅打印结果
         else:
             print("代理环境变量缺失")
         
