@@ -208,6 +208,9 @@ def fetch_radio_programs(driver, target_date, retries=2):
 
         except Exception as e:
             print(f"第 {attempt} 次广播抓取失败: {e}")
+            print(f"异常类型: {type(e).__name__}, 消息: {e}")
+            import traceback
+            traceback.print_exc()
             if attempt < retries:
                 print("等待 5 秒后重试...")
                 time.sleep(5)
