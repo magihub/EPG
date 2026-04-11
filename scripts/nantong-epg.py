@@ -163,7 +163,13 @@ def test_tiny_proxy(ip, port):
             else:
                 return False
     return False
-
+    
+def parse_proxy(proxy_str):
+    """从 http://ip:port 格式中提取 ip 和 port"""
+    proxy_str = proxy_str.replace('http://', '').replace('https://', '')
+    ip, port = proxy_str.split(':')
+    return ip, int(port)
+    
 def main():
     print()
     print("=" * 50)
@@ -177,11 +183,13 @@ def main():
     all_new_programs = []   # 存储节目字典
 
     if os.environ.get('GITHUB_ACTIONS') == 'true':
-        if os.environ.get('http_proxy') or os.environ.get('HTTP_PROXY'):
-            test_tiny_proxy()  # 仅打印结果
+        proxy = os.environ.get('http_proxy') or os.environ.get('HTTP_PROXY')
+        if proxy:
+            ip, port = parse_proxy(proxy)
+            test_tiny_proxy(ip, port)  # 仅打印结果
         else:
             print("代理环境变量缺失")
-        
+       
     for config in MENU_CONFIGS:
         print(f"\n抓取南通{config['name']}节目单...")
         channels = fetch_channels(config['menu_code'])
