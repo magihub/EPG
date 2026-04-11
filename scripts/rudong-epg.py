@@ -9,6 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from curl_cffi import requests
@@ -62,7 +63,7 @@ def fetch_tv_epg(channel_info, driver):
         
         try:
             driver.get(channel_info['url'])
-            WebDriverWait(driver, 15).until(
+            WebDriverWait(driver, 30).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "li[data-starttime]"))
             )
             li_elements = driver.find_elements(By.CSS_SELECTOR, "li[data-starttime]")
