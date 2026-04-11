@@ -27,6 +27,15 @@
   <channel id="南通FM91.8">
     <display-name lang="zh">南通音乐广播</display-name>
   </channel>
+  <channel id="镇江FM96.3">
+    <display-name lang="zh">镇江文艺广播</display-name>
+  </channel>
+  <channel id="镇江FM88.8">
+    <display-name lang="zh">镇江交通广播</display-name>
+  </channel>
+  <channel id="镇江FM104">
+    <display-name lang="zh">镇江综合广播</display-name>
+  </channel>
   <channel id="苏州新闻综合">
     <display-name lang="zh">苏州新闻综合</display-name>
   </channel>
@@ -77,15 +86,6 @@
   </channel>
   <channel id="镇江影视频道">
     <display-name lang="zh">镇江影视频道</display-name>
-  </channel>
-  <channel id="镇江FM96.3">
-    <display-name lang="zh">镇江文艺广播</display-name>
-  </channel>
-  <channel id="镇江FM88.8">
-    <display-name lang="zh">镇江交通广播</display-name>
-  </channel>
-  <channel id="镇江FM104">
-    <display-name lang="zh">镇江综合广播</display-name>
   </channel>
   <programme start="20260411060000 +0800" stop="20260411061000 +0800" channel="如东新闻综合">
     <title lang="zh">开机晨曲</title>
@@ -806,6 +806,201 @@
   </programme>
   <programme start="20260411230000 +0800" stop="20260411235959 +0800" channel="南通FM91.8">
     <title lang="zh">周周热歌榜</title>
+  </programme>
+  <programme start="20260411070000 +0800" stop="20260411080000 +0800" channel="镇江FM96.3">
+    <title lang="zh">全民阅读/丽人榜样</title>
+  </programme>
+  <programme start="20260411080000 +0800" stop="20260411090000 +0800" channel="镇江FM96.3">
+    <title lang="zh">翡翠音乐好歌不断</title>
+  </programme>
+  <programme start="20260411090000 +0800" stop="20260411100000 +0800" channel="镇江FM96.3">
+    <title lang="zh">青螺读书</title>
+  </programme>
+  <programme start="20260411100000 +0800" stop="20260411110000 +0800" channel="镇江FM96.3">
+    <title lang="zh">唱片街33号</title>
+  </programme>
+  <programme start="20260411110000 +0800" stop="20260411120000 +0800" channel="镇江FM96.3">
+    <title lang="zh">翡翠经典乐流行</title>
+  </programme>
+  <programme start="20260411120000 +0800" stop="20260411130000 +0800" channel="镇江FM96.3">
+    <title lang="zh">明明很音乐</title>
+  </programme>
+  <programme start="20260411130000 +0800" stop="20260411140000 +0800" channel="镇江FM96.3">
+    <title lang="zh">全民阅读/A榜</title>
+  </programme>
+  <programme start="20260411140000 +0800" stop="20260411150000 +0800" channel="镇江FM96.3">
+    <title lang="zh">汽车音乐时间</title>
+  </programme>
+  <programme start="20260411150000 +0800" stop="20260411160000 +0800" channel="镇江FM96.3">
+    <title lang="zh">翡翠经典剧场</title>
+  </programme>
+  <programme start="20260411160000 +0800" stop="20260411170000 +0800" channel="镇江FM96.3">
+    <title lang="zh">红领巾电台/成长说</title>
+  </programme>
+  <programme start="20260411170000 +0800" stop="20260411180000 +0800" channel="镇江FM96.3">
+    <title lang="zh">翡翠音乐好歌不断</title>
+  </programme>
+  <programme start="20260411180000 +0800" stop="20260411190000 +0800" channel="镇江FM96.3">
+    <title lang="zh">边走边听</title>
+  </programme>
+  <programme start="20260411190000 +0800" stop="20260411200000 +0800" channel="镇江FM96.3">
+    <title lang="zh">艺小潮的电台情歌</title>
+  </programme>
+  <programme start="20260411200000 +0800" stop="20260411210000 +0800" channel="镇江FM96.3">
+    <title lang="zh">空中门诊</title>
+  </programme>
+  <programme start="20260411210000 +0800" stop="20260411220000 +0800" channel="镇江FM96.3">
+    <title lang="zh">岁月留声</title>
+  </programme>
+  <programme start="20260411220000 +0800" stop="20260411230000 +0800" channel="镇江FM96.3">
+    <title lang="zh">翡翠经典剧场</title>
+  </programme>
+  <programme start="20260411230000 +0800" stop="20260411235900 +0800" channel="镇江FM96.3">
+    <title lang="zh">小亲的暖心歌</title>
+  </programme>
+  <programme start="20260411044500 +0800" stop="20260411063000 +0800" channel="镇江FM88.8">
+    <title lang="zh">苹果剧场</title>
+  </programme>
+  <programme start="20260411063000 +0800" stop="20260411070000 +0800" channel="镇江FM88.8">
+    <title lang="zh">新闻和报纸摘要</title>
+  </programme>
+  <programme start="20260411070000 +0800" stop="20260411090000 +0800" channel="镇江FM88.8">
+    <title lang="zh">快乐加速度</title>
+  </programme>
+  <programme start="20260411090000 +0800" stop="20260411100000 +0800" channel="镇江FM88.8">
+    <title lang="zh">汽车音乐时间</title>
+  </programme>
+  <programme start="20260411100000 +0800" stop="20260411110000 +0800" channel="镇江FM88.8">
+    <title lang="zh">飞越城市</title>
+  </programme>
+  <programme start="20260411110000 +0800" stop="20260411120000 +0800" channel="镇江FM88.8">
+    <title lang="zh">空中门诊（复播）</title>
+  </programme>
+  <programme start="20260411120000 +0800" stop="20260411130000 +0800" channel="镇江FM88.8">
+    <title lang="zh">苹果剧场</title>
+  </programme>
+  <programme start="20260411130000 +0800" stop="20260411140000 +0800" channel="镇江FM88.8">
+    <title lang="zh">青螺读书</title>
+  </programme>
+  <programme start="20260411140000 +0800" stop="20260411150000 +0800" channel="镇江FM88.8">
+    <title lang="zh">苹果剧场</title>
+  </programme>
+  <programme start="20260411150000 +0800" stop="20260411160000 +0800" channel="镇江FM88.8">
+    <title lang="zh">空中门诊</title>
+  </programme>
+  <programme start="20260411160000 +0800" stop="20260411170000 +0800" channel="镇江FM88.8">
+    <title lang="zh">汽车音乐时间</title>
+  </programme>
+  <programme start="20260411170000 +0800" stop="20260411183000 +0800" channel="镇江FM88.8">
+    <title lang="zh">快乐加速度</title>
+  </programme>
+  <programme start="20260411183000 +0800" stop="20260411190000 +0800" channel="镇江FM88.8">
+    <title lang="zh">红领巾广播台</title>
+  </programme>
+  <programme start="20260411190000 +0800" stop="20260411200000 +0800" channel="镇江FM88.8">
+    <title lang="zh">空中门诊</title>
+  </programme>
+  <programme start="20260411200000 +0800" stop="20260411210000 +0800" channel="镇江FM88.8">
+    <title lang="zh">汽车音乐时间</title>
+  </programme>
+  <programme start="20260411210000 +0800" stop="20260411213000 +0800" channel="镇江FM88.8">
+    <title lang="zh">成长说</title>
+  </programme>
+  <programme start="20260411213000 +0800" stop="20260411230000 +0800" channel="镇江FM88.8">
+    <title lang="zh">苹果剧场</title>
+  </programme>
+  <programme start="20260411230000 +0800" stop="20260411235900 +0800" channel="镇江FM88.8">
+    <title lang="zh">明明很音乐</title>
+  </programme>
+  <programme start="20260411060000 +0800" stop="20260411063000 +0800" channel="镇江FM104">
+    <title lang="zh">365健康派（引进）</title>
+  </programme>
+  <programme start="20260411063000 +0800" stop="20260411070000 +0800" channel="镇江FM104">
+    <title lang="zh">新闻和报纸摘要（转播）</title>
+  </programme>
+  <programme start="20260411070000 +0800" stop="20260411080000 +0800" channel="镇江FM104">
+    <title lang="zh">新闻早报【黄岩、高静、梁晨、刘嫄】（自办直播）</title>
+  </programme>
+  <programme start="20260411080000 +0800" stop="20260411081000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【黄岩、梁晨、刘嫄、高静】（自办直播）</title>
+  </programme>
+  <programme start="20260411081000 +0800" stop="20260411090000 +0800" channel="镇江FM104">
+    <title lang="zh">周六政风行风热线（重播）</title>
+  </programme>
+  <programme start="20260411090000 +0800" stop="20260411091000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦】（自办直播）</title>
+  </programme>
+  <programme start="20260411091000 +0800" stop="20260411100000 +0800" channel="镇江FM104">
+    <title lang="zh">开心杂货铺、天下故事会（引进）</title>
+  </programme>
+  <programme start="20260411101000 +0800" stop="20260411110000 +0800" channel="镇江FM104">
+    <title lang="zh">红领巾广播台【基地小主播】（自办）</title>
+  </programme>
+  <programme start="20260411110000 +0800" stop="20260411111000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411111000 +0800" stop="20260411120000 +0800" channel="镇江FM104">
+    <title lang="zh">一路有的聊（引进）</title>
+  </programme>
+  <programme start="20260411120000 +0800" stop="20260411121000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411121000 +0800" stop="20260411130000 +0800" channel="镇江FM104">
+    <title lang="zh">周六日《岁月留声》【周浩】（自办）</title>
+  </programme>
+  <programme start="20260411130000 +0800" stop="20260411131000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411131000 +0800" stop="20260411140000 +0800" channel="镇江FM104">
+    <title lang="zh">汽车音乐时间（引进）</title>
+  </programme>
+  <programme start="20260411140000 +0800" stop="20260411141000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411141000 +0800" stop="20260411150000 +0800" channel="镇江FM104">
+    <title lang="zh">城市音乐日记（引进）</title>
+  </programme>
+  <programme start="20260411150000 +0800" stop="20260411151000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411151000 +0800" stop="20260411160000 +0800" channel="镇江FM104">
+    <title lang="zh">周六日成长说【基地小主播】（自办），365健康派（引进）</title>
+  </programme>
+  <programme start="20260411160000 +0800" stop="20260411161000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411161000 +0800" stop="20260411170000 +0800" channel="镇江FM104">
+    <title lang="zh">《岁月留声》【周浩】（自办）</title>
+  </programme>
+  <programme start="20260411170000 +0800" stop="20260411171000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦】（自办直播）</title>
+  </programme>
+  <programme start="20260411171000 +0800" stop="20260411180000 +0800" channel="镇江FM104">
+    <title lang="zh">天天书场，开心杂货铺（引进）</title>
+  </programme>
+  <programme start="20260411180000 +0800" stop="20260411183000 +0800" channel="镇江FM104">
+    <title lang="zh">一起听镇江【马婵、刘嫄、陈彦】（自办直播）</title>
+  </programme>
+  <programme start="20260411183000 +0800" stop="20260411190000 +0800" channel="镇江FM104">
+    <title lang="zh">转全国新闻联播（转播）</title>
+  </programme>
+  <programme start="20260411190000 +0800" stop="20260411200000 +0800" channel="镇江FM104">
+    <title lang="zh">听吧（自办）</title>
+  </programme>
+  <programme start="20260411200000 +0800" stop="20260411201000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411201000 +0800" stop="20260411210000 +0800" channel="镇江FM104">
+    <title lang="zh">《岁月留声》【周浩】（自办）</title>
+  </programme>
+  <programme start="20260411210000 +0800" stop="20260411211000 +0800" channel="镇江FM104">
+    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
+  </programme>
+  <programme start="20260411211000 +0800" stop="20260411220000 +0800" channel="镇江FM104">
+    <title lang="zh">城市音乐日记（引进）</title>
+  </programme>
+  <programme start="20260411220000 +0800" stop="20260411235900 +0800" channel="镇江FM104">
+    <title lang="zh">转播中国之声（转播）</title>
   </programme>
   <programme start="20260411000000 +0800" stop="20260411070000 +0800" channel="苏州新闻综合">
     <title lang="zh">星梦剧场</title>
@@ -1592,200 +1787,5 @@
   </programme>
   <programme start="20260411213000 +0800" stop="20260411220000 +0800" channel="镇江影视频道">
     <title lang="zh">无节目</title>
-  </programme>
-  <programme start="20260411070000 +0800" stop="20260411080000 +0800" channel="镇江FM96.3">
-    <title lang="zh">全民阅读/丽人榜样</title>
-  </programme>
-  <programme start="20260411080000 +0800" stop="20260411090000 +0800" channel="镇江FM96.3">
-    <title lang="zh">翡翠音乐好歌不断</title>
-  </programme>
-  <programme start="20260411090000 +0800" stop="20260411100000 +0800" channel="镇江FM96.3">
-    <title lang="zh">青螺读书</title>
-  </programme>
-  <programme start="20260411100000 +0800" stop="20260411110000 +0800" channel="镇江FM96.3">
-    <title lang="zh">唱片街33号</title>
-  </programme>
-  <programme start="20260411110000 +0800" stop="20260411120000 +0800" channel="镇江FM96.3">
-    <title lang="zh">翡翠经典乐流行</title>
-  </programme>
-  <programme start="20260411120000 +0800" stop="20260411130000 +0800" channel="镇江FM96.3">
-    <title lang="zh">明明很音乐</title>
-  </programme>
-  <programme start="20260411130000 +0800" stop="20260411140000 +0800" channel="镇江FM96.3">
-    <title lang="zh">全民阅读/A榜</title>
-  </programme>
-  <programme start="20260411140000 +0800" stop="20260411150000 +0800" channel="镇江FM96.3">
-    <title lang="zh">汽车音乐时间</title>
-  </programme>
-  <programme start="20260411150000 +0800" stop="20260411160000 +0800" channel="镇江FM96.3">
-    <title lang="zh">翡翠经典剧场</title>
-  </programme>
-  <programme start="20260411160000 +0800" stop="20260411170000 +0800" channel="镇江FM96.3">
-    <title lang="zh">红领巾电台/成长说</title>
-  </programme>
-  <programme start="20260411170000 +0800" stop="20260411180000 +0800" channel="镇江FM96.3">
-    <title lang="zh">翡翠音乐好歌不断</title>
-  </programme>
-  <programme start="20260411180000 +0800" stop="20260411190000 +0800" channel="镇江FM96.3">
-    <title lang="zh">边走边听</title>
-  </programme>
-  <programme start="20260411190000 +0800" stop="20260411200000 +0800" channel="镇江FM96.3">
-    <title lang="zh">艺小潮的电台情歌</title>
-  </programme>
-  <programme start="20260411200000 +0800" stop="20260411210000 +0800" channel="镇江FM96.3">
-    <title lang="zh">空中门诊</title>
-  </programme>
-  <programme start="20260411210000 +0800" stop="20260411220000 +0800" channel="镇江FM96.3">
-    <title lang="zh">岁月留声</title>
-  </programme>
-  <programme start="20260411220000 +0800" stop="20260411230000 +0800" channel="镇江FM96.3">
-    <title lang="zh">翡翠经典剧场</title>
-  </programme>
-  <programme start="20260411230000 +0800" stop="20260411235900 +0800" channel="镇江FM96.3">
-    <title lang="zh">小亲的暖心歌</title>
-  </programme>
-  <programme start="20260411044500 +0800" stop="20260411063000 +0800" channel="镇江FM88.8">
-    <title lang="zh">苹果剧场</title>
-  </programme>
-  <programme start="20260411063000 +0800" stop="20260411070000 +0800" channel="镇江FM88.8">
-    <title lang="zh">新闻和报纸摘要</title>
-  </programme>
-  <programme start="20260411070000 +0800" stop="20260411090000 +0800" channel="镇江FM88.8">
-    <title lang="zh">快乐加速度</title>
-  </programme>
-  <programme start="20260411090000 +0800" stop="20260411100000 +0800" channel="镇江FM88.8">
-    <title lang="zh">汽车音乐时间</title>
-  </programme>
-  <programme start="20260411100000 +0800" stop="20260411110000 +0800" channel="镇江FM88.8">
-    <title lang="zh">飞越城市</title>
-  </programme>
-  <programme start="20260411110000 +0800" stop="20260411120000 +0800" channel="镇江FM88.8">
-    <title lang="zh">空中门诊（复播）</title>
-  </programme>
-  <programme start="20260411120000 +0800" stop="20260411130000 +0800" channel="镇江FM88.8">
-    <title lang="zh">苹果剧场</title>
-  </programme>
-  <programme start="20260411130000 +0800" stop="20260411140000 +0800" channel="镇江FM88.8">
-    <title lang="zh">青螺读书</title>
-  </programme>
-  <programme start="20260411140000 +0800" stop="20260411150000 +0800" channel="镇江FM88.8">
-    <title lang="zh">苹果剧场</title>
-  </programme>
-  <programme start="20260411150000 +0800" stop="20260411160000 +0800" channel="镇江FM88.8">
-    <title lang="zh">空中门诊</title>
-  </programme>
-  <programme start="20260411160000 +0800" stop="20260411170000 +0800" channel="镇江FM88.8">
-    <title lang="zh">汽车音乐时间</title>
-  </programme>
-  <programme start="20260411170000 +0800" stop="20260411183000 +0800" channel="镇江FM88.8">
-    <title lang="zh">快乐加速度</title>
-  </programme>
-  <programme start="20260411183000 +0800" stop="20260411190000 +0800" channel="镇江FM88.8">
-    <title lang="zh">红领巾广播台</title>
-  </programme>
-  <programme start="20260411190000 +0800" stop="20260411200000 +0800" channel="镇江FM88.8">
-    <title lang="zh">空中门诊</title>
-  </programme>
-  <programme start="20260411200000 +0800" stop="20260411210000 +0800" channel="镇江FM88.8">
-    <title lang="zh">汽车音乐时间</title>
-  </programme>
-  <programme start="20260411210000 +0800" stop="20260411213000 +0800" channel="镇江FM88.8">
-    <title lang="zh">成长说</title>
-  </programme>
-  <programme start="20260411213000 +0800" stop="20260411230000 +0800" channel="镇江FM88.8">
-    <title lang="zh">苹果剧场</title>
-  </programme>
-  <programme start="20260411230000 +0800" stop="20260411235900 +0800" channel="镇江FM88.8">
-    <title lang="zh">明明很音乐</title>
-  </programme>
-  <programme start="20260411060000 +0800" stop="20260411063000 +0800" channel="镇江FM104">
-    <title lang="zh">365健康派（引进）</title>
-  </programme>
-  <programme start="20260411063000 +0800" stop="20260411070000 +0800" channel="镇江FM104">
-    <title lang="zh">新闻和报纸摘要（转播）</title>
-  </programme>
-  <programme start="20260411070000 +0800" stop="20260411080000 +0800" channel="镇江FM104">
-    <title lang="zh">新闻早报【黄岩、高静、梁晨、刘嫄】（自办直播）</title>
-  </programme>
-  <programme start="20260411080000 +0800" stop="20260411081000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【黄岩、梁晨、刘嫄、高静】（自办直播）</title>
-  </programme>
-  <programme start="20260411081000 +0800" stop="20260411090000 +0800" channel="镇江FM104">
-    <title lang="zh">周六政风行风热线（重播）</title>
-  </programme>
-  <programme start="20260411090000 +0800" stop="20260411091000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦】（自办直播）</title>
-  </programme>
-  <programme start="20260411091000 +0800" stop="20260411100000 +0800" channel="镇江FM104">
-    <title lang="zh">开心杂货铺、天下故事会（引进）</title>
-  </programme>
-  <programme start="20260411101000 +0800" stop="20260411110000 +0800" channel="镇江FM104">
-    <title lang="zh">红领巾广播台【基地小主播】（自办）</title>
-  </programme>
-  <programme start="20260411110000 +0800" stop="20260411111000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411111000 +0800" stop="20260411120000 +0800" channel="镇江FM104">
-    <title lang="zh">一路有的聊（引进）</title>
-  </programme>
-  <programme start="20260411120000 +0800" stop="20260411121000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411121000 +0800" stop="20260411130000 +0800" channel="镇江FM104">
-    <title lang="zh">周六日《岁月留声》【周浩】（自办）</title>
-  </programme>
-  <programme start="20260411130000 +0800" stop="20260411131000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411131000 +0800" stop="20260411140000 +0800" channel="镇江FM104">
-    <title lang="zh">汽车音乐时间（引进）</title>
-  </programme>
-  <programme start="20260411140000 +0800" stop="20260411141000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411141000 +0800" stop="20260411150000 +0800" channel="镇江FM104">
-    <title lang="zh">城市音乐日记（引进）</title>
-  </programme>
-  <programme start="20260411150000 +0800" stop="20260411151000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411151000 +0800" stop="20260411160000 +0800" channel="镇江FM104">
-    <title lang="zh">周六日成长说【基地小主播】（自办），365健康派（引进）</title>
-  </programme>
-  <programme start="20260411160000 +0800" stop="20260411161000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411161000 +0800" stop="20260411170000 +0800" channel="镇江FM104">
-    <title lang="zh">《岁月留声》【周浩】（自办）</title>
-  </programme>
-  <programme start="20260411170000 +0800" stop="20260411171000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦】（自办直播）</title>
-  </programme>
-  <programme start="20260411171000 +0800" stop="20260411180000 +0800" channel="镇江FM104">
-    <title lang="zh">天天书场，开心杂货铺（引进）</title>
-  </programme>
-  <programme start="20260411180000 +0800" stop="20260411183000 +0800" channel="镇江FM104">
-    <title lang="zh">一起听镇江【马婵、刘嫄、陈彦】（自办直播）</title>
-  </programme>
-  <programme start="20260411183000 +0800" stop="20260411190000 +0800" channel="镇江FM104">
-    <title lang="zh">转全国新闻联播（转播）</title>
-  </programme>
-  <programme start="20260411190000 +0800" stop="20260411200000 +0800" channel="镇江FM104">
-    <title lang="zh">听吧（自办）</title>
-  </programme>
-  <programme start="20260411200000 +0800" stop="20260411201000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411201000 +0800" stop="20260411210000 +0800" channel="镇江FM104">
-    <title lang="zh">《岁月留声》【周浩】（自办）</title>
-  </programme>
-  <programme start="20260411210000 +0800" stop="20260411211000 +0800" channel="镇江FM104">
-    <title lang="zh">整点快报【马婵、梁晨、刘嫄、陈彦、大正】（自办直播）</title>
-  </programme>
-  <programme start="20260411211000 +0800" stop="20260411220000 +0800" channel="镇江FM104">
-    <title lang="zh">城市音乐日记（引进）</title>
-  </programme>
-  <programme start="20260411220000 +0800" stop="20260411235900 +0800" channel="镇江FM104">
-    <title lang="zh">转播中国之声（转播）</title>
   </programme>
 </tv>
