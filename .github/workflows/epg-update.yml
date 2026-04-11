@@ -212,9 +212,4 @@ jobs:
           git remote add gitee git@gitee.com:magihub/epg.git
           git push --force gitee main
         continue-on-error: true          
-
-      # ---------- 新增：推送成功后更新本地哈希文件（缓存会自动保存） ----------
-      - name: Update hash after successful push
-        if: steps.push.outcome == 'success' && steps.check_changes.outputs.changed == 'true'
-        run: |
-          echo "${{ steps.hash.outputs.hash }}" > epg_hash.txt        
+   
