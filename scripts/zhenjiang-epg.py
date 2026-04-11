@@ -264,7 +264,7 @@ def main():
     # 公共 Chrome 选项（电视和广播共用基础配置）
     def get_base_chrome_options():
         opts = Options()
-        opts.add_argument('--headless')                                     # 无头模式，不显示浏览器窗口
+        opts.add_argument('--headless=new')                                     # 无头模式，不显示浏览器窗口
         opts.add_argument('--no-sandbox')                                   # 禁用沙箱，容器环境必需
         opts.add_argument('--log-level=3')                                  # 日志级别，只显示致命错误
         opts.add_argument('--silent')                                       # 静默模式，减少输出
@@ -276,10 +276,10 @@ def main():
         opts.add_argument('--disable-background-networking')                # 禁用后台网络请求
         opts.add_argument('--disable-component-update')                     # 禁用组件更新
         opts.add_argument('--disable-domain-reliability')                   # 禁用域名可靠性上报
-        opts.add_argument('--disable-gpu')                                  # 禁用 GPU 加速
-        opts.add_argument('--disable-gpu-sandbox')                          # 禁用 GPU 沙箱
-        opts.add_argument('--disable-gpu-compositing')                      # 禁用 GPU 合成
-        opts.add_argument('--disable-sync')                                 # 禁用同步服务
+        # opts.add_argument('--disable-gpu')                                  # 禁用 GPU 加速
+        # opts.add_argument('--disable-gpu-sandbox')                          # 禁用 GPU 沙箱
+        # opts.add_argument('--disable-gpu-compositing')                      # 禁用 GPU 合成
+        # opts.add_argument('--disable-sync')                                 # 禁用同步服务
         opts.add_argument('--disable-breakpad')                             # 禁用崩溃报告
         opts.add_argument('--disable-default-apps')                         # 禁用默认应用
         opts.add_argument('--disable-crash-reporter')                       # 禁用崩溃报告器
