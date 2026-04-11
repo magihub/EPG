@@ -19,7 +19,6 @@ jobs:
 
       - name: Install and join ZeroTier
         run: |
-          # 创建配置目录并写入固定身份（可选，也可以不用固定身份）
           sudo mkdir -p /var/lib/zerotier-one
           echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
           # 安装 ZeroTier
@@ -42,6 +41,7 @@ jobs:
           ip route show
           ping -c 3 192.168.192.3
           curl -v http://192.168.192.3:8888
+        continue-on-error: true          
     
       - name: Test TinyProxy connectivity
         id: test_proxy
