@@ -30,7 +30,11 @@ def fetch_radio_programs():
     else:
         print("本地运行，不设置代理")
     # =========================================================
-    
+
+    # 禁用图片加载
+    prefs = {"profile.managed_default_content_settings.images": 2}
+    chrome_options.add_experimental_option("prefs", prefs)
+        
     driver = webdriver.Chrome(options=chrome_options)
     driver.set_page_load_timeout(60)
     
