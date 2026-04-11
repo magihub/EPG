@@ -35,31 +35,22 @@ jobs:
               break
             fi
             echo "Waiting for IP... ($i/30)"
-            sleep 1
+            sleep 2
           done
-          sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
+          # sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
           # sudo zerotier-cli peers
+          sudo zerotier-cli listnetworks | awk 'NR==2' | sed -E '
+            s/([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2})/\1:**:**:**:**:\6/g
+            s/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\/24/\1.*.*.\4\/24/g
+            s/([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+)\/([0-9]+)/\1:*:*:*:*:*:*:\8\/\9/g
+          '          
         env:
           ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
           ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
-
-      - name: Display ZeroTier info (masked)
-        run: |
-          OUTPUT=$(sudo zerotier-cli listnetworks | awk 'NR==2')
-          if [ -n "$OUTPUT" ]; then
-            echo "$OUTPUT" | sed -E '
-              s/[0-9a-f]{2}(:[0-9a-f]{2}){5}/**:**:**:**:**:**/g
-              s/([0-9]+\.[0-9]+)\.[0-9]+\.[0-9]+\/24/\1.*.*\/24/g
-              s/([0-9a-fA-F]+:[0-9a-fA-F]+):[0-9a-fA-F:]+(\/[0-9]+)/\1:*:*:*:*:*:*\2/g
-            '
-          else
-            echo "No ZeroTier network info available yet"
-          fi
-        continue-on-error: true
         
       - name: Test connectivity to proxy
         run: |
-          ping -c 3 ${{ secrets.TINY_PROXY_IP }}
+          ping -c 3 ${{ secrets.TINY_PROXY_IP }} 2>&1 | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.*.*.\4/g'
         continue-on-error: true
     
       - name: Test TinyProxy connectivity
