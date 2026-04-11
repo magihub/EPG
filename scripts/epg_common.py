@@ -99,6 +99,9 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # ========== 新增：排序，确保输出顺序稳定 ==========
     # 对频道按 ID 排序
     all_channels = dict(sorted(all_channels.items()))
+    # 对频道按显示名称排序（而不是 ID）
+    # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
+    
     # 对节目按 (频道, 开始时间) 排序
     all_programs.sort(key=lambda x: (x['channel'], x['start']))
     # ==============================================
