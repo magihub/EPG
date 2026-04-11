@@ -3,6 +3,9 @@ name: Zhenjiang Radio
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  
 jobs:
   Zhenjiang_Radio:
     runs-on: ubuntu-22.04
@@ -120,7 +123,8 @@ jobs:
             git commit -m "Update EPG data"
             git push
           fi
-   
+        continue-on-error: true
+        
       - name: Check epg.xml content
         run: |
           grep -c "镇江FM" epg.xml || echo "No Zhenjiang radio found"
