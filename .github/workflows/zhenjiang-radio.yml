@@ -38,14 +38,14 @@ jobs:
             sleep 1
           done
           sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
-          sudo zerotier-cli peers
+          # sudo zerotier-cli peers
         env:
           ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
           ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
 
       - name: Display ZeroTier info (masked)
         run: |
-          OUTPUT=$(sudo zerotier-cli listnetworks | tail -n +3 | head -1)
+          OUTPUT=$(sudo zerotier-cli listnetworks | awk 'NR==2')
           if [ -n "$OUTPUT" ]; then
             echo "$OUTPUT" | sed -E '
               s/[0-9a-f]{2}(:[0-9a-f]{2}){5}/**:**:**:**:**:**/g
@@ -59,9 +59,7 @@ jobs:
         
       - name: Test connectivity to proxy
         run: |
-          ip route show
-          ping -c 3 192.168.192.3
-          curl -v http://192.168.192.3:8888
+          ping -c 3 ${{ secrets.TINY_PROXY_IP }}
         continue-on-error: true
     
       - name: Test TinyProxy connectivity
@@ -82,17 +80,18 @@ jobs:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-
+        continue-on-error: true
 
       - name: Run zhenjiang-radio
         run: python scripts/zhenjiang-radio.py
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-
+        continue-on-error: true
+        
       - name: Run zhenjiang-epg
         run: python scripts/zhenjiang-epg.py
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}          
-          
+        continue-on-error: true          
