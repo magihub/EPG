@@ -62,8 +62,7 @@ jobs:
             echo "Waiting for IP... ($i/30)"
             sleep 1
           done
-          # sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
-          # sudo zerotier-cli peers
+          sudo zerotier-cli listnetworks | awk 'NR==1 {print}'
           sudo zerotier-cli listnetworks | awk 'NR==2' | sed -E '
             s/([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2})/\1:**:**:**:**:\6/g
             s/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\/24/\1.*.*.\4\/24/g
