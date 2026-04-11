@@ -88,7 +88,7 @@ def fetch_today_programs(channel_name, base_url, driver, retries=2):
     for attempt in range(1, retries + 1):
         try:
             if attempt > 1:
-                driver.refresh()  # 重试前刷新页面
+                driver.get(url)  # 重试前刷新页面
                 time.sleep(2)            
             driver.get(url)
             WebDriverWait(driver, 60).until(  # 超时从15秒增加到30秒
@@ -125,16 +125,16 @@ def fetch_radio_programs(driver, target_date, retries=2):
     
     for attempt in range(1, retries + 1):
         try:
-            # 访问广播页面
+            # 访问广播页面（重试时重新加载）
             driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")
-            driver.set_page_load_timeout(60)
+            driver.set_page_load_timeout(90)
             
             # 等待页面加载完成
-            WebDriverWait(driver, 30).until(
+            WebDriverWait(driver, 60).until(
                 lambda d: d.execute_script("return document.readyState") == "complete"
             )
             # 等待 Vue 数据加载
-            WebDriverWait(driver, 60).until(
+            WebDriverWait(driver, 120).until(
                 lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
             )
             print("页面 Vue 数据已加载")
@@ -157,20 +157,16 @@ def fetch_radio_programs(driver, target_date, retries=2):
                 ch_id = ch['id']
                 ch_name = ch['title']
                 
-                # 生成频道代码（如 "镇江FM96.3"）
                 freq_match = re.search(r'(FM|AM)\d+(\.\d+)?', ch_name)
                 if freq_match:
                     freq = freq_match.group(0)
                     ch_code = f"镇江{freq}"
                 else:
                     ch_code = ch_name
-                
-                # 显示名称去掉频率前缀
                 display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
                 all_channels.append((ch_code, display_name))
                 print(f"  正在抓取 {display_name} ...")
                 
-                # 点击该频道以加载节目单
                 driver.execute_script(f"""
                     var divs = document.querySelectorAll('.swiper-slide');
                     for(var i=0; i<divs.length; i++) {{
@@ -180,15 +176,13 @@ def fetch_radio_programs(driver, target_date, retries=2):
                         }}
                     }}
                 """)
-                time.sleep(2)  # 等待节目列表更新
+                time.sleep(2)
                 
-                # 获取节目列表
                 programs_data = driver.execute_script("return window.pageData.programList")
                 if not programs_data:
                     print("    未获取到节目")
                     continue
                 
-                # 解析节目
                 programs = []
                 for item in programs_data:
                     start_str = item.get('startTime')
@@ -226,7 +220,8 @@ def fetch_radio_programs(driver, target_date, retries=2):
             if attempt < retries:
                 print("等待 5 秒后重试...")
                 time.sleep(5)
-                driver.refresh()
+                # 改为重新加载页面，而不是 refresh
+                # driver.refresh()  # 已注释
             else:
                 print("重试次数已用完，广播抓取失败")
                 return [], []
@@ -234,6 +229,22 @@ def fetch_radio_programs(driver, target_date, retries=2):
     return [], []
 
 # ==================== 主函数 ====================
+
+def test_tiny_proxy(ip, port):
+    import requests
+    try:
+        proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
+        resp = requests.get("https://www.zjmc.tv", proxies=proxies, timeout=10, verify=False)
+        if resp.status_code == 200:
+            print(f"代理测试成功 (HTTP {resp.status_code})")
+            return True
+        else:
+            print(f"代理测试失败 (HTTP {resp.status_code})")
+            return False
+    except Exception as e:
+        print(f"代理测试异常: {e}")
+        return False
+        
 def main():
     print()
     print("=" * 50)
@@ -327,10 +338,13 @@ def main():
             proxy_ip = os.environ.get('TINY_PROXY_IP')
             proxy_port = os.environ.get('TINY_PROXY_PORT')
             if proxy_ip and proxy_port:
-                radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
-                print(f"已为广播 Chrome 设置代理: {proxy_ip}:{proxy_port}")
-        else:
-            print("本地运行，广播不使用代理")
+                if test_tiny_proxy(proxy_ip, proxy_port):
+                    radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
+                    print(f"已为广播 Chrome 设置代理: {proxy_ip}:{proxy_port}")
+                else:
+                    print("代理不可用，将不使用代理")
+            else:
+                print("未设置代理环境变量")
 
         radio_driver = webdriver.Chrome(options=radio_options)
         radio_driver.set_page_load_timeout(60)
