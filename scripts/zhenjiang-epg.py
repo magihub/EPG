@@ -35,36 +35,42 @@ def get_week_dates():
     return [monday + datetime.timedelta(days=i) for i in range(7)]
 
 # ==================== 电视抓取 ====================
-def fetch_week_programs(channel_name, base_url, week_dates, driver):
-    """使用同一个 driver 抓取某频道一周的节目单"""
+def fetch_week_programs(channel_name, base_url, week_dates, driver, retries=2):
+    """使用同一个 driver 抓取某频道一周的节目单（支持单天重试）"""
     programs = []
     for idx, date_obj in enumerate(week_dates):
         day_num = idx + 1
         url = f"{base_url}{day_num}.htm"
-        try:
-            driver.get(url)
-            WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo"))
-            )
-            items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
-            day_progs = []
-            for item in items:
-                time_elem = item.find_element(By.CSS_SELECTOR, "em.time")
-                time_str = time_elem.text.strip()
-                title = item.text.replace(time_str, '').strip()
-                if not title:
-                    continue
-                try:
-                    hour, minute = map(int, time_str.split(':'))
-                    start_dt = datetime.datetime(date_obj.year, date_obj.month, date_obj.day, hour, minute)
-                    day_progs.append((start_dt, title))
-                except:
-                    continue
-            day_progs.sort(key=lambda x: x[0])
-            programs.extend(day_progs)
-            print(f"  {WEEKDAY_NAMES[idx]}: {len(day_progs)} 个节目")
-        except Exception as e:
-            print(f"  {WEEKDAY_NAMES[idx]}: 失败 - {e}")
+        for attempt in range(1, retries + 1):
+            try:
+                driver.get(url)
+                WebDriverWait(driver, 30).until(  # 超时增加到30秒
+                    EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo"))
+                )
+                items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
+                day_progs = []
+                for item in items:
+                    time_elem = item.find_element(By.CSS_SELECTOR, "em.time")
+                    time_str = time_elem.text.strip()
+                    title = item.text.replace(time_str, '').strip()
+                    if not title:
+                        continue
+                    try:
+                        hour, minute = map(int, time_str.split(':'))
+                        start_dt = datetime.datetime(date_obj.year, date_obj.month, date_obj.day, hour, minute)
+                        day_progs.append((start_dt, title))
+                    except:
+                        continue
+                day_progs.sort(key=lambda x: x[0])
+                programs.extend(day_progs)
+                print(f"  {WEEKDAY_NAMES[idx]}: {len(day_progs)} 个节目")
+                break  # 成功则跳出重试循环
+            except Exception as e:
+                print(f"  {WEEKDAY_NAMES[idx]} 抓取失败 (尝试 {attempt}/{retries}): {e}")
+                if attempt == retries:
+                    print(f"  {WEEKDAY_NAMES[idx]}: 最终失败，跳过")
+                else:
+                    time.sleep(3)  # 重试前等待
         time.sleep(0.3)
     return programs
 
@@ -221,61 +227,53 @@ def main():
     
     start_time = time.time()
     output_file = "epg.xml"
-    week_dates = get_week_dates()
+    # 一周日期（若需抓取一周电视，取消注释下面一行，并切换电视抓取逻辑）
+    # week_dates = get_week_dates()
     all_new_channels = []
     all_new_programs = []
 
-    # 配置 Chrome
-    chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--log-level=3')
-    chrome_options.add_argument('--silent')
-    chrome_options.add_argument('--ignore-ssl-errors')
-    chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.add_argument('--allow-insecure-localhost')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-background-networking')
-    chrome_options.add_argument('--disable-component-update')
-    chrome_options.add_argument('--disable-domain-reliability')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--disable-sync')
-    chrome_options.add_argument('--disable-breakpad')
-    chrome_options.add_argument('--disable-default-apps')
-    chrome_options.add_argument('--disable-crash-reporter')
-    chrome_options.add_argument('--disable-software-rasterizer')
-    chrome_options.add_argument('--disable-features=VizDisplayCompositor')
-    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
-    chrome_options.add_experimental_option('useAutomationExtension', False)
+    # 公共 Chrome 选项（电视和广播共用基础配置）
+    def get_base_chrome_options():
+        opts = Options()
+        opts.add_argument('--headless')
+        opts.add_argument('--no-sandbox')
+        opts.add_argument('--log-level=3')
+        opts.add_argument('--silent')
+        opts.add_argument('--ignore-ssl-errors')
+        opts.add_argument('--ignore-certificate-errors')
+        opts.add_argument('--allow-insecure-localhost')
+        opts.add_argument('--disable-dev-shm-usage')
+        opts.add_argument('--disable-background-networking')
+        opts.add_argument('--disable-component-update')
+        opts.add_argument('--disable-domain-reliability')
+        opts.add_argument('--disable-gpu')
+        opts.add_argument('--disable-gpu-sandbox')
+        opts.add_argument('--disable-gpu-compositing')
+        opts.add_argument('--disable-sync')
+        opts.add_argument('--disable-breakpad')
+        opts.add_argument('--disable-default-apps')
+        opts.add_argument('--disable-crash-reporter')
+        opts.add_argument('--disable-blink-features=AutomationControlled')
+        opts.add_experimental_option('excludeSwitches', ['enable-automation'])
+        opts.add_experimental_option('useAutomationExtension', False)
+        return opts
 
-    # ========== 添加代理（仅在 GitHub Actions 环境中） ==========
-    # ===== 新增：代理配置 =====
-    if os.environ.get('GITHUB_ACTIONS') == 'true':
-        proxy_ip = os.environ.get('TINY_PROXY_IP')
-        proxy_port = os.environ.get('TINY_PROXY_PORT')
-        if proxy_ip and proxy_port:
-            chrome_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
-            print(f"已为 Chrome 设置代理: {proxy_ip}:{proxy_port}")
-        else:
-            print("未设置代理环境变量 TINY_PROXY_IP/TINY_PROXY_PORT")
-    else:
-        print("本地运行，不设置代理")
-    # =========================================================
+    tv_driver = None
+    radio_driver = None
 
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.set_page_load_timeout(60)
-    
     try:
-        # ---------- 电视 ----------
+        # ---------- 电视 driver（无代理） ----------
+        tv_options = get_base_chrome_options()
+        tv_driver = webdriver.Chrome(options=tv_options)
+        tv_driver.set_page_load_timeout(30)
+
         print()
-        print("抓取镇江电视节目单...")    
-        
+        print("抓取镇江电视节目单...")
         for ch_name, base_url in TV_CHANNELS.items():
             print(f"  正在解析 {ch_name} ...")
             
-            # 仅抓取当天节目单（带重试）
-            day_programs = fetch_today_programs(ch_name, base_url, driver, retries=2)
+            # ========== 当天版本（只抓今天，推荐） ==========
+            day_programs = fetch_today_programs(ch_name, base_url, tv_driver, retries=2)
             if day_programs:
                 day_programs.sort(key=lambda x: x[0])
                 enriched = add_end_times(day_programs)
@@ -290,15 +288,47 @@ def main():
                 print(f"    获取到 {len(enriched)} 个节目")
             else:
                 print(f"    未抓取到任何数据")
+            
+            # ========== 原一周版本（注释，需要时可恢复） ==========
+            # weekly_programs = fetch_week_programs(ch_name, base_url, week_dates, tv_driver, retries=2)
+            # if weekly_programs:
+            #     weekly_programs.sort(key=lambda x: x[0])
+            #     enriched = add_end_times(weekly_programs)
+            #     all_new_channels.append((ch_name, ch_name))
+            #     for prog in enriched:
+            #         all_new_programs.append({
+            #             'start': prog['start_dt'].strftime("%Y%m%d%H%M%S +0800"),
+            #             'stop': prog['end_dt'].strftime("%Y%m%d%H%M%S +0800"),
+            #             'channel': ch_name,
+            #             'title': prog['title']
+            #         })
+            #     print(f"{ch_name} 共抓取 {len(enriched)} 个节目")
+            # else:
+            #     print(f"{ch_name} 未抓取到任何数据")
 
-        # ---------- 广播 ----------
-        # 广播节目单通常是当天数据，使用今天日期（带重试）
-        radio_channels, radio_programs = fetch_radio_programs(driver, datetime.datetime.now().date(), retries=2)
+        # ---------- 广播 driver（带代理，仅 Actions 环境） ----------
+        radio_options = get_base_chrome_options()
+        if os.environ.get('GITHUB_ACTIONS') == 'true':
+            proxy_ip = os.environ.get('TINY_PROXY_IP')
+            proxy_port = os.environ.get('TINY_PROXY_PORT')
+            if proxy_ip and proxy_port:
+                radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
+                print(f"已为广播 Chrome 设置代理: {proxy_ip}:{proxy_port}")
+        else:
+            print("本地运行，广播不使用代理")
+
+        radio_driver = webdriver.Chrome(options=radio_options)
+        radio_driver.set_page_load_timeout(60)
+
+        radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=2)
         all_new_channels.extend(radio_channels)
         all_new_programs.extend(radio_programs)
 
     finally:
-        driver.quit()
+        if tv_driver:
+            tv_driver.quit()
+        if radio_driver:
+            radio_driver.quit()
 
     if all_new_programs:
         merge_and_write(output_file, all_new_channels, all_new_programs)
