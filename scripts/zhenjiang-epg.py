@@ -81,8 +81,11 @@ def fetch_today_programs(channel_name, base_url, driver, retries=2):
     
     for attempt in range(1, retries + 1):
         try:
+            if attempt > 1:
+                driver.refresh()  # 重试前刷新页面
+                time.sleep(2)            
             driver.get(url)
-            WebDriverWait(driver, 30).until(  # 超时从15秒增加到30秒
+            WebDriverWait(driver, 60).until(  # 超时从15秒增加到30秒
                 EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo"))
             )
             items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
@@ -240,6 +243,8 @@ def main():
     chrome_options.add_argument('--disable-breakpad')
     chrome_options.add_argument('--disable-default-apps')
     chrome_options.add_argument('--disable-crash-reporter')
+    chrome_options.add_argument('--disable-software-rasterizer')
+    chrome_options.add_argument('--disable-features=VizDisplayCompositor')
     chrome_options.add_argument('--disable-blink-features=AutomationControlled')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-automation'])
     chrome_options.add_experimental_option('useAutomationExtension', False)
@@ -259,7 +264,7 @@ def main():
     # =========================================================
 
     driver = webdriver.Chrome(options=chrome_options)
-    driver.set_page_load_timeout(30)
+    driver.set_page_load_timeout(60)
     
     try:
         # ---------- 电视 ----------
