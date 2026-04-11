@@ -39,8 +39,8 @@ jobs:
           done
           # sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
           # sudo zerotier-cli peers
-            sudo zerotier-cli listnetworks | awk 'NR==1 {print $1, $2, $5, $6, $7}'
-            sudo zerotier-cli listnetworks | awk 'NR==2 {print $1, $2, $5, $6, $7}' | sed -E '
+            sudo zerotier-cli listnetworks | awk 'NR==1 {print $1, $2, $6, $7, $9}'
+            sudo zerotier-cli listnetworks | awk 'NR==2 {print $1, $2, $6, $7, $9}' | sed -E '
               s/([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2})/\1:**:**:**:**:\6/g
               s/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\/24/\1.*.*.\4\/24/g
               s/([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+)\/([0-9]+)/\1:*:*:*:*:*:*:\8\/\9/g
@@ -84,8 +84,8 @@ jobs:
           ls -la scripts/epg.xml 2>/dev/null || echo "NOT FOUND"
           echo "=== Find all epg.xml ==="
           find . -name "epg.xml" -type f
-          print(f"写入文件绝对路径: {os.path.abspath(output_file)}")
-    
+        continue-on-error: true
+        
       - name: Run zhenjiang-epg
         run: python scripts/zhenjiang-epg.py
         env:
@@ -99,11 +99,12 @@ jobs:
           pwd
           echo "=== Find epg.xml ==="
           find /home/runner -name "epg.xml" -type f 2>/dev/null
-    
+        continue-on-error: true    
     
       - name: Check epg.xml content
         run: |
           grep -c "镇江FM" epg.xml || echo "No Zhenjiang radio found"
+        continue-on-error: true
         
       - name: Run zhenjiang-radio
         run: python scripts/zhenjiang-radio.py
