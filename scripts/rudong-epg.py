@@ -248,27 +248,29 @@ def main():
     all_new_programs = []
     # 创建 Chrome driver（只创建一次）
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--log-level=3')
-    chrome_options.add_argument('--silent')
-    chrome_options.add_argument('--ignore-ssl-errors')
-    chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.add_argument('--allow-insecure-localhost')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-background-networking')
-    chrome_options.add_argument('--disable-component-update')
-    chrome_options.add_argument('--disable-domain-reliability')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--disable-sync')
-    chrome_options.add_argument('--disable-breakpad')
-    chrome_options.add_argument('--disable-default-apps')
-    chrome_options.add_argument('--disable-crash-reporter')
-    chrome_options.add_argument('--disable-blink-features=AutomationControlled')    
-    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-
-    # 禁用图片加载
-    prefs = {"profile.managed_default_content_settings.images": 2}
+    chrome_options.add_argument('--headless=new')                               # 新版无头模式，不显示浏览器窗口
+    chrome_options.add_argument('--no-sandbox')                                 # 禁用沙箱，容器环境必需
+    chrome_options.add_argument('--log-level=3')                                # 日志级别，只显示致命错误
+    chrome_options.add_argument('--silent')                                     # 静默模式，减少输出
+    chrome_options.add_argument('--ignore-ssl-errors')                          # 忽略 SSL 错误
+    chrome_options.add_argument('--ignore-certificate-errors')                  # 忽略证书错误
+    chrome_options.add_argument('--allow-insecure-localhost')                   # 允许不安全的 localhost
+    chrome_options.add_argument('--disable-dev-shm-usage')                      # 禁用 /dev/shm，防内存不足
+    chrome_options.add_argument('--disable-background-networking')              # 禁用后台网络请求
+    chrome_options.add_argument('--disable-component-update')                   # 禁用组件更新
+    chrome_options.add_argument('--disable-domain-reliability')                 # 禁用域名可靠性上报
+    chrome_options.add_argument('--disable-gpu')                                # 禁用 GPU 加速
+    chrome_options.add_argument('--disable-gpu-sandbox')                        # 禁用 GPU 沙箱
+    chrome_options.add_argument('--disable-gpu-compositing')                    # 禁用 GPU 合成
+    chrome_options.add_argument('--disable-sync')                               # 禁用同步服务
+    chrome_options.add_argument('--disable-breakpad')                           # 禁用崩溃报告
+    chrome_options.add_argument('--disable-default-apps')                       # 禁用默认应用
+    chrome_options.add_argument('--disable-crash-reporter')                     # 禁用崩溃报告器
+    chrome_options.add_argument('--disable-blink-features=AutomationControlled') # 隐藏自动化特征
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging']) # 禁用 DevTools 日志
+    chrome_options.add_experimental_option('useAutomationExtension', False)       # 禁用自动化扩展
+        
+    prefs = {"profile.managed_default_content_settings.images": 2}      # 禁用图片加载   
     chrome_options.add_experimental_option("prefs", prefs)
         
     driver = webdriver.Chrome(options=chrome_options)
