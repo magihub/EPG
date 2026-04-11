@@ -27,7 +27,7 @@ jobs:
           # 加入网络
           sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
           sleep 10
-          sudo zerotier-cli listnetworks
+          sudo zerotier-cli listnetworks | sed -E 's/([0-9]+\.[0-9]+)\.[0-9]+\.[0-9]+/\1.*.*/g; s/([0-9a-fA-F]+:[0-9a-fA-F]+):[0-9a-fA-F:]+/\1:*:*:*:*:*:*:*/g'
         env:
           ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
           ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
@@ -59,3 +59,10 @@ jobs:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+
+      - name: Run zhenjiang-epg
+        run: python scripts/zhenjiang-epg.py
+        env:
+          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
+          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}          
+          
