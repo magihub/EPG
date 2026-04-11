@@ -256,6 +256,9 @@ def main():
     
     start_time = time.time()
     output_file = "epg.xml"
+    
+    print(f"写入文件绝对路径: {os.path.abspath(output_file)}")
+    
     # 一周日期（若需抓取一周电视，取消注释下面一行，并切换电视抓取逻辑）
     # week_dates = get_week_dates()
     all_new_channels = []
