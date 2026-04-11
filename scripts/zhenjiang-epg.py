@@ -122,45 +122,51 @@ def fetch_today_programs(channel_name, base_url, driver, retries=2):
 # ===== 修改：fetch_radio_programs 增加重试机制 =====
 def fetch_radio_programs(driver, target_date, retries=2):
     print("\n抓取镇江广播节目单...")
-    if "broadcastTvs.html" not in driver.current_url:
-        driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")
-        time.sleep(5)
-    else:
-        driver.refresh()
-        time.sleep(3)
-
+    
     for attempt in range(1, retries + 1):
         try:
-            WebDriverWait(driver, 30).until(
+            # 访问广播页面
+            driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")
+            driver.set_page_load_timeout(60)
+            
+            # 等待 Vue 数据加载
+            WebDriverWait(driver, 60).until(
                 lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
             )
+            print("页面 Vue 数据已加载")
+            
+            # 获取频道列表
             channels = driver.execute_script("return window.pageData.liveList")
             if not channels:
-                print(f"第 {attempt} 次获取频道列表为空")
+                print("未获取到频道列表")
                 if attempt < retries:
                     time.sleep(3)
                     continue
                 else:
                     return [], []
-
-            # print(f"获取到 {len(channels)} 个广播频道")
+            
+            print(f"获取到 {len(channels)} 个广播频道")
             all_channels = []
             all_programs = []
-
+            
             for ch in channels:
                 ch_id = ch['id']
                 ch_name = ch['title']
+                
+                # 生成频道代码（如 "镇江FM96.3"）
                 freq_match = re.search(r'(FM|AM)\d+(\.\d+)?', ch_name)
                 if freq_match:
                     freq = freq_match.group(0)
                     ch_code = f"镇江{freq}"
                 else:
                     ch_code = ch_name
+                
+                # 显示名称去掉频率前缀
                 display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
                 all_channels.append((ch_code, display_name))
                 print(f"  正在抓取 {display_name} ...")
-
-                # 点击频道
+                
+                # 点击该频道以加载节目单
                 driver.execute_script(f"""
                     var divs = document.querySelectorAll('.swiper-slide');
                     for(var i=0; i<divs.length; i++) {{
@@ -170,13 +176,15 @@ def fetch_radio_programs(driver, target_date, retries=2):
                         }}
                     }}
                 """)
-                time.sleep(2)
-
+                time.sleep(2)  # 等待节目列表更新
+                
+                # 获取节目列表
                 programs_data = driver.execute_script("return window.pageData.programList")
                 if not programs_data:
                     print("    未获取到节目")
                     continue
-
+                
+                # 解析节目
                 programs = []
                 for item in programs_data:
                     start_str = item.get('startTime')
@@ -191,9 +199,11 @@ def fetch_radio_programs(driver, target_date, retries=2):
                             programs.append((start_dt, title, end_dt))
                     except:
                         continue
+                
                 if not programs:
                     print("    无当天节目")
                     continue
+                
                 programs.sort(key=lambda x: x[0])
                 for start_dt, title, end_dt in programs:
                     all_programs.append({
@@ -203,14 +213,12 @@ def fetch_radio_programs(driver, target_date, retries=2):
                         'title': title
                     })
                 print(f"    获取到 {len(programs)} 个节目")
-
+            
             return all_channels, all_programs
-
+            
         except Exception as e:
             print(f"第 {attempt} 次广播抓取失败: {e}")
             print(f"异常类型: {type(e).__name__}, 消息: {e}")
-            import traceback
-            traceback.print_exc()
             if attempt < retries:
                 print("等待 5 秒后重试...")
                 time.sleep(5)
@@ -218,7 +226,7 @@ def fetch_radio_programs(driver, target_date, retries=2):
             else:
                 print("重试次数已用完，广播抓取失败")
                 return [], []
-
+    
     return [], []
 
 # ==================== 主函数 ====================
