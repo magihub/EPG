@@ -1,10 +1,10 @@
-name: Test Zhenjiang Radio
+name: Zhenjiang Radio
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  Zhenjiang Radio:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,13 +17,40 @@ jobs:
       - name: Install dependencies
         run: pip install selenium curl_cffi
 
-      - name: Join ZeroTier
-        uses: zerotier/zerotier-action@v1
-        with:
-          network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
-          auth_token: ${{ secrets.ZEROTIER_CENTRAL_TOKEN }}
-          identity_secret: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
+      - name: Install and join ZeroTier
+        run: |
+          # 创建配置目录并写入固定身份（可选，也可以不用固定身份）
+          sudo mkdir -p /var/lib/zerotier-one
+          echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
+          # 安装 ZeroTier
+          curl -s https://install.zerotier.com | sudo bash
+          # 加入网络
+          sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
+          sleep 10
+          sudo zerotier-cli listnetworks
+        env:
+          ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
+          ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
 
+      - name: Test TinyProxy connectivity
+        id: test_proxy
+        run: |
+          set +e
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
+            --connect-timeout 10 \
+            https://www.zjmc.tv)
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "代理测试成功 (HTTP $HTTP_CODE)"
+            echo "proxy_ok=true" >> $GITHUB_OUTPUT
+          else
+            echo "代理测试失败 (HTTP $HTTP_CODE)"
+            echo "proxy_ok=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
+          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+          
       - name: Wait for IP
         run: sleep 10
 
