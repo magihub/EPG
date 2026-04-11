@@ -33,16 +33,12 @@ jobs:
 
       - name: Install Python dependencies
         run: pip install selenium lxml curl_cffi beautifulsoup4 requests
-      
-      - name: Install ZeroTier
-        if: steps.cache-zerotier.outputs.cache-hit != 'true'
-        run: |
-          sudo mkdir -p /var/lib/zerotier-one
-          echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
-          curl -s https://install.zerotier.com | sudo bash
 
       - name: Join ZeroTier network with identity
         run: |
+          sudo mkdir -p /var/lib/zerotier-one
+          echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
+          curl -s https://install.zerotier.com | sudo bash        
           # sudo systemctl start zerotier-one          
           sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
           start_time=$(date +%s)
@@ -71,7 +67,7 @@ jobs:
         continue-on-error: true
         
       # 南通脚本（需要代理）
-      - name: Test TinyProxy connectivity
+      - name: Test TinyProxy to ntjoy.com
         id: test_ntjoy
         run: |
           set +e
@@ -110,7 +106,7 @@ jobs:
         continue-on-error: true
 
       # 镇江脚本（电视无需代理、广播需要代理）
-      - name: Test TinyProxy connectivity
+      - name: Test TinyProxy to zjmc.tv
         id: test_zjmc
         run: |
           set +e
