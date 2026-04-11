@@ -7,6 +7,26 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+def test_tiny_proxy(ip, port):
+    from curl_cffi import requests
+    import time
+    for attempt in range(2):
+        try:
+            proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
+            resp = requests.get("https://www.zjmc.tv", proxies=proxies, timeout=30, verify=False, impersonate="chrome120")
+            if resp.status_code == 200:
+                print(f"代理测试成功 (HTTP {resp.status_code})")
+                return True
+            else:
+                print(f"代理测试失败 (HTTP {resp.status_code})")
+        except Exception as e:
+            print(f"代理测试异常 (尝试 {attempt+1}): {e}")
+            if attempt == 0:
+                time.sleep(5)
+            else:
+                return False
+    return False
+
 def fetch_radio_programs():
     print("\n抓取镇江广播节目单...")
     
@@ -23,8 +43,9 @@ def fetch_radio_programs():
         proxy_ip = os.environ.get('TINY_PROXY_IP')
         proxy_port = os.environ.get('TINY_PROXY_PORT')
         if proxy_ip and proxy_port:
+            test_tiny_proxy(proxy_ip, proxy_port)
             chrome_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
-            print(f"已为 Chrome 设置代理: {proxy_ip}:{proxy_port}")
+            print(f"已为 Chrome 设置代理")
         else:
             print("警告: 运行在 GitHub Actions 环境，但未配置代理环境变量")
     else:
