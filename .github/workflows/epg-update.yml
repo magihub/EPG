@@ -36,14 +36,14 @@ jobs:
         id: cache-pip
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-pip-v0
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: Install Python dependencies
         if: steps.cache-pip.outputs.cache-hit != 'true'
         run: pip install selenium lxml curl_cffi beautifulsoup4 requests
-          
+        
       - name: Cache ZeroTier installation
         uses: actions/cache@v3
         id: cache-zerotier
@@ -53,14 +53,18 @@ jobs:
             /usr/sbin/zerotier-cli
             /usr/sbin/zerotier-idtool
             /usr/lib/systemd/system/zerotier-one.service
-          key: ${{ runner.os }}-zerotier-${{ hashFiles('scripts/zerotier-version.txt') }}
-
+          key: ${{ runner.os }}-zerotier-v0
+          restore-keys: |
+            ${{ runner.os }}-zerotier-
+            
       - name: Install ZeroTier (if not cached)
         if: steps.cache-zerotier.outputs.cache-hit != 'true'
         run: |
+          sudo mkdir -p /var/lib/zerotier-one
+          echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
           curl -s https://install.zerotier.com | sudo bash
 
-      - name: Join ZeroTier network with fixed identity
+      - name: Join ZeroTier network with identity
         run: |
           sudo systemctl start zerotier-one          
           sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
