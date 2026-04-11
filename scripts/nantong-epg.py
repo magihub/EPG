@@ -145,6 +145,25 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
     return programs
 
 # ==================== 主任务 ====================
+
+def test_tiny_proxy(ip, port):
+    for attempt in range(2):
+        try:
+            proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
+            resp = requests.get("https://web.ntjoy.com", proxies=proxies, timeout=30, verify=False, impersonate="chrome120")
+            if resp.status_code == 200:
+                print(f"代理测试成功 (HTTP {resp.status_code})")
+                return True
+            else:
+                print(f"代理测试失败 (HTTP {resp.status_code})")
+        except Exception as e:
+            print(f"代理测试异常 (尝试 {attempt+1}): {e}")
+            if attempt == 0:
+                time.sleep(5)
+            else:
+                return False
+    return False
+
 def main():
     print()
     print("=" * 50)
@@ -156,7 +175,16 @@ def main():
     start_time = time.time()
     all_new_channels = []   # 存储 (ch_id, display_name)
     all_new_programs = []   # 存储节目字典
-    
+
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        proxy_ip = os.environ.get('TINY_PROXY_IP')
+        proxy_port = os.environ.get('TINY_PROXY_PORT')
+        if proxy_ip and proxy_port:
+            test_tiny_proxy(proxy_ip, proxy_port)  # 仅打印结果
+            # 注意：不需要设置环境变量，因为 workflow 中已经设置了 http_proxy
+        else:
+            print("代理环境变量缺失")
+        
     for config in MENU_CONFIGS:
         print(f"\n抓取南通{config['name']}节目单...")
         channels = fetch_channels(config['menu_code'])
