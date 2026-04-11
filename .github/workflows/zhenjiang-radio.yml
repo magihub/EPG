@@ -91,6 +91,10 @@ jobs:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}          
         continue-on-error: true
+
+      - name: Check epg.xml content
+        run: |
+          grep -c "镇江FM" epg.xml || echo "No Zhenjiang radio found"
         
       - name: Run zhenjiang-radio
         run: python scripts/zhenjiang-radio.py
