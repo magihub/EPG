@@ -100,7 +100,27 @@ jobs:
           echo "=== Find epg.xml ==="
           find /home/runner -name "epg.xml" -type f 2>/dev/null
         continue-on-error: true    
-    
+         
+      - name: Commit and push changes (only if epg.xml changed)
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          
+          # 将 epg.xml 加入暂存区
+          git add epg.xml 2>/dev/null || true
+          
+          # 检查暂存区是否有变化（即 epg.xml 内容是否改变）
+          if git diff --cached --quiet; then
+            echo "epg.xml 无变化，跳过压缩和提交"
+          else
+            echo "epg.xml 已更新，开始压缩并提交"
+            gzip -c epg.xml > epg.xml.gz
+            git add epg.xml.gz
+            git commit -m "Update EPG data"
+            git push
+          fi
+   
       - name: Check epg.xml content
         run: |
           grep -c "镇江FM" epg.xml || echo "No Zhenjiang radio found"
