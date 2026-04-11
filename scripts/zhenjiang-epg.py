@@ -147,7 +147,7 @@ def fetch_radio_programs(driver, target_date, retries=2):
                 else:
                     return [], []
             
-            print(f"获取到 {len(channels)} 个广播频道")
+            # print(f"获取到 {len(channels)} 个广播频道")
             all_channels = []
             all_programs = []
             
