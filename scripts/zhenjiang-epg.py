@@ -360,7 +360,7 @@ def main():
             print("本地运行，广播不使用代理")
 
         radio_driver = webdriver.Chrome(options=radio_options)
-        radio_driver.set_page_load_timeout(60)
+        radio_driver.set_page_load_timeout(120)
 
         radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=2)
         all_new_channels.extend(radio_channels)
