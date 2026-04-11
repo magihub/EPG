@@ -120,9 +120,7 @@ def fetch_today_programs(channel_name, base_url, driver, retries=2):
 # ==================== 广播抓取 ====================
 
 # ===== 修改：fetch_radio_programs 增加重试机制 =====
-def fetch_radio_programs(driver, target_date, retries=2):
-    print("\n抓取镇江广播节目单...")
-    
+def fetch_radio_programs(driver, target_date, retries=2):   
     for attempt in range(1, retries + 1):
         try:
             # 访问广播页面（重试时重新加载）
@@ -347,27 +345,31 @@ def main():
         # ---------- 广播 driver（带代理，仅 Actions 环境） ----------
         radio_options = get_base_chrome_options()
         
+        print("\n抓取镇江广播节目单...")
+    
         if os.environ.get('GITHUB_ACTIONS') == 'true':
             proxy_ip = os.environ.get('TINY_PROXY_IP')
             proxy_port = os.environ.get('TINY_PROXY_PORT')
             if proxy_ip and proxy_port:
-                # 测试代理并显示结果，但不影响后续设置
-                test_tiny_proxy(proxy_ip, proxy_port)  # 仅打印结果
-                radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
-                # print(f"已为广播 Chrome 设置代理: {proxy_ip}:{proxy_port}")
+                if test_tiny_proxy(proxy_ip, proxy_port):
+                    radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
+                    # print(f"已为广播 Chrome 设置代理")
+                    radio_driver = webdriver.Chrome(options=radio_options)
+                    radio_driver.set_page_load_timeout(120)
+                    radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=5)
+                    all_new_channels.extend(radio_channels)
+                    all_new_programs.extend(radio_programs)
+                else:
+                    print("代理测试失败，跳过广播抓取")
             else:
-                # print("未设置代理环境变量")
-                pass
+                print("代理环境变量缺失，跳过广播抓取")  # 理论上不会发生
         else:
-            # print("本地运行，广播不使用代理")
-            pass
-
-        radio_driver = webdriver.Chrome(options=radio_options)
-        radio_driver.set_page_load_timeout(120)
-
-        radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=2)
-        all_new_channels.extend(radio_channels)
-        all_new_programs.extend(radio_programs)
+            # 本地运行，不使用代理
+            radio_driver = webdriver.Chrome(options=radio_options)
+            radio_driver.set_page_load_timeout(90)
+            radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=2)
+            all_new_channels.extend(radio_channels)
+            all_new_programs.extend(radio_programs)
 
     finally:
         if tv_driver:
