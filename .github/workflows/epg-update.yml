@@ -12,6 +12,7 @@ concurrency:
 on:
   schedule:
     - cron: '0 19 * * *'        # UTC时间：19点，北京时间：次日凌晨3点
+    - cron: '0 20 * * *'        # UTC时间：20点，北京时间：次日凌晨4点
     - cron: '0 07 * * *'        # UTC时间：7点，北京时间：当天下午15点
   workflow_dispatch:
  
@@ -69,73 +70,39 @@ jobs:
             s/([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+)\/([0-9]+)/\1:*:*:*:*:*:*:\8\/\9/g
           '  
         
-      # 如东脚本（无需代理，如果失败继续）
+      # 如东脚本（无需代理）
       - name: Run Rudong EPG
         run: |
           echo "=== 运行 rudong-epg.py ==="
           python scripts/rudong-epg.py
         continue-on-error: true
         
-      # 南通脚本（需要代理，如果失败继续）
-      - name: Test TinyProxy connectivity
-        id: test_ntjoy
-        run: |
-          set +e
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
-            --connect-timeout 10 \
-            https://web.ntjoy.com)
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "代理测试成功 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=true" >> $GITHUB_OUTPUT
-          else
-            echo "代理测试失败 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=false" >> $GITHUB_OUTPUT
-          fi
-        env:
-          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
-          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-          
+      # 南通脚本（需要代理）
       - name: Run Nantong EPG via Proxy
-        # if: steps.test_proxy.outputs.proxy_ok == 'true'      
-        run: |
-          echo "=== 运行 nantong-epg.py ==="
-          python scripts/nantong-epg.py
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: echo "=== 运行 nantong-epg.py ===" && python scripts/nantong-epg.py
         env:
           http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"        
         continue-on-error: true
-        
+
+      # 苏州脚本（无需代理）        
       - name: Run Suzhou EPG
         run: |      
           echo "=== 运行 suzhou-epg.py ==="
           python scripts/suzhou-epg.py
         continue-on-error: true
-    
-      - name: Test TinyProxy connectivity
-        id: test_zjmc
-        run: |
-          set +e
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
-            --connect-timeout 10 \
-            https://www.zjmc.tv)
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "代理测试成功 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=true" >> $GITHUB_OUTPUT
-          else
-            echo "代理测试失败 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=false" >> $GITHUB_OUTPUT
-          fi
-        env:
-          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
-          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-        continue-on-error: true
 
+      # 镇江脚本（电视无需代理、广播需要代理）
       - name: Run Zhenjiang EPG via Proxy
-        run: |           
-          echo "=== 运行 zhenjiang-epg.py ==="
-          python scripts/zhenjiang-epg.py
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: echo "=== 运行 zhenjiang-epg.py ===" && python scripts/zhenjiang-epg.py
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}            
@@ -229,7 +196,7 @@ jobs:
           git init
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
-          git add -f epg.xml epg.xml.gz
+          git add epg.xml epg.xml.gz
           git commit -m "Update EPG data"
           git remote add gitee git@gitee.com:magihub/epg.git
           git push --force gitee main
