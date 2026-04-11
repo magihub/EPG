@@ -231,10 +231,10 @@ def fetch_radio_programs(driver, target_date, retries=2):
 # ==================== 主函数 ====================
 
 def test_tiny_proxy(ip, port):
-    import requests
+    from curl_cffi import requests
     try:
         proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
-        resp = requests.get("https://www.zjmc.tv", proxies=proxies, timeout=10, verify=False)
+        resp = requests.get("https://www.zjmc.tv", proxies=proxies, timeout=10, verify=False, impersonate="chrome120")
         if resp.status_code == 200:
             print(f"代理测试成功 (HTTP {resp.status_code})")
             return True
