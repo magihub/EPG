@@ -51,7 +51,7 @@ jobs:
         
       - name: Test connectivity to proxy
         run: |
-          ping -c 3 ${{ secrets.TINY_PROXY_IP }} 2>&1 | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.*.*.\4/g'
+        #  ping -c 3 ${{ secrets.TINY_PROXY_IP }} 2>&1 | sed -E 's/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/\1.*.*.\4/g'
         continue-on-error: true
     
       - name: Test TinyProxy connectivity
