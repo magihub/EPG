@@ -31,9 +31,15 @@ jobs:
         env:
           ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
           ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
-          
+
+      - name: Display ZeroTier info (masked)
+        run: |
+          sudo zerotier-cli listnetworks | awk 'NR==3' | sed -E 's/[0-9a-f]{2}(:[0-9a-f]{2}){5}/***/g; s/([0-9]+\.[0-9]+)\.[0-9]+\.[0-9]+\/24/\1.*.*\/24/g; s/([0-9a-fA-F]+:[0-9a-fA-F]+):[0-9a-fA-F:]+(\/[0-9]+)/\1:*:*:*:*:*:*\2/g'
+        continue-on-error: true
+        
       - name: Test connectivity to proxy
         run: |
+          ip route show
           ping -c 3 192.168.192.3
           curl -v http://192.168.192.3:8888
     
