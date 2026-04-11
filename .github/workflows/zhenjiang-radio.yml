@@ -5,7 +5,7 @@ on:
 
 jobs:
   Zhenjiang_Radio:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
@@ -39,12 +39,7 @@ jobs:
           done
           # sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
           # sudo zerotier-cli peers
-          sudo zerotier-cli listnetworks | awk 'NR==1 {print}'
-          sudo zerotier-cli listnetworks | awk 'NR==2' | sed -E '
-            s/([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2})/\1:**:**:**:**:\6/g
-            s/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\/24/\1.*.*.\4\/24/g
-            s/([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+)\/([0-9]+)/\1:*:*:*:*:*:*:\8\/\9/g
-          '          
+            sudo zerotier-cli listnetworks | awk 'NR==1 {gsub(/<nwid>|<name>|<mac>/, ""); print} NR==2 {gsub(/[0-9a-f]{2}(:[0-9a-f]{2}){5}/, ""); gsub(/[0-9a-f]+/, ""); gsub(/ZeroTier/, ""); gsub(/  +/, " "); gsub(/([0-9]+\.[0-9]+)\.[0-9]+\.[0-9]+\/24/, "\\1.*.*/24"); gsub(/([0-9a-fA-F]+:[0-9a-fA-F]+):[0-9a-fA-F:]+(\/[0-9]+)/, "\\1:*:*:*:*:*:*\\2"); print}'
         env:
           ZEROTIER_NETWORK_ID: ${{ secrets.ZEROTIER_NETWORK_ID }}
           ZEROTIER_IDENTITY_SECRET: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
@@ -73,17 +68,6 @@ jobs:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
         continue-on-error: true
-        
-      - name: Debug file location
-        run: |
-          echo "=== Current directory ==="
-          pwd
-          echo "=== epg.xml in root ==="
-          ls -la epg.xml 2>/dev/null || echo "NOT FOUND"
-          echo "=== epg.xml in scripts ==="
-          ls -la scripts/epg.xml 2>/dev/null || echo "NOT FOUND"
-          echo "=== Find all epg.xml ==="
-          find . -name "epg.xml" -type f
     
       - name: Run zhenjiang-epg
         run: python scripts/zhenjiang-epg.py
