@@ -73,17 +73,18 @@ jobs:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
         continue-on-error: true
-
-      - name: Run zhenjiang-radio
-        run: python scripts/zhenjiang-radio.py
-        env:
-          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
-          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-        continue-on-error: true
         
       - name: Run zhenjiang-epg
         run: python scripts/zhenjiang-epg.py
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}          
-        continue-on-error: true          
+        continue-on-error: true
+        
+      - name: Run zhenjiang-radio
+        run: python scripts/zhenjiang-radio.py
+        env:
+          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
+          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+        continue-on-error: true
+    
