@@ -232,18 +232,23 @@ def fetch_radio_programs(driver, target_date, retries=2):
 
 def test_tiny_proxy(ip, port):
     from curl_cffi import requests
-    try:
-        proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
-        resp = requests.get("https://www.zjmc.tv", proxies=proxies, timeout=10, verify=False, impersonate="chrome120")
-        if resp.status_code == 200:
-            print(f"代理测试成功 (HTTP {resp.status_code})")
-            return True
-        else:
-            print(f"代理测试失败 (HTTP {resp.status_code})")
-            return False
-    except Exception as e:
-        print(f"代理测试异常: {e}")
-        return False
+    import time
+    for attempt in range(2):
+        try:
+            proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
+            resp = requests.get("https://www.zjmc.tv", proxies=proxies, timeout=30, verify=False, impersonate="chrome120")
+            if resp.status_code == 200:
+                print(f"代理测试成功 (HTTP {resp.status_code})")
+                return True
+            else:
+                print(f"代理测试失败 (HTTP {resp.status_code})")
+        except Exception as e:
+            print(f"代理测试异常 (尝试 {attempt+1}): {e}")
+            if attempt == 0:
+                time.sleep(5)
+            else:
+                return False
+    return False
         
 def main():
     print()
@@ -269,27 +274,32 @@ def main():
         opts.add_argument('--ignore-certificate-errors')
         opts.add_argument('--allow-insecure-localhost')
         opts.add_argument('--disable-dev-shm-usage')
-        opts.add_argument('--disable-background-networking')
-        opts.add_argument('--disable-component-update')
-        opts.add_argument('--disable-domain-reliability')
-        opts.add_argument('--disable-gpu')
-        opts.add_argument('--disable-gpu-sandbox')
-        opts.add_argument('--disable-gpu-compositing')
-        opts.add_argument('--disable-sync')
-        opts.add_argument('--disable-breakpad')
-        opts.add_argument('--disable-default-apps')
-        opts.add_argument('--disable-crash-reporter')
-        opts.add_argument('--disable-blink-features=AutomationControlled')
+        # opts.add_argument('--disable-background-networking')
+        # opts.add_argument('--disable-component-update')
+        # opts.add_argument('--disable-domain-reliability')
+        # opts.add_argument('--disable-gpu')
+        # opts.add_argument('--disable-gpu-sandbox')
+        # opts.add_argument('--disable-gpu-compositing')
+        # opts.add_argument('--disable-sync')
+        # opts.add_argument('--disable-breakpad')
+        # opts.add_argument('--disable-default-apps')
+        # opts.add_argument('--disable-crash-reporter')
+        # opts.add_argument('--disable-blink-features=AutomationControlled')
         opts.add_experimental_option('excludeSwitches', ['enable-automation'])
         opts.add_experimental_option('useAutomationExtension', False)
         return opts
-
+    
     tv_driver = None
     radio_driver = None
 
     try:
         # ---------- 电视 driver（无代理） ----------
         tv_options = get_base_chrome_options()
+
+        # 禁用图片加载
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        chrome_options.add_experimental_option("prefs", prefs)
+        
         tv_driver = webdriver.Chrome(options=tv_options)
         tv_driver.set_page_load_timeout(30)
 
@@ -334,17 +344,23 @@ def main():
 
         # ---------- 广播 driver（带代理，仅 Actions 环境） ----------
         radio_options = get_base_chrome_options()
+        
         if os.environ.get('GITHUB_ACTIONS') == 'true':
             proxy_ip = os.environ.get('TINY_PROXY_IP')
             proxy_port = os.environ.get('TINY_PROXY_PORT')
             if proxy_ip and proxy_port:
-                if test_tiny_proxy(proxy_ip, proxy_port):
-                    radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
-                    print(f"已为广播 Chrome 设置代理: {proxy_ip}:{proxy_port}")
-                else:
-                    print("代理不可用，将不使用代理")
+                # 测试代理并显示结果，但不影响后续设置
+                test_tiny_proxy(proxy_ip, proxy_port)  # 仅打印结果
+                radio_options.add_argument(f'--proxy-server=http://{proxy_ip}:{proxy_port}')
+                print(f"已为广播 Chrome 设置代理: {proxy_ip}:{proxy_port}")
             else:
                 print("未设置代理环境变量")
+        else:
+            print("本地运行，广播不使用代理")
+
+        # 禁用图片加载
+        prefs = {"profile.managed_default_content_settings.images": 2}
+        chrome_options.add_experimental_option("prefs", prefs)
 
         radio_driver = webdriver.Chrome(options=radio_options)
         radio_driver.set_page_load_timeout(60)
