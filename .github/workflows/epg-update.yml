@@ -78,7 +78,7 @@ jobs:
         
       # 南通脚本（需要代理，如果失败继续）
       - name: Test TinyProxy connectivity
-        id: test_proxy
+        id: test_ntjoy
         run: |
           set +e
           HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
@@ -113,7 +113,7 @@ jobs:
         continue-on-error: true
     
       - name: Test TinyProxy connectivity
-        id: test_proxy
+        id: test_zjmc
         run: |
           set +e
           HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
