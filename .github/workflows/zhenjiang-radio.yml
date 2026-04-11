@@ -1,0 +1,34 @@
+name: Test Zhenjiang Radio
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install selenium curl_cffi
+
+      - name: Join ZeroTier
+        uses: zerotier/zerotier-action@v1
+        with:
+          network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
+          auth_token: ${{ secrets.ZEROTIER_CENTRAL_TOKEN }}
+          identity_secret: ${{ secrets.ZEROTIER_IDENTITY_SECRET }}
+
+      - name: Wait for IP
+        run: sleep 10
+
+      - name: Run zhenjiang-radio
+        run: python scripts/zhenjiang-radio.py
+        env:
+          TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
+          TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
