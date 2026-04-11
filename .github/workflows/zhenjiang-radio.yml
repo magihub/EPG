@@ -35,7 +35,7 @@ jobs:
               break
             fi
             echo "Waiting for IP... ($i/30)"
-            sleep 2
+            sleep 1
           done
           # sudo zerotier-cli listnetworks | awk '{print $2, $5}' | head -2
           # sudo zerotier-cli peers
