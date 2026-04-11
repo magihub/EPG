@@ -160,7 +160,7 @@ jobs:
             git commit -m "Update EPG data"
             git push
           fi
-          
+        continue-on-error: true          
           
   sync-to-gitee:
     runs-on: ubuntu-latest
