@@ -18,11 +18,14 @@ on:
     inputs:
       skip_update:
         description: 'Skip EPG update'
+        required: false
         default: 'false'
+        type: boolean
         
 jobs:
   update-epg:
     runs-on: ubuntu-latest
+    if: github.event.inputs.skip_update != 'true'
 
     steps:
       - name: Checkout repository
