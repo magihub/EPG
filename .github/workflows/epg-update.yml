@@ -170,6 +170,15 @@ jobs:
         with:
           fetch-depth: 2   # 确保 HEAD~1 可用
 
+      - name: Setup SSH key for Gitee
+        env:
+          GITEE_SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$GITEE_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
+          
       - name: Add Gitee remote
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git
@@ -185,16 +194,6 @@ jobs:
             echo "epg.xml 已变化，开始同步到 Gitee"
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-
-      - name: Setup SSH key for Gitee
-        if: steps.check_changes.outputs.changed == 'true'      
-        env:
-          GITEE_SSH_PRIVATE_KEY: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$GITEE_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
 
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
         if: steps.check_changes.outputs.changed == 'true'
