@@ -15,7 +15,11 @@ on:
     - cron: '0 20 * * *'        # UTC时间：20点，北京时间：次日凌晨4点
     - cron: '0 07 * * *'        # UTC时间：7点，北京时间：当天下午15点
   workflow_dispatch:
- 
+    inputs:
+      skip_update:
+        description: 'Skip EPG update'
+        default: 'false'
+        
 jobs:
   update-epg:
     runs-on: ubuntu-latest
@@ -165,6 +169,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2   # 确保 HEAD~1 可用
+
+      - name: Add Gitee remote
+        run: |
+          git remote add gitee git@gitee.com:magihub/epg.git
+          git fetch gitee main
 
       - name: Check if epg.xml changed
         id: check_changes
