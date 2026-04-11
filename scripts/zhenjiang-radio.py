@@ -41,11 +41,11 @@ def fetch_radio_programs():
     try:
         driver.get("https://www.zjmc.tv/broadcastTvs.html?menuCode=zhj004")
         # 等待页面加载完成
-        WebDriverWait(driver, 30).until(
+        WebDriverWait(driver, 60).until(
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
         # 等待 Vue 数据加载
-        WebDriverWait(driver, 60).until(
+        WebDriverWait(driver, 90).until(
             lambda d: d.execute_script("return window.pageData && window.pageData.liveList && window.pageData.liveList.length > 0")
         )
         channels = driver.execute_script("return window.pageData.liveList")
