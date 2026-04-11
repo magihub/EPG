@@ -16,6 +16,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from epg_common import merge_and_write, add_end_times
+from curl_cffi import requests
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
@@ -229,8 +230,6 @@ def fetch_radio_programs(driver, target_date, retries=2):
 # ==================== 主函数 ====================
 
 def test_tiny_proxy(ip, port):
-    from curl_cffi import requests
-    import time
     for attempt in range(2):
         try:
             proxies = {"http": f"http://{ip}:{port}", "https": f"http://{ip}:{port}"}
@@ -267,7 +266,7 @@ def main():
     # 公共 Chrome 选项（电视和广播共用基础配置）
     def get_base_chrome_options():
         opts = Options()
-        opts.add_argument('--headless=new')                                     # 无头模式，不显示浏览器窗口
+        opts.add_argument('--headless=new')                                 # 新版无头模式，不显示浏览器窗口
         opts.add_argument('--no-sandbox')                                   # 禁用沙箱，容器环境必需
         opts.add_argument('--log-level=3')                                  # 日志级别，只显示致命错误
         opts.add_argument('--silent')                                       # 静默模式，减少输出
@@ -359,7 +358,7 @@ def main():
                     # print(f"已为广播 Chrome 设置代理")
                     radio_driver = webdriver.Chrome(options=radio_options)
                     radio_driver.set_page_load_timeout(120)
-                    radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=5)
+                    radio_channels, radio_programs = fetch_radio_programs(radio_driver, datetime.datetime.now().date(), retries=3)
                     all_new_channels.extend(radio_channels)
                     all_new_programs.extend(radio_programs)
                 else:
