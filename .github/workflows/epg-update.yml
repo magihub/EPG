@@ -31,29 +31,15 @@ jobs:
 
       # GitHub Actions 的 ubuntu-latest 已经预装了 Chrome 和 chromedriver
 
-      - name: Cache pip packages
-        uses: actions/cache@v3
-        id: cache-pip
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-v1
-          # restore-keys: ${{ runner.os }}-pip-
-
       - name: Install Python dependencies
-        if: steps.cache-pip.outputs.cache-hit != 'true'
         run: pip install selenium lxml curl_cffi beautifulsoup4 requests
-        
-      - name: List cached packages
-        run: |
-          pip list
-          ls -la ~/.cache/pip
       
       - name: Cache ZeroTier installation
         uses: actions/cache@v3
         id: cache-zerotier
         with:
           path: |
-            /var/lib/zerotier-one
+          #  /var/lib/zerotier-one
             /usr/sbin/zerotier-cli
             /usr/sbin/zerotier-idtool
             /usr/lib/systemd/system/zerotier-one.service
@@ -66,7 +52,7 @@ jobs:
           sudo mkdir -p /var/lib/zerotier-one
           echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
           curl -s https://install.zerotier.com | sudo bash
-          sudo chmod -R 777 /var/lib/zerotier-one          # 修复权限，以便缓存能够读取所有文件
+          # sudo chmod -R 777 /var/lib/zerotier-one          # 修复权限，以便缓存能够读取所有文件
 
       - name: Join ZeroTier network with identity
         run: |
@@ -83,7 +69,7 @@ jobs:
             echo "Waiting for IP... ($i/30)"
             sleep 1
           done          
-          sudo chmod -R 777 /var/lib/zerotier-one          # 修复权限，以便缓存能够读取所有文件
+          # sudo chmod -R 777 /var/lib/zerotier-one          # 修复权限，以便缓存能够读取所有文件
           sudo zerotier-cli listnetworks | awk 'NR==1 {print $1, $2, $6, $7, $9, $10, $11}'
           sudo zerotier-cli listnetworks | awk 'NR==2 {print $1, $2, $6, $7, $9}' | sed -E '
             s/([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2})/\1:**:**:**:**:\6/g
