@@ -25,8 +25,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 TV_MAPPING = {
     "镇江新闻综合": {"id": "镇江1新闻综合", "url": "https://epg.sports8.cc/2118/", "display": "镇江新闻综合"},
     "镇江教育民生": {"id": "镇江2教育民生", "url": "https://epg.sports8.cc/2119/", "display": "镇江教育民生"},
-    "镇江资讯频道": {"id": "镇江3资讯频道", "url": "https://epg.sports8.cc/2120/", "display": "镇江资讯频道"},
-    "镇江影视频道": {"id": "镇江4影视频道", "url": "https://epg.sports8.cc/2121/", "display": "镇江影视频道"},
+    # "镇江资讯频道": {"id": "镇江3资讯频道", "url": "https://epg.sports8.cc/2120/", "display": "镇江资讯频道"},
+    # "镇江影视频道": {"id": "镇江4影视频道", "url": "https://epg.sports8.cc/2121/", "display": "镇江影视频道"},
 }
 
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
