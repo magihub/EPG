@@ -75,8 +75,8 @@ def fetch_tv_epg(channel_info, driver):
                 start_time_raw = li.get_attribute('data-starttime')
                 if not start_time_raw:
                     continue
-                if not start_time_raw.startswith(today_str):
-                    continue
+            #    if not start_time_raw.startswith(today_str):
+            #        continue
                 end_time_raw = li.get_attribute('data-endtime')
                 spans = li.find_elements(By.TAG_NAME, 'span')
                 title = spans[1].get_attribute('textContent').strip() if len(spans) >= 2 else "未知节目"
@@ -91,6 +91,8 @@ def fetch_tv_epg(channel_info, driver):
             if not programs:
                 print("    未能获取到节目单")
                 return None
+
+            print(f"页面中包含的日期: {sorted(all_dates)}")
 
             print(f"    获取到 {len(programs)} 个节目")
             return {
@@ -188,6 +190,12 @@ def fetch_radio_epg_with_token(channel_info, driver):
             programs = []
             epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
             
+            
+            print(f"    返回了 {len(epg_days)} 天的数据")
+            
+            '''
+            # 调试代码，确认 API 返回了 2 天的数据 和 对应的日期
+            
             print(f"API 返回了 {len(epg_days)} 天的数据")
             for idx, day in enumerate(epg_days):
                 # 假设每天的数据中有一个 date 字段，或者从第一个节目的 startTime 提取日期
@@ -195,7 +203,7 @@ def fetch_radio_epg_with_token(channel_info, driver):
                     first_prog = day['data'][0]
                     sample_date = first_prog.get('startTime', '')[:10]
                     print(f"第 {idx+1} 天: {sample_date}")
-                    
+            '''        
             
             if not epg_days:
                 print(f"⚠️ 第 {attempt} 次未找到广播节目列表")
