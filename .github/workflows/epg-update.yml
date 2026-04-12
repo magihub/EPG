@@ -41,11 +41,31 @@ jobs:
       - name: Install Python dependencies
         run: pip install selenium lxml curl_cffi beautifulsoup4 requests
 
-      - name: Join ZeroTier network with identity
+      - name: Cache ZeroTier deb package
+        uses: actions/cache@v3
+        id: cache-deb
+        with:
+          path: zerotier-one_1.16.1_amd64.deb
+          key: ${{ runner.os }}-zerotier-deb-1.16.1
+
+      - name: Download ZeroTier deb package (if not cached)
+        if: steps.cache-deb.outputs.cache-hit != 'true'
+        run: |
+          wget https://download.zerotier.com/debian/noble/pool/main/z/zerotier-one/zerotier-one_1.16.1_amd64.deb
+
+      - name: Setup ZeroTier identity
         run: |
           sudo mkdir -p /var/lib/zerotier-one
           echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
-          curl -s https://install.zerotier.com | sudo bash        
+
+      - name: Install ZeroTier from deb
+        run: sudo dpkg -i zerotier-one_1.16.1_amd64.deb
+        
+      - name: Join ZeroTier network
+        run: |
+          # sudo mkdir -p /var/lib/zerotier-one
+          # echo "${{ secrets.ZEROTIER_IDENTITY_SECRET }}" | sudo tee /var/lib/zerotier-one/identity.secret > /dev/null
+          # curl -s https://install.zerotier.com | sudo bash        
           # sudo systemctl start zerotier-one          
           sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
           start_time=$(date +%s)
