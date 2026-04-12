@@ -30,8 +30,18 @@ on:
         type: boolean
         
 jobs:
+  check-permission:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if triggered by authorized user
+        if: github.actor != 'magihub'
+        run: |
+          # echo "无权触发此工作流"
+          exit 1
+
   update-epg:
     runs-on: ubuntu-latest
+    needs: check-permission    
     if: github.event.inputs.skip_update != 'true'
 
     steps:
@@ -191,7 +201,7 @@ jobs:
           
   sync-to-gitee:
     runs-on: ubuntu-latest
-    needs: update-epg
+    needs: [check-permission, update-epg]
     if: always() && github.event.inputs.skip_gitee_sync != 'true'   # 即使 update-epg 失败也运行
     
     steps:
