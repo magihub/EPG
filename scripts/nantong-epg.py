@@ -126,6 +126,9 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
             end_time_str = item.get('endTime')
             if not start_time_str or not end_time_str:
                 continue
+                
+            all_dates.add(start_time_str[:10])     # 收集日期
+                
             try:
                 dt = datetime.datetime.strptime(start_time_str.strip(), "%Y-%m-%d %H:%M:%S")
                 start_formatted = dt.strftime("%Y%m%d%H%M%S +0800")
