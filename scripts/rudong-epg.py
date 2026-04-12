@@ -35,7 +35,7 @@ CHANNELS = [
         "api_url": "https://live.cm.jstv.com/api/Channel/ChannelInfoAudio",
         "params": {
             "channelId": 85,
-            "days": 1,          # 7为一周，0为页面节目单最后一天（也就是明天），1为包含明天和今天
+            "days": 2,          # 7为一周，0为页面节目单最后一天（也就是明天），1为包含明天和今天
             "globalId": "1244448"
         }
     }
@@ -104,8 +104,11 @@ def fetch_tv_epg(channel_info, driver):
                 return None
 
             all_dates = sorted(all_dates)
-            print(f"    页面中共包含 {len(all_dates)} 天的数据: {all_dates}")
-            print(f"    实际抓取到的日期: {sorted(set([p['start_time'][:8] for p in programs]))}")
+            # print(f"    页面中共包含 {len(all_dates)} 天的数据: {all_dates}")
+            # print(f"    抓取到的日期: {sorted(set([p['start_time'][:8] for p in programs]))}")
+            captured_dates = sorted(set([p['start_time'][:8] for p in programs]))
+            captured_dates_fmt = [f"{d[:4]}-{d[4:6]}-{d[6:]}" for d in captured_dates]
+            print(f"    抓取到 {len(captured_dates)} 天数据: {captured_dates_fmt}")            
 
             print(f"    获取到 {len(programs)} 个节目")
             return {
@@ -209,22 +212,8 @@ def fetch_radio_epg_with_token(channel_info, driver):
                     first_prog = day['data'][0]
                     sample_date = first_prog.get('startTime', '')[:10]
                     dates.append(sample_date)
-            print(f"API 返回了 {len(epg_days)} 天的数据: {dates}")            
-
-                    
-            '''
-            # 调试代码，确认 API 返回了 2 天的数据 和 对应的日期
-            
-            print(f"API 返回了 {len(epg_days)} 天的数据")
-           
-            for idx, day in enumerate(epg_days):
-                # 假设每天的数据中有一个 date 字段，或者从第一个节目的 startTime 提取日期
-                if day.get('data') and len(day['data']) > 0:
-                    first_prog = day['data'][0]
-                    sample_date = first_prog.get('startTime', '')[:10]
-                    print(f"第 {idx+1} 天: {sample_date}")
-            '''        
-            
+            print(f"    抓取到 {len(epg_days)} 天的数据: {dates}")            
+               
             if not epg_days:
                 print(f"⚠️ 第 {attempt} 次未找到广播节目列表")
                 if attempt < max_attempts:
