@@ -139,6 +139,7 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
             }
             if program['title'] != '未知节目':
                 programs.append(program)
+        print(f"    节目日期范围: {sorted(all_dates)}")        
         print(f"    获取到 {len(programs)} 个节目")
     else:
         print(f"    未获取到节目数据")
