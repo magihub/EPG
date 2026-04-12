@@ -9,7 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, WebDriverException
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 from curl_cffi import requests
@@ -71,12 +71,19 @@ def fetch_tv_epg(channel_info, driver):
             # 当天版本（只抓取今天）
             today_str = datetime.datetime.now().strftime("%Y-%m-%d")
             programs = []
+            
+            all_dates = set() 
+            
             for li in li_elements:
                 start_time_raw = li.get_attribute('data-starttime')
                 if not start_time_raw:
                     continue
+                    
+                all_dates.add(start_time_raw[:10])   # 收集日期  
+                
             #    if not start_time_raw.startswith(today_str):
             #        continue
+            
                 end_time_raw = li.get_attribute('data-endtime')
                 spans = li.find_elements(By.TAG_NAME, 'span')
                 title = spans[1].get_attribute('textContent').strip() if len(spans) >= 2 else "未知节目"
