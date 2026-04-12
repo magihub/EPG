@@ -72,7 +72,7 @@ def sort_channels(channel_id):
     else:
         freq = 0  # 电视频道设为 0
         is_radio = 0  # 电视        
-    print(f"频道: {channel_id}, 频率: {freq}")  # 调试        
+    print(f"城市: {city}, is_radio: {is_radio}, freq: {freq}, ID: {channel_id}")  # 调试        
     # 返回 (城市, 类型, 频率, ID) 元组
     return (city, is_radio, freq, channel_id)
 
@@ -142,7 +142,7 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # 对频道按 ID 排序
     # all_channels = dict(sorted(all_channels.items()))         # 此方法的排序规则是 FM106.1在FM91.8之前
 
-    all_channels = dict(sorted(all_channels.items(), key=lambda x: sort_channels(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
+    # all_channels = dict(sorted(all_channels.items(), key=lambda x: sort_channels(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
 
     sorted_channels = sorted(all_channels.items(), key=lambda x: sort_channels(x[0])) 
     
@@ -151,7 +151,7 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
 
     for ch_id, disp in sorted_channels[:10]:
         print(f"  {ch_id} -> {disp}")
-    all_channels = dict(sorted_channels)
+    # all_channels = dict(sorted_channels)
     
     # 对频道按显示名称排序（而不是 ID）
     # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
