@@ -36,9 +36,9 @@ MENU_CONFIGS = [
 # ==================== 频道ID映射表（原始ID -> 规范ID和显示名称） ====================
 CHANNEL_MAPPING = {
     # 电视
-    "ff8081818bcbe7c2018bcc9bf4f20015": {"id": "南通新闻综合", "display": "南通新闻综合"},
-    "ff8081818bcbe7c2018bcc9cb7390018": {"id": "南通社教频道", "display": "南通社会教育"},
-    "ff8081818bcbe7c2018bcc9d12f0001b": {"id": "南通公共频道", "display": "南通公共崇川"},
+    "ff8081818bcbe7c2018bcc9bf4f20015": {"id": "南通1新闻综合", "display": "南通新闻综合"},
+    "ff8081818bcbe7c2018bcc9cb7390018": {"id": "南通2社教频道", "display": "南通社会教育"},
+    "ff8081818bcbe7c2018bcc9d12f0001b": {"id": "南通3公共频道", "display": "南通公共崇川"},
     # 广播
     "ff8081818bcbe7c2018bcc97451e0009": {"id": "南通FM97.0", "display": "南通新闻广播"},
     "ff8081818bcbe7c2018bcc9a0de6000c": {"id": "南通FM92.9", "display": "南通交通广播"},
