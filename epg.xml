@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tv generator-info-name="广播电视 EPG 爬虫工具">
-  <channel id="南通FM106.1">
-    <display-name lang="zh">南通经济广播</display-name>
-  </channel>
-  <channel id="南通FM91.8">
-    <display-name lang="zh">南通音乐广播</display-name>
-  </channel>
-  <channel id="南通FM92.9">
-    <display-name lang="zh">南通交通广播</display-name>
-  </channel>
-  <channel id="南通FM97.0">
-    <display-name lang="zh">南通新闻广播</display-name>
-  </channel>
-  <channel id="南通公共频道">
-    <display-name lang="zh">南通公共崇川</display-name>
+  <channel id="如东新闻综合">
+    <display-name lang="zh">如东新闻综合</display-name>
   </channel>
   <channel id="南通新闻综合">
     <display-name lang="zh">南通新闻综合</display-name>
@@ -21,71 +9,83 @@
   <channel id="南通社教频道">
     <display-name lang="zh">南通社会教育</display-name>
   </channel>
+  <channel id="南通公共频道">
+    <display-name lang="zh">南通公共崇川</display-name>
+  </channel>
+  <channel id="苏州新闻综合">
+    <display-name lang="zh">苏州新闻综合</display-name>
+  </channel>
+  <channel id="苏州社会经济">
+    <display-name lang="zh">苏州社会经济</display-name>
+  </channel>
+  <channel id="苏州文化生活">
+    <display-name lang="zh">苏州文化生活</display-name>
+  </channel>
+  <channel id="苏州电影娱乐">
+    <display-name lang="zh">苏州电影娱乐</display-name>
+  </channel>
+  <channel id="苏州生活资讯">
+    <display-name lang="zh">苏州生活资讯</display-name>
+  </channel>
+  <channel id="镇江新闻综合">
+    <display-name lang="zh">镇江新闻综合</display-name>
+  </channel>
+  <channel id="镇江教育民生">
+    <display-name lang="zh">镇江教育民生</display-name>
+  </channel>
+  <channel id="镇江资讯频道">
+    <display-name lang="zh">镇江资讯频道</display-name>
+  </channel>
+  <channel id="镇江影视频道">
+    <display-name lang="zh">镇江影视频道</display-name>
+  </channel>
+  <channel id="镇江FM88.8">
+    <display-name lang="zh">镇江交通广播</display-name>
+  </channel>
   <channel id="如东FM89.6">
     <display-name lang="zh">如东综合广播</display-name>
   </channel>
-  <channel id="如东新闻综合">
-    <display-name lang="zh">如东新闻综合</display-name>
+  <channel id="苏州FM91.1">
+    <display-name lang="zh">苏州新闻广播</display-name>
+  </channel>
+  <channel id="南通FM91.8">
+    <display-name lang="zh">南通音乐广播</display-name>
+  </channel>
+  <channel id="南通FM92.9">
+    <display-name lang="zh">南通交通广播</display-name>
+  </channel>
+  <channel id="苏州FM95.7">
+    <display-name lang="zh">苏州儿童广播</display-name>
+  </channel>
+  <channel id="镇江FM96.3">
+    <display-name lang="zh">镇江文艺广播</display-name>
+  </channel>
+  <channel id="苏州FM96.5">
+    <display-name lang="zh">苏州生活广播</display-name>
+  </channel>
+  <channel id="南通FM97.0">
+    <display-name lang="zh">南通新闻广播</display-name>
+  </channel>
+  <channel id="苏州FM102.8">
+    <display-name lang="zh">苏州音乐广播</display-name>
+  </channel>
+  <channel id="镇江FM104">
+    <display-name lang="zh">镇江综合广播</display-name>
+  </channel>
+  <channel id="苏州FM104.8">
+    <display-name lang="zh">苏州交通广播</display-name>
+  </channel>
+  <channel id="南通FM106.1">
+    <display-name lang="zh">南通经济广播</display-name>
+  </channel>
+  <channel id="苏州AM846">
+    <display-name lang="zh">苏州戏曲广播</display-name>
   </channel>
   <channel id="苏州AM1080">
     <display-name lang="zh">苏州综合广播</display-name>
   </channel>
   <channel id="苏州AM1521">
     <display-name lang="zh">苏州老年广播</display-name>
-  </channel>
-  <channel id="苏州AM846">
-    <display-name lang="zh">苏州戏曲广播</display-name>
-  </channel>
-  <channel id="苏州FM102.8">
-    <display-name lang="zh">苏州音乐广播</display-name>
-  </channel>
-  <channel id="苏州FM104.8">
-    <display-name lang="zh">苏州交通广播</display-name>
-  </channel>
-  <channel id="苏州FM91.1">
-    <display-name lang="zh">苏州新闻广播</display-name>
-  </channel>
-  <channel id="苏州FM95.7">
-    <display-name lang="zh">苏州儿童广播</display-name>
-  </channel>
-  <channel id="苏州FM96.5">
-    <display-name lang="zh">苏州生活广播</display-name>
-  </channel>
-  <channel id="苏州文化生活">
-    <display-name lang="zh">苏州文化生活</display-name>
-  </channel>
-  <channel id="苏州新闻综合">
-    <display-name lang="zh">苏州新闻综合</display-name>
-  </channel>
-  <channel id="苏州生活资讯">
-    <display-name lang="zh">苏州生活资讯</display-name>
-  </channel>
-  <channel id="苏州电影娱乐">
-    <display-name lang="zh">苏州电影娱乐</display-name>
-  </channel>
-  <channel id="苏州社会经济">
-    <display-name lang="zh">苏州社会经济</display-name>
-  </channel>
-  <channel id="镇江FM104">
-    <display-name lang="zh">镇江综合广播</display-name>
-  </channel>
-  <channel id="镇江FM88.8">
-    <display-name lang="zh">镇江交通广播</display-name>
-  </channel>
-  <channel id="镇江FM96.3">
-    <display-name lang="zh">镇江文艺广播</display-name>
-  </channel>
-  <channel id="镇江影视频道">
-    <display-name lang="zh">镇江影视频道</display-name>
-  </channel>
-  <channel id="镇江教育民生">
-    <display-name lang="zh">镇江教育民生</display-name>
-  </channel>
-  <channel id="镇江新闻综合">
-    <display-name lang="zh">镇江新闻综合</display-name>
-  </channel>
-  <channel id="镇江资讯频道">
-    <display-name lang="zh">镇江资讯频道</display-name>
   </channel>
   <programme start="20260412053000 +0800" stop="20260412060000 +0800" channel="南通FM106.1">
     <title lang="zh">金色年华</title>
