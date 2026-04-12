@@ -35,7 +35,8 @@ CHANNELS = [
         "api_url": "https://live.cm.jstv.com/api/Channel/ChannelInfoAudio",
         "params": {
             "channelId": 85,
-            "days": 10000,          # 0为页面节目单最后一天（也就是明天），1为包含明天和今天，依此类推
+            "days": 1,      # 0为页面节目单最后一天（也就是明天），1为包含明天和今天，依此类推 
+                            # 【2026-04-12实测设置days为10000时，可抓取到包括2026-04-13在内的从2023-06-10开始的1039天数据！】
             "globalId": "1244448"
         }
     }
