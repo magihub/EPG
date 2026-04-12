@@ -35,7 +35,7 @@ CHANNELS = [
         "api_url": "https://live.cm.jstv.com/api/Channel/ChannelInfoAudio",
         "params": {
             "channelId": 85,
-            "days": 2,          # 7为一周，0为页面节目单最后一天（也就是明天），1为包含明天和今天
+            "days": 7,          # 7为一周，0为页面节目单最后一天（也就是明天），1为包含明天和今天
             "globalId": "1244448"
         }
     }
