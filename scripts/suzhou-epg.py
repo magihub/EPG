@@ -89,7 +89,7 @@ def parse_table(table, base_date):
     programs.sort(key=lambda x: x[0])
     return programs
 
-def extract_tv_programs(html, channel_index, week_dates):
+def extract_tv_programs_week(html, channel_index, week_dates):
     soup = BeautifulSoup(html, 'html.parser')
     tablist_id = f"tablist{channel_index+1}"
     tablist_div = soup.find('div', id=tablist_id)
@@ -183,7 +183,7 @@ def extract_tv_programs_today(html, channel_index):
     # 补充结束时间
     return add_end_times(programs)
     
-# -------------------- 广播抓取（ID加苏州前缀）--------------------
+# -------------------- 广播抓取 --------------------
 def refine_title(title, weekday):
     title = title.strip()
     if '、' in title and ('（周六周日）' in title or '（周末）' in title):
@@ -275,22 +275,24 @@ def main():
     week_dates = get_week_dates()
     tv_channels = []
     tv_programs = []
-    for idx, ch_name in enumerate(TV_MAPPING):
+    for idx, (ch_name, cfg) in enumerate(TV_MAPPING.items()): 
+        ch_id = cfg["id"]
+        display_name = cfg["display"]
         print(f"  正在解析 {ch_name} ...")
         
         # 获取一周节目单
-        # programs = extract_tv_programs(tv_html, idx, week_dates)
+        # programs = extract_tv_programs_week(tv_html, idx, week_dates)
         
         # 获取当天节目单
         programs = extract_tv_programs_today(tv_html, idx)
                 
         if programs:
-            tv_channels.append((ch_name, ch_name))
+            tv_channels.append((ch_id, display_name))
             for prog in programs:
                 tv_programs.append({
                     'start': prog['start_dt'].strftime("%Y%m%d%H%M%S +0800"),
                     'stop': prog['end_dt'].strftime("%Y%m%d%H%M%S +0800"),
-                    'channel': ch_name,
+                    'channel': ch_id,
                     'title': prog['title']
                 })
             print(f"    获取到 {len(programs)} 个节目")
