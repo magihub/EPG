@@ -68,11 +68,13 @@ def sort_channels(channel_id):
     freq_match = re.search(r'(\d+(?:\.\d+)?)', channel_id)
     if freq_match:
         freq = float(freq_match.group(1))  # 广播频道正数
+        is_radio = 1  # 广播        
     else:
-        freq = -1  # 电视频道设为 -1
+        freq = 0  # 电视频道设为 0
+        is_radio = 0  # 电视        
     print(f"频道: {channel_id}, 频率: {freq}")  # 调试        
-    # 返回 (城市, 频率, ID) 元组
-    return (city, freq, channel_id)
+    # 返回 (城市, 类型, 频率, ID) 元组
+    return (city, is_radio, freq, channel_id)
 
 def merge_and_write(output_file, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
     """
@@ -141,14 +143,15 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # all_channels = dict(sorted(all_channels.items()))         # 此方法的排序规则是 FM106.1在FM91.8之前
 
     all_channels = dict(sorted(all_channels.items(), key=lambda x: sort_channels(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
+
+    sorted_channels = sorted(all_channels.items(), key=lambda x: sort_channels(x[0])) 
     
     # 排序测试打印
-    sorted_items = sorted(all_channels.items(), key=lambda x: sort_channels(x[0]))    
     print("排序后的前10个频道:")
 
-    for ch_id, disp in sorted_items[:10]:
+    for ch_id, disp in sorted_channels[:10]:
         print(f"  {ch_id} -> {disp}")
-    all_channels = dict(sorted_items)
+    all_channels = dict(sorted_channels)
     
     # 对频道按显示名称排序（而不是 ID）
     # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
@@ -162,10 +165,9 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     tv = ET.Element("tv")
     tv.set("generator-info-name", final_gen_name)
     
-    # for ch_id, disp in all_channels.items():         # 此方法的排序规则是 FM106.1在FM91.8之前
-    
-    # 生成 XML 时直接遍历排序后的列表
-    for ch_id, disp in sorted_channels:
+    # 排序频道
+    for ch_id, disp in sorted_channels:                 # 生成 XML 时直接遍历排序后的列表
+    # for ch_id, disp in all_channels.items():         # 此方法的排序规则是 FM106.1在FM91.8之前        
         channel = ET.SubElement(tv, "channel", id=ch_id)
         dn = ET.SubElement(channel, "display-name", lang="zh")
         dn.text = disp
