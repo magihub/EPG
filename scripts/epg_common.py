@@ -96,6 +96,8 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # 合并节目
     all_programs = other_programs + new_programs
     
+    """     # 去除过滤
+    
     # ========== 新增：过滤过期节目，只保留今天及未来 N 天 ==========
     from datetime import datetime, timedelta
     today = datetime.now().date()
@@ -117,6 +119,8 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
             filtered_programs.append(prog)
     all_programs = filtered_programs  
     
+    """    
+    
     # ========== 新增：排序，确保输出顺序稳定 ==========
     # 对频道按 ID 排序
     all_channels = dict(sorted(all_channels.items()))
@@ -126,6 +130,7 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # 对节目按 (频道, 开始时间) 排序
     all_programs.sort(key=lambda x: (x['channel'], x['start']))
     # ==============================================
+
     
     # 生成 XML 树
     tv = ET.Element("tv")
