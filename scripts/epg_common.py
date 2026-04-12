@@ -70,6 +70,7 @@ def sort_channels(channel_id):
         freq = float(freq_match.group(1))  # 广播频道正数
     else:
         freq = -1  # 电视频道设为 -1
+    print(f"频道: {channel_id}, 频率: {freq}")  # 调试        
     # 返回 (城市, 频率, ID) 元组
     return (city, freq, channel_id)
 
@@ -144,6 +145,7 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # 排序测试打印
     sorted_items = sorted(all_channels.items(), key=lambda x: sort_channels(x[0]))    
     print("排序后的前10个频道:")
+
     for ch_id, disp in sorted_items[:10]:
         print(f"  {ch_id} -> {disp}")
     all_channels = dict(sorted_items)
@@ -160,7 +162,10 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     tv = ET.Element("tv")
     tv.set("generator-info-name", final_gen_name)
     
-    for ch_id, disp in all_channels.items():
+    # for ch_id, disp in all_channels.items():         # 此方法的排序规则是 FM106.1在FM91.8之前
+    
+    # 生成 XML 时直接遍历排序后的列表
+    for ch_id, disp in sorted_channels:
         channel = ET.SubElement(tv, "channel", id=ch_id)
         dn = ET.SubElement(channel, "display-name", lang="zh")
         dn.text = disp
