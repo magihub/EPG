@@ -96,6 +96,27 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # 合并节目
     all_programs = other_programs + new_programs
     
+    # ========== 新增：过滤过期节目，只保留今天及未来 N 天 ==========
+    from datetime import datetime, timedelta
+    today = datetime.now().date()
+    future_days = 0  # 保留未来 N 天
+    future_limit = today + timedelta(days=future_days)
+    
+    filtered_programs = []
+    for prog in all_programs:
+        try:
+            # 从 start 字段提取日期（格式 "20260412060000 +0800"）
+            date_str = prog['start'][:8]
+            prog_date = datetime.strptime(date_str, "%Y%m%d").date()
+            if today <= prog_date <= future_limit:
+                filtered_programs.append(prog)
+            else:
+                print(f"丢弃过期节目: {prog['channel']} {prog['start']}")
+        except:
+            # 如果解析失败，保留（容错）
+            filtered_programs.append(prog)
+    all_programs = filtered_programs  
+    
     # ========== 新增：排序，确保输出顺序稳定 ==========
     # 对频道按 ID 排序
     all_channels = dict(sorted(all_channels.items()))
