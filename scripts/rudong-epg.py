@@ -22,7 +22,7 @@ from epg_common import merge_and_write   # 导入公共合并函数
 # ==================== 配置区域 ====================
 CHANNELS = [
     {
-        "id": "如东新闻综合",
+        "id": "如东1新闻综合",
         "name": "如东新闻综合",
         "type": "tv",
         "url": "https://www.rdxmt.com/pc.html?topid=54172"
