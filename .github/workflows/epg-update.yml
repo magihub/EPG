@@ -224,10 +224,10 @@ jobs:
           git remote add gitee git@gitee.com:magihub/epg.git
           git fetch gitee main
 
-      - name: Check if epg.xml changed
+      - name: Check if epg.xml changed compared to Gitee
         id: check_changes
         run: |
-          if git diff --quiet HEAD~1 epg.xml; then
+          if git diff --quiet gitee/main -- epg.xml; then
             echo "epg.xml 无变化，跳过同步"
             echo "changed=false" >> $GITHUB_OUTPUT
           else
