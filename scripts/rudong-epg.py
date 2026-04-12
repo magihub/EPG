@@ -212,7 +212,7 @@ def fetch_radio_epg_with_token(channel_info, driver):
                     first_prog = day['data'][0]
                     sample_date = first_prog.get('startTime', '')[:10]
                     dates.append(sample_date)
-            print(f"    抓取到 {len(epg_days)} 天的数据: {', '.join(dates)}"")            
+            print(f"    抓取到 {len(epg_days)} 天的数据: {', '.join(dates)}")            
                
             if not epg_days:
                 print(f"⚠️ 第 {attempt} 次未找到广播节目列表")
