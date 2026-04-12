@@ -197,7 +197,7 @@ jobs:
         
           if [ "$changed" = "true" ]; then
             gzip -c epg.xml > epg.xml.gz
-            git add epg.xml epg.xml.gz
+            git add -f epg.xml epg.xml.gz
             # export TZ='Asia/Shanghai'
             git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
             git push
@@ -254,12 +254,8 @@ jobs:
             git checkout -B main
           fi          
           git add epg.xml epg.xml.gz
-          if git diff --cached --quiet; then                              # 只有有变化时才提交
-            echo "No changes to commit"
-          else
-            # export TZ='Asia/Shanghai'          
-            git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
-            git push gitee main
-          fi          
+          # export TZ='Asia/Shanghai'          
+          git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push gitee main          
         # continue-on-error: true          
    
