@@ -54,7 +54,7 @@ def format_epg_time(time_string):
 
 # -------------------- 电视抓取（复用 driver）--------------------
 def fetch_tv_epg(channel_info, driver):
-    max_attempts = 3
+    max_attempts = 5
     wait_seconds = 5
 
     print("\n抓取如东电视节目单...")
@@ -159,7 +159,7 @@ def extract_token_from_page(driver, url):
     return token
 
 def fetch_radio_epg_with_token(channel_info, driver):
-    max_attempts = 3
+    max_attempts = 5
     wait_seconds = 5
 
     print("\n抓取如东广播节目单...")
