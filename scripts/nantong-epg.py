@@ -118,6 +118,9 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
     data = fetch_api("getBroadcastList", params)
     programs = []
     if data and isinstance(data, list):
+        
+        all_dates = set() 
+        
         for item in data:
             start_time_str = item.get('startTime')
             end_time_str = item.get('endTime')
@@ -139,7 +142,9 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
             }
             if program['title'] != '未知节目':
                 programs.append(program)
-        print(f"    节目日期范围: {sorted(all_dates)}")        
+                
+        print(f"    节目日期范围: {sorted(all_dates)}")   
+        
         print(f"    获取到 {len(programs)} 个节目")
     else:
         print(f"    未获取到节目数据")
