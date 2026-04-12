@@ -185,7 +185,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           
           if ! git ls-files --error-unmatch epg.xml >/dev/null 2>&1; then
-            echo "epg.xml 不存在，将添加并提交"
+            echo "epg.xml 不在仓库，将添加并提交"
             changed=true
           elif ! git diff --quiet epg.xml; then
             echo "epg.xml 已变化，开始压缩并提交"
@@ -197,10 +197,11 @@ jobs:
         
           if [ "$changed" = "true" ]; then
             gzip -c epg.xml > epg.xml.gz
-            git add -f epg.xml epg.xml.gz
+            git add --force epg.xml epg.xml.gz
             # export TZ='Asia/Shanghai'
             git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
-            git push
+            # git pull --rebase origin main || true   # 先拉取远程更改，避免冲突
+            git push --force origin main
           fi
         continue-on-error: true          
         
@@ -226,7 +227,6 @@ jobs:
             echo "epg.xml 已变化，开始同步到 Gitee"
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-          echo "changed=${{ steps.check_changes.outputs.changed }}"
  
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
         if: steps.check_changes.outputs.changed == 'true'
@@ -250,10 +250,10 @@ jobs:
             git checkout -B main
           fi
           
-          ls -la          
+          # ls -la                                                          # 列出从gitee上拉取过来的文件列表
           cp /home/runner/work/EPG/EPG/epg.xml .
           cp /home/runner/work/EPG/EPG/epg.xml.gz .
-          ls -la
+          # ls -la                                                          # 列出替换要推送过去文件的文件列表
           git add epg.xml epg.xml.gz
           git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
           git push gitee main
