@@ -60,16 +60,29 @@ def add_end_times(programs):
         })
     return result
 
+# 先提取所有城市名（从广播频道）
+cities = set()
+for ch_id in all_channels.keys():
+    if 'FM' in ch_id or 'AM' in ch_id:
+        city = re.match(r'^([\u4e00-\u9fa5]+)', ch_id).group(1)
+        cities.add(city)
+
+# 然后定义排序函数
 def sort_channels(channel_id):
-    # 判断是否为广播（包含 FM 或 AM）
+    # 确定城市
+    city = None
+    for c in cities:
+        if channel_id.startswith(c):
+            city = c
+            break
+    if not city:
+        city = ''  # fallback
+    # 判断类型
     if 'FM' in channel_id or 'AM' in channel_id:
-        # 广播：类型为 1
-        freq_match = re.search(r'(\d+(?:\.\d+)?)', channel_id)
-        freq = float(freq_match.group(1)) if freq_match else 0
-        return (1, freq, channel_id)   # 广播类型为 1
+        freq = float(re.search(r'(\d+(?:\.\d+)?)', channel_id).group(1))
+        return (city, 1, freq, channel_id)
     else:
-        # 电视：类型为 0
-        return (0, 0, channel_id)      # 电视类型为 0
+        return (city, 0, 0, channel_id)
 
 def merge_and_write(output_file, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
     """
@@ -142,9 +155,9 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     sorted_channels = sorted(all_channels.items(), key=lambda x: sort_channels(x[0])) 
     
     # 排序测试打印
-    print("排序后的前10个频道:")
+    print("排序后的前20个频道:")
 
-    for ch_id, disp in sorted_channels[:10]:
+    for ch_id, disp in sorted_channels[:20]:
         print(f"  {ch_id} -> {disp}")
     # all_channels = dict(sorted_channels)
     
