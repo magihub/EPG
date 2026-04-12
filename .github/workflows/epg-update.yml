@@ -242,14 +242,15 @@ jobs:
           mkdir /tmp/gitee_push
           cp epg.xml epg.xml.gz /tmp/gitee_push/
           cd /tmp/gitee_push
-          git config --global init.defaultBranch main
           git init
           git config user.name 'github-actions'
-          git config user.email 'github-actions@github.com'
+          git config user.email 'github-actions@github.com'          
+          git remote add gitee git@gitee.com:magihub/epg.git
+          git fetch gitee
+          git checkout -b main --track gitee/main || git checkout -b main
           git add epg.xml epg.xml.gz
           export TZ='Asia/Shanghai'
           git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
-          git remote add gitee git@gitee.com:magihub/epg.git
-          git push --force gitee main
+          git push gitee main
         continue-on-error: true          
    
