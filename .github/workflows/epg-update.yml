@@ -254,14 +254,10 @@ jobs:
           git config user.email 'github-actions@github.com'          
           git remote add gitee git@gitee.com:magihub/epg.git
           git fetch gitee
-          # 尝试切换到远程 main 分支，如果失败则创建新分支
-          git checkout -b main gitee/main || git checkout -b main
-          # 替换文件
-          cp -f /tmp/gitee_push/../epg.xml .
-          cp -f /tmp/gitee_push/../epg.xml.gz .          
+          # git checkout -b main gitee/main || git checkout -b main         # 尝试切换到远程 main 分支，如果失败则创建新分支
+          git checkout -B main gitee/main || git checkout -B main         # 强制使用远程 main 分支（覆盖本地）
           git add epg.xml epg.xml.gz
-          # 只有有变化时才提交
-          if git diff --cached --quiet; then
+          if git diff --cached --quiet; then                              # 只有有变化时才提交
             echo "No changes to commit"
           else
             # export TZ='Asia/Shanghai'          
