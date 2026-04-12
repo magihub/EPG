@@ -99,7 +99,6 @@ jobs:
       # 如东脚本（无需代理）
       - name: Run Rudong EPG
         run: |
-          # echo "=== 运行 rudong-epg.py ==="
           python scripts/rudong-epg.py
         continue-on-error: true
         
@@ -141,7 +140,6 @@ jobs:
       # 苏州脚本（无需代理）        
       - name: Run Suzhou EPG
         run: |      
-          # echo "=== 运行 suzhou-epg.py ==="
           python scripts/suzhou-epg.py
         continue-on-error: true
 
