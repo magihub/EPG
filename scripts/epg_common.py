@@ -99,7 +99,7 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # ========== 新增：过滤过期节目，只保留今天及未来 N 天 ==========
     from datetime import datetime, timedelta
     today = datetime.now().date()
-    future_days = 0  # 保留未来 N 天
+    future_days = 1  # 保留未来 N 天
     future_limit = today + timedelta(days=future_days)
     
     filtered_programs = []
