@@ -384,6 +384,63 @@
   <programme start="20260412225000 +0800" stop="20260412235959 +0800" channel="南通公共频道">
     <title lang="zh">深夜影院</title>
   </programme>
+  <programme start="20260412063000 +0800" stop="20260412070000 +0800" channel="南通新闻综合">
+    <title lang="zh">人文纪录</title>
+  </programme>
+  <programme start="20260412070000 +0800" stop="20260412073000 +0800" channel="南通新闻综合">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260412073000 +0800" stop="20260412081000 +0800" channel="南通新闻综合">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260412081000 +0800" stop="20260412101000 +0800" channel="南通新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260412101000 +0800" stop="20260412112000 +0800" channel="南通新闻综合">
+    <title lang="zh">家在崇川</title>
+  </programme>
+  <programme start="20260412112000 +0800" stop="20260412115900 +0800" channel="南通新闻综合">
+    <title lang="zh">纪录片</title>
+  </programme>
+  <programme start="20260412115900 +0800" stop="20260412124500 +0800" channel="南通新闻综合">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260412124500 +0800" stop="20260412131500 +0800" channel="南通新闻综合">
+    <title lang="zh">家在崇川</title>
+  </programme>
+  <programme start="20260412131500 +0800" stop="20260412133000 +0800" channel="南通新闻综合">
+    <title lang="zh">新华纵横</title>
+  </programme>
+  <programme start="20260412133000 +0800" stop="20260412174000 +0800" channel="南通新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260412174000 +0800" stop="20260412175500 +0800" channel="南通新闻综合">
+    <title lang="zh">新华纵横</title>
+  </programme>
+  <programme start="20260412175500 +0800" stop="20260412182900 +0800" channel="南通新闻综合">
+    <title lang="zh">大家有约</title>
+  </programme>
+  <programme start="20260412182900 +0800" stop="20260412190000 +0800" channel="南通新闻综合">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260412190000 +0800" stop="20260412193100 +0800" channel="南通新闻综合">
+    <title lang="zh">转播中央台新闻联播</title>
+  </programme>
+  <programme start="20260412193100 +0800" stop="20260412200800 +0800" channel="南通新闻综合">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260412200800 +0800" stop="20260412214700 +0800" channel="南通新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260412214700 +0800" stop="20260412221500 +0800" channel="南通新闻综合">
+    <title lang="zh">大家有约</title>
+  </programme>
+  <programme start="20260412221500 +0800" stop="20260412225000 +0800" channel="南通新闻综合">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260412225000 +0800" stop="20260412235959 +0800" channel="南通新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
   <programme start="20260412063000 +0800" stop="20260412070000 +0800" channel="南通社教频道">
     <title lang="zh">口述中国</title>
   </programme>
