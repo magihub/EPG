@@ -18,16 +18,16 @@ on:
     - cron: '0 07 * * *'        # UTC时间：7点，北京时间：当天下午15点
   workflow_dispatch:
     inputs:
-      skip_update:
-        description: 'Skip EPG update'
-        required: false
-        default: 'false'
-        type: boolean
+    #  skip_update:
+    #    description: 'Skip EPG update'
+    #    required: false
+    #    default: 'false'
+    #    type: boolean
         
 jobs:
   update-epg:
     runs-on: ubuntu-latest
-    if: github.event.inputs.skip_update != 'true'
+    # if: github.event.inputs.skip_update != 'true'
     env:
       TZ: Asia/Shanghai
       
