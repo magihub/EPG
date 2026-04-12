@@ -60,6 +60,21 @@ def add_end_times(programs):
         })
     return result
 
+def sort_channels(channel_id):
+    # 提取城市名（连续汉字）
+    city_match = re.match(r'^([\u4e00-\u9fa5]+)', channel_id)
+    city = city_match.group(1) if city_match else ''
+    # 提取频率数字（如果有）
+    freq_match = re.search(r'(\d+(?:\.\d+)?)', channel_id)
+    if freq_match:
+        freq = float(freq_match.group(1))
+        is_radio = 1  # 广播频道标记为 1
+    else:
+        freq = 0
+        is_radio = 0  # 电视频道标记为 0
+    # 返回 (城市, 类型, 频率, ID) 元组
+    return (city, is_radio, freq, channel_id)
+
 def merge_and_write(output_file, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
     """
     合并现有 epg.xml 与新数据，写入文件（带缩进，无多余空行）
@@ -125,12 +140,8 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # ========== 新增：排序，确保输出顺序稳定 ==========
     # 对频道按 ID 排序
     # all_channels = dict(sorted(all_channels.items()))         # 此方法的排序规则是 FM106.1在FM91.8之前
-    
-    def extract_frequency(ch_id):
-        match = re.search(r'(\d+(?:\.\d+)?)', ch_id)
-        return float(match.group(1)) if match else 0
 
-    all_channels = dict(sorted(all_channels.items(), key=lambda x: extract_frequency(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
+    all_channels = dict(sorted(all_channels.items(), key=lambda x: sort_channels(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
     
     # 对频道按显示名称排序（而不是 ID）
     # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
