@@ -19,25 +19,25 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 # 电视配置
 TV_URL = "https://www.csztv.cn/dspd/jmsjb/index.shtml"
-TV_CHANNELS = [
-    "苏州新闻综合",
-    "苏州社会经济",
-    "苏州文化生活",
-    "苏州电影娱乐",
-    "苏州生活资讯"
-]
+TV_MAPPING = {
+    "苏州新闻综合": {"id": "苏州1新闻综合", "display": "苏州新闻综合"},
+    "苏州社会经济": {"id": "苏州2社会经济", "display": "苏州社会经济"},
+    "苏州文化生活": {"id": "苏州3文化生活", "display": "苏州文化生活"},
+    "苏州电影娱乐": {"id": "苏州4电影娱乐", "display": "苏州电影娱乐"},
+    "苏州生活资讯": {"id": "苏州5生活资讯", "display": "苏州生活资讯"},
+}
 
 # 广播配置（原始频率 -> 显示名称）
 RADIO_URL = "https://www.csztv.cn/gbpl/jmsjb/index.shtml"
-RADIO_DISPLAY_RAW = {
-    'FM91.1':  '苏州新闻广播',
-    'AM1080':  '苏州综合广播',
-    'FM96.5':  '苏州生活广播',
-    'AM1521':  '苏州老年广播',
-    'FM104.8': '苏州交通广播',
-    'FM102.8': '苏州音乐广播',
-    'FM95.7':  '苏州儿童广播',
-    'AM846':   '苏州戏曲广播'
+RADIO_MAPPING = {
+    "FM91.1":  {"id": "苏州FM91.1", "display": "苏州新闻广播"},
+    "AM1080":  {"id": "苏州AM1080", "display": "苏州综合广播"},
+    "FM96.5":  {"id": "苏州FM96.5", "display": "苏州生活广播"},
+    "AM1521":  {"id": "苏州AM1521", "display": "苏州老年广播"},
+    "FM104.8": {"id": "苏州FM104.8", "display": "苏州交通广播"},
+    "FM102.8": {"id": "苏州FM102.8", "display": "苏州音乐广播"},
+    "FM95.7":  {"id": "苏州FM95.7", "display": "苏州儿童广播"},
+    "AM846":   {"id": "苏州AM846", "display": "苏州戏曲广播"},
 }
 
 def parse_time(time_str, base_date):
@@ -216,7 +216,16 @@ def parse_radio_programs(html):
         if not match:
             continue
         raw_id = match.group(0)               # 如 "FM91.1"
-        ch_id = "苏州" + raw_id                # 加上前缀
+        
+        # 从映射表中获取 id 和 display
+        if raw_id in RADIO_MAPPING:
+            ch_id = RADIO_MAPPING[raw_id]["id"]
+            display_name = RADIO_MAPPING[raw_id]["display"]
+        else:
+            # 兼容未定义的频率
+            ch_id = "苏州" + raw_id
+            display_name = raw_id
+        
         if ch_id not in all_programs:
             channel_order.append(ch_id)
 
@@ -244,9 +253,7 @@ def parse_radio_programs(html):
             end_dt = programs[i+1]['start_dt'] if i+1 < len(programs) else prog['start_dt'] + datetime.timedelta(minutes=30)
             enriched.append({'title': prog['title'], 'start_dt': prog['start_dt'], 'end_dt': end_dt})
         all_programs[ch_id] = enriched
-        raw_id = ch_id[2:]  # 去掉"苏州"前缀
-        display = RADIO_DISPLAY_RAW.get(raw_id, raw_id)
-        print(f"  正在解析 {display} ...")        
+        print(f"  正在解析 {display_name} ...")        
         print(f"    获取到 {len(enriched)} 个节目")
 
     return all_programs, channel_order
@@ -268,7 +275,7 @@ def main():
     week_dates = get_week_dates()
     tv_channels = []
     tv_programs = []
-    for idx, ch_name in enumerate(TV_CHANNELS):
+    for idx, ch_name in enumerate(TV_MAPPING):
         print(f"  正在解析 {ch_name} ...")
         
         # 获取一周节目单
@@ -288,8 +295,7 @@ def main():
                 })
             print(f"    获取到 {len(programs)} 个节目")
 
-    # 抓取广播（ID已加苏州前缀）
-
+    # 抓取广播（使用映射表）
     print("\n抓取苏州广播节目单...")
     radio_html = fetch_page(RADIO_URL)
     radio_epg, radio_order = parse_radio_programs(radio_html)
@@ -297,9 +303,14 @@ def main():
     radio_programs = []
     for ch_id in radio_order:
         if ch_id in radio_epg:
-            # 显示名称：从原始映射中获取（ch_id去掉"苏州"前缀）
-            raw_id = ch_id[2:]   # 去掉"苏州"前缀，如 "苏州FM91.1" -> "FM91.1"
-            display = RADIO_DISPLAY_RAW.get(raw_id, raw_id)
+            # 从映射表中查找显示名称（根据 ch_id 中的频率部分）
+            # 由于 ch_id 已经是 "苏州FM91.1" 格式，提取频率部分
+            raw_id = ch_id[2:] if ch_id.startswith('苏州') else ch_id
+            # 从 RADIO_MAPPING 中获取显示名称
+            if raw_id in RADIO_MAPPING:
+                display = RADIO_MAPPING[raw_id]["display"]
+            else:
+                display = raw_id  # 回退
             radio_channels.append((ch_id, display))
             for prog in radio_epg[ch_id]:
                 radio_programs.append({
