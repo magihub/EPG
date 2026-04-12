@@ -23,10 +23,10 @@ on:
         required: false
         default: 'false'
         type: boolean
-
+        
+jobs:
   update-epg:
     runs-on: ubuntu-latest
-    needs: check-permission    
     if: github.event.inputs.skip_update != 'true'
     env:
       TZ: Asia/Shanghai
@@ -126,7 +126,6 @@ on:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-        continue-on-error: true
         
       - name: Run Nantong EPG via Proxy
         uses: nick-invision/retry@v2
@@ -137,7 +136,6 @@ on:
         env:
           http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"        
-        continue-on-error: true
 
       # 苏州脚本（无需代理）        
       - name: Run Suzhou EPG
@@ -169,7 +167,6 @@ on:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-        continue-on-error: true
         
       - name: Run Zhenjiang EPG via Proxy
         uses: nick-invision/retry@v2
@@ -180,7 +177,6 @@ on:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}            
-        continue-on-error: true
         
       - name: Commit and push changes (only if epg.xml changed)
         run: |
@@ -251,7 +247,12 @@ on:
           git fetch gitee
           rm -f epg.xml epg.xml.gz                                          # 删除可能存在的未跟踪文件
           # git checkout -b main gitee/main || git checkout -b main         # 尝试切换到远程 main 分支，如果失败则创建新分支
-          git checkout -B main gitee/main || git checkout -B main         # 强制使用远程 main 分支（覆盖本地）
+          # git checkout -B main gitee/main || git checkout -B main         # 强制使用远程 main 分支（覆盖本地）
+          if git ls-remote --heads gitee main | grep -q main; then
+            git checkout -B main gitee/main
+          else
+            git checkout -B main
+          fi          
           git add epg.xml epg.xml.gz
           if git diff --cached --quiet; then                              # 只有有变化时才提交
             echo "No changes to commit"
