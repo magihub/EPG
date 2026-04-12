@@ -99,7 +99,7 @@ jobs:
       # 如东脚本（无需代理）
       - name: Run Rudong EPG
         run: |
-          echo "=== 运行 rudong-epg.py ==="
+          # echo "=== 运行 rudong-epg.py ==="
           python scripts/rudong-epg.py
         continue-on-error: true
         
@@ -132,7 +132,8 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 5
-          command: echo "=== 运行 nantong-epg.py ===" && python scripts/nantong-epg.py
+          # command: echo "=== 运行 nantong-epg.py ===" && python scripts/nantong-epg.py
+          command: python scripts/nantong-epg.py
         env:
           http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"        
@@ -140,7 +141,7 @@ jobs:
       # 苏州脚本（无需代理）        
       - name: Run Suzhou EPG
         run: |      
-          echo "=== 运行 suzhou-epg.py ==="
+          # echo "=== 运行 suzhou-epg.py ==="
           python scripts/suzhou-epg.py
         continue-on-error: true
 
@@ -173,7 +174,8 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 5
-          command: echo "=== 运行 zhenjiang-epg.py ===" && python scripts/zhenjiang-epg.py
+          # command: echo "=== 运行 zhenjiang-epg.py ===" && python scripts/zhenjiang-epg.py
+          command: python scripts/zhenjiang-epg.py
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}            
