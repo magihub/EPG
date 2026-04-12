@@ -115,19 +115,23 @@ jobs:
       # 南通脚本（需要代理）
       - name: Test TinyProxy to ntjoy.com
         id: test_ntjoy
-        run: |
-          set +e
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
-            --connect-timeout 10 \
-            https://web.ntjoy.com)
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "代理测试成功 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=true" >> $GITHUB_OUTPUT
-          else
-            echo "代理测试失败 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=false" >> $GITHUB_OUTPUT
-          fi
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: |
+            set +e
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+              -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
+              --connect-timeout 10 \
+              https://web.ntjoy.com)
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "代理测试成功 (HTTP $HTTP_CODE)"
+              echo "proxy_ok=true" >> $GITHUB_OUTPUT
+            else
+              echo "代理测试失败 (HTTP $HTTP_CODE)"
+              echo "proxy_ok=false" >> $GITHUB_OUTPUT
+            fi
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
@@ -154,24 +158,28 @@ jobs:
       # 镇江脚本（电视无需代理、广播需要代理）
       - name: Test TinyProxy to zjmc.tv
         id: test_zjmc
-        run: |
-          set +e
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-            -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
-            --connect-timeout 10 \
-            https://www.zjmc.tv)
-          if [ "$HTTP_CODE" = "200" ]; then
-            echo "代理测试成功 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=true" >> $GITHUB_OUTPUT
-          else
-            echo "代理测试失败 (HTTP $HTTP_CODE)"
-            echo "proxy_ok=false" >> $GITHUB_OUTPUT
-          fi  
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: |
+            set +e
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+              -x http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }} \
+              --connect-timeout 10 \
+              https://www.zjmc.tv)
+            if [ "$HTTP_CODE" = "200" ]; then
+              echo "代理测试成功 (HTTP $HTTP_CODE)"
+              echo "proxy_ok=true" >> $GITHUB_OUTPUT
+            else
+              echo "代理测试失败 (HTTP $HTTP_CODE)"
+              echo "proxy_ok=false" >> $GITHUB_OUTPUT
+            fi
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
-        continue-on-error: true            
-            
+        continue-on-error: true
+        
       - name: Run Zhenjiang EPG via Proxy
         uses: nick-invision/retry@v2
         with:
@@ -254,6 +262,7 @@ jobs:
           git config user.email 'github-actions@github.com'          
           git remote add gitee git@gitee.com:magihub/epg.git
           git fetch gitee
+          rm -f epg.xml epg.xml.gz                                          # 删除可能存在的未跟踪文件
           # git checkout -b main gitee/main || git checkout -b main         # 尝试切换到远程 main 分支，如果失败则创建新分支
           git checkout -B main gitee/main || git checkout -B main         # 强制使用远程 main 分支（覆盖本地）
           git add epg.xml epg.xml.gz
@@ -264,5 +273,5 @@ jobs:
             git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
             git push gitee main
           fi          
-        continue-on-error: true          
+        # continue-on-error: true          
    
