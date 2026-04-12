@@ -187,6 +187,16 @@ def fetch_radio_epg_with_token(channel_info, driver):
             data = response.json()
             programs = []
             epg_days = data.get('data', {}).get('epg', {}).get('epg', [])
+            
+            print(f"API 返回了 {len(epg_days)} 天的数据")
+            for idx, day in enumerate(epg_days):
+                # 假设每天的数据中有一个 date 字段，或者从第一个节目的 startTime 提取日期
+                if day.get('data') and len(day['data']) > 0:
+                    first_prog = day['data'][0]
+                    sample_date = first_prog.get('startTime', '')[:10]
+                    print(f"第 {idx+1} 天: {sample_date}")
+                    
+            
             if not epg_days:
                 print(f"⚠️ 第 {attempt} 次未找到广播节目列表")
                 if attempt < max_attempts:
