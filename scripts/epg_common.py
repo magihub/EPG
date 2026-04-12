@@ -156,11 +156,9 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     sorted_channels = sorted(all_channels.items(), key=lambda x: sort_channels(x[0])) 
     
     # 排序测试打印
-    print("排序后的前20个频道:")
-
-    for ch_id, disp in sorted_channels[:20]:
-        print(f"  {ch_id} -> {disp}")
-    # all_channels = dict(sorted_channels)
+    # print("排序后的前20个频道:")
+    # for ch_id, disp in sorted_channels[:20]:
+    #     print(f"  {ch_id} -> {disp}")
     
     # 对频道按显示名称排序（而不是 ID）
     # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
