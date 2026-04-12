@@ -141,7 +141,9 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
 
     all_channels = dict(sorted(all_channels.items(), key=lambda x: sort_channels(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
     
-    print("排序后的前10个频道:")
+    # 排序测试打印
+    sorted_items = sorted(all_channels.items(), key=lambda x: sort_channels(x[0]))    
+        print("排序后的前10个频道:")
     for ch_id, disp in sorted_items[:10]:
         print(f"  {ch_id} -> {disp}")
     all_channels = dict(sorted_items)
