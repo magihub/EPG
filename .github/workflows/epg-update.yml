@@ -23,21 +23,6 @@ on:
         required: false
         default: 'false'
         type: boolean
-      skip_gitee_sync:
-        description: 'Skip Gitee sync'
-        required: false
-        default: 'false'
-        type: boolean
-        
-jobs:
-  check-permission:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check if triggered by authorized user
-        if: github.event_name == 'workflow_dispatch' && github.actor != 'magihub'
-        run: |
-          echo "你无权触发此工作流"
-          exit 1
 
   update-epg:
     runs-on: ubuntu-latest
@@ -47,6 +32,12 @@ jobs:
       TZ: Asia/Shanghai
       
     steps:
+      - name: Check if triggered by authorized user
+        if: github.event_name == 'workflow_dispatch' && github.actor != 'magihub'
+        run: |
+          echo "你无权触发此工作流"
+          exit 1    
+    
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -197,10 +188,18 @@ jobs:
           git config user.email 'github-actions@github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           
-          if git diff --quiet epg.xml; then
-            echo "epg.xml 无变化，跳过压缩和提交"
+          if ! git ls-files --error-unmatch epg.xml >/dev/null 2>&1; then
+            echo "epg.xml 不存在，将添加并提交"
+            changed=true
+          elif ! git diff --quiet epg.xml; then
+            echo "epg.xml 已变化，开始压缩并提交"
+            changed=true
           else
-            echo "epg.xml 已更新，开始压缩并提交"
+            echo "epg.xml 无变化，跳过压缩和提交"
+            changed=false
+          fi
+        
+          if [ "$changed" = "true" ]; then
             gzip -c epg.xml > epg.xml.gz
             git add epg.xml epg.xml.gz
             # export TZ='Asia/Shanghai'
@@ -208,19 +207,7 @@ jobs:
             git push
           fi
         continue-on-error: true          
-          
-  sync-to-gitee:
-    runs-on: ubuntu-latest
-    needs: [check-permission, update-epg]
-    if: always() && github.event.inputs.skip_gitee_sync != 'true'   # 即使 update-epg 失败也运行
-    env:
-      TZ: Asia/Shanghai
-      
-    steps:
-      - name: Checkout latest code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2   # 确保 HEAD~1 可用
+        
 
       - name: Setup SSH key for Gitee
         env:
