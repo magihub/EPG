@@ -119,7 +119,7 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
     programs = []
     if data and isinstance(data, list):
         
-        all_dates = set() 
+        # all_dates = set() 
         
         for item in data:
             start_time_str = item.get('startTime')
@@ -127,7 +127,7 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
             if not start_time_str or not end_time_str:
                 continue
                 
-            all_dates.add(start_time_str[:10])     # 收集日期
+            # all_dates.add(start_time_str[:10])     # 收集日期（调试代码实测只能抓取到当天的）
                 
             try:
                 dt = datetime.datetime.strptime(start_time_str.strip(), "%Y-%m-%d %H:%M:%S")
@@ -146,7 +146,7 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
             if program['title'] != '未知节目':
                 programs.append(program)
                 
-        print(f"    节目日期范围: {sorted(all_dates)}")   
+        # print(f"    节目日期范围: {sorted(all_dates)}")   
         
         print(f"    获取到 {len(programs)} 个节目")
     else:
