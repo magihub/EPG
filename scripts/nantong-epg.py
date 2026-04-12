@@ -189,13 +189,14 @@ def main():
             test_tiny_proxy(ip, port)  # 仅打印结果
         else:
             print("代理环境变量缺失")
-       
+    
+    tv_success = False    
     for config in MENU_CONFIGS:
         print(f"\n抓取南通{config['name']}节目单...")
         channels = fetch_channels(config['menu_code'])
         if not channels:
-            print(f"⚠️ 未能获取南通{config['name']}节目单，跳过。")
-            continue
+            print(f"⚠️ 南通{config['name']}节目单获取失败，退出重试。")
+            sys.exit(1)   # 任何频道失败都退出，触发重试
         
         for channel in channels:
             # 记录新频道（规范ID，显示名称）
