@@ -35,7 +35,7 @@ CHANNELS = [
         "api_url": "https://live.cm.jstv.com/api/Channel/ChannelInfoAudio",
         "params": {
             "channelId": 85,
-            "days": 1,          # 7为一周，1为当天
+            "days": 0,          # 7为一周，1为包含当天往后加1天
             "globalId": "1244448"
         }
     }
@@ -67,8 +67,7 @@ def fetch_tv_epg(channel_info, driver):
                 EC.presence_of_element_located((By.CSS_SELECTOR, "li[data-starttime]"))
             )
             li_elements = driver.find_elements(By.CSS_SELECTOR, "li[data-starttime]")
-            
-            # 当天版本（只抓取今天）
+
             today_str = datetime.datetime.now().strftime("%Y-%m-%d")
             programs = []
             
@@ -78,11 +77,16 @@ def fetch_tv_epg(channel_info, driver):
                 start_time_raw = li.get_attribute('data-starttime')
                 if not start_time_raw:
                     continue
-                    
+        
                 all_dates.add(start_time_raw[:10])   # 收集日期  
                 
-            #    if not start_time_raw.startswith(today_str):
-            #        continue
+                # 只保留当天及以后的节目（字符串比较）
+                if start_time_raw[:10] < today_str:
+                    continue
+                    
+                # 只取当天    
+                # if not start_time_raw.startswith(today_str):
+                #     continue
             
                 end_time_raw = li.get_attribute('data-endtime')
                 spans = li.find_elements(By.TAG_NAME, 'span')
