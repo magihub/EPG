@@ -123,7 +123,14 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     
     # ========== 新增：排序，确保输出顺序稳定 ==========
     # 对频道按 ID 排序
-    all_channels = dict(sorted(all_channels.items()))
+    # all_channels = dict(sorted(all_channels.items()))         # 此方法的排序规则是 FM106.1在FM91.8之前
+    
+    def extract_frequency(ch_id):
+        match = re.search(r'(\d+(?:\.\d+)?)', ch_id)
+        return float(match.group(1)) if match else 0
+
+    all_channels = dict(sorted(all_channels.items(), key=lambda x: extract_frequency(x[0])))         # 此方法的排序规则是 FM106.1在FM99.9之后
+    
     # 对频道按显示名称排序（而不是 ID）
     # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
     
