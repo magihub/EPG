@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tv generator-info-name="广播电视 EPG 爬虫工具">
-  <channel id="如东新闻综合">
-    <display-name lang="zh">如东新闻综合</display-name>
+  <channel id="南通FM91.8">
+    <display-name lang="zh">南通音乐广播</display-name>
+  </channel>
+  <channel id="南通FM92.9">
+    <display-name lang="zh">南通交通广播</display-name>
+  </channel>
+  <channel id="南通FM97.0">
+    <display-name lang="zh">南通新闻广播</display-name>
+  </channel>
+  <channel id="南通FM106.1">
+    <display-name lang="zh">南通经济广播</display-name>
+  </channel>
+  <channel id="南通公共频道">
+    <display-name lang="zh">南通公共崇川</display-name>
   </channel>
   <channel id="南通新闻综合">
     <display-name lang="zh">南通新闻综合</display-name>
@@ -9,74 +21,26 @@
   <channel id="南通社教频道">
     <display-name lang="zh">南通社会教育</display-name>
   </channel>
-  <channel id="南通公共频道">
-    <display-name lang="zh">南通公共崇川</display-name>
-  </channel>
-  <channel id="苏州新闻综合">
-    <display-name lang="zh">苏州新闻综合</display-name>
-  </channel>
-  <channel id="苏州社会经济">
-    <display-name lang="zh">苏州社会经济</display-name>
-  </channel>
-  <channel id="苏州文化生活">
-    <display-name lang="zh">苏州文化生活</display-name>
-  </channel>
-  <channel id="苏州电影娱乐">
-    <display-name lang="zh">苏州电影娱乐</display-name>
-  </channel>
-  <channel id="苏州生活资讯">
-    <display-name lang="zh">苏州生活资讯</display-name>
-  </channel>
-  <channel id="镇江新闻综合">
-    <display-name lang="zh">镇江新闻综合</display-name>
-  </channel>
-  <channel id="镇江教育民生">
-    <display-name lang="zh">镇江教育民生</display-name>
-  </channel>
-  <channel id="镇江资讯频道">
-    <display-name lang="zh">镇江资讯频道</display-name>
-  </channel>
-  <channel id="镇江影视频道">
-    <display-name lang="zh">镇江影视频道</display-name>
-  </channel>
-  <channel id="镇江FM88.8">
-    <display-name lang="zh">镇江交通广播</display-name>
-  </channel>
   <channel id="如东FM89.6">
     <display-name lang="zh">如东综合广播</display-name>
+  </channel>
+  <channel id="如东新闻综合">
+    <display-name lang="zh">如东新闻综合</display-name>
   </channel>
   <channel id="苏州FM91.1">
     <display-name lang="zh">苏州新闻广播</display-name>
   </channel>
-  <channel id="南通FM91.8">
-    <display-name lang="zh">南通音乐广播</display-name>
-  </channel>
-  <channel id="南通FM92.9">
-    <display-name lang="zh">南通交通广播</display-name>
-  </channel>
   <channel id="苏州FM95.7">
     <display-name lang="zh">苏州儿童广播</display-name>
-  </channel>
-  <channel id="镇江FM96.3">
-    <display-name lang="zh">镇江文艺广播</display-name>
   </channel>
   <channel id="苏州FM96.5">
     <display-name lang="zh">苏州生活广播</display-name>
   </channel>
-  <channel id="南通FM97.0">
-    <display-name lang="zh">南通新闻广播</display-name>
-  </channel>
   <channel id="苏州FM102.8">
     <display-name lang="zh">苏州音乐广播</display-name>
   </channel>
-  <channel id="镇江FM104">
-    <display-name lang="zh">镇江综合广播</display-name>
-  </channel>
   <channel id="苏州FM104.8">
     <display-name lang="zh">苏州交通广播</display-name>
-  </channel>
-  <channel id="南通FM106.1">
-    <display-name lang="zh">南通经济广播</display-name>
   </channel>
   <channel id="苏州AM846">
     <display-name lang="zh">苏州戏曲广播</display-name>
@@ -86,6 +50,42 @@
   </channel>
   <channel id="苏州AM1521">
     <display-name lang="zh">苏州老年广播</display-name>
+  </channel>
+  <channel id="苏州文化生活">
+    <display-name lang="zh">苏州文化生活</display-name>
+  </channel>
+  <channel id="苏州新闻综合">
+    <display-name lang="zh">苏州新闻综合</display-name>
+  </channel>
+  <channel id="苏州生活资讯">
+    <display-name lang="zh">苏州生活资讯</display-name>
+  </channel>
+  <channel id="苏州电影娱乐">
+    <display-name lang="zh">苏州电影娱乐</display-name>
+  </channel>
+  <channel id="苏州社会经济">
+    <display-name lang="zh">苏州社会经济</display-name>
+  </channel>
+  <channel id="镇江FM88.8">
+    <display-name lang="zh">镇江交通广播</display-name>
+  </channel>
+  <channel id="镇江FM96.3">
+    <display-name lang="zh">镇江文艺广播</display-name>
+  </channel>
+  <channel id="镇江FM104">
+    <display-name lang="zh">镇江综合广播</display-name>
+  </channel>
+  <channel id="镇江影视频道">
+    <display-name lang="zh">镇江影视频道</display-name>
+  </channel>
+  <channel id="镇江教育民生">
+    <display-name lang="zh">镇江教育民生</display-name>
+  </channel>
+  <channel id="镇江新闻综合">
+    <display-name lang="zh">镇江新闻综合</display-name>
+  </channel>
+  <channel id="镇江资讯频道">
+    <display-name lang="zh">镇江资讯频道</display-name>
   </channel>
   <programme start="20260412053000 +0800" stop="20260412060000 +0800" channel="南通FM106.1">
     <title lang="zh">金色年华</title>
@@ -383,63 +383,6 @@
   </programme>
   <programme start="20260412225000 +0800" stop="20260412235959 +0800" channel="南通公共频道">
     <title lang="zh">深夜影院</title>
-  </programme>
-  <programme start="20260412063000 +0800" stop="20260412070000 +0800" channel="南通新闻综合">
-    <title lang="zh">人文纪录</title>
-  </programme>
-  <programme start="20260412070000 +0800" stop="20260412073000 +0800" channel="南通新闻综合">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260412073000 +0800" stop="20260412081000 +0800" channel="南通新闻综合">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260412081000 +0800" stop="20260412101000 +0800" channel="南通新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260412101000 +0800" stop="20260412112000 +0800" channel="南通新闻综合">
-    <title lang="zh">家在崇川</title>
-  </programme>
-  <programme start="20260412112000 +0800" stop="20260412115900 +0800" channel="南通新闻综合">
-    <title lang="zh">纪录片</title>
-  </programme>
-  <programme start="20260412115900 +0800" stop="20260412124500 +0800" channel="南通新闻综合">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260412124500 +0800" stop="20260412131500 +0800" channel="南通新闻综合">
-    <title lang="zh">家在崇川</title>
-  </programme>
-  <programme start="20260412131500 +0800" stop="20260412133000 +0800" channel="南通新闻综合">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260412133000 +0800" stop="20260412174000 +0800" channel="南通新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260412174000 +0800" stop="20260412175500 +0800" channel="南通新闻综合">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260412175500 +0800" stop="20260412182900 +0800" channel="南通新闻综合">
-    <title lang="zh">大家有约</title>
-  </programme>
-  <programme start="20260412182900 +0800" stop="20260412190000 +0800" channel="南通新闻综合">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260412190000 +0800" stop="20260412193100 +0800" channel="南通新闻综合">
-    <title lang="zh">转播中央台新闻联播</title>
-  </programme>
-  <programme start="20260412193100 +0800" stop="20260412200800 +0800" channel="南通新闻综合">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260412200800 +0800" stop="20260412214700 +0800" channel="南通新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260412214700 +0800" stop="20260412221500 +0800" channel="南通新闻综合">
-    <title lang="zh">大家有约</title>
-  </programme>
-  <programme start="20260412221500 +0800" stop="20260412225000 +0800" channel="南通新闻综合">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260412225000 +0800" stop="20260412235959 +0800" channel="南通新闻综合">
-    <title lang="zh">电视剧</title>
   </programme>
   <programme start="20260412063000 +0800" stop="20260412070000 +0800" channel="南通社教频道">
     <title lang="zh">口述中国</title>
