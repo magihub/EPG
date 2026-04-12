@@ -197,7 +197,7 @@ jobs:
         
           if [ "$changed" = "true" ]; then
             gzip -c epg.xml > epg.xml.gz
-            git add epg.xml epg.xml.gz
+            git add -f epg.xml epg.xml.gz
             # export TZ='Asia/Shanghai'
             git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
             git push
