@@ -61,20 +61,15 @@ def add_end_times(programs):
     return result
 
 def sort_channels(channel_id):
-    # 提取城市名（连续汉字）
-    city_match = re.match(r'^([\u4e00-\u9fa5]+)', channel_id)
-    city = city_match.group(1) if city_match else ''
-    # 提取频率数字（如果有）
-    freq_match = re.search(r'(\d+(?:\.\d+)?)', channel_id)
-    if freq_match:
-        freq = float(freq_match.group(1))  # 广播频道正数
-        is_radio = 1  # 广播        
+    # 判断是否为广播（包含 FM 或 AM）
+    if 'FM' in channel_id or 'AM' in channel_id:
+        # 广播：类型为 1
+        freq_match = re.search(r'(\d+(?:\.\d+)?)', channel_id)
+        freq = float(freq_match.group(1)) if freq_match else 0
+        return (1, freq, channel_id)   # 广播类型为 1
     else:
-        freq = 0  # 电视频道设为 0
-        is_radio = 0  # 电视        
-    print(f"城市: {city}, is_radio: {is_radio}, freq: {freq}, ID: {channel_id}")  # 调试        
-    # 返回 (城市, 类型, 频率, ID) 元组
-    return (city, is_radio, freq, channel_id)
+        # 电视：类型为 0
+        return (0, 0, channel_id)      # 电视类型为 0
 
 def merge_and_write(output_file, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
     """
