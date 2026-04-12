@@ -67,13 +67,11 @@ def sort_channels(channel_id):
     # 提取频率数字（如果有）
     freq_match = re.search(r'(\d+(?:\.\d+)?)', channel_id)
     if freq_match:
-        freq = float(freq_match.group(1))
-        is_radio = 1  # 广播频道标记为 1
+        freq = float(freq_match.group(1))  # 广播频道正数
     else:
-        freq = 0
-        is_radio = 0  # 电视频道标记为 0
-    # 返回 (城市, 类型, 频率, ID) 元组
-    return (city, is_radio, freq, channel_id)
+        freq = -1  # 电视频道设为 -1
+    # 返回 (城市, 频率, ID) 元组
+    return (city, freq, channel_id)
 
 def merge_and_write(output_file, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
     """
