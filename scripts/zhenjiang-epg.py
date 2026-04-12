@@ -22,11 +22,11 @@ from curl_cffi import requests
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 # ==================== 电视配置 ====================
-TV_CHANNELS = {
-    "镇江新闻综合": "https://epg.sports8.cc/2118/",
-    "镇江教育民生": "https://epg.sports8.cc/2119/",
-    "镇江资讯频道": "https://epg.sports8.cc/2120/",
-    "镇江影视频道": "https://epg.sports8.cc/2121/",
+TV_MAPPING = {
+    "镇江新闻综合": {"id": "镇江1新闻综合", "url": "https://epg.sports8.cc/2118/", "display": "镇江新闻综合"},
+    "镇江教育民生": {"id": "镇江2教育民生", "url": "https://epg.sports8.cc/2119/", "display": "镇江教育民生"},
+    "镇江资讯频道": {"id": "镇江3资讯频道", "url": "https://epg.sports8.cc/2120/", "display": "镇江资讯频道"},
+    "镇江影视频道": {"id": "镇江4影视频道", "url": "https://epg.sports8.cc/2121/", "display": "镇江影视频道"},
 }
 
 WEEKDAY_NAMES = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
@@ -121,6 +121,12 @@ def fetch_today_programs(channel_name, base_url, driver, retries=2):
 
 # ==================== 广播抓取 ====================
 
+RADIO_MAPPING = {
+    "FM96.3": {"id": "镇江FM96.3", "display": "镇江文艺广播"},
+    "FM88.8": {"id": "镇江FM88.8", "display": "镇江交通广播"},
+    "FM104":  {"id": "镇江FM104", "display": "镇江综合广播"},
+}
+
 # ===== 修改：fetch_radio_programs 增加重试机制 =====
 def fetch_radio_programs(driver, target_date, retries=2):   
     for attempt in range(1, retries + 1):
@@ -160,10 +166,13 @@ def fetch_radio_programs(driver, target_date, retries=2):
                 freq_match = re.search(r'(FM|AM)\d+(\.\d+)?', ch_name)
                 if freq_match:
                     freq = freq_match.group(0)
-                    ch_code = f"镇江{freq}"
-                else:
-                    ch_code = ch_name
-                display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()
+                    if freq in RADIO_MAPPING:
+                        ch_code = RADIO_MAPPING[freq]["id"]
+                        display_name = RADIO_MAPPING[freq]["display"]
+                    else:
+                        ch_code = f"镇江{freq}"
+                        display_name = re.sub(r'^(FM|AM)\d+(\.\d+)?', '', ch_name).strip()                
+                
                 all_channels.append((ch_code, display_name))
                 print(f"  正在抓取 {display_name} ...")
                 
@@ -306,7 +315,10 @@ def main():
 
         print()
         print("抓取镇江电视节目单...")
-        for ch_name, base_url in TV_CHANNELS.items():
+                
+        for ch_name, cfg in TV_MAPPING.items():
+            ch_id = cfg["id"]
+            base_url = cfg["url"]
             print(f"  正在解析 {ch_name} ...")
             
             # ========== 当天版本（只抓今天，推荐） ==========
@@ -314,17 +326,17 @@ def main():
             if day_programs:
                 day_programs.sort(key=lambda x: x[0])
                 enriched = add_end_times(day_programs)
-                all_new_channels.append((ch_name, ch_name))
+                all_new_channels.append((ch_id, cfg["display"]))
                 for prog in enriched:
                     all_new_programs.append({
                         'start': prog['start_dt'].strftime("%Y%m%d%H%M%S +0800"),
                         'stop': prog['end_dt'].strftime("%Y%m%d%H%M%S +0800"),
-                        'channel': ch_name,
+                        'channel': ch_id,
                         'title': prog['title']
                     })
                 print(f"    获取到 {len(enriched)} 个节目")
             else:
-                print(f"    未抓取到任何数据")
+                print(f"    未抓取到任何数据")                
             
             # ========== 原一周版本（注释，需要时可恢复） ==========
             # weekly_programs = fetch_week_programs(ch_name, base_url, week_dates, tv_driver, retries=2)
