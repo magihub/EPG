@@ -21,6 +21,11 @@ on:
         required: false
         default: 'false'
         type: boolean
+      skip_gitee_sync:
+        description: 'Skip Gitee sync'
+        required: false
+        default: 'false'
+        type: boolean
         
 jobs:
   update-epg:
@@ -185,7 +190,7 @@ jobs:
   sync-to-gitee:
     runs-on: ubuntu-latest
     needs: update-epg
-    if: always()   # 即使 update-epg 失败也运行
+    if: always() && github.event.inputs.skip_gitee_sync != 'true'   # 即使 update-epg 失败也运行
     
     steps:
       - name: Checkout latest code
