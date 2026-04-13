@@ -74,13 +74,13 @@ def fetch_page(url, retries=3):
     for attempt in range(1, retries + 1):
         try:
             # 尝试不同的伪装版本
-            impersonate = ["chrome120", "chrome110", "safari15_5"][(attempt-1) % 3]
+            impersonate = ["chrome110", "chrome120", "safari15_5"][(attempt-1) % 3]
             print(f"  第 {attempt} 次尝试，伪装: {impersonate}")
             
             resp = requests.get(
                 url, 
                 headers=headers, 
-                timeout=30, 
+                timeout=15, 
                 impersonate=impersonate,
                 verify=False
             )
