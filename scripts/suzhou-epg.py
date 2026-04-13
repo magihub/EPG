@@ -54,17 +54,42 @@ def parse_time(time_str, base_date):
         return None
     return datetime.datetime(base_date.year, base_date.month, base_date.day, hour, minute)
 
-def fetch_page(url, retries=2):
+def fetch_page(url, retries=3):
+    # 更完整的浏览器伪装
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Cache-Control': 'max-age=0',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-User': '?1',
+    }    
+    
     for attempt in range(1, retries + 1):
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=30, impersonate="chrome120", verify=False)
+            # 尝试不同的伪装版本
+            impersonate = ["chrome120", "chrome110", "safari15_5"][(attempt-1) % 3]
+            print(f"  第 {attempt} 次尝试，伪装: {impersonate}")
+            
+            resp = requests.get(
+                url, 
+                headers=headers, 
+                timeout=30, 
+                impersonate=impersonate,
+                verify=False
+            )
             resp.encoding = 'utf-8'
             return resp.text
         except Exception as e:
-            print(f"第 {attempt} 次请求 {url} 失败: {e}")
+            print(f"  第 {attempt} 次请求失败: {e}")
             if attempt == retries:
                 raise
-            time.sleep(5)
+            time.sleep(5 * attempt)  # 递增等待
 
 # -------------------- 电视抓取 --------------------
 def get_week_dates():
