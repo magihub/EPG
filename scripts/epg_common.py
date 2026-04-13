@@ -164,7 +164,7 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     # all_channels = dict(sorted(all_channels.items(), key=lambda item: item[1]))
     
     # 对节目按 (频道, 开始时间) 排序
-    all_programs.sort(key=lambda x: (x['channel'], x['start']))
+    # all_programs.sort(key=lambda x: (x['channel'], x['start']))
     # ==============================================
 
     
@@ -173,12 +173,27 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     tv.set("generator-info-name", final_gen_name)
     
     # 排序频道
-    for ch_id, disp in sorted_channels:                 # 生成 XML 时直接遍历排序后的列表
+    for ch_id, disp in sorted_channels:                 # 生成 XML 时直接遍历排序后的列表，FM106.1在FM91.8之后
     # for ch_id, disp in all_channels.items():         # 此方法的排序规则是 FM106.1在FM91.8之前        
         channel = ET.SubElement(tv, "channel", id=ch_id)
         dn = ET.SubElement(channel, "display-name", lang="zh")
         dn.text = disp
-    
+
+    # 按照 sorted_channels 的顺序输出节目
+    for ch_id, disp in sorted_channels:
+        # 筛选出当前频道的所有节目
+        channel_programs = [p for p in all_programs if p['channel'] == ch_id]
+        # 按开始时间排序（已经排好，但为了安全）
+        channel_programs.sort(key=lambda x: x['start'])
+        for prog in channel_programs:
+            programme = ET.SubElement(tv, "programme",
+                                      start=prog['start'],
+                                      stop=prog['stop'],
+                                      channel=ch_id)
+            title_elem = ET.SubElement(programme, "title", lang="zh")
+            title_elem.text = prog['title']
+        
+    '''
     for prog in all_programs:
         programme = ET.SubElement(tv, "programme",
                                   start=prog['start'],
@@ -186,7 +201,8 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
                                   channel=prog['channel'])
         title_elem = ET.SubElement(programme, "title", lang="zh")
         title_elem.text = prog['title']
-    
+     '''
+     
     # 添加缩进（Python 3.9+）
     ET.indent(tv, space="  ", level=0)
     
