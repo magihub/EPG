@@ -182,9 +182,9 @@ def parse_proxy(proxy_str):
     
 def main():
     print()
-    print("=" * 34)
+    print("=" * 32)
     print(f"开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 34)
+    print("=" * 32)
     
     output_file = "epg.xml"    
         
