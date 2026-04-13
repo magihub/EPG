@@ -88,12 +88,9 @@ def fetch_today_programs(channel_name, base_url, driver, retries=2):
     url = f"{base_url}{day_num}.htm"
     
     for attempt in range(1, retries + 1):
-        try:
-            if attempt > 1:
-                driver.get(url)  # 重试前刷新页面
-                time.sleep(2)            
+        try:           
             driver.get(url)
-            WebDriverWait(driver, 60).until(  # 超时从15秒增加到30秒
+            WebDriverWait(driver, 60).until(  # 超时从15秒增加到60秒
                 EC.presence_of_element_located((By.CSS_SELECTOR, "div#epgInfo"))
             )
             items = driver.find_elements(By.CSS_SELECTOR, "div#epgInfo p")
@@ -336,8 +333,9 @@ def main():
                     })
                 print(f"    获取到 {len(enriched)} 个节目")
             else:
-                print(f"    未抓取到任何数据")                
-            
+                print(f"    ❌ {ch_name} 抓取失败，退出重试")
+                sys.exit(1)  # 直接退出，触发 workflow 重试
+
             # ========== 原一周版本（注释，需要时可恢复） ==========
             # weekly_programs = fetch_week_programs(ch_name, base_url, week_dates, tv_driver, retries=2)
             # if weekly_programs:
