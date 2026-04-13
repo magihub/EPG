@@ -14,7 +14,6 @@ on:
     - cron: '0 19 * * *'        # UTC时间：19点，北京时间：次日凌晨3点
     - cron: '0 20 * * *'        # UTC时间：20点，北京时间：次日凌晨4点
     - cron: '0 02 * * *'        # UTC时间：2点，北京时间：当天上午10点
-                                # （实测如东电视、苏州广电、镇江广电更新于9：40分左右，如东广播、南通广电更新于凌晨0:00后不久）
     - cron: '0 07 * * *'        # UTC时间：7点，北京时间：当天下午15点
   workflow_dispatch:
     inputs:
@@ -178,33 +177,36 @@ jobs:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}            
         
-      - name: Commit and push changes (only if epg.xml changed)
+      - name: Check if epg.xml changed
+        id: check
         run: |
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          
+          git fetch origin
+          git reset --hard origin/main        
+        
           if ! git ls-files --error-unmatch epg.xml >/dev/null 2>&1; then
             echo "epg.xml 不在仓库，将添加并提交"
-            changed=true
+            echo "changed=true" >> $GITHUB_OUTPUT
           elif ! git diff --quiet epg.xml; then
             echo "epg.xml 已变化，开始压缩并提交"
-            changed=true
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
             echo "epg.xml 无变化，跳过压缩和提交"
-            changed=false
+            echo "changed=false" >> $GITHUB_OUTPUT
           fi
         
-          if [ "$changed" = "true" ]; then
-            gzip -c epg.xml > epg.xml.gz
-            git add --force epg.xml epg.xml.gz
-            # export TZ='Asia/Shanghai'
-            git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
-            # git pull --rebase origin main || true   # 先拉取远程更改，避免冲突
-            git push --force origin main
-          fi
-        continue-on-error: true          
-        
+      - name: Commit and push changes
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          gzip -c epg.xml > epg.xml.gz
+          git add --force epg.xml epg.xml.gz
+          # export TZ='Asia/Shanghai'
+          git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
+          # git pull --rebase origin main || true                                   # 先拉取远程更改，避免冲突
+          git push origin main
+        continue-on-error: true
 
       - name: Setup SSH key for Gitee
         env:
@@ -216,7 +218,7 @@ jobs:
           ssh-keyscan -H gitee.com >> ~/.ssh/known_hosts
 
       - name: Check if epg.xml changed compared to Gitee
-        id: check_changes
+        id: check_gitee
         run: |
           git remote add gitee git@gitee.com:magihub/epg.git        
           git fetch gitee main
@@ -229,7 +231,7 @@ jobs:
           fi
  
       - name: Push ONLY epg.xml and epg.xml.gz to Gitee
-        if: steps.check_changes.outputs.changed == 'true'
+        if: steps.check_gitee.outputs.changed == 'true'
         id: push
         run: |
           mkdir /tmp/gitee_push
@@ -240,7 +242,7 @@ jobs:
           git remote add gitee git@gitee.com:magihub/epg.git
           git fetch gitee main
           
-          # rm -f epg.xml epg.xml.gz                                          # 删除可能存在的未跟踪文件
+          # rm -f epg.xml epg.xml.gz                                        # 删除可能存在的未跟踪文件
           # git checkout -b main gitee/main || git checkout -b main         # 尝试切换到远程 main 分支，如果失败则创建新分支
           # git checkout -B main gitee/main || git checkout -B main         # 强制使用远程 main 分支（覆盖本地）
           
