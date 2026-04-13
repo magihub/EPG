@@ -13,7 +13,7 @@ import time
 import sys
 from typing import List, Dict, Any
 from curl_cffi import requests
-from epg_common import merge_and_write   # 导入公共合并函数
+from epg_common import merge_and_write, add_end_times   # 导入公共合并函数
 
 # ==================== 配置区域 ====================
 API_URL = "https://web.ntjoy.com/website/external/externalService"      # 海外 GitHub Actions 无法直接访问，会被 网站应用防火墙 WAF 拦截（405）
@@ -117,35 +117,55 @@ def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]
     print(f"  正在解析 {channel_name} ...")
     params = {'id': raw_channel_id}
     data = fetch_api("getBroadcastList", params, retries=3)
+    
+    '''
+    # 调试：打印所有频道的API原始数据
+    print(f"    === {channel_name} API原始数据 ===")
+    for item in data:  # 打印全部
+    # for item in data[:5]:   # 只打印前5个   
+        print(f"    {item.get('programName')}: {item.get('startTime')} -> {item.get('endTime')}")
+    '''
+    
     programs = []
     if data and isinstance(data, list):
         
         # all_dates = set() 
         
+        # 第一步：先收集所有节目，按开始时间排序
+        temp_programs = []
         for item in data:
             start_time_str = item.get('startTime')
-            end_time_str = item.get('endTime')
-            if not start_time_str or not end_time_str:
+            if not start_time_str:
+                continue
+            
+            title = item.get('programName', '未知节目')
+            if title == '未知节目':
                 continue
                 
             # all_dates.add(start_time_str[:10])     # 收集日期（调试代码实测只能抓取到当天的）
                 
             try:
-                dt = datetime.datetime.strptime(start_time_str.strip(), "%Y-%m-%d %H:%M:%S")
-                start_formatted = dt.strftime("%Y%m%d%H%M%S +0800")
-                dt = datetime.datetime.strptime(end_time_str.strip(), "%Y-%m-%d %H:%M:%S")
-                end_formatted = dt.strftime("%Y%m%d%H%M%S +0800")
+                start_dt = datetime.datetime.strptime(start_time_str.strip(), "%Y-%m-%d %H:%M:%S")
+                temp_programs.append((start_dt, title))
             except:
                 continue
-            program = {
-                'title': item.get('programName', '未知节目'),
-                'start_time': start_formatted,
-                'end_time': end_formatted,
-                'desc': item.get('remark', ''),
-                'status': item.get('status', 0),
-            }
-            if program['title'] != '未知节目':
-                programs.append(program)
+
+        if not temp_programs:
+            print(f"    未获取到节目数据")
+            return programs
+                
+        # 排序
+        temp_programs.sort(key=lambda x: x[0])
+        # 使用公用函数添加结束时间
+        enriched = add_end_times(temp_programs)
+
+        # 格式化输出
+        for prog in enriched:
+            programs.append({
+                'title': prog['title'],
+                'start_time': prog['start_dt'].strftime("%Y%m%d%H%M%S +0800"),
+                'end_time': prog['end_dt'].strftime("%Y%m%d%H%M%S +0800")
+            })
                 
         # print(f"    节目日期范围: {sorted(all_dates)}")   
         
