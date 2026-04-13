@@ -200,7 +200,6 @@ def main():
         else:
             print("代理环境变量缺失")
     
-    tv_success = False    
     for config in MENU_CONFIGS:
         print(f"\n抓取南通{config['name']}节目单...")
         channels = fetch_channels(config['menu_code'])
