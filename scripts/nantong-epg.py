@@ -204,7 +204,7 @@ def main():
         print(f"\n抓取南通{config['name']}节目单...")
         channels = fetch_channels(config['menu_code'])
         if not channels:
-            print(f"⚠️ 南通{config['name']}节目单获取失败，退出重试。")
+            print(f"⚠️ 南通{config['name']}节目单获取失败，退出重试")
             sys.exit(1)   # 任何频道失败都退出，触发重试
         
         for channel in channels:
@@ -216,7 +216,7 @@ def main():
 
             # 添加：检查是否抓取失败
             if not programs:
-                print(f"    ❌ {channel['name']} 抓取失败，退出重试")
+                print(f"    未获取到节目，退出重试")
                 sys.exit(1)
         
             for prog in programs:
