@@ -6,6 +6,7 @@ EPG 通用函数：解析现有 XML、合并写入、节目结束时间计算
 
 import re
 import os
+import datetime
 import xml.etree.ElementTree as ET
 from datetime import timedelta
 
@@ -43,7 +44,7 @@ def parse_existing_xml(filepath):
 
 def add_end_times(programs):
     """
-    为节目列表补充结束时间（下一个节目的开始时间，最后一个节目+30分钟）
+    为节目列表补充结束时间（下一个节目的开始时间，最后一个节目到次日 00:00:00）
     programs: list of (start_dt, title)  按时间排序后的元组列表
     返回: list of dict with keys: title, start_dt, end_dt
     """
@@ -52,7 +53,8 @@ def add_end_times(programs):
         if i + 1 < len(programs):
             end = programs[i+1][0]
         else:
-            end = start + timedelta(minutes=30)
+            # 最后一个节目，结束时间设为次日 00:00:00
+            end = start.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
         result.append({
             'title': title,
             'start_dt': start,
