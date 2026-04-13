@@ -93,7 +93,7 @@ jobs:
             s/([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2}):([0-9a-f]{2})/\1:**:**:**:**:\6/g
             s/([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)\/24/\1.*.*.\4\/24/g
             s/([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+)\/([0-9]+)/\1:*:*:*:*:*:*:\8\/\9/g
-          '
+        continue-on-error: true          '
         
       # 如东脚本（无需代理）
       - name: Run Rudong EPG
@@ -124,6 +124,7 @@ jobs:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+        continue-on-error: true
         
       - name: Run Nantong EPG via Proxy
         uses: nick-invision/retry@v2
@@ -135,7 +136,8 @@ jobs:
         env:
           http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
-
+        continue-on-error: true
+        
       # 苏州脚本（无需代理）
       - name: Run Suzhou EPG
         run: |      
@@ -165,6 +167,7 @@ jobs:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+        continue-on-error: true
         
       - name: Run Zhenjiang EPG via Proxy
         uses: nick-invision/retry@v2
@@ -176,6 +179,7 @@ jobs:
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
+        continue-on-error: true
         
       - name: Check if epg.xml changed
         id: check
