@@ -184,7 +184,7 @@ jobs:
           git config user.email 'github-actions@github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           git fetch origin
-          git reset --hard origin/main
+          git pull --rebase origin main
         
           if ! git ls-files --error-unmatch epg.xml >/dev/null 2>&1; then
             echo "epg.xml 不在仓库，将添加并提交"
@@ -204,7 +204,7 @@ jobs:
           git add --force epg.xml epg.xml.gz
           # export TZ='Asia/Shanghai'
           git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
-          # git pull --rebase origin main || true                                   # 先拉取远程更改，避免冲突
+          git pull --rebase origin main || true                                   # 先拉取远程更改，避免冲突
           git push origin main
         continue-on-error: true
 
