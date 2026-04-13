@@ -209,9 +209,16 @@ def main():
         
         for channel in channels:
             # 记录新频道（规范ID，显示名称）
+            # print(f"  正在解析 {channel['name']} ...")            
             all_new_channels.append((channel['id'], channel['name']))
             # 抓取节目（使用原始ID请求）
             programs = fetch_channel_programs(channel['raw_id'], channel['name'])
+
+            # 添加：检查是否抓取失败
+            if not programs:
+                print(f"    ❌ {channel['name']} 抓取失败，退出重试")
+                sys.exit(1)
+        
             for prog in programs:
                 all_new_programs.append({
                     'start': prog['start_time'],
