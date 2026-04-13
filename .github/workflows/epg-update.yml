@@ -226,6 +226,7 @@ jobs:
       - name: Check if epg.xml changed compared to Gitee
         id: check_gitee
         run: |
+          git config --global advice.defaultBranchName false
           git remote add gitee git@gitee.com:magihub/epg.git
           git fetch gitee main
           if git diff --quiet gitee/main -- epg.xml; then
