@@ -123,7 +123,7 @@ def fetch_tv_epg(channel_info, driver):
             if attempt < max_attempts:
                 print(f"🔄 等待 {wait_seconds} 秒后重试...")
                 time.sleep(wait_seconds)
-                driver.refresh()
+                driver.get(channel_info['url'])
             else:
                 print("❌ 重试次数已用完，放弃抓取该频道")
                 return None
@@ -133,7 +133,7 @@ def fetch_tv_epg(channel_info, driver):
             if attempt < max_attempts:
 								  
                 time.sleep(wait_seconds)
-                driver.refresh()
+                driver.get(channel_info['url'])
             else:									
                 return None
 
