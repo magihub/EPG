@@ -186,8 +186,8 @@ def fetch_radio_programs(driver, target_date, retries=2):
                 
                 programs_data = driver.execute_script("return window.pageData.programList")
                 if not programs_data:
-                    print("    未获取到节目")
-                    continue
+                    print("    未获取到节目，退出重试")
+                    sys.exit(1)
                 
                 programs = []
                 for item in programs_data:
@@ -205,8 +205,8 @@ def fetch_radio_programs(driver, target_date, retries=2):
                         continue
                 
                 if not programs:
-                    print("    无当天节目")
-                    continue
+                    print("    无当天节目，退出重试")
+                    sys.exit(1)
                 
                 programs.sort(key=lambda x: x[0])
                 for start_dt, title, end_dt in programs:
@@ -291,6 +291,8 @@ def main():
         opts.add_argument('--disable-default-apps')                         # 禁用默认应用
         opts.add_argument('--disable-crash-reporter')                       # 禁用崩溃报告器
         opts.add_argument('--disable-blink-features=AutomationControlled')  # 隐藏自动化特征
+    
+        opts.add_argument('--disable-ipv6')                                 # 禁用 IPv6，强制使用 IPv4
         
         opts.add_experimental_option('excludeSwitches', ['enable-logging']) # 禁用 DevTools 日志
         opts.add_experimental_option('useAutomationExtension', False)       # 禁用自动化扩展
@@ -308,7 +310,7 @@ def main():
         tv_options = get_base_chrome_options()
      
         tv_driver = webdriver.Chrome(options=tv_options)
-        tv_driver.set_page_load_timeout(30)
+        tv_driver.set_page_load_timeout(60)
 
         print()
         print("抓取镇江电视节目单...")
@@ -319,7 +321,7 @@ def main():
             print(f"  正在解析 {ch_name} ...")
             
             # ========== 当天版本（只抓今天，推荐） ==========
-            day_programs = fetch_today_programs(ch_name, base_url, tv_driver, retries=2)
+            day_programs = fetch_today_programs(ch_name, base_url, tv_driver, retries=3)
             if day_programs:
                 day_programs.sort(key=lambda x: x[0])
                 enriched = add_end_times(day_programs)
@@ -333,7 +335,7 @@ def main():
                     })
                 print(f"    获取到 {len(enriched)} 个节目")
             else:
-                print(f"    ❌ {ch_name} 抓取失败，退出重试")
+                print(f"    未获取到节目，退出重试")
                 sys.exit(1)  # 直接退出，触发 workflow 重试
 
             # ========== 原一周版本（注释，需要时可恢复） ==========
