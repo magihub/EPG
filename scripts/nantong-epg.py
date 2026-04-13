@@ -92,7 +92,7 @@ def fetch_api(service: str, params_dict: Dict, retries=2) -> Any:
 def fetch_channels(menu_code: str) -> List[Dict]:
     # print(f"\n正在获取{menu_code}的频道列表...")
     params = {'menuId': menu_code, 'idx': 0, 'size': 50}
-    data = fetch_api("getMenuContentList", params)
+    data = fetch_api("getMenuContentList", params, retries=2)
     channels = []
     if data and isinstance(data, dict) and 'rows' in data:
         for item in data['rows']:
@@ -116,7 +116,7 @@ def fetch_channels(menu_code: str) -> List[Dict]:
 def fetch_channel_programs(raw_channel_id: str, channel_name: str) -> List[Dict]:
     print(f"  正在解析 {channel_name} ...")
     params = {'id': raw_channel_id}
-    data = fetch_api("getBroadcastList", params)
+    data = fetch_api("getBroadcastList", params, retries=3)
     programs = []
     if data and isinstance(data, list):
         
