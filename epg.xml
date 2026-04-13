@@ -123,7 +123,7 @@
   <programme start="20260413190000 +0800" stop="20260413193100 +0800" channel="南通1新闻综合">
     <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260413193100 +0800" stop="20260413200800 +0800" channel="南通1新闻综合">
+  <programme start="20260413193200 +0800" stop="20260413200150 +0800" channel="南通1新闻综合">
     <title lang="zh">城市日历</title>
   </programme>
   <programme start="20260413200800 +0800" stop="20260413214700 +0800" channel="南通1新闻综合">
@@ -231,7 +231,7 @@
   <programme start="20260413183000 +0800" stop="20260413190000 +0800" channel="南通3公共频道">
     <title lang="zh">人文纪录</title>
   </programme>
-  <programme start="20260413190000 +0800" stop="20260413193000 +0800" channel="南通3公共频道">
+  <programme start="20260413190000 +0800" stop="20260413192420 +0800" channel="南通3公共频道">
     <title lang="zh">崇川新闻</title>
   </programme>
   <programme start="20260413193000 +0800" stop="20260413195500 +0800" channel="南通3公共频道">
