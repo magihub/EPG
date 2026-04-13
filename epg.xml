@@ -1029,7 +1029,7 @@
   <programme start="20260413223500 +0800" stop="20260413235500 +0800" channel="苏州1新闻综合">
     <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260413235500 +0800" stop="20260414002500 +0800" channel="苏州1新闻综合">
+  <programme start="20260413235500 +0800" stop="20260414000000 +0800" channel="苏州1新闻综合">
     <title lang="zh">纪录发现</title>
   </programme>
   <programme start="20260413001000 +0800" stop="20260413065000 +0800" channel="苏州2社会经济">
@@ -1101,7 +1101,7 @@
   <programme start="20260413232500 +0800" stop="20260413234000 +0800" channel="苏州2社会经济">
     <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260413234000 +0800" stop="20260414001000 +0800" channel="苏州2社会经济">
+  <programme start="20260413234000 +0800" stop="20260414000000 +0800" channel="苏州2社会经济">
     <title lang="zh">施斌聊斋</title>
   </programme>
   <programme start="20260413011300 +0800" stop="20260413062000 +0800" channel="苏州3文化生活">
@@ -1140,7 +1140,7 @@
   <programme start="20260413232500 +0800" stop="20260413234500 +0800" channel="苏州3文化生活">
     <title lang="zh">直播苏州</title>
   </programme>
-  <programme start="20260413234500 +0800" stop="20260414001500 +0800" channel="苏州3文化生活">
+  <programme start="20260413234500 +0800" stop="20260414000000 +0800" channel="苏州3文化生活">
     <title lang="zh">晚间剧场</title>
   </programme>
   <programme start="20260413070000 +0800" stop="20260413073000 +0800" channel="苏州4电影娱乐">
@@ -1179,7 +1179,7 @@
   <programme start="20260413220000 +0800" stop="20260413234000 +0800" channel="苏州4电影娱乐">
     <title lang="zh">白金影院</title>
   </programme>
-  <programme start="20260413234000 +0800" stop="20260414001000 +0800" channel="苏州4电影娱乐">
+  <programme start="20260413234000 +0800" stop="20260414000000 +0800" channel="苏州4电影娱乐">
     <title lang="zh">钻石影院</title>
   </programme>
   <programme start="20260413070000 +0800" stop="20260413072000 +0800" channel="苏州5生活资讯">
@@ -1224,7 +1224,7 @@
   <programme start="20260413211000 +0800" stop="20260413232000 +0800" channel="苏州5生活资讯">
     <title lang="zh">经典剧场</title>
   </programme>
-  <programme start="20260413232000 +0800" stop="20260413235000 +0800" channel="苏州5生活资讯">
+  <programme start="20260413232000 +0800" stop="20260414000000 +0800" channel="苏州5生活资讯">
     <title lang="zh">再见</title>
   </programme>
   <programme start="20260413043000 +0800" stop="20260413053000 +0800" channel="苏州FM91.1">
@@ -1677,7 +1677,7 @@
   <programme start="20260413224500 +0800" stop="20260413230000 +0800" channel="镇江1新闻综合">
     <title lang="zh">房产报道</title>
   </programme>
-  <programme start="20260413230000 +0800" stop="20260413233000 +0800" channel="镇江1新闻综合">
+  <programme start="20260413230000 +0800" stop="20260414000000 +0800" channel="镇江1新闻综合">
     <title lang="zh">晚间剧场</title>
   </programme>
   <programme start="20260413091000 +0800" stop="20260413120000 +0800" channel="镇江2教育民生">
@@ -1710,7 +1710,7 @@
   <programme start="20260413214500 +0800" stop="20260413223500 +0800" channel="镇江2教育民生">
     <title lang="zh">法治进行时</title>
   </programme>
-  <programme start="20260413223500 +0800" stop="20260413230500 +0800" channel="镇江2教育民生">
+  <programme start="20260413223500 +0800" stop="20260414000000 +0800" channel="镇江2教育民生">
     <title lang="zh">深夜剧场</title>
   </programme>
   <programme start="20260413044500 +0800" stop="20260413063000 +0800" channel="镇江FM88.8">
