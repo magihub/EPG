@@ -287,9 +287,9 @@ def parse_radio_programs(html):
 # -------------------- 主程序 --------------------
 def main():
     print()
-    print("=" * 50)
-    print(f"        开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 50)   
+    print("=" * 32)
+    print(f"开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 32)   
 
     start_time = time.time()    
     output_file = "epg.xml"
