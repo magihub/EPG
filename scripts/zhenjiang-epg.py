@@ -255,15 +255,10 @@ def test_tiny_proxy(ip, port):
     return False
         
 def main():
-    print_header()
-    
-    start_time = time.time()
-    output_file = "epg.xml"
+    start_header()
     
     # 一周日期（若需抓取一周电视，取消注释下面一行，并切换电视抓取逻辑）
     # week_dates = get_week_dates()
-    all_new_channels = []
-    all_new_programs = []
 
     # 公共 Chrome 选项（电视和广播共用基础配置）
     def get_base_chrome_options():
@@ -388,11 +383,14 @@ def main():
             radio_driver.quit()
 
     if all_new_programs:
-        merge_and_write(output_file, all_new_channels, all_new_programs)
-        elapsed = time.time() - start_time
-        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
+        merge_and_write(start_time, all_new_channels, all_new_programs)
+        return 0                # ✅ 成功
     else:
         print("❌ 未抓取到任何数据")
+        return 1                # ✅ 失败
+        
 
 if __name__ == "__main__":
-    main()
+    exit_code = main()
+    exit(exit_code)
+
