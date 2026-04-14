@@ -255,10 +255,7 @@ def test_tiny_proxy(ip, port):
     return False
         
 def main():
-    print()
-    print("=" * 32)
-    print(f"开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 32)
+    print_header()
     
     start_time = time.time()
     output_file = "epg.xml"
