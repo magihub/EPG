@@ -215,3 +215,10 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(xml_str)
     print(f"✅ 已合并保存至 {output_file} (总频道: {len(all_channels)}, 总节目: {len(all_programs)})")
+    
+def print_header():
+    """打印统一的开始执行时间头"""
+    print()
+    print("=" * 32)
+    print(f"开始执行时间：{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 32)
