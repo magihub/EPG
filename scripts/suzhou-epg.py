@@ -75,7 +75,7 @@ def fetch_page(url, retries=3):
         try:
             # 尝试不同的伪装版本
             impersonate = ["chrome110", "chrome120", "safari15_5"][(attempt-1) % 3]
-            print(f"  第 {attempt} 次尝试，伪装: {impersonate}")
+            # print(f"  第 {attempt} 次尝试，伪装: {impersonate}")
             
             resp = requests.get(
                 url, 
@@ -286,10 +286,7 @@ def parse_radio_programs(html):
 
 # -------------------- 主程序 --------------------
 def main():
-    print()
-    print("=" * 32)
-    print(f"开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 32)   
+    print_header()
 
     start_time = time.time()    
     output_file = "epg.xml"
