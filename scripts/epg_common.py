@@ -62,13 +62,15 @@ def add_end_times(programs):
         })
     return result
 
-def merge_and_write(output_file, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
+def merge_and_write(start_time, new_channels, new_programs, generator_name="广播电视 EPG 爬虫工具"):
     """
     合并现有 epg.xml 与新数据，写入文件（带缩进，无多余空行）
     new_channels: list of (channel_id, display_name)
     new_programs: list of dict with keys: start, stop, channel, title
     generator_name: 默认生成器名称（仅在文件不存在时使用）
     """
+    # 文件的保存位置
+    output_file = "epg.xml"
     # 读取现有数据
     exist_channels, exist_programs = parse_existing_xml(output_file)
     
@@ -214,11 +216,21 @@ def merge_and_write(output_file, new_channels, new_programs, generator_name="广
     
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(xml_str)
-    print(f"✅ 已合并保存至 {output_file} (总频道: {len(all_channels)}, 总节目: {len(all_programs)})")
-    
-def print_header():
+    print(f"\n✅ 已合并保存（总频道: {len(all_channels)}, 总节目: {len(all_programs)}）")
+    elapsed = time.time() - start_time
+    print(f"🎉 已抓取完成！总耗时: {elapsed:.2f} 秒")
+        
+def start_header():
     """打印统一的开始执行时间头"""
     print()
     print("=" * 32)
     print(f"开始执行时间：{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 32)
+
+    # 记录程序运行开始时间
+    start_time = time.time()
+
+    # 用于收集频道和节目数据
+    all_new_channels = []
+    all_new_programs = []    
+ 
