@@ -286,10 +286,7 @@ def parse_radio_programs(html):
 
 # -------------------- 主程序 --------------------
 def main():
-    print_header()
-
-    start_time = time.time()    
-    output_file = "epg.xml"
+    start_header()
 
     # 抓取电视
     print()
@@ -350,9 +347,7 @@ def main():
         # 合并电视和广播的频道、节目
         all_new_channels = tv_channels + radio_channels
         all_new_programs = tv_programs + radio_programs
-        merge_and_write(output_file, all_new_channels, all_new_programs)
-        elapsed = time.time() - start_time
-        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
+        merge_and_write(start_time, all_new_channels, all_new_programs)
     else:
         print("❌ 未抓取到任何数据")
 
