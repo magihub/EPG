@@ -181,13 +181,7 @@ def parse_proxy(proxy_str):
     return ip, int(port)
     
 def main():
-    print_header()
-    
-    output_file = "epg.xml"
-    start_time = time.time()
-
-    all_new_channels = []   # 存储 (ch_id, display_name)
-    all_new_programs = []   # 存储节目字典
+    start_header()
 
     if os.environ.get('GITHUB_ACTIONS') == 'true':
         proxy = os.environ.get('http_proxy') or os.environ.get('HTTP_PROXY')
@@ -228,13 +222,11 @@ def main():
     if all_new_programs:
 
         # 调用公共合并函数（紧凑输出，自动保留原有 generator-info-name）
-        merge_and_write(output_file, all_new_channels, all_new_programs)
-        elapsed = time.time() - start_time
-        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
-        return 0
+        merge_and_write(start_time, all_new_channels, all_new_programs)
+        return 0                # ✅ 成功
     else:
-        print("\n⚠️ 未抓取到任何节目数据，请检查网络或接口。")
-        return 1
+        print("❌ 未抓取到任何数据")
+        return 1                # ✅ 失败
 
 if __name__ == "__main__":
     exit_code = main()
