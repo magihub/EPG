@@ -233,5 +233,6 @@ def start_header():
 
     # 用于收集频道和节目数据
     all_new_channels = []
-    all_new_programs = []    
- 
+    all_new_programs = []
+    
+    return start_time, all_new_channels, all_new_programs
