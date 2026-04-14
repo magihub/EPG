@@ -6,6 +6,7 @@ EPG 通用函数：解析现有 XML、合并写入、节目结束时间计算
 
 import re
 import os
+import time
 import datetime
 import xml.etree.ElementTree as ET
 from datetime import timedelta
