@@ -13,7 +13,7 @@ import time
 import sys
 from typing import List, Dict, Any
 from curl_cffi import requests
-from epg_common import merge_and_write, print_header   # 导入公共合并函数
+from epg_common import merge_and_write, start_header   # 导入公共合并函数
 
 # ==================== 配置区域 ====================
 API_URL = "https://web.ntjoy.com/website/external/externalService"      # 海外 GitHub Actions 无法直接访问，会被 网站应用防火墙 WAF 拦截（405）
