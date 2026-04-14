@@ -17,7 +17,7 @@ import datetime
 import time
 import sys
 import os
-from epg_common import merge_and_write   # 导入公共合并函数
+from epg_common import merge_and_write, print_header   # 导入公共合并函数
 
 # ==================== 配置区域 ====================
 CHANNELS = [
