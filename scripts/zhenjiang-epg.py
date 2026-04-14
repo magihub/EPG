@@ -16,7 +16,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from epg_common import merge_and_write, add_end_times, print_header
+from epg_common import merge_and_write, add_end_times, start_header
 from curl_cffi import requests
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
