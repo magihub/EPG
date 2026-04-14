@@ -265,14 +265,8 @@ def fetch_radio_epg_with_token(channel_info, driver):
 
 # ==================== 主程序 ====================
 def main():
-    print_header()
+    start_header()
 
-    start_time = time.time()
-    output_file = "epg.xml"
-    
-    # 新增：用于收集频道和节目数据
-    all_new_channels = []
-    all_new_programs = []
     # 创建 Chrome driver（只创建一次）
     chrome_options = Options()
     chrome_options.add_argument('--headless=new')                               # 新版无头模式，不显示浏览器窗口
@@ -340,11 +334,9 @@ def main():
 
     # 使用公共合并函数写入（替换如东数据）
     if all_new_programs:
-        merge_and_write(output_file, all_new_channels, all_new_programs)
-        elapsed = time.time() - start_time
-        print(f"\n🎉 抓取完成！总耗时: {elapsed:.2f} 秒")
+        merge_and_write(start_time, all_new_channels, all_new_programs)
     else:
-        print("\n⚠️ 未能抓取到任何有效数据！")
+        print("❌ 未抓取到任何数据")
 
 if __name__ == "__main__":
     main()
