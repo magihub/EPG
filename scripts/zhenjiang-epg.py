@@ -255,7 +255,7 @@ def test_tiny_proxy(ip, port):
     return False
         
 def main():
-    start_header()
+    start_time, all_new_channels, all_new_programs = start_header()
     
     # 一周日期（若需抓取一周电视，取消注释下面一行，并切换电视抓取逻辑）
     # week_dates = get_week_dates()
