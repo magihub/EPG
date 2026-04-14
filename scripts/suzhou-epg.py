@@ -14,7 +14,7 @@ import time
 import os
 import ssl
 import sys
-from epg_common import merge_and_write, add_end_times, print_header
+from epg_common import merge_and_write, add_end_times, start_header
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
