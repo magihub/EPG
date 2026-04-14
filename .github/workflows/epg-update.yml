@@ -109,10 +109,10 @@ jobs:
               --connect-timeout 10 \
               https://web.ntjoy.com)
             if [ "$HTTP_CODE" = "200" ]; then
-              echo "代理测试成功 (HTTP $HTTP_CODE)"
+              echo -e "\n代理测试成功 (HTTP $HTTP_CODE)\n"
               echo "proxy_ok=true" >> $GITHUB_OUTPUT
             else
-              echo "代理测试失败 (HTTP $HTTP_CODE)"
+              echo -e "\n代理测试失败 (HTTP $HTTP_CODE)\n"
               echo "proxy_ok=false" >> $GITHUB_OUTPUT
               exit 1
             fi
@@ -152,10 +152,10 @@ jobs:
               --connect-timeout 10 \
               https://www.zjmc.tv)
             if [ "$HTTP_CODE" = "200" ]; then
-              echo "代理测试成功 (HTTP $HTTP_CODE)"
+              echo -e "\n代理测试成功 (HTTP $HTTP_CODE)\n"
               echo "proxy_ok=true" >> $GITHUB_OUTPUT
             else
-              echo "代理测试失败 (HTTP $HTTP_CODE)"
+              echo -e "\n代理测试失败 (HTTP $HTTP_CODE)\n"
               echo "proxy_ok=false" >> $GITHUB_OUTPUT
               exit 1
             fi
