@@ -31,12 +31,6 @@ jobs:
       TZ: Asia/Shanghai
       
     steps:
-      - name: Check if triggered by authorized user
-        if: github.event_name == 'workflow_dispatch' && github.actor != 'magihub'
-        run: |
-          echo "你无权触发此工作流"
-          exit 1    
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
