@@ -286,8 +286,8 @@ def parse_radio_programs(html):
 
 # -------------------- 主程序 --------------------
 def main():
-    start_header()
-
+    start_time, all_new_channels, all_new_programs = start_header()
+    
     # 抓取电视
     print()
     print("抓取苏州电视节目单...")
