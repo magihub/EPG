@@ -181,14 +181,11 @@ def parse_proxy(proxy_str):
     return ip, int(port)
     
 def main():
-    print()
-    print("=" * 32)
-    print(f"开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 32)
+    print_header()
     
-    output_file = "epg.xml"    
-        
+    output_file = "epg.xml"
     start_time = time.time()
+
     all_new_channels = []   # 存储 (ch_id, display_name)
     all_new_programs = []   # 存储节目字典
 
