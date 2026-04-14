@@ -181,7 +181,7 @@ def parse_proxy(proxy_str):
     return ip, int(port)
     
 def main():
-    start_header()
+    start_time, all_new_channels, all_new_programs = start_header()
 
     if os.environ.get('GITHUB_ACTIONS') == 'true':
         proxy = os.environ.get('http_proxy') or os.environ.get('HTTP_PROXY')
