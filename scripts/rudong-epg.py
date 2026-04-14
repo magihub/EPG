@@ -265,7 +265,7 @@ def fetch_radio_epg_with_token(channel_info, driver):
 
 # ==================== 主程序 ====================
 def main():
-    start_header()
+    start_time, all_new_channels, all_new_programs = start_header()
 
     # 创建 Chrome driver（只创建一次）
     chrome_options = Options()
