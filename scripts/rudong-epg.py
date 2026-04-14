@@ -265,13 +265,11 @@ def fetch_radio_epg_with_token(channel_info, driver):
 
 # ==================== 主程序 ====================
 def main():
-    print()
-    print("=" * 32)
-    print(f"开始执行时间： {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 32)
+    print_header()
 
     start_time = time.time()
     output_file = "epg.xml"
+    
     # 新增：用于收集频道和节目数据
     all_new_channels = []
     all_new_programs = []
