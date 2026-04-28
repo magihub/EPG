@@ -260,4 +260,13 @@ jobs:
           # ls -la                                                          # 列出替换要推送过去文件的文件列表
           git add epg.xml epg.xml.gz
           git commit -m "Update EPG data - $(date +'%Y-%m-%d %H:%M:%S')"
-          git push gitee main
+          # git push gitee main
+
+          # 最多重试3次推送 Gitee（解决偶尔连接被重置）
+          for i in {1..3}; do
+            git push gitee main -f && break
+            echo "Push failed, retrying ($i/3)..."
+            sleep 10
+          done          
+        continue-on-error: true
+        
