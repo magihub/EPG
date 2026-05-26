@@ -89,6 +89,12 @@ jobs:
             s/([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+):([0-9a-fA-F]+)\/([0-9]+)/\1:*:*:*:*:*:*:\8\/\9/g
           '
         continue-on-error: true
+
+      # 苏州脚本（无需代理）
+      - name: Run Suzhou EPG
+        run: |      
+          python scripts/suzhou-epg.py
+        continue-on-error: true
         
       # 如东脚本（无需代理）
       - name: Run Rudong EPG
@@ -131,12 +137,6 @@ jobs:
         env:
           http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
           https_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
-        continue-on-error: true
-        
-      # 苏州脚本（无需代理）
-      - name: Run Suzhou EPG
-        run: |      
-          python scripts/suzhou-epg.py
         continue-on-error: true
 
       # 镇江脚本（电视无需代理、广播需要代理）
