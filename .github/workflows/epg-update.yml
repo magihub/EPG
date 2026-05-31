@@ -132,7 +132,6 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 5
-          # command: echo "=== 运行 nantong-epg.py ===" && python scripts/nantong-epg.py
           command: python scripts/nantong-epg.py
         env:
           http_proxy: "http://${{ secrets.TINY_PROXY_IP }}:${{ secrets.TINY_PROXY_PORT }}"
@@ -169,8 +168,7 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 5
-          # command: echo "=== 运行 zhenjiang-epg.py ===" && python scripts/zhenjiang-epg.py
-          command: python scripts/zhenjiang-epg.py
+          # command: python scripts/zhenjiang-epg.py
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
