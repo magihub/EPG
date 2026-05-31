@@ -170,10 +170,10 @@ jobs:
           max_attempts: 5
           command: |
             bash -c '
-            if curl -s --connect-timeout 5 --max-time 10 -w "%{http_code}" https://epg.sports8.cc -o /dev/null | grep -q "^2"; then
+            if curl -s --connect-timeout 5 https://epg.sports8.cc -o /dev/null; then
               python scripts/zhenjiang-epg.py
             else
-              echo "epg.sports8.cc unreachable (HTTP error), skipping"
+              echo "epg.sports8.cc unreachable, skipping"
             fi
             '
         env:
