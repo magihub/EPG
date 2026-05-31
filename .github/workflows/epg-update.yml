@@ -168,7 +168,14 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 5
-          # command: python scripts/zhenjiang-epg.py
+          command: |
+            bash -c '
+            if curl -s --connect-timeout 5 --max-time 10 -w "%{http_code}" https://epg.sports8.cc -o /dev/null | grep -q "^2"; then
+              python scripts/zhenjiang-epg.py
+            else
+              echo "epg.sports8.cc unreachable (HTTP error), skipping"
+            fi
+            '
         env:
           TINY_PROXY_IP: ${{ secrets.TINY_PROXY_IP }}
           TINY_PROXY_PORT: ${{ secrets.TINY_PROXY_PORT }}
