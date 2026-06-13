@@ -81,445 +81,406 @@
   <channel id="镇江FM104">
     <display-name lang="zh">镇江综合广播</display-name>
   </channel>
-  <programme start="20260612063000 +0800" stop="20260612070000 +0800" channel="南通1新闻综合">
+  <programme start="20260613063000 +0800" stop="20260613070000 +0800" channel="南通1新闻综合">
     <title lang="zh">人文纪录</title>
   </programme>
-  <programme start="20260612070000 +0800" stop="20260612073200 +0800" channel="南通1新闻综合">
+  <programme start="20260613070000 +0800" stop="20260613073200 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260612073200 +0800" stop="20260612081500 +0800" channel="南通1新闻综合">
+  <programme start="20260613073200 +0800" stop="20260613081500 +0800" channel="南通1新闻综合">
     <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260612081500 +0800" stop="20260612101500 +0800" channel="南通1新闻综合">
+  <programme start="20260613081500 +0800" stop="20260613101500 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260612101500 +0800" stop="20260612115900 +0800" channel="南通1新闻综合">
-    <title lang="zh">乡村振兴路</title>
-  </programme>
-  <programme start="20260612115900 +0800" stop="20260612125000 +0800" channel="南通1新闻综合">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260612125000 +0800" stop="20260612131500 +0800" channel="南通1新闻综合">
-    <title lang="zh">乡村振兴路</title>
-  </programme>
-  <programme start="20260612131500 +0800" stop="20260612133000 +0800" channel="南通1新闻综合">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260612133000 +0800" stop="20260612174000 +0800" channel="南通1新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260612174000 +0800" stop="20260612175500 +0800" channel="南通1新闻综合">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260612175500 +0800" stop="20260612182900 +0800" channel="南通1新闻综合">
+  <programme start="20260613101500 +0800" stop="20260613115900 +0800" channel="南通1新闻综合">
     <title lang="zh">健康我来了</title>
   </programme>
-  <programme start="20260612182900 +0800" stop="20260612190000 +0800" channel="南通1新闻综合">
+  <programme start="20260613115900 +0800" stop="20260613125000 +0800" channel="南通1新闻综合">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260613125000 +0800" stop="20260613131500 +0800" channel="南通1新闻综合">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260613131500 +0800" stop="20260613133000 +0800" channel="南通1新闻综合">
+    <title lang="zh">新华纵横</title>
+  </programme>
+  <programme start="20260613133000 +0800" stop="20260613174000 +0800" channel="南通1新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260613174000 +0800" stop="20260613175500 +0800" channel="南通1新闻综合">
+    <title lang="zh">新华纵横</title>
+  </programme>
+  <programme start="20260613175500 +0800" stop="20260613182900 +0800" channel="南通1新闻综合">
+    <title lang="zh">家在崇川</title>
+  </programme>
+  <programme start="20260613182900 +0800" stop="20260613190000 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260612190000 +0800" stop="20260612193100 +0800" channel="南通1新闻综合">
+  <programme start="20260613190000 +0800" stop="20260613193100 +0800" channel="南通1新闻综合">
     <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260612193100 +0800" stop="20260612200600 +0800" channel="南通1新闻综合">
+  <programme start="20260613193100 +0800" stop="20260613200600 +0800" channel="南通1新闻综合">
     <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260612200600 +0800" stop="20260612220000 +0800" channel="南通1新闻综合">
+  <programme start="20260613200600 +0800" stop="20260613220000 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260612220000 +0800" stop="20260612222500 +0800" channel="南通1新闻综合">
-    <title lang="zh">江海联播</title>
-  </programme>
-  <programme start="20260612222500 +0800" stop="20260612225500 +0800" channel="南通1新闻综合">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260612225500 +0800" stop="20260612235959 +0800" channel="南通1新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260612063000 +0800" stop="20260612070000 +0800" channel="南通2社教频道">
-    <title lang="zh">口述中国</title>
-  </programme>
-  <programme start="20260612070000 +0800" stop="20260612073300 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260612073300 +0800" stop="20260612081000 +0800" channel="南通2社教频道">
-    <title lang="zh">崇川新闻</title>
-  </programme>
-  <programme start="20260612081000 +0800" stop="20260612084500 +0800" channel="南通2社教频道">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260612084500 +0800" stop="20260612113500 +0800" channel="南通2社教频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260612113500 +0800" stop="20260612120000 +0800" channel="南通2社教频道">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260612120000 +0800" stop="20260612125000 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260612125000 +0800" stop="20260612133000 +0800" channel="南通2社教频道">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260612133000 +0800" stop="20260612140200 +0800" channel="南通2社教频道">
-    <title lang="zh">人文记录</title>
-  </programme>
-  <programme start="20260612140200 +0800" stop="20260612173000 +0800" channel="南通2社教频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260612173000 +0800" stop="20260612183000 +0800" channel="南通2社教频道">
-    <title lang="zh">动画城堡</title>
-  </programme>
-  <programme start="20260612183000 +0800" stop="20260612190500 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260612190500 +0800" stop="20260612214000 +0800" channel="南通2社教频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260612214000 +0800" stop="20260612221000 +0800" channel="南通2社教频道">
+  <programme start="20260613220000 +0800" stop="20260613222000 +0800" channel="南通1新闻综合">
     <title lang="zh">通商故事汇</title>
   </programme>
-  <programme start="20260612221000 +0800" stop="20260612224000 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260612224000 +0800" stop="20260612231000 +0800" channel="南通2社教频道">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260612231000 +0800" stop="20260612234000 +0800" channel="南通2社教频道">
-    <title lang="zh">人文纪录</title>
-  </programme>
-  <programme start="20260612234000 +0800" stop="20260612235959 +0800" channel="南通2社教频道">
-    <title lang="zh">口述中国</title>
-  </programme>
-  <programme start="20260612070100 +0800" stop="20260612073000 +0800" channel="南通3公共频道">
-    <title lang="zh">崇川新闻</title>
-  </programme>
-  <programme start="20260612073000 +0800" stop="20260612080500 +0800" channel="南通3公共频道">
+  <programme start="20260613222000 +0800" stop="20260613225000 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260612080500 +0800" stop="20260612083500 +0800" channel="南通3公共频道">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260612083500 +0800" stop="20260612102500 +0800" channel="南通3公共频道">
+  <programme start="20260613225000 +0800" stop="20260613235959 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260612102500 +0800" stop="20260612105500 +0800" channel="南通3公共频道">
+  <programme start="20260613063000 +0800" stop="20260613070000 +0800" channel="南通2社教频道">
+    <title lang="zh">口述中国</title>
+  </programme>
+  <programme start="20260613070000 +0800" stop="20260613073300 +0800" channel="南通2社教频道">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260613073300 +0800" stop="20260613081000 +0800" channel="南通2社教频道">
+    <title lang="zh">崇川新闻</title>
+  </programme>
+  <programme start="20260613081000 +0800" stop="20260613084500 +0800" channel="南通2社教频道">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260613084500 +0800" stop="20260613113500 +0800" channel="南通2社教频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260613113500 +0800" stop="20260613120000 +0800" channel="南通2社教频道">
+    <title lang="zh">通商故事汇</title>
+  </programme>
+  <programme start="20260613120000 +0800" stop="20260613125000 +0800" channel="南通2社教频道">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260613125000 +0800" stop="20260613133000 +0800" channel="南通2社教频道">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260613133000 +0800" stop="20260613140200 +0800" channel="南通2社教频道">
+    <title lang="zh">人文记录</title>
+  </programme>
+  <programme start="20260613140200 +0800" stop="20260613173000 +0800" channel="南通2社教频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260613173000 +0800" stop="20260613180000 +0800" channel="南通2社教频道">
+    <title lang="zh">动画城堡</title>
+  </programme>
+  <programme start="20260613180000 +0800" stop="20260613214000 +0800" channel="南通2社教频道">
+    <title lang="zh">苏超足球比赛</title>
+  </programme>
+  <programme start="20260613214000 +0800" stop="20260613220000 +0800" channel="南通2社教频道">
+    <title lang="zh">跟着主播去旅行</title>
+  </programme>
+  <programme start="20260613220000 +0800" stop="20260613224500 +0800" channel="南通2社教频道">
+    <title lang="zh">艺起成长吧</title>
+  </programme>
+  <programme start="20260613224500 +0800" stop="20260613231500 +0800" channel="南通2社教频道">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260613231500 +0800" stop="20260613234500 +0800" channel="南通2社教频道">
     <title lang="zh">人文纪录</title>
   </programme>
-  <programme start="20260612105500 +0800" stop="20260612111500 +0800" channel="南通3公共频道">
+  <programme start="20260613234500 +0800" stop="20260613235959 +0800" channel="南通2社教频道">
+    <title lang="zh">口述中国</title>
+  </programme>
+  <programme start="20260613070100 +0800" stop="20260613073000 +0800" channel="南通3公共频道">
+    <title lang="zh">崇川新闻</title>
+  </programme>
+  <programme start="20260613073000 +0800" stop="20260613080500 +0800" channel="南通3公共频道">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260613080500 +0800" stop="20260613083500 +0800" channel="南通3公共频道">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260613083500 +0800" stop="20260613102500 +0800" channel="南通3公共频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260613102500 +0800" stop="20260613105500 +0800" channel="南通3公共频道">
+    <title lang="zh">人文纪录</title>
+  </programme>
+  <programme start="20260613105500 +0800" stop="20260613111500 +0800" channel="南通3公共频道">
     <title lang="zh">新华纵横</title>
   </programme>
-  <programme start="20260612111500 +0800" stop="20260612120000 +0800" channel="南通3公共频道">
+  <programme start="20260613111500 +0800" stop="20260613120000 +0800" channel="南通3公共频道">
     <title lang="zh">总而言之</title>
   </programme>
-  <programme start="20260612120000 +0800" stop="20260612123000 +0800" channel="南通3公共频道">
+  <programme start="20260613120000 +0800" stop="20260613123000 +0800" channel="南通3公共频道">
     <title lang="zh">崇川新闻</title>
   </programme>
-  <programme start="20260612123000 +0800" stop="20260612125800 +0800" channel="南通3公共频道">
+  <programme start="20260613123000 +0800" stop="20260613125800 +0800" channel="南通3公共频道">
     <title lang="zh">健康我来了</title>
   </programme>
-  <programme start="20260612125800 +0800" stop="20260612180000 +0800" channel="南通3公共频道">
+  <programme start="20260613125800 +0800" stop="20260613173000 +0800" channel="南通3公共频道">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260612180000 +0800" stop="20260612183000 +0800" channel="南通3公共频道">
+  <programme start="20260613173000 +0800" stop="20260613180000 +0800" channel="南通3公共频道">
+    <title lang="zh">通商故事汇</title>
+  </programme>
+  <programme start="20260613180000 +0800" stop="20260613183000 +0800" channel="南通3公共频道">
     <title lang="zh">口述中国</title>
   </programme>
-  <programme start="20260612183000 +0800" stop="20260612190000 +0800" channel="南通3公共频道">
-    <title lang="zh">人文纪录</title>
+  <programme start="20260613183000 +0800" stop="20260613190000 +0800" channel="南通3公共频道">
+    <title lang="zh">人文记录</title>
   </programme>
-  <programme start="20260612190000 +0800" stop="20260612192800 +0800" channel="南通3公共频道">
+  <programme start="20260613190000 +0800" stop="20260613192800 +0800" channel="南通3公共频道">
     <title lang="zh">崇川新闻</title>
   </programme>
-  <programme start="20260612192800 +0800" stop="20260612200000 +0800" channel="南通3公共频道">
+  <programme start="20260613192800 +0800" stop="20260613195500 +0800" channel="南通3公共频道">
     <title lang="zh">健康我来了</title>
   </programme>
-  <programme start="20260612200000 +0800" stop="20260612202500 +0800" channel="南通3公共频道">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260612202500 +0800" stop="20260612203000 +0800" channel="南通3公共频道">
+  <programme start="20260613195500 +0800" stop="20260613200000 +0800" channel="南通3公共频道">
     <title lang="zh">天气预报</title>
   </programme>
-  <programme start="20260612203000 +0800" stop="20260612221500 +0800" channel="南通3公共频道">
+  <programme start="20260613200000 +0800" stop="20260613203500 +0800" channel="南通3公共频道">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260613203500 +0800" stop="20260613221500 +0800" channel="南通3公共频道">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260612221500 +0800" stop="20260612225000 +0800" channel="南通3公共频道">
+  <programme start="20260613221500 +0800" stop="20260613225000 +0800" channel="南通3公共频道">
     <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260612225000 +0800" stop="20260612231500 +0800" channel="南通3公共频道">
-    <title lang="zh">江海联播</title>
-  </programme>
-  <programme start="20260612231500 +0800" stop="20260612235959 +0800" channel="南通3公共频道">
+  <programme start="20260613225000 +0800" stop="20260613235959 +0800" channel="南通3公共频道">
     <title lang="zh">深夜影院</title>
   </programme>
-  <programme start="20260612053000 +0800" stop="20260612060000 +0800" channel="南通FM91.8">
+  <programme start="20260613053000 +0800" stop="20260613060000 +0800" channel="南通FM91.8">
     <title lang="zh">华语广播排行榜</title>
   </programme>
-  <programme start="20260612060000 +0800" stop="20260612070000 +0800" channel="南通FM91.8">
-    <title lang="zh">声音书房</title>
+  <programme start="20260613060000 +0800" stop="20260613070000 +0800" channel="南通FM91.8">
+    <title lang="zh">慧敏的城市地图</title>
   </programme>
-  <programme start="20260612070000 +0800" stop="20260612080000 +0800" channel="南通FM91.8">
-    <title lang="zh">芳华音乐</title>
+  <programme start="20260613070000 +0800" stop="20260613080000 +0800" channel="南通FM91.8">
+    <title lang="zh">就听好歌</title>
   </programme>
-  <programme start="20260612080000 +0800" stop="20260612093000 +0800" channel="南通FM91.8">
-    <title lang="zh">星花乐放</title>
+  <programme start="20260613080000 +0800" stop="20260613093000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末系列</title>
   </programme>
-  <programme start="20260612093000 +0800" stop="20260612100000 +0800" channel="南通FM91.8">
+  <programme start="20260613093000 +0800" stop="20260613100000 +0800" channel="南通FM91.8">
     <title lang="zh">周周榜</title>
   </programme>
-  <programme start="20260612100000 +0800" stop="20260612110000 +0800" channel="南通FM91.8">
-    <title lang="zh">乐影留声</title>
+  <programme start="20260613100000 +0800" stop="20260613110000 +0800" channel="南通FM91.8">
+    <title lang="zh">快乐一点</title>
   </programme>
-  <programme start="20260612110000 +0800" stop="20260612111500 +0800" channel="南通FM91.8">
+  <programme start="20260613110000 +0800" stop="20260613111500 +0800" channel="南通FM91.8">
     <title lang="zh">领匠</title>
   </programme>
-  <programme start="20260612111500 +0800" stop="20260612113000 +0800" channel="南通FM91.8">
+  <programme start="20260613111500 +0800" stop="20260613113000 +0800" channel="南通FM91.8">
     <title lang="zh">音乐</title>
   </programme>
-  <programme start="20260612113000 +0800" stop="20260612123000 +0800" channel="南通FM91.8">
-    <title lang="zh">新鲜听剑</title>
-  </programme>
-  <programme start="20260612123000 +0800" stop="20260612124500 +0800" channel="南通FM91.8">
-    <title lang="zh">领匠</title>
-  </programme>
-  <programme start="20260612124500 +0800" stop="20260612130000 +0800" channel="南通FM91.8">
-    <title lang="zh">音乐</title>
-  </programme>
-  <programme start="20260612130000 +0800" stop="20260612133000 +0800" channel="南通FM91.8">
-    <title lang="zh">周周热歌榜</title>
-  </programme>
-  <programme start="20260612133000 +0800" stop="20260612135000 +0800" channel="南通FM91.8">
+  <programme start="20260613113000 +0800" stop="20260613123000 +0800" channel="南通FM91.8">
     <title lang="zh">Lunch Beat</title>
   </programme>
-  <programme start="20260612135000 +0800" stop="20260612140000 +0800" channel="南通FM91.8">
-    <title lang="zh">苏颜美颜</title>
-  </programme>
-  <programme start="20260612140000 +0800" stop="20260612145000 +0800" channel="南通FM91.8">
-    <title lang="zh">慧敏的城市地图</title>
-  </programme>
-  <programme start="20260612145000 +0800" stop="20260612150000 +0800" channel="南通FM91.8">
-    <title lang="zh">苏颜美颜</title>
-  </programme>
-  <programme start="20260612150000 +0800" stop="20260612154500 +0800" channel="南通FM91.8">
-    <title lang="zh">music young</title>
-  </programme>
-  <programme start="20260612154500 +0800" stop="20260612160000 +0800" channel="南通FM91.8">
-    <title lang="zh">领匠+音乐</title>
-  </programme>
-  <programme start="20260612160000 +0800" stop="20260612170000 +0800" channel="南通FM91.8">
-    <title lang="zh">芳华音乐</title>
-  </programme>
-  <programme start="20260612170000 +0800" stop="20260612183000 +0800" channel="南通FM91.8">
-    <title lang="zh">城市慢摇</title>
-  </programme>
-  <programme start="20260612183000 +0800" stop="20260612184500 +0800" channel="南通FM91.8">
-    <title lang="zh">音乐</title>
-  </programme>
-  <programme start="20260612184500 +0800" stop="20260612190000 +0800" channel="南通FM91.8">
+  <programme start="20260613123000 +0800" stop="20260613124500 +0800" channel="南通FM91.8">
     <title lang="zh">领匠</title>
   </programme>
-  <programme start="20260612190000 +0800" stop="20260612200000 +0800" channel="南通FM91.8">
+  <programme start="20260613124500 +0800" stop="20260613130000 +0800" channel="南通FM91.8">
+    <title lang="zh">音乐</title>
+  </programme>
+  <programme start="20260613130000 +0800" stop="20260613133000 +0800" channel="南通FM91.8">
     <title lang="zh">就听好歌不听话</title>
   </programme>
-  <programme start="20260612200000 +0800" stop="20260612210000 +0800" channel="南通FM91.8">
+  <programme start="20260613133000 +0800" stop="20260613135000 +0800" channel="南通FM91.8">
+    <title lang="zh">华语广播排行榜</title>
+  </programme>
+  <programme start="20260613135000 +0800" stop="20260613140000 +0800" channel="南通FM91.8">
+    <title lang="zh">苏颜美颜</title>
+  </programme>
+  <programme start="20260613140000 +0800" stop="20260613145000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末系列</title>
+  </programme>
+  <programme start="20260613145000 +0800" stop="20260613150000 +0800" channel="南通FM91.8">
+    <title lang="zh">苏颜美颜</title>
+  </programme>
+  <programme start="20260613150000 +0800" stop="20260613154500 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末系列</title>
+  </programme>
+  <programme start="20260613154500 +0800" stop="20260613160000 +0800" channel="南通FM91.8">
+    <title lang="zh">领匠+音乐</title>
+  </programme>
+  <programme start="20260613160000 +0800" stop="20260613170000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末系列</title>
+  </programme>
+  <programme start="20260613170000 +0800" stop="20260613183000 +0800" channel="南通FM91.8">
+    <title lang="zh">就听好歌不听话/新鲜听剑</title>
+  </programme>
+  <programme start="20260613183000 +0800" stop="20260613184500 +0800" channel="南通FM91.8">
+    <title lang="zh">音乐</title>
+  </programme>
+  <programme start="20260613184500 +0800" stop="20260613190000 +0800" channel="南通FM91.8">
+    <title lang="zh">领匠</title>
+  </programme>
+  <programme start="20260613190000 +0800" stop="20260613203000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末系列</title>
+  </programme>
+  <programme start="20260613203000 +0800" stop="20260613210000 +0800" channel="南通FM91.8">
     <title lang="zh">慧敏的城市地图</title>
   </programme>
-  <programme start="20260612210000 +0800" stop="20260612220000 +0800" channel="南通FM91.8">
+  <programme start="20260613210000 +0800" stop="20260613220000 +0800" channel="南通FM91.8">
     <title lang="zh">乐影留声/声音书房</title>
   </programme>
-  <programme start="20260612220000 +0800" stop="20260612230000 +0800" channel="南通FM91.8">
+  <programme start="20260613220000 +0800" stop="20260613230000 +0800" channel="南通FM91.8">
     <title lang="zh">music young</title>
   </programme>
-  <programme start="20260612230000 +0800" stop="20260612235959 +0800" channel="南通FM91.8">
-    <title lang="zh">就听好歌不说话</title>
+  <programme start="20260613230000 +0800" stop="20260613235959 +0800" channel="南通FM91.8">
+    <title lang="zh">周周热歌榜</title>
   </programme>
-  <programme start="20260612053000 +0800" stop="20260612060000 +0800" channel="南通FM92.9">
+  <programme start="20260613053000 +0800" stop="20260613060000 +0800" channel="南通FM92.9">
     <title lang="zh">原来生活是这样</title>
   </programme>
-  <programme start="20260612060000 +0800" stop="20260612070000 +0800" channel="南通FM92.9">
+  <programme start="20260613060000 +0800" stop="20260613070000 +0800" channel="南通FM92.9">
     <title lang="zh">专题节目</title>
   </programme>
-  <programme start="20260612070000 +0800" stop="20260612073000 +0800" channel="南通FM92.9">
+  <programme start="20260613070000 +0800" stop="20260613073000 +0800" channel="南通FM92.9">
     <title lang="zh">青听（精编版）</title>
   </programme>
-  <programme start="20260612073000 +0800" stop="20260612090000 +0800" channel="南通FM92.9">
-    <title lang="zh">元气满满上班路</title>
+  <programme start="20260613073000 +0800" stop="20260613123000 +0800" channel="南通FM92.9">
+    <title lang="zh">929 在路上</title>
   </programme>
-  <programme start="20260612090000 +0800" stop="20260612100000 +0800" channel="南通FM92.9">
-    <title lang="zh">Hit Music</title>
+  <programme start="20260613123000 +0800" stop="20260613133000 +0800" channel="南通FM92.9">
+    <title lang="zh">电台情歌</title>
   </programme>
-  <programme start="20260612100000 +0800" stop="20260612110000 +0800" channel="南通FM92.9">
-    <title lang="zh">小通时间</title>
+  <programme start="20260613133000 +0800" stop="20260613183000 +0800" channel="南通FM92.9">
+    <title lang="zh">929 在路上</title>
   </programme>
-  <programme start="20260612110000 +0800" stop="20260612120000 +0800" channel="南通FM92.9">
-    <title lang="zh">心有林西</title>
-  </programme>
-  <programme start="20260612120000 +0800" stop="20260612130000 +0800" channel="南通FM92.9">
-    <title lang="zh">Music Young</title>
-  </programme>
-  <programme start="20260612130000 +0800" stop="20260612150000 +0800" channel="南通FM92.9">
-    <title lang="zh">汽车先生</title>
-  </programme>
-  <programme start="20260612150000 +0800" stop="20260612160000 +0800" channel="南通FM92.9">
-    <title lang="zh">有理走天下</title>
-  </programme>
-  <programme start="20260612160000 +0800" stop="20260612173000 +0800" channel="南通FM92.9">
-    <title lang="zh">向远方</title>
-  </programme>
-  <programme start="20260612173000 +0800" stop="20260612183000 +0800" channel="南通FM92.9">
-    <title lang="zh">今晚不加班</title>
-  </programme>
-  <programme start="20260612183000 +0800" stop="20260612190000 +0800" channel="南通FM92.9">
+  <programme start="20260613183000 +0800" stop="20260613190000 +0800" channel="南通FM92.9">
     <title lang="zh">小通时间（精编版）</title>
   </programme>
-  <programme start="20260612190000 +0800" stop="20260612203000 +0800" channel="南通FM92.9">
-    <title lang="zh">原来生活是这样</title>
+  <programme start="20260613190000 +0800" stop="20260613203000 +0800" channel="南通FM92.9">
+    <title lang="zh">向远方（复播版）</title>
   </programme>
-  <programme start="20260612203000 +0800" stop="20260612213000 +0800" channel="南通FM92.9">
+  <programme start="20260613203000 +0800" stop="20260613213000 +0800" channel="南通FM92.9">
     <title lang="zh">青听</title>
   </programme>
-  <programme start="20260612213000 +0800" stop="20260612223000 +0800" channel="南通FM92.9">
+  <programme start="20260613213000 +0800" stop="20260613223000 +0800" channel="南通FM92.9">
     <title lang="zh">Hit Music（复播版）</title>
   </programme>
-  <programme start="20260612223000 +0800" stop="20260612235959 +0800" channel="南通FM92.9">
+  <programme start="20260613223000 +0800" stop="20260613235959 +0800" channel="南通FM92.9">
     <title lang="zh">时光书房+城市树洞</title>
   </programme>
-  <programme start="20260612052500 +0800" stop="20260612062500 +0800" channel="南通FM97.0">
+  <programme start="20260613052500 +0800" stop="20260613062500 +0800" channel="南通FM97.0">
     <title lang="zh">专题</title>
   </programme>
-  <programme start="20260612062500 +0800" stop="20260612063000 +0800" channel="南通FM97.0">
+  <programme start="20260613062500 +0800" stop="20260613063000 +0800" channel="南通FM97.0">
     <title lang="zh">早安南通</title>
   </programme>
-  <programme start="20260612063000 +0800" stop="20260612070000 +0800" channel="南通FM97.0">
+  <programme start="20260613063000 +0800" stop="20260613070000 +0800" channel="南通FM97.0">
     <title lang="zh">新闻和报纸摘要</title>
   </programme>
-  <programme start="20260612070000 +0800" stop="20260612073000 +0800" channel="南通FM97.0">
+  <programme start="20260613070000 +0800" stop="20260613073000 +0800" channel="南通FM97.0">
     <title lang="zh">直播南通</title>
   </programme>
-  <programme start="20260612073000 +0800" stop="20260612080000 +0800" channel="南通FM97.0">
-    <title lang="zh">新闻早高峰</title>
+  <programme start="20260613073000 +0800" stop="20260613090000 +0800" channel="南通FM97.0">
+    <title lang="zh">周末新闻汇</title>
   </programme>
-  <programme start="20260612080000 +0800" stop="20260612083000 +0800" channel="南通FM97.0">
-    <title lang="zh">新闻早高峰</title>
-  </programme>
-  <programme start="20260612083000 +0800" stop="20260612090000 +0800" channel="南通FM97.0">
-    <title lang="zh">新闻早高峰</title>
-  </programme>
-  <programme start="20260612090000 +0800" stop="20260612100000 +0800" channel="南通FM97.0">
-    <title lang="zh">法治在线</title>
-  </programme>
-  <programme start="20260612100000 +0800" stop="20260612110000 +0800" channel="南通FM97.0">
-    <title lang="zh">政风行风热线</title>
-  </programme>
-  <programme start="20260612110000 +0800" stop="20260612120000 +0800" channel="南通FM97.0">
-    <title lang="zh">对话直播间</title>
-  </programme>
-  <programme start="20260612120000 +0800" stop="20260612123000 +0800" channel="南通FM97.0">
-    <title lang="zh">直播南通</title>
-  </programme>
-  <programme start="20260612123000 +0800" stop="20260612130000 +0800" channel="南通FM97.0">
-    <title lang="zh">大头评论</title>
-  </programme>
-  <programme start="20260612130000 +0800" stop="20260612140000 +0800" channel="南通FM97.0">
-    <title lang="zh">政风行风热线/市民热线</title>
-  </programme>
-  <programme start="20260612140000 +0800" stop="20260612150000 +0800" channel="南通FM97.0">
-    <title lang="zh">铁峰帮你忙</title>
-  </programme>
-  <programme start="20260612150000 +0800" stop="20260612160000 +0800" channel="南通FM97.0">
+  <programme start="20260613090000 +0800" stop="20260613100000 +0800" channel="南通FM97.0">
     <title lang="zh">老友记</title>
   </programme>
-  <programme start="20260612160000 +0800" stop="20260612170000 +0800" channel="南通FM97.0">
-    <title lang="zh">大大小小一起来 名师来了</title>
+  <programme start="20260613100000 +0800" stop="20260613120000 +0800" channel="南通FM97.0">
+    <title lang="zh">主播的朋友圈</title>
   </programme>
-  <programme start="20260612170000 +0800" stop="20260612173000 +0800" channel="南通FM97.0">
-    <title lang="zh">专题</title>
+  <programme start="20260613120000 +0800" stop="20260613130000 +0800" channel="南通FM97.0">
+    <title lang="zh">大大小小一起来</title>
   </programme>
-  <programme start="20260612173000 +0800" stop="20260612183000 +0800" channel="南通FM97.0">
-    <title lang="zh">小颖来了</title>
+  <programme start="20260613130000 +0800" stop="20260613140000 +0800" channel="南通FM97.0">
+    <title lang="zh">新说法</title>
   </programme>
-  <programme start="20260612183000 +0800" stop="20260612190000 +0800" channel="南通FM97.0">
+  <programme start="20260613140000 +0800" stop="20260613150000 +0800" channel="南通FM97.0">
+    <title lang="zh">铁峰帮你忙</title>
+  </programme>
+  <programme start="20260613150000 +0800" stop="20260613170000 +0800" channel="南通FM97.0">
+    <title lang="zh">主播的朋友圈</title>
+  </programme>
+  <programme start="20260613170000 +0800" stop="20260613183000 +0800" channel="南通FM97.0">
+    <title lang="zh">新闻超有料</title>
+  </programme>
+  <programme start="20260613183000 +0800" stop="20260613190000 +0800" channel="南通FM97.0">
     <title lang="zh">全国新闻联播</title>
   </programme>
-  <programme start="20260612190000 +0800" stop="20260612193000 +0800" channel="南通FM97.0">
+  <programme start="20260613190000 +0800" stop="20260613193000 +0800" channel="南通FM97.0">
     <title lang="zh">大家有约</title>
   </programme>
-  <programme start="20260612193000 +0800" stop="20260612200000 +0800" channel="南通FM97.0">
+  <programme start="20260613193000 +0800" stop="20260613200000 +0800" channel="南通FM97.0">
     <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260612200000 +0800" stop="20260612210000 +0800" channel="南通FM97.0">
-    <title lang="zh">大大小小一起来</title>
+  <programme start="20260613200000 +0800" stop="20260613210000 +0800" channel="南通FM97.0">
+    <title lang="zh">主播的朋友圈</title>
   </programme>
-  <programme start="20260612210000 +0800" stop="20260612220000 +0800" channel="南通FM97.0">
+  <programme start="20260613210000 +0800" stop="20260613220000 +0800" channel="南通FM97.0">
     <title lang="zh">法治在线</title>
   </programme>
-  <programme start="20260612220000 +0800" stop="20260612230000 +0800" channel="南通FM97.0">
-    <title lang="zh">对话直播间</title>
+  <programme start="20260613220000 +0800" stop="20260613230000 +0800" channel="南通FM97.0">
+    <title lang="zh">新说法</title>
   </programme>
-  <programme start="20260612230000 +0800" stop="20260612235959 +0800" channel="南通FM97.0">
+  <programme start="20260613230000 +0800" stop="20260613235959 +0800" channel="南通FM97.0">
     <title lang="zh">最美时光</title>
   </programme>
-  <programme start="20260612053000 +0800" stop="20260612060000 +0800" channel="南通FM106.1">
+  <programme start="20260613053000 +0800" stop="20260613060000 +0800" channel="南通FM106.1">
     <title lang="zh">金色年华</title>
   </programme>
-  <programme start="20260612060000 +0800" stop="20260612070000 +0800" channel="南通FM106.1">
+  <programme start="20260613060000 +0800" stop="20260613070000 +0800" channel="南通FM106.1">
     <title lang="zh">快乐银龄俱乐部（重播）</title>
   </programme>
-  <programme start="20260612070000 +0800" stop="20260612073000 +0800" channel="南通FM106.1">
+  <programme start="20260613070000 +0800" stop="20260613073000 +0800" channel="南通FM106.1">
     <title lang="zh">大头评论</title>
   </programme>
-  <programme start="20260612073000 +0800" stop="20260612080000 +0800" channel="南通FM106.1">
+  <programme start="20260613073000 +0800" stop="20260613080000 +0800" channel="南通FM106.1">
     <title lang="zh">365 健康派</title>
   </programme>
-  <programme start="20260612080000 +0800" stop="20260612090000 +0800" channel="南通FM106.1">
+  <programme start="20260613080000 +0800" stop="20260613090000 +0800" channel="南通FM106.1">
     <title lang="zh">医生朋友在身边</title>
   </programme>
-  <programme start="20260612090000 +0800" stop="20260612100000 +0800" channel="南通FM106.1">
+  <programme start="20260613090000 +0800" stop="20260613100000 +0800" channel="南通FM106.1">
     <title lang="zh">原来生活是这样</title>
   </programme>
-  <programme start="20260612100000 +0800" stop="20260612110000 +0800" channel="南通FM106.1">
+  <programme start="20260613100000 +0800" stop="20260613110000 +0800" channel="南通FM106.1">
     <title lang="zh">周周热歌榜/宠爱有家</title>
   </programme>
-  <programme start="20260612110000 +0800" stop="20260612120000 +0800" channel="南通FM106.1">
+  <programme start="20260613110000 +0800" stop="20260613120000 +0800" channel="南通FM106.1">
     <title lang="zh">天天健康</title>
   </programme>
-  <programme start="20260612120000 +0800" stop="20260612130000 +0800" channel="南通FM106.1">
+  <programme start="20260613120000 +0800" stop="20260613130000 +0800" channel="南通FM106.1">
     <title lang="zh">健康我来了</title>
   </programme>
-  <programme start="20260612130000 +0800" stop="20260612140000 +0800" channel="南通FM106.1">
+  <programme start="20260613130000 +0800" stop="20260613140000 +0800" channel="南通FM106.1">
     <title lang="zh">天天书场</title>
   </programme>
-  <programme start="20260612140000 +0800" stop="20260612150000 +0800" channel="南通FM106.1">
+  <programme start="20260613140000 +0800" stop="20260613150000 +0800" channel="南通FM106.1">
     <title lang="zh">快乐银龄俱乐部</title>
   </programme>
-  <programme start="20260612150000 +0800" stop="20260612160000 +0800" channel="南通FM106.1">
+  <programme start="20260613150000 +0800" stop="20260613160000 +0800" channel="南通FM106.1">
     <title lang="zh">就听好歌不听话</title>
   </programme>
-  <programme start="20260612160000 +0800" stop="20260612170000 +0800" channel="南通FM106.1">
+  <programme start="20260613160000 +0800" stop="20260613170000 +0800" channel="南通FM106.1">
     <title lang="zh">医生朋友在身边</title>
   </programme>
-  <programme start="20260612170000 +0800" stop="20260612180000 +0800" channel="南通FM106.1">
+  <programme start="20260613170000 +0800" stop="20260613180000 +0800" channel="南通FM106.1">
     <title lang="zh">声音书房/乐影留声</title>
   </programme>
-  <programme start="20260612180000 +0800" stop="20260612183000 +0800" channel="南通FM106.1">
+  <programme start="20260613180000 +0800" stop="20260613183000 +0800" channel="南通FM106.1">
     <title lang="zh">健康我来了</title>
   </programme>
-  <programme start="20260612183000 +0800" stop="20260612190000 +0800" channel="南通FM106.1">
+  <programme start="20260613183000 +0800" stop="20260613190000 +0800" channel="南通FM106.1">
     <title lang="zh">总而言之</title>
   </programme>
-  <programme start="20260612190000 +0800" stop="20260612193000 +0800" channel="南通FM106.1">
+  <programme start="20260613190000 +0800" stop="20260613193000 +0800" channel="南通FM106.1">
     <title lang="zh">大家有约</title>
   </programme>
-  <programme start="20260612193000 +0800" stop="20260612200000 +0800" channel="南通FM106.1">
+  <programme start="20260613193000 +0800" stop="20260613200000 +0800" channel="南通FM106.1">
     <title lang="zh">健康365</title>
   </programme>
-  <programme start="20260612200000 +0800" stop="20260612210000 +0800" channel="南通FM106.1">
+  <programme start="20260613200000 +0800" stop="20260613210000 +0800" channel="南通FM106.1">
     <title lang="zh">大大小小一起来</title>
   </programme>
-  <programme start="20260612210000 +0800" stop="20260612220000 +0800" channel="南通FM106.1">
+  <programme start="20260613210000 +0800" stop="20260613220000 +0800" channel="南通FM106.1">
     <title lang="zh">总而言之+大家有约</title>
   </programme>
-  <programme start="20260612220000 +0800" stop="20260612230000 +0800" channel="南通FM106.1">
+  <programme start="20260613220000 +0800" stop="20260613230000 +0800" channel="南通FM106.1">
     <title lang="zh">Music Young</title>
   </programme>
-  <programme start="20260612230000 +0800" stop="20260612235959 +0800" channel="南通FM106.1">
+  <programme start="20260613230000 +0800" stop="20260613235959 +0800" channel="南通FM106.1">
     <title lang="zh">健康我来了</title>
   </programme>
   <programme start="20260613060000 +0800" stop="20260613061000 +0800" channel="如东1新闻综合">
