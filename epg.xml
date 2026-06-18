@@ -129,10 +129,10 @@
   <programme start="20260618220000 +0800" stop="20260618222500 +0800" channel="南通1新闻综合">
     <title lang="zh">江海联播</title>
   </programme>
-  <programme start="20260618222500 +0800" stop="20260618230000 +0800" channel="南通1新闻综合">
+  <programme start="20260618222500 +0800" stop="20260618230400 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260618230000 +0800" stop="20260618235959 +0800" channel="南通1新闻综合">
+  <programme start="20260618230400 +0800" stop="20260618235959 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
   <programme start="20260618063000 +0800" stop="20260618070000 +0800" channel="南通2社教频道">
