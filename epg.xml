@@ -81,524 +81,392 @@
   <channel id="镇江FM104">
     <display-name lang="zh">镇江综合广播</display-name>
   </channel>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="南通1新闻综合">
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="南通1新闻综合">
     <title lang="zh">人文纪录</title>
   </programme>
-  <programme start="20260808070000 +0800" stop="20260808073500 +0800" channel="南通1新闻综合">
+  <programme start="20260809070000 +0800" stop="20260809073500 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260808073500 +0800" stop="20260808082000 +0800" channel="南通1新闻综合">
+  <programme start="20260809073500 +0800" stop="20260809082000 +0800" channel="南通1新闻综合">
     <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260808082000 +0800" stop="20260808102000 +0800" channel="南通1新闻综合">
+  <programme start="20260809082000 +0800" stop="20260809102000 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260808102000 +0800" stop="20260808115900 +0800" channel="南通1新闻综合">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808115900 +0800" stop="20260808124000 +0800" channel="南通1新闻综合">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260808124000 +0800" stop="20260808131000 +0800" channel="南通1新闻综合">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808131000 +0800" stop="20260808132000 +0800" channel="南通1新闻综合">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260808132000 +0800" stop="20260808174000 +0800" channel="南通1新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808174000 +0800" stop="20260808175400 +0800" channel="南通1新闻综合">
-    <title lang="zh">新华纵横</title>
-  </programme>
-  <programme start="20260808175400 +0800" stop="20260808182900 +0800" channel="南通1新闻综合">
+  <programme start="20260809102000 +0800" stop="20260809115900 +0800" channel="南通1新闻综合">
     <title lang="zh">家在崇川</title>
   </programme>
-  <programme start="20260808182900 +0800" stop="20260808190000 +0800" channel="南通1新闻综合">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808193100 +0800" channel="南通1新闻综合">
-    <title lang="zh">转播中央台新闻联播</title>
-  </programme>
-  <programme start="20260808193100 +0800" stop="20260808200600 +0800" channel="南通1新闻综合">
+  <programme start="20260809115900 +0800" stop="20260809124000 +0800" channel="南通1新闻综合">
     <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260808200600 +0800" stop="20260808215500 +0800" channel="南通1新闻综合">
-    <title lang="zh">电视剧</title>
+  <programme start="20260809124000 +0800" stop="20260809131000 +0800" channel="南通1新闻综合">
+    <title lang="zh">家在崇川</title>
   </programme>
-  <programme start="20260808215500 +0800" stop="20260808221500 +0800" channel="南通1新闻综合">
-    <title lang="zh">通商故事汇</title>
-  </programme>
-  <programme start="20260808221500 +0800" stop="20260808225000 +0800" channel="南通1新闻综合">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260808225000 +0800" stop="20260808235959 +0800" channel="南通1新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="南通2社教频道">
-    <title lang="zh">口述中国</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808073300 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260808073300 +0800" stop="20260808081000 +0800" channel="南通2社教频道">
-    <title lang="zh">崇川新闻</title>
-  </programme>
-  <programme start="20260808081000 +0800" stop="20260808084500 +0800" channel="南通2社教频道">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808084500 +0800" stop="20260808113500 +0800" channel="南通2社教频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808113500 +0800" stop="20260808120000 +0800" channel="南通2社教频道">
-    <title lang="zh">通商故事汇</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808125000 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260808125000 +0800" stop="20260808133000 +0800" channel="南通2社教频道">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260808133000 +0800" stop="20260808140200 +0800" channel="南通2社教频道">
-    <title lang="zh">人文记录</title>
-  </programme>
-  <programme start="20260808140200 +0800" stop="20260808173000 +0800" channel="南通2社教频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808173000 +0800" stop="20260808183000 +0800" channel="南通2社教频道">
-    <title lang="zh">动画城堡</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808190500 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260808190500 +0800" stop="20260808205000 +0800" channel="南通2社教频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808205000 +0800" stop="20260808214000 +0800" channel="南通2社教频道">
-    <title lang="zh">艺起成长吧</title>
-  </programme>
-  <programme start="20260808214000 +0800" stop="20260808220000 +0800" channel="南通2社教频道">
-    <title lang="zh">跟着主播去旅行</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808223000 +0800" channel="南通2社教频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260808223000 +0800" stop="20260808230000 +0800" channel="南通2社教频道">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808233000 +0800" channel="南通2社教频道">
-    <title lang="zh">人文纪录</title>
-  </programme>
-  <programme start="20260808233000 +0800" stop="20260808235959 +0800" channel="南通2社教频道">
-    <title lang="zh">口述中国</title>
-  </programme>
-  <programme start="20260808070100 +0800" stop="20260808073000 +0800" channel="南通3公共频道">
-    <title lang="zh">崇川新闻</title>
-  </programme>
-  <programme start="20260808073000 +0800" stop="20260808080500 +0800" channel="南通3公共频道">
-    <title lang="zh">南通新闻</title>
-  </programme>
-  <programme start="20260808080500 +0800" stop="20260808084000 +0800" channel="南通3公共频道">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260808084000 +0800" stop="20260808102500 +0800" channel="南通3公共频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808102500 +0800" stop="20260808105500 +0800" channel="南通3公共频道">
-    <title lang="zh">人文纪录</title>
-  </programme>
-  <programme start="20260808105500 +0800" stop="20260808111500 +0800" channel="南通3公共频道">
+  <programme start="20260809131000 +0800" stop="20260809132000 +0800" channel="南通1新闻综合">
     <title lang="zh">新华纵横</title>
   </programme>
-  <programme start="20260808111500 +0800" stop="20260808120000 +0800" channel="南通3公共频道">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808123000 +0800" channel="南通3公共频道">
-    <title lang="zh">崇川新闻</title>
-  </programme>
-  <programme start="20260808123000 +0800" stop="20260808125500 +0800" channel="南通3公共频道">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808125500 +0800" stop="20260808173000 +0800" channel="南通3公共频道">
+  <programme start="20260809132000 +0800" stop="20260809174000 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260808173000 +0800" stop="20260808180000 +0800" channel="南通3公共频道">
-    <title lang="zh">通商故事汇</title>
+  <programme start="20260809174000 +0800" stop="20260809175400 +0800" channel="南通1新闻综合">
+    <title lang="zh">新华纵横</title>
   </programme>
-  <programme start="20260808180000 +0800" stop="20260808183000 +0800" channel="南通3公共频道">
-    <title lang="zh">口述中国</title>
+  <programme start="20260809175400 +0800" stop="20260809182900 +0800" channel="南通1新闻综合">
+    <title lang="zh">大家有约</title>
   </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="南通3公共频道">
-    <title lang="zh">人文记录</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808192800 +0800" channel="南通3公共频道">
-    <title lang="zh">崇川新闻</title>
-  </programme>
-  <programme start="20260808192800 +0800" stop="20260808195500 +0800" channel="南通3公共频道">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808195500 +0800" stop="20260808200000 +0800" channel="南通3公共频道">
-    <title lang="zh">天气预报</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808203500 +0800" channel="南通3公共频道">
+  <programme start="20260809182900 +0800" stop="20260809190000 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260808203500 +0800" stop="20260808221500 +0800" channel="南通3公共频道">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808221500 +0800" stop="20260808225000 +0800" channel="南通3公共频道">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260808225000 +0800" stop="20260808235959 +0800" channel="南通3公共频道">
-    <title lang="zh">深夜影院</title>
-  </programme>
-  <programme start="20260808053000 +0800" stop="20260808060000 +0800" channel="南通FM91.8">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808070000 +0800" channel="南通FM91.8">
-    <title lang="zh">城市地图</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808080000 +0800" channel="南通FM91.8">
-    <title lang="zh">就听好歌</title>
-  </programme>
-  <programme start="20260808080000 +0800" stop="20260808110000 +0800" channel="南通FM91.8">
-    <title lang="zh">轻松周末</title>
-  </programme>
-  <programme start="20260808110000 +0800" stop="20260808111500 +0800" channel="南通FM91.8">
-    <title lang="zh">领匠</title>
-  </programme>
-  <programme start="20260808111500 +0800" stop="20260808113000 +0800" channel="南通FM91.8">
-    <title lang="zh">音乐</title>
-  </programme>
-  <programme start="20260808113000 +0800" stop="20260808123000 +0800" channel="南通FM91.8">
-    <title lang="zh">轻松周末</title>
-  </programme>
-  <programme start="20260808123000 +0800" stop="20260808130000 +0800" channel="南通FM91.8">
-    <title lang="zh">劲歌金曲排行榜</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808133000 +0800" channel="南通FM91.8">
-    <title lang="zh">大家有约</title>
-  </programme>
-  <programme start="20260808133000 +0800" stop="20260808140000 +0800" channel="南通FM91.8">
-    <title lang="zh">劲歌金曲排行榜</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808160000 +0800" channel="南通FM91.8">
-    <title lang="zh">专题</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="南通FM91.8">
-    <title lang="zh">轻松周末</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808180000 +0800" channel="南通FM91.8">
-    <title lang="zh">就听好歌</title>
-  </programme>
-  <programme start="20260808180000 +0800" stop="20260808193000 +0800" channel="南通FM91.8">
-    <title lang="zh">就听好歌不听话</title>
-  </programme>
-  <programme start="20260808193000 +0800" stop="20260808200000 +0800" channel="南通FM91.8">
-    <title lang="zh">就听好歌不听话</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="南通FM91.8">
-    <title lang="zh">慧敏的城市地图</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="南通FM91.8">
-    <title lang="zh">声音书房</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808230000 +0800" channel="南通FM91.8">
-    <title lang="zh">乐影留声</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808235959 +0800" channel="南通FM91.8">
-    <title lang="zh">音乐 big 榜</title>
-  </programme>
-  <programme start="20260808053000 +0800" stop="20260808060000 +0800" channel="南通FM92.9">
-    <title lang="zh">原来生活是这样</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808070000 +0800" channel="南通FM92.9">
-    <title lang="zh">专题节目</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808073000 +0800" channel="南通FM92.9">
-    <title lang="zh">青听（精编版）</title>
-  </programme>
-  <programme start="20260808073000 +0800" stop="20260808123000 +0800" channel="南通FM92.9">
-    <title lang="zh">929 在路上</title>
-  </programme>
-  <programme start="20260808123000 +0800" stop="20260808133000 +0800" channel="南通FM92.9">
-    <title lang="zh">电台情歌</title>
-  </programme>
-  <programme start="20260808133000 +0800" stop="20260808183000 +0800" channel="南通FM92.9">
-    <title lang="zh">929 在路上</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="南通FM92.9">
-    <title lang="zh">小通时间（精编版）</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808203000 +0800" channel="南通FM92.9">
-    <title lang="zh">向远方（复播版）</title>
-  </programme>
-  <programme start="20260808203000 +0800" stop="20260808213000 +0800" channel="南通FM92.9">
-    <title lang="zh">青听</title>
-  </programme>
-  <programme start="20260808213000 +0800" stop="20260808223000 +0800" channel="南通FM92.9">
-    <title lang="zh">Hit Music（复播版）</title>
-  </programme>
-  <programme start="20260808223000 +0800" stop="20260808235959 +0800" channel="南通FM92.9">
-    <title lang="zh">时光书房+城市树洞</title>
-  </programme>
-  <programme start="20260808052500 +0800" stop="20260808062500 +0800" channel="南通FM97.0">
-    <title lang="zh">专题</title>
-  </programme>
-  <programme start="20260808062500 +0800" stop="20260808063000 +0800" channel="南通FM97.0">
-    <title lang="zh">早安南通</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="南通FM97.0">
-    <title lang="zh">新闻和报纸摘要</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808073000 +0800" channel="南通FM97.0">
-    <title lang="zh">直播南通</title>
-  </programme>
-  <programme start="20260808073000 +0800" stop="20260808090000 +0800" channel="南通FM97.0">
-    <title lang="zh">周末新闻汇</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="南通FM97.0">
-    <title lang="zh">老友记</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808120000 +0800" channel="南通FM97.0">
-    <title lang="zh">主播的朋友圈</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="南通FM97.0">
-    <title lang="zh">大大小小一起来</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="南通FM97.0">
-    <title lang="zh">新说法</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="南通FM97.0">
-    <title lang="zh">铁峰帮你忙</title>
-  </programme>
-  <programme start="20260808150000 +0800" stop="20260808170000 +0800" channel="南通FM97.0">
-    <title lang="zh">主播的朋友圈</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808183000 +0800" channel="南通FM97.0">
-    <title lang="zh">新闻超有料</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="南通FM97.0">
-    <title lang="zh">全国新闻联播</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808193000 +0800" channel="南通FM97.0">
-    <title lang="zh">大家有约</title>
-  </programme>
-  <programme start="20260808193000 +0800" stop="20260808200000 +0800" channel="南通FM97.0">
-    <title lang="zh">城市日历</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="南通FM97.0">
-    <title lang="zh">主播的朋友圈</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="南通FM97.0">
-    <title lang="zh">法治在线</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808230000 +0800" channel="南通FM97.0">
-    <title lang="zh">新说法</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808235959 +0800" channel="南通FM97.0">
-    <title lang="zh">最美时光</title>
-  </programme>
-  <programme start="20260808053000 +0800" stop="20260808060000 +0800" channel="南通FM106.1">
-    <title lang="zh">金色年华</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808070000 +0800" channel="南通FM106.1">
-    <title lang="zh">快乐银龄俱乐部（重播）</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808073000 +0800" channel="南通FM106.1">
-    <title lang="zh">大头评论</title>
-  </programme>
-  <programme start="20260808073000 +0800" stop="20260808080000 +0800" channel="南通FM106.1">
-    <title lang="zh">365 健康派</title>
-  </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="南通FM106.1">
-    <title lang="zh">医生朋友在身边</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="南通FM106.1">
-    <title lang="zh">原来生活是这样</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="南通FM106.1">
-    <title lang="zh">周周热歌榜/宠爱有家</title>
-  </programme>
-  <programme start="20260808110000 +0800" stop="20260808120000 +0800" channel="南通FM106.1">
-    <title lang="zh">天天健康</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="南通FM106.1">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="南通FM106.1">
-    <title lang="zh">天天书场</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="南通FM106.1">
-    <title lang="zh">快乐银龄俱乐部</title>
-  </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="南通FM106.1">
-    <title lang="zh">就听好歌不听话</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="南通FM106.1">
-    <title lang="zh">医生朋友在身边</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808180000 +0800" channel="南通FM106.1">
-    <title lang="zh">声音书房/乐影留声</title>
-  </programme>
-  <programme start="20260808180000 +0800" stop="20260808183000 +0800" channel="南通FM106.1">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="南通FM106.1">
-    <title lang="zh">总而言之</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808193000 +0800" channel="南通FM106.1">
-    <title lang="zh">大家有约</title>
-  </programme>
-  <programme start="20260808193000 +0800" stop="20260808200000 +0800" channel="南通FM106.1">
-    <title lang="zh">健康365</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="南通FM106.1">
-    <title lang="zh">大大小小一起来</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="南通FM106.1">
-    <title lang="zh">总而言之+大家有约</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808230000 +0800" channel="南通FM106.1">
-    <title lang="zh">Music Young</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808235959 +0800" channel="南通FM106.1">
-    <title lang="zh">健康我来了</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808061000 +0800" channel="如东1新闻综合">
-    <title lang="zh">开机晨曲</title>
-  </programme>
-  <programme start="20260808061000 +0800" stop="20260808062000 +0800" channel="如东1新闻综合">
-    <title lang="zh">开机广告</title>
-  </programme>
-  <programme start="20260808062000 +0800" stop="20260808062500 +0800" channel="如东1新闻综合">
-    <title lang="zh">定点节目预告</title>
-  </programme>
-  <programme start="20260808062500 +0800" stop="20260808064000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《如东新闻》</title>
-  </programme>
-  <programme start="20260808064000 +0800" stop="20260808070000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《每周一刻》</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808071000 +0800" channel="如东1新闻综合">
-    <title lang="zh">国歌</title>
-  </programme>
-  <programme start="20260808071000 +0800" stop="20260808071500 +0800" channel="如东1新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260808071500 +0800" stop="20260808073500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《广告部专题》</title>
-  </programme>
-  <programme start="20260808073500 +0800" stop="20260808080500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《省市台联播节目》</title>
-  </programme>
-  <programme start="20260808080500 +0800" stop="20260808081500 +0800" channel="如东1新闻综合">
-    <title lang="zh">广告加节目预告</title>
-  </programme>
-  <programme start="20260808081500 +0800" stop="20260808100000 +0800" channel="如东1新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808101500 +0800" channel="如东1新闻综合">
-    <title lang="zh">节目预告加广告</title>
-  </programme>
-  <programme start="20260808101500 +0800" stop="20260808111500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《观点致胜》</title>
-  </programme>
-  <programme start="20260808111500 +0800" stop="20260808113000 +0800" channel="如东1新闻综合">
-    <title lang="zh">联办栏目：《扶海纵横》</title>
-  </programme>
-  <programme start="20260808113000 +0800" stop="20260808114500 +0800" channel="如东1新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260808114500 +0800" stop="20260808115800 +0800" channel="如东1新闻综合">
-    <title lang="zh">《周日幽默一刻》</title>
-  </programme>
-  <programme start="20260808115800 +0800" stop="20260808120000 +0800" channel="如东1新闻综合">
-    <title lang="zh">定点节目预告加广告</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808121500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《如东新闻》</title>
-  </programme>
-  <programme start="20260808121500 +0800" stop="20260808122000 +0800" channel="如东1新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260808122000 +0800" stop="20260808124000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《每周一刻》</title>
-  </programme>
-  <programme start="20260808124000 +0800" stop="20260808124500 +0800" channel="如东1新闻综合">
-    <title lang="zh">广告</title>
-  </programme>
-  <programme start="20260808124500 +0800" stop="20260808130000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《广告部专题》</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808131000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《新华纵横》</title>
-  </programme>
-  <programme start="20260808131000 +0800" stop="20260808131500 +0800" channel="如东1新闻综合">
-    <title lang="zh">节目预告加广告（宣传片）</title>
-  </programme>
-  <programme start="20260808131500 +0800" stop="20260808151000 +0800" channel="如东1新闻综合">
-    <title lang="zh">联办栏目：《扶海纵横》</title>
-  </programme>
-  <programme start="20260808151000 +0800" stop="20260808165000 +0800" channel="如东1新闻综合">
-    <title lang="zh">电视剧</title>
-  </programme>
-  <programme start="20260808165000 +0800" stop="20260808172000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《省市台联播节目》</title>
-  </programme>
-  <programme start="20260808172000 +0800" stop="20260808173500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《大沈阳说如东》</title>
-  </programme>
-  <programme start="20260808173500 +0800" stop="20260808182500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《广告部专题》</title>
-  </programme>
-  <programme start="20260808182500 +0800" stop="20260808183000 +0800" channel="如东1新闻综合">
-    <title lang="zh">节目预告加广告</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808184500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《如东新闻》</title>
-  </programme>
-  <programme start="20260808184500 +0800" stop="20260808185000 +0800" channel="如东1新闻综合">
-    <title lang="zh">天气预报+广告</title>
-  </programme>
-  <programme start="20260808185000 +0800" stop="20260808190000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《新华纵横》</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808193000 +0800" channel="如东1新闻综合">
+  <programme start="20260809190000 +0800" stop="20260809193100 +0800" channel="南通1新闻综合">
     <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260808193000 +0800" stop="20260808193500 +0800" channel="如东1新闻综合">
-    <title lang="zh">广告</title>
+  <programme start="20260809193100 +0800" stop="20260809200600 +0800" channel="南通1新闻综合">
+    <title lang="zh">城市日历</title>
   </programme>
-  <programme start="20260808193500 +0800" stop="20260808195500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《直通民生》|政务专题</title>
-  </programme>
-  <programme start="20260808195500 +0800" stop="20260808201000 +0800" channel="如东1新闻综合">
-    <title lang="zh">联办栏目《扶海纵横》</title>
-  </programme>
-  <programme start="20260808201000 +0800" stop="20260808214500 +0800" channel="如东1新闻综合">
+  <programme start="20260809200600 +0800" stop="20260809215500 +0800" channel="南通1新闻综合">
     <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260808214500 +0800" stop="20260808220000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《新华纵横》</title>
+  <programme start="20260809215500 +0800" stop="20260809222500 +0800" channel="南通1新闻综合">
+    <title lang="zh">大家有约</title>
   </programme>
-  <programme start="20260808220000 +0800" stop="20260808221500 +0800" channel="如东1新闻综合">
-    <title lang="zh">如东新闻【重播】</title>
+  <programme start="20260809222500 +0800" stop="20260809230000 +0800" channel="南通1新闻综合">
+    <title lang="zh">南通新闻</title>
   </programme>
-  <programme start="20260808221500 +0800" stop="20260808222000 +0800" channel="如东1新闻综合">
-    <title lang="zh">天气预报+广告</title>
+  <programme start="20260809230000 +0800" stop="20260809235959 +0800" channel="南通1新闻综合">
+    <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260808222000 +0800" stop="20260808231000 +0800" channel="如东1新闻综合">
-    <title lang="zh">《观点致胜》</title>
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="南通2社教频道">
+    <title lang="zh">口述中国</title>
   </programme>
-  <programme start="20260808231000 +0800" stop="20260808232500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《大沈阳说如东》</title>
+  <programme start="20260809070000 +0800" stop="20260809073300 +0800" channel="南通2社教频道">
+    <title lang="zh">总而言之</title>
   </programme>
-  <programme start="20260808232500 +0800" stop="20260808235500 +0800" channel="如东1新闻综合">
-    <title lang="zh">《省市台联播节目》</title>
+  <programme start="20260809073300 +0800" stop="20260809081000 +0800" channel="南通2社教频道">
+    <title lang="zh">崇川新闻</title>
   </programme>
-  <programme start="20260808235500 +0800" stop="20260808235900 +0800" channel="如东1新闻综合">
-    <title lang="zh">关机广告</title>
+  <programme start="20260809081000 +0800" stop="20260809084500 +0800" channel="南通2社教频道">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809084500 +0800" stop="20260809113500 +0800" channel="南通2社教频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260809113500 +0800" stop="20260809120000 +0800" channel="南通2社教频道">
+    <title lang="zh">跟着主播去旅行</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809125000 +0800" channel="南通2社教频道">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260809125000 +0800" stop="20260809133000 +0800" channel="南通2社教频道">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260809133000 +0800" stop="20260809140200 +0800" channel="南通2社教频道">
+    <title lang="zh">人文记录</title>
+  </programme>
+  <programme start="20260809140200 +0800" stop="20260809173000 +0800" channel="南通2社教频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260809173000 +0800" stop="20260809183000 +0800" channel="南通2社教频道">
+    <title lang="zh">动画城堡</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190500 +0800" channel="南通2社教频道">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260809190500 +0800" stop="20260809205000 +0800" channel="南通2社教频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260809205000 +0800" stop="20260809214000 +0800" channel="南通2社教频道">
+    <title lang="zh">艺起成长吧</title>
+  </programme>
+  <programme start="20260809214000 +0800" stop="20260809215000 +0800" channel="南通2社教频道">
+    <title lang="zh">新华纵横</title>
+  </programme>
+  <programme start="20260809215000 +0800" stop="20260809220000 +0800" channel="南通2社教频道">
+    <title lang="zh">江风海韵</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809223000 +0800" channel="南通2社教频道">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260809223000 +0800" stop="20260809230000 +0800" channel="南通2社教频道">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809233000 +0800" channel="南通2社教频道">
+    <title lang="zh">人文纪录</title>
+  </programme>
+  <programme start="20260809233000 +0800" stop="20260809235959 +0800" channel="南通2社教频道">
+    <title lang="zh">口述中国</title>
+  </programme>
+  <programme start="20260809070100 +0800" stop="20260809073000 +0800" channel="南通3公共频道">
+    <title lang="zh">崇川新闻</title>
+  </programme>
+  <programme start="20260809073000 +0800" stop="20260809080500 +0800" channel="南通3公共频道">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260809080500 +0800" stop="20260809084000 +0800" channel="南通3公共频道">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260809084000 +0800" stop="20260809102500 +0800" channel="南通3公共频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260809102500 +0800" stop="20260809105500 +0800" channel="南通3公共频道">
+    <title lang="zh">人文纪录</title>
+  </programme>
+  <programme start="20260809105500 +0800" stop="20260809111500 +0800" channel="南通3公共频道">
+    <title lang="zh">新华纵横</title>
+  </programme>
+  <programme start="20260809111500 +0800" stop="20260809120000 +0800" channel="南通3公共频道">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809123000 +0800" channel="南通3公共频道">
+    <title lang="zh">崇川新闻</title>
+  </programme>
+  <programme start="20260809123000 +0800" stop="20260809125500 +0800" channel="南通3公共频道">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809125500 +0800" stop="20260809131000 +0800" channel="南通3公共频道">
+    <title lang="zh">跟着主播去旅行</title>
+  </programme>
+  <programme start="20260809131000 +0800" stop="20260809180000 +0800" channel="南通3公共频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260809180000 +0800" stop="20260809183000 +0800" channel="南通3公共频道">
+    <title lang="zh">口述中国</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="南通3公共频道">
+    <title lang="zh">人文记录</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809192800 +0800" channel="南通3公共频道">
+    <title lang="zh">家在崇川</title>
+  </programme>
+  <programme start="20260809192800 +0800" stop="20260809195500 +0800" channel="南通3公共频道">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809195500 +0800" stop="20260809200000 +0800" channel="南通3公共频道">
+    <title lang="zh">天气预报</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809203500 +0800" channel="南通3公共频道">
+    <title lang="zh">南通新闻</title>
+  </programme>
+  <programme start="20260809203500 +0800" stop="20260809221500 +0800" channel="南通3公共频道">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260809221500 +0800" stop="20260809225000 +0800" channel="南通3公共频道">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260809225000 +0800" stop="20260809235959 +0800" channel="南通3公共频道">
+    <title lang="zh">深夜影院</title>
+  </programme>
+  <programme start="20260809053000 +0800" stop="20260809060000 +0800" channel="南通FM91.8">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809070000 +0800" channel="南通FM91.8">
+    <title lang="zh">城市地图</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809080000 +0800" channel="南通FM91.8">
+    <title lang="zh">就听好歌</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809110000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809111500 +0800" channel="南通FM91.8">
+    <title lang="zh">领匠</title>
+  </programme>
+  <programme start="20260809111500 +0800" stop="20260809113000 +0800" channel="南通FM91.8">
+    <title lang="zh">音乐</title>
+  </programme>
+  <programme start="20260809113000 +0800" stop="20260809123000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末</title>
+  </programme>
+  <programme start="20260809123000 +0800" stop="20260809130000 +0800" channel="南通FM91.8">
+    <title lang="zh">劲歌金曲排行榜</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809133000 +0800" channel="南通FM91.8">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809133000 +0800" stop="20260809140000 +0800" channel="南通FM91.8">
+    <title lang="zh">劲歌金曲排行榜</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809160000 +0800" channel="南通FM91.8">
+    <title lang="zh">专题</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="南通FM91.8">
+    <title lang="zh">轻松周末</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809180000 +0800" channel="南通FM91.8">
+    <title lang="zh">就听好歌</title>
+  </programme>
+  <programme start="20260809180000 +0800" stop="20260809193000 +0800" channel="南通FM91.8">
+    <title lang="zh">就听好歌不听话</title>
+  </programme>
+  <programme start="20260809193000 +0800" stop="20260809200000 +0800" channel="南通FM91.8">
+    <title lang="zh">就听好歌不听话</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="南通FM91.8">
+    <title lang="zh">慧敏的城市地图</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809220000 +0800" channel="南通FM91.8">
+    <title lang="zh">声音书房</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809230000 +0800" channel="南通FM91.8">
+    <title lang="zh">乐影留声</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809235959 +0800" channel="南通FM91.8">
+    <title lang="zh">音乐 big 榜</title>
+  </programme>
+  <programme start="20260809053000 +0800" stop="20260809060000 +0800" channel="南通FM92.9">
+    <title lang="zh">原来生活是这样</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809070000 +0800" channel="南通FM92.9">
+    <title lang="zh">专题节目</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809073000 +0800" channel="南通FM92.9">
+    <title lang="zh">青听（精编版）</title>
+  </programme>
+  <programme start="20260809073000 +0800" stop="20260809123000 +0800" channel="南通FM92.9">
+    <title lang="zh">929 在路上</title>
+  </programme>
+  <programme start="20260809123000 +0800" stop="20260809133000 +0800" channel="南通FM92.9">
+    <title lang="zh">电台情歌</title>
+  </programme>
+  <programme start="20260809133000 +0800" stop="20260809183000 +0800" channel="南通FM92.9">
+    <title lang="zh">929 在路上</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="南通FM92.9">
+    <title lang="zh">小通时间（精编版）</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809203000 +0800" channel="南通FM92.9">
+    <title lang="zh">向远方（复播版）</title>
+  </programme>
+  <programme start="20260809203000 +0800" stop="20260809213000 +0800" channel="南通FM92.9">
+    <title lang="zh">青听</title>
+  </programme>
+  <programme start="20260809213000 +0800" stop="20260809223000 +0800" channel="南通FM92.9">
+    <title lang="zh">Hit Music（复播版）</title>
+  </programme>
+  <programme start="20260809223000 +0800" stop="20260809235959 +0800" channel="南通FM92.9">
+    <title lang="zh">时光书房+城市树洞</title>
+  </programme>
+  <programme start="20260809052500 +0800" stop="20260809062500 +0800" channel="南通FM97.0">
+    <title lang="zh">专题</title>
+  </programme>
+  <programme start="20260809062500 +0800" stop="20260809063000 +0800" channel="南通FM97.0">
+    <title lang="zh">早安南通</title>
+  </programme>
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="南通FM97.0">
+    <title lang="zh">新闻和报纸摘要</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809073000 +0800" channel="南通FM97.0">
+    <title lang="zh">直播南通</title>
+  </programme>
+  <programme start="20260809073000 +0800" stop="20260809090000 +0800" channel="南通FM97.0">
+    <title lang="zh">周末新闻汇</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="南通FM97.0">
+    <title lang="zh">老友记</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809120000 +0800" channel="南通FM97.0">
+    <title lang="zh">主播的朋友圈</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="南通FM97.0">
+    <title lang="zh">大大小小一起来</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="南通FM97.0">
+    <title lang="zh">新说法</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809150000 +0800" channel="南通FM97.0">
+    <title lang="zh">铁峰帮你忙</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809170000 +0800" channel="南通FM97.0">
+    <title lang="zh">主播的朋友圈</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809183000 +0800" channel="南通FM97.0">
+    <title lang="zh">新闻超有料</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="南通FM97.0">
+    <title lang="zh">全国新闻联播</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809193000 +0800" channel="南通FM97.0">
+    <title lang="zh">大家有约</title>
+  </programme>
+  <programme start="20260809193000 +0800" stop="20260809200000 +0800" channel="南通FM97.0">
+    <title lang="zh">城市日历</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="南通FM97.0">
+    <title lang="zh">主播的朋友圈</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809220000 +0800" channel="南通FM97.0">
+    <title lang="zh">法治在线</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809230000 +0800" channel="南通FM97.0">
+    <title lang="zh">新说法</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809235959 +0800" channel="南通FM97.0">
+    <title lang="zh">最美时光</title>
+  </programme>
+  <programme start="20260809053000 +0800" stop="20260809060000 +0800" channel="南通FM106.1">
+    <title lang="zh">金色年华</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809070000 +0800" channel="南通FM106.1">
+    <title lang="zh">快乐银龄俱乐部（重播）</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809073000 +0800" channel="南通FM106.1">
+    <title lang="zh">大头评论</title>
+  </programme>
+  <programme start="20260809073000 +0800" stop="20260809080000 +0800" channel="南通FM106.1">
+    <title lang="zh">365 健康派</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809090000 +0800" channel="南通FM106.1">
+    <title lang="zh">医生朋友在身边</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="南通FM106.1">
+    <title lang="zh">原来生活是这样</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809110000 +0800" channel="南通FM106.1">
+    <title lang="zh">周周热歌榜/宠爱有家</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809120000 +0800" channel="南通FM106.1">
+    <title lang="zh">天天健康</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="南通FM106.1">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="南通FM106.1">
+    <title lang="zh">天天书场</title>
+  </programme>
+  <programme start="20260809140001 +0800" stop="20260809150000 +0800" channel="南通FM106.1">
+    <title lang="zh">快乐银龄俱乐部</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809160000 +0800" channel="南通FM106.1">
+    <title lang="zh">就听好歌不听话</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="南通FM106.1">
+    <title lang="zh">医生朋友在身边</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809180000 +0800" channel="南通FM106.1">
+    <title lang="zh">声音书房/乐影留声</title>
+  </programme>
+  <programme start="20260809180000 +0800" stop="20260809183000 +0800" channel="南通FM106.1">
+    <title lang="zh">健康我来了</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="南通FM106.1">
+    <title lang="zh">总而言之</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809193000 +0800" channel="南通FM106.1">
+    <title lang="zh">大家有约</title>
+  </programme>
+  <programme start="20260809193000 +0800" stop="20260809200000 +0800" channel="南通FM106.1">
+    <title lang="zh">健康365</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="南通FM106.1">
+    <title lang="zh">大大小小一起来</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809220000 +0800" channel="南通FM106.1">
+    <title lang="zh">总而言之+大家有约</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809230000 +0800" channel="南通FM106.1">
+    <title lang="zh">Music Young</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809235959 +0800" channel="南通FM106.1">
+    <title lang="zh">健康我来了</title>
   </programme>
   <programme start="20260809060000 +0800" stop="20260809061000 +0800" channel="如东1新闻综合">
     <title lang="zh">开机晨曲</title>
@@ -735,95 +603,140 @@
   <programme start="20260809235500 +0800" stop="20260809235900 +0800" channel="如东1新闻综合">
     <title lang="zh">关机广告</title>
   </programme>
-  <programme start="20260808053000 +0800" stop="20260808053500 +0800" channel="如东FM89.6">
-    <title lang="zh">报时+开始曲</title>
+  <programme start="20260810060000 +0800" stop="20260810061000 +0800" channel="如东1新闻综合">
+    <title lang="zh">开机晨曲</title>
   </programme>
-  <programme start="20260808053500 +0800" stop="20260808060000 +0800" channel="如东FM89.6">
-    <title lang="zh">《金色年华》</title>
+  <programme start="20260810061000 +0800" stop="20260810062000 +0800" channel="如东1新闻综合">
+    <title lang="zh">开机广告</title>
   </programme>
-  <programme start="20260808060000 +0800" stop="20260808062500 +0800" channel="如东FM89.6">
-    <title lang="zh">《365健康派》</title>
+  <programme start="20260810062000 +0800" stop="20260810062500 +0800" channel="如东1新闻综合">
+    <title lang="zh">定点节目预告</title>
   </programme>
-  <programme start="20260808062500 +0800" stop="20260808063000 +0800" channel="如东FM89.6">
-    <title lang="zh">《天气早知道》</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="如东FM89.6">
-    <title lang="zh">转播《新闻和报纸摘要》</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808073500 +0800" channel="如东FM89.6">
-    <title lang="zh">转播《江苏新闻联播》</title>
-  </programme>
-  <programme start="20260808073500 +0800" stop="20260808075000 +0800" channel="如东FM89.6">
+  <programme start="20260810062500 +0800" stop="20260810064000 +0800" channel="如东1新闻综合">
     <title lang="zh">《如东新闻》</title>
   </programme>
-  <programme start="20260808075000 +0800" stop="20260808075500 +0800" channel="如东FM89.6">
-    <title lang="zh">《早间天气》</title>
+  <programme start="20260810064000 +0800" stop="20260810070000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《每周一刻》</title>
   </programme>
-  <programme start="20260808075500 +0800" stop="20260808080000 +0800" channel="如东FM89.6">
-    <title lang="zh">《理财微剧》</title>
+  <programme start="20260810070000 +0800" stop="20260810071000 +0800" channel="如东1新闻综合">
+    <title lang="zh">国歌</title>
   </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="如东FM89.6">
-    <title lang="zh">《汽车音乐时间》</title>
+  <programme start="20260810071000 +0800" stop="20260810071500 +0800" channel="如东1新闻综合">
+    <title lang="zh">广告</title>
   </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="如东FM89.6">
-    <title lang="zh">《文静的音乐时间》周末版</title>
+  <programme start="20260810071500 +0800" stop="20260810073500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《广告部专题》</title>
   </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="如东FM89.6">
-    <title lang="zh">《童心桐语》《奶爸奶妈总动员》</title>
+  <programme start="20260810073500 +0800" stop="20260810080500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《省市台联播节目》</title>
   </programme>
-  <programme start="20260808110000 +0800" stop="20260808112000 +0800" channel="如东FM89.6">
-    <title lang="zh">《经典留声》</title>
+  <programme start="20260810080500 +0800" stop="20260810081500 +0800" channel="如东1新闻综合">
+    <title lang="zh">广告加节目预告</title>
   </programme>
-  <programme start="20260808112000 +0800" stop="20260808120000 +0800" channel="如东FM89.6">
-    <title lang="zh">《经典留声》</title>
+  <programme start="20260810081500 +0800" stop="20260810100000 +0800" channel="如东1新闻综合">
+    <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260808120000 +0800" stop="20260808122000 +0800" channel="如东FM89.6">
+  <programme start="20260810100000 +0800" stop="20260810101500 +0800" channel="如东1新闻综合">
+    <title lang="zh">节目预告加广告</title>
+  </programme>
+  <programme start="20260810101500 +0800" stop="20260810111500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《观点致胜》</title>
+  </programme>
+  <programme start="20260810111500 +0800" stop="20260810113000 +0800" channel="如东1新闻综合">
+    <title lang="zh">联办栏目：《扶海纵横》</title>
+  </programme>
+  <programme start="20260810113000 +0800" stop="20260810114500 +0800" channel="如东1新闻综合">
+    <title lang="zh">广告</title>
+  </programme>
+  <programme start="20260810114500 +0800" stop="20260810115800 +0800" channel="如东1新闻综合">
+    <title lang="zh">《周日幽默一刻》</title>
+  </programme>
+  <programme start="20260810115800 +0800" stop="20260810120000 +0800" channel="如东1新闻综合">
+    <title lang="zh">定点节目预告加广告</title>
+  </programme>
+  <programme start="20260810120000 +0800" stop="20260810121500 +0800" channel="如东1新闻综合">
     <title lang="zh">《如东新闻》</title>
   </programme>
-  <programme start="20260808122000 +0800" stop="20260808130000 +0800" channel="如东FM89.6">
-    <title lang="zh">《只听好歌不说话》</title>
+  <programme start="20260810121500 +0800" stop="20260810122000 +0800" channel="如东1新闻综合">
+    <title lang="zh">广告</title>
   </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="如东FM89.6">
-    <title lang="zh">《FM 剧场》（两集）</title>
+  <programme start="20260810122000 +0800" stop="20260810124000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《每周一刻》</title>
   </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="如东FM89.6">
-    <title lang="zh">《童心桐语》《奶爸奶妈总动员》（重播）</title>
+  <programme start="20260810124000 +0800" stop="20260810124500 +0800" channel="如东1新闻综合">
+    <title lang="zh">广告</title>
   </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="如东FM89.6">
-    <title lang="zh">《一路有的聊》</title>
+  <programme start="20260810124500 +0800" stop="20260810130000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《广告部专题》</title>
   </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="如东FM89.6">
-    <title lang="zh">《宇你悦读》周末版</title>
+  <programme start="20260810130000 +0800" stop="20260810131000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《新华纵横》</title>
   </programme>
-  <programme start="20260808170000 +0800" stop="20260808180000 +0800" channel="如东FM89.6">
-    <title lang="zh">《汽车音乐时间》 </title>
+  <programme start="20260810131000 +0800" stop="20260810131500 +0800" channel="如东1新闻综合">
+    <title lang="zh">节目预告加广告（宣传片）</title>
   </programme>
-  <programme start="20260808180000 +0800" stop="20260808182000 +0800" channel="如东FM89.6">
+  <programme start="20260810131500 +0800" stop="20260810151000 +0800" channel="如东1新闻综合">
+    <title lang="zh">联办栏目：《扶海纵横》</title>
+  </programme>
+  <programme start="20260810151000 +0800" stop="20260810165000 +0800" channel="如东1新闻综合">
+    <title lang="zh">电视剧</title>
+  </programme>
+  <programme start="20260810165000 +0800" stop="20260810172000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《省市台联播节目》</title>
+  </programme>
+  <programme start="20260810172000 +0800" stop="20260810173500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《大沈阳说如东》</title>
+  </programme>
+  <programme start="20260810173500 +0800" stop="20260810182500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《广告部专题》</title>
+  </programme>
+  <programme start="20260810182500 +0800" stop="20260810183000 +0800" channel="如东1新闻综合">
+    <title lang="zh">节目预告加广告</title>
+  </programme>
+  <programme start="20260810183000 +0800" stop="20260810184500 +0800" channel="如东1新闻综合">
     <title lang="zh">《如东新闻》</title>
   </programme>
-  <programme start="20260808182000 +0800" stop="20260808183000 +0800" channel="如东FM89.6">
-    <title lang="zh">行业之声</title>
+  <programme start="20260810184500 +0800" stop="20260810185000 +0800" channel="如东1新闻综合">
+    <title lang="zh">天气预报+广告</title>
   </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="如东FM89.6">
-    <title lang="zh">转播《新闻和报纸摘要》</title>
+  <programme start="20260810185000 +0800" stop="20260810190000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《新华纵横》</title>
   </programme>
-  <programme start="20260808190000 +0800" stop="20260808192000 +0800" channel="如东FM89.6">
-    <title lang="zh">《经典留声》</title>
+  <programme start="20260810190000 +0800" stop="20260810193000 +0800" channel="如东1新闻综合">
+    <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260808192000 +0800" stop="20260808200200 +0800" channel="如东FM89.6">
-    <title lang="zh">《经典留声》</title>
+  <programme start="20260810193000 +0800" stop="20260810193500 +0800" channel="如东1新闻综合">
+    <title lang="zh">广告</title>
   </programme>
-  <programme start="20260808200200 +0800" stop="20260808210000 +0800" channel="如东FM89.6">
-    <title lang="zh">《电台情歌》</title>
+  <programme start="20260810193500 +0800" stop="20260810195500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《直通民生》|政务专题</title>
   </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="如东FM89.6">
-    <title lang="zh">《城市树洞》</title>
+  <programme start="20260810195500 +0800" stop="20260810201000 +0800" channel="如东1新闻综合">
+    <title lang="zh">联办栏目《扶海纵横》</title>
   </programme>
-  <programme start="20260808220000 +0800" stop="20260808223000 +0800" channel="如东FM89.6">
-    <title lang="zh">《悦读时间》</title>
+  <programme start="20260810201000 +0800" stop="20260810214500 +0800" channel="如东1新闻综合">
+    <title lang="zh">电视剧</title>
   </programme>
-  <programme start="20260808223000 +0800" stop="20260808233000 +0800" channel="如东FM89.6">
-    <title lang="zh">夜曲</title>
+  <programme start="20260810214500 +0800" stop="20260810220000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《新华纵横》</title>
+  </programme>
+  <programme start="20260810220000 +0800" stop="20260810221500 +0800" channel="如东1新闻综合">
+    <title lang="zh">如东新闻【重播】</title>
+  </programme>
+  <programme start="20260810221500 +0800" stop="20260810222000 +0800" channel="如东1新闻综合">
+    <title lang="zh">天气预报+广告</title>
+  </programme>
+  <programme start="20260810222000 +0800" stop="20260810231000 +0800" channel="如东1新闻综合">
+    <title lang="zh">《观点致胜》</title>
+  </programme>
+  <programme start="20260810231000 +0800" stop="20260810232500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《大沈阳说如东》</title>
+  </programme>
+  <programme start="20260810232500 +0800" stop="20260810235500 +0800" channel="如东1新闻综合">
+    <title lang="zh">《省市台联播节目》</title>
+  </programme>
+  <programme start="20260810235500 +0800" stop="20260810235900 +0800" channel="如东1新闻综合">
+    <title lang="zh">关机广告</title>
   </programme>
   <programme start="20260809053000 +0800" stop="20260809053500 +0800" channel="如东FM89.6">
     <title lang="zh">报时+开始曲</title>
@@ -915,673 +828,763 @@
   <programme start="20260809223000 +0800" stop="20260809233000 +0800" channel="如东FM89.6">
     <title lang="zh">夜曲</title>
   </programme>
-  <programme start="20260808000000 +0800" stop="20260808070000 +0800" channel="苏州1新闻综合">
+  <programme start="20260810053000 +0800" stop="20260810053500 +0800" channel="如东FM89.6">
+    <title lang="zh">报时+开始曲</title>
+  </programme>
+  <programme start="20260810053500 +0800" stop="20260810060000 +0800" channel="如东FM89.6">
+    <title lang="zh">《金色年华》</title>
+  </programme>
+  <programme start="20260810060000 +0800" stop="20260810062500 +0800" channel="如东FM89.6">
+    <title lang="zh">《365健康派》</title>
+  </programme>
+  <programme start="20260810062500 +0800" stop="20260810063000 +0800" channel="如东FM89.6">
+    <title lang="zh">《天气早知道》</title>
+  </programme>
+  <programme start="20260810063000 +0800" stop="20260810070000 +0800" channel="如东FM89.6">
+    <title lang="zh">转播《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260810070000 +0800" stop="20260810073500 +0800" channel="如东FM89.6">
+    <title lang="zh">转播《江苏新闻联播》</title>
+  </programme>
+  <programme start="20260810073500 +0800" stop="20260810075000 +0800" channel="如东FM89.6">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260810075000 +0800" stop="20260810080000 +0800" channel="如东FM89.6">
+    <title lang="zh">《理财微剧》</title>
+  </programme>
+  <programme start="20260810080000 +0800" stop="20260810090000 +0800" channel="如东FM89.6">
+    <title lang="zh">《Hi，早高峰》(直播)</title>
+  </programme>
+  <programme start="20260810090000 +0800" stop="20260810100000 +0800" channel="如东FM89.6">
+    <title lang="zh">《文静的音乐时间》(直播)</title>
+  </programme>
+  <programme start="20260810100000 +0800" stop="20260810110000 +0800" channel="如东FM89.6">
+    <title lang="zh">《汽车原动力》(直播)</title>
+  </programme>
+  <programme start="20260810110000 +0800" stop="20260810112000 +0800" channel="如东FM89.6">
+    <title lang="zh">《大沈阳说如东》</title>
+  </programme>
+  <programme start="20260810112000 +0800" stop="20260810120000 +0800" channel="如东FM89.6">
+    <title lang="zh">《午间特别节目》</title>
+  </programme>
+  <programme start="20260810120000 +0800" stop="20260810122000 +0800" channel="如东FM89.6">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260810122000 +0800" stop="20260810130000 +0800" channel="如东FM89.6">
+    <title lang="zh">《只听好歌不说话》</title>
+  </programme>
+  <programme start="20260810130000 +0800" stop="20260810140000 +0800" channel="如东FM89.6">
+    <title lang="zh">《FM 剧场》（两集之间《理财微剧》）</title>
+  </programme>
+  <programme start="20260810140000 +0800" stop="20260810150000 +0800" channel="如东FM89.6">
+    <title lang="zh">《汽车原动力》（重播）</title>
+  </programme>
+  <programme start="20260810150000 +0800" stop="20260810160000 +0800" channel="如东FM89.6">
+    <title lang="zh">《一路有的聊》</title>
+  </programme>
+  <programme start="20260810160000 +0800" stop="20260810170000 +0800" channel="如东FM89.6">
+    <title lang="zh">《宇你悦读》(直播)</title>
+  </programme>
+  <programme start="20260810170000 +0800" stop="20260810180000 +0800" channel="如东FM89.6">
+    <title lang="zh">《Hi，晚高峰》(直播)</title>
+  </programme>
+  <programme start="20260810180000 +0800" stop="20260810182000 +0800" channel="如东FM89.6">
+    <title lang="zh">《如东新闻》</title>
+  </programme>
+  <programme start="20260810182000 +0800" stop="20260810183000 +0800" channel="如东FM89.6">
+    <title lang="zh">行业之声</title>
+  </programme>
+  <programme start="20260810183000 +0800" stop="20260810190000 +0800" channel="如东FM89.6">
+    <title lang="zh">转播《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260810190000 +0800" stop="20260810192000 +0800" channel="如东FM89.6">
+    <title lang="zh">《大沈阳说如东》</title>
+  </programme>
+  <programme start="20260810192000 +0800" stop="20260810200000 +0800" channel="如东FM89.6">
+    <title lang="zh">重播《午间特别节目》</title>
+  </programme>
+  <programme start="20260810200000 +0800" stop="20260810210000 +0800" channel="如东FM89.6">
+    <title lang="zh">《电台情歌》</title>
+  </programme>
+  <programme start="20260810210200 +0800" stop="20260810220200 +0800" channel="如东FM89.6">
+    <title lang="zh">《城市树洞》</title>
+  </programme>
+  <programme start="20260810220200 +0800" stop="20260810223000 +0800" channel="如东FM89.6">
+    <title lang="zh">《悦读时间》</title>
+  </programme>
+  <programme start="20260810223000 +0800" stop="20260810233000 +0800" channel="如东FM89.6">
+    <title lang="zh">夜曲</title>
+  </programme>
+  <programme start="20260809000000 +0800" stop="20260809070000 +0800" channel="苏州1新闻综合">
     <title lang="zh">星梦剧场</title>
   </programme>
-  <programme start="20260808070000 +0800" stop="20260808074500 +0800" channel="苏州1新闻综合">
+  <programme start="20260809070000 +0800" stop="20260809074500 +0800" channel="苏州1新闻综合">
     <title lang="zh">苏州新闻</title>
   </programme>
-  <programme start="20260808074500 +0800" stop="20260808103500 +0800" channel="苏州1新闻综合">
+  <programme start="20260809074500 +0800" stop="20260809103500 +0800" channel="苏州1新闻综合">
     <title lang="zh">阳光剧场</title>
   </programme>
-  <programme start="20260808103500 +0800" stop="20260808110000 +0800" channel="苏州1新闻综合">
-    <title lang="zh">天天健康</title>
+  <programme start="20260809103500 +0800" stop="20260809110000 +0800" channel="苏州1新闻综合">
+    <title lang="zh">第一健康</title>
   </programme>
-  <programme start="20260808110000 +0800" stop="20260808112500 +0800" channel="苏州1新闻综合">
+  <programme start="20260809110000 +0800" stop="20260809112500 +0800" channel="苏州1新闻综合">
     <title lang="zh">直播苏州</title>
   </programme>
-  <programme start="20260808112500 +0800" stop="20260808153000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809112500 +0800" stop="20260809153000 +0800" channel="苏州1新闻综合">
     <title lang="zh">风云剧场</title>
   </programme>
-  <programme start="20260808153000 +0800" stop="20260808155500 +0800" channel="苏州1新闻综合">
+  <programme start="20260809153000 +0800" stop="20260809155500 +0800" channel="苏州1新闻综合">
     <title lang="zh">联播苏州</title>
   </programme>
-  <programme start="20260808155500 +0800" stop="20260808163000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809155500 +0800" stop="20260809163000 +0800" channel="苏州1新闻综合">
     <title lang="zh">世界大观</title>
   </programme>
-  <programme start="20260808163000 +0800" stop="20260808173500 +0800" channel="苏州1新闻综合">
-    <title lang="zh">苏州电视书场</title>
+  <programme start="20260809163000 +0800" stop="20260809172000 +0800" channel="苏州1新闻综合">
+    <title lang="zh">昆剧电视专场</title>
   </programme>
-  <programme start="20260808173500 +0800" stop="20260808180000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809172000 +0800" stop="20260809173500 +0800" channel="苏州1新闻综合">
+    <title lang="zh">手语新闻</title>
+  </programme>
+  <programme start="20260809173500 +0800" stop="20260809180000 +0800" channel="苏州1新闻综合">
     <title lang="zh">第一时间</title>
   </programme>
-  <programme start="20260808180000 +0800" stop="20260808183000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809180000 +0800" stop="20260809183000 +0800" channel="苏州1新闻综合">
     <title lang="zh">施斌聊斋</title>
   </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="苏州1新闻综合">
     <title lang="zh">苏州新闻</title>
   </programme>
-  <programme start="20260808190000 +0800" stop="20260808193000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809190000 +0800" stop="20260809193000 +0800" channel="苏州1新闻综合">
     <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260808193000 +0800" stop="20260808211000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809193000 +0800" stop="20260809211000 +0800" channel="苏州1新闻综合">
     <title lang="zh">星空剧场</title>
   </programme>
-  <programme start="20260808211000 +0800" stop="20260808213000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809211000 +0800" stop="20260809213000 +0800" channel="苏州1新闻综合">
     <title lang="zh">直播苏州</title>
   </programme>
-  <programme start="20260808213000 +0800" stop="20260808214000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809213000 +0800" stop="20260809214000 +0800" channel="苏州1新闻综合">
     <title lang="zh">乐活制造</title>
   </programme>
-  <programme start="20260808214000 +0800" stop="20260808221000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809214000 +0800" stop="20260809221000 +0800" channel="苏州1新闻综合">
     <title lang="zh">苏州要闻</title>
   </programme>
-  <programme start="20260808221000 +0800" stop="20260808223500 +0800" channel="苏州1新闻综合">
+  <programme start="20260809221000 +0800" stop="20260809223500 +0800" channel="苏州1新闻综合">
     <title lang="zh">联播苏州</title>
   </programme>
-  <programme start="20260808223500 +0800" stop="20260808225500 +0800" channel="苏州1新闻综合">
+  <programme start="20260809223500 +0800" stop="20260809225500 +0800" channel="苏州1新闻综合">
     <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260808225500 +0800" stop="20260809000000 +0800" channel="苏州1新闻综合">
+  <programme start="20260809225500 +0800" stop="20260810000000 +0800" channel="苏州1新闻综合">
     <title lang="zh">纪录发现</title>
   </programme>
-  <programme start="20260808001000 +0800" stop="20260808065000 +0800" channel="苏州2社会经济">
+  <programme start="20260809001000 +0800" stop="20260809065000 +0800" channel="苏州2社会经济">
     <title lang="zh">深夜剧场</title>
   </programme>
-  <programme start="20260808065000 +0800" stop="20260808074000 +0800" channel="苏州2社会经济">
+  <programme start="20260809065000 +0800" stop="20260809074000 +0800" channel="苏州2社会经济">
     <title lang="zh">动漫剧场</title>
   </programme>
-  <programme start="20260808074000 +0800" stop="20260808084500 +0800" channel="苏州2社会经济">
+  <programme start="20260809074000 +0800" stop="20260809084500 +0800" channel="苏州2社会经济">
     <title lang="zh">纪录发现</title>
   </programme>
-  <programme start="20260808084500 +0800" stop="20260808091500 +0800" channel="苏州2社会经济">
+  <programme start="20260809084500 +0800" stop="20260809091500 +0800" channel="苏州2社会经济">
     <title lang="zh">第一时间</title>
   </programme>
-  <programme start="20260808091500 +0800" stop="20260808094500 +0800" channel="苏州2社会经济">
+  <programme start="20260809091500 +0800" stop="20260809094500 +0800" channel="苏州2社会经济">
     <title lang="zh">李刚评话</title>
   </programme>
-  <programme start="20260808094500 +0800" stop="20260808102500 +0800" channel="苏州2社会经济">
+  <programme start="20260809094500 +0800" stop="20260809102500 +0800" channel="苏州2社会经济">
     <title lang="zh">世界大观</title>
   </programme>
-  <programme start="20260808102500 +0800" stop="20260808112000 +0800" channel="苏州2社会经济">
+  <programme start="20260809102500 +0800" stop="20260809120000 +0800" channel="苏州2社会经济">
     <title lang="zh">苏州电视书场</title>
   </programme>
-  <programme start="20260808112000 +0800" stop="20260808120000 +0800" channel="苏州2社会经济">
-    <title lang="zh">施斌聊斋</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808125000 +0800" channel="苏州2社会经济">
+  <programme start="20260809120000 +0800" stop="20260809125000 +0800" channel="苏州2社会经济">
     <title lang="zh">社会传真</title>
   </programme>
-  <programme start="20260808125000 +0800" stop="20260808133000 +0800" channel="苏州2社会经济">
+  <programme start="20260809125000 +0800" stop="20260809131000 +0800" channel="苏州2社会经济">
     <title lang="zh">乐活制造</title>
   </programme>
-  <programme start="20260808133000 +0800" stop="20260808141500 +0800" channel="苏州2社会经济">
+  <programme start="20260809131000 +0800" stop="20260809133000 +0800" channel="苏州2社会经济">
+    <title lang="zh">乐活六点档</title>
+  </programme>
+  <programme start="20260809133000 +0800" stop="20260809141500 +0800" channel="苏州2社会经济">
     <title lang="zh">小靴子我是TV星</title>
   </programme>
-  <programme start="20260808141500 +0800" stop="20260808165000 +0800" channel="苏州2社会经济">
+  <programme start="20260809141500 +0800" stop="20260809165000 +0800" channel="苏州2社会经济">
     <title lang="zh">纪录发现</title>
   </programme>
-  <programme start="20260808165000 +0800" stop="20260808174000 +0800" channel="苏州2社会经济">
+  <programme start="20260809165000 +0800" stop="20260809174000 +0800" channel="苏州2社会经济">
     <title lang="zh">李刚评话</title>
   </programme>
-  <programme start="20260808174000 +0800" stop="20260808180000 +0800" channel="苏州2社会经济">
+  <programme start="20260809174000 +0800" stop="20260809180000 +0800" channel="苏州2社会经济">
     <title lang="zh">乐活制造</title>
   </programme>
-  <programme start="20260808180000 +0800" stop="20260808183000 +0800" channel="苏州2社会经济">
+  <programme start="20260809180000 +0800" stop="20260809183000 +0800" channel="苏州2社会经济">
     <title lang="zh">李刚评话</title>
   </programme>
-  <programme start="20260808183000 +0800" stop="20260808191000 +0800" channel="苏州2社会经济">
+  <programme start="20260809183000 +0800" stop="20260809191000 +0800" channel="苏州2社会经济">
     <title lang="zh">社会传真</title>
   </programme>
-  <programme start="20260808191000 +0800" stop="20260808194000 +0800" channel="苏州2社会经济">
+  <programme start="20260809191000 +0800" stop="20260809194000 +0800" channel="苏州2社会经济">
     <title lang="zh">谈天说地</title>
   </programme>
-  <programme start="20260808194000 +0800" stop="20260808205000 +0800" channel="苏州2社会经济">
+  <programme start="20260809194000 +0800" stop="20260809205000 +0800" channel="苏州2社会经济">
     <title lang="zh">新天地剧场</title>
   </programme>
-  <programme start="20260808205000 +0800" stop="20260808210000 +0800" channel="苏州2社会经济">
+  <programme start="20260809205000 +0800" stop="20260809210000 +0800" channel="苏州2社会经济">
     <title lang="zh">谈天说地</title>
   </programme>
-  <programme start="20260808210000 +0800" stop="20260808223000 +0800" channel="苏州2社会经济">
+  <programme start="20260809210000 +0800" stop="20260809223000 +0800" channel="苏州2社会经济">
     <title lang="zh">青春剧场</title>
   </programme>
-  <programme start="20260808223000 +0800" stop="20260808230000 +0800" channel="苏州2社会经济">
+  <programme start="20260809223000 +0800" stop="20260809230000 +0800" channel="苏州2社会经济">
     <title lang="zh">传真聚焦</title>
   </programme>
-  <programme start="20260808230000 +0800" stop="20260808232500 +0800" channel="苏州2社会经济">
-    <title lang="zh">今日相城</title>
-  </programme>
-  <programme start="20260808232500 +0800" stop="20260808234000 +0800" channel="苏州2社会经济">
-    <title lang="zh">苏州财经报道</title>
-  </programme>
-  <programme start="20260808234000 +0800" stop="20260809000000 +0800" channel="苏州2社会经济">
-    <title lang="zh">施斌聊斋</title>
-  </programme>
-  <programme start="20260808011300 +0800" stop="20260808062000 +0800" channel="苏州3文化生活">
-    <title lang="zh">再见</title>
-  </programme>
-  <programme start="20260808062000 +0800" stop="20260808081000 +0800" channel="苏州3文化生活">
-    <title lang="zh">魅力剧场</title>
-  </programme>
-  <programme start="20260808081000 +0800" stop="20260808105100 +0800" channel="苏州3文化生活">
-    <title lang="zh">纪录片时间</title>
-  </programme>
-  <programme start="20260808105100 +0800" stop="20260808153000 +0800" channel="苏州3文化生活">
-    <title lang="zh">生活剧场</title>
-  </programme>
-  <programme start="20260808153000 +0800" stop="20260808180000 +0800" channel="苏州3文化生活">
-    <title lang="zh">纪录片时间</title>
-  </programme>
-  <programme start="20260808180000 +0800" stop="20260808183000 +0800" channel="苏州3文化生活">
-    <title lang="zh">教育节目</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808201000 +0800" channel="苏州3文化生活">
-    <title lang="zh">五星剧场</title>
-  </programme>
-  <programme start="20260808201000 +0800" stop="20260808222500 +0800" channel="苏州3文化生活">
-    <title lang="zh">纪录片时间</title>
-  </programme>
-  <programme start="20260808222500 +0800" stop="20260808224500 +0800" channel="苏州3文化生活">
-    <title lang="zh">天天健康</title>
-  </programme>
-  <programme start="20260808224500 +0800" stop="20260808230000 +0800" channel="苏州3文化生活">
-    <title lang="zh">苏州财经报道</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808232500 +0800" channel="苏州3文化生活">
-    <title lang="zh">第一时间</title>
-  </programme>
-  <programme start="20260808232500 +0800" stop="20260808234500 +0800" channel="苏州3文化生活">
-    <title lang="zh">直播苏州</title>
-  </programme>
-  <programme start="20260808234500 +0800" stop="20260809000000 +0800" channel="苏州3文化生活">
-    <title lang="zh">晚间剧场</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808073000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">乐活制造</title>
-  </programme>
-  <programme start="20260808073000 +0800" stop="20260808092500 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">清晨影院</title>
-  </programme>
-  <programme start="20260808092500 +0800" stop="20260808111500 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">上午影院</title>
-  </programme>
-  <programme start="20260808111500 +0800" stop="20260808131000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">午间影院</title>
-  </programme>
-  <programme start="20260808131000 +0800" stop="20260808150500 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">下午影院</title>
-  </programme>
-  <programme start="20260808150500 +0800" stop="20260808170000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">动感影院</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808183000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">动漫剧场</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808193000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">小靴子我是TV星</title>
-  </programme>
-  <programme start="20260808193000 +0800" stop="20260808195000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">天天健康</title>
-  </programme>
-  <programme start="20260808195000 +0800" stop="20260808201500 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">苏州财经报道</title>
-  </programme>
-  <programme start="20260808201500 +0800" stop="20260808220000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">影视直通车</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808234000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">白金影院</title>
-  </programme>
-  <programme start="20260808234000 +0800" stop="20260809000000 +0800" channel="苏州4电影娱乐">
-    <title lang="zh">钻石影院</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808072000 +0800" channel="苏州5生活资讯">
+  <programme start="20260809230000 +0800" stop="20260809232500 +0800" channel="苏州2社会经济">
     <title lang="zh">吴中报道</title>
   </programme>
-  <programme start="20260808072000 +0800" stop="20260808113000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">早间剧场</title>
-  </programme>
-  <programme start="20260808113000 +0800" stop="20260808115000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">联播苏州</title>
-  </programme>
-  <programme start="20260808115000 +0800" stop="20260808122500 +0800" channel="苏州5生活资讯">
-    <title lang="zh">李刚评话</title>
-  </programme>
-  <programme start="20260808122500 +0800" stop="20260808131000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">小靴子我是TV星</title>
-  </programme>
-  <programme start="20260808131000 +0800" stop="20260808181000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">休闲剧场</title>
-  </programme>
-  <programme start="20260808181000 +0800" stop="20260808185500 +0800" channel="苏州5生活资讯">
-    <title lang="zh">苏州电视书场</title>
-  </programme>
-  <programme start="20260808185500 +0800" stop="20260808191000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">天天健康</title>
-  </programme>
-  <programme start="20260808191000 +0800" stop="20260808193000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">今日相城</title>
-  </programme>
-  <programme start="20260808193000 +0800" stop="20260808195000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">联播苏州</title>
-  </programme>
-  <programme start="20260808195000 +0800" stop="20260808202000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">李刚评话</title>
-  </programme>
-  <programme start="20260808202000 +0800" stop="20260808204000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">第一时间</title>
-  </programme>
-  <programme start="20260808204000 +0800" stop="20260808205500 +0800" channel="苏州5生活资讯">
+  <programme start="20260809232500 +0800" stop="20260809234000 +0800" channel="苏州2社会经济">
     <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260808205500 +0800" stop="20260808211000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">今日相城</title>
+  <programme start="20260809234000 +0800" stop="20260810000000 +0800" channel="苏州2社会经济">
+    <title lang="zh">施斌聊斋</title>
   </programme>
-  <programme start="20260808211000 +0800" stop="20260808221000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">宝贝看鉴</title>
-  </programme>
-  <programme start="20260808221000 +0800" stop="20260808234000 +0800" channel="苏州5生活资讯">
-    <title lang="zh">经典剧场</title>
-  </programme>
-  <programme start="20260808234000 +0800" stop="20260809000000 +0800" channel="苏州5生活资讯">
+  <programme start="20260809011300 +0800" stop="20260809062000 +0800" channel="苏州3文化生活">
     <title lang="zh">再见</title>
   </programme>
-  <programme start="20260808043000 +0800" stop="20260808053000 +0800" channel="苏州FM91.1">
-    <title lang="zh">广播书场</title>
+  <programme start="20260809062000 +0800" stop="20260809081000 +0800" channel="苏州3文化生活">
+    <title lang="zh">魅力剧场</title>
   </programme>
-  <programme start="20260808053000 +0800" stop="20260808063000 +0800" channel="苏州FM91.1">
-    <title lang="zh">苏阿姨谈家常</title>
+  <programme start="20260809081000 +0800" stop="20260809105100 +0800" channel="苏州3文化生活">
+    <title lang="zh">纪录片时间</title>
   </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="苏州FM91.1">
-    <title lang="zh">转播中国之声《新闻和报纸摘要》</title>
+  <programme start="20260809105100 +0800" stop="20260809153000 +0800" channel="苏州3文化生活">
+    <title lang="zh">生活剧场</title>
   </programme>
-  <programme start="20260808070000 +0800" stop="20260808080000 +0800" channel="苏州FM91.1">
-    <title lang="zh">苏州新闻</title>
+  <programme start="20260809153000 +0800" stop="20260809180000 +0800" channel="苏州3文化生活">
+    <title lang="zh">纪录片时间</title>
   </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="苏州FM91.1">
-    <title lang="zh">苏州新闻</title>
+  <programme start="20260809180000 +0800" stop="20260809183000 +0800" channel="苏州3文化生活">
+    <title lang="zh">教育节目</title>
   </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州FM91.1">
-    <title lang="zh">天天健康（精编版）</title>
+  <programme start="20260809183000 +0800" stop="20260809201000 +0800" channel="苏州3文化生活">
+    <title lang="zh">五星剧场</title>
   </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="苏州FM91.1">
-    <title lang="zh">我的朋友圈</title>
+  <programme start="20260809201000 +0800" stop="20260809222500 +0800" channel="苏州3文化生活">
+    <title lang="zh">纪录片时间</title>
   </programme>
-  <programme start="20260808110000 +0800" stop="20260808120000 +0800" channel="苏州FM91.1">
-    <title lang="zh">我的朋友圈</title>
+  <programme start="20260809222500 +0800" stop="20260809224500 +0800" channel="苏州3文化生活">
+    <title lang="zh">天天健康</title>
   </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="苏州FM91.1">
-    <title lang="zh">亲亲故事会</title>
+  <programme start="20260809224500 +0800" stop="20260809230000 +0800" channel="苏州3文化生活">
+    <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州FM91.1">
-    <title lang="zh">家长会</title>
+  <programme start="20260809230000 +0800" stop="20260809232500 +0800" channel="苏州3文化生活">
+    <title lang="zh">第一时间</title>
   </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="苏州FM91.1">
-    <title lang="zh">一听可乐</title>
+  <programme start="20260809232500 +0800" stop="20260809234500 +0800" channel="苏州3文化生活">
+    <title lang="zh">直播苏州</title>
   </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="苏州FM91.1">
-    <title lang="zh">广播剧场</title>
+  <programme start="20260809234500 +0800" stop="20260810000000 +0800" channel="苏州3文化生活">
+    <title lang="zh">晚间剧场</title>
   </programme>
-  <programme start="20260808160000 +0800" stop="20260808163000 +0800" channel="苏州FM91.1">
-    <title lang="zh">广播剧场</title>
+  <programme start="20260809070000 +0800" stop="20260809073000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">乐活制造</title>
   </programme>
-  <programme start="20260808163000 +0800" stop="20260808170000 +0800" channel="苏州FM91.1">
-    <title lang="zh">孟梓来了</title>
+  <programme start="20260809073000 +0800" stop="20260809092500 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">清晨影院</title>
   </programme>
-  <programme start="20260808170000 +0800" stop="20260808183000 +0800" channel="苏州FM91.1">
-    <title lang="zh">孟梓来了</title>
+  <programme start="20260809092500 +0800" stop="20260809111500 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">上午影院</title>
   </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="苏州FM91.1">
-    <title lang="zh">转播《全国新闻联播》</title>
+  <programme start="20260809111500 +0800" stop="20260809131000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">午间影院</title>
   </programme>
-  <programme start="20260808190000 +0800" stop="20260808200000 +0800" channel="苏州FM91.1">
-    <title lang="zh">这里是江南</title>
+  <programme start="20260809131000 +0800" stop="20260809150500 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">下午影院</title>
   </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="苏州FM91.1">
-    <title lang="zh">这里是江南</title>
+  <programme start="20260809150500 +0800" stop="20260809170000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">动感影院</title>
   </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="苏州FM91.1">
-    <title lang="zh">转播《直播苏州》</title>
+  <programme start="20260809170000 +0800" stop="20260809183000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">动漫剧场</title>
   </programme>
-  <programme start="20260808220000 +0800" stop="20260808230000 +0800" channel="苏州FM91.1">
-    <title lang="zh">《完美欣赏》（含广播微剧）</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808233000 +0800" channel="苏州FM91.1">
-    <title lang="zh">转播央视《24小时》</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808070000 +0800" channel="苏州FM95.7">
-    <title lang="zh">转播央视《朝闻天下》</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808090000 +0800" channel="苏州FM95.7">
-    <title lang="zh">大人们的歌</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州FM95.7">
-    <title lang="zh">亲子时光机</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808120000 +0800" channel="苏州FM95.7">
-    <title lang="zh">亲子时光机</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="苏州FM95.7">
-    <title lang="zh">万鸣书场</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州FM95.7">
-    <title lang="zh">爱上幼儿园</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808160000 +0800" channel="苏州FM95.7">
-    <title lang="zh">音乐朗读亭</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808180000 +0800" channel="苏州FM95.7">
+  <programme start="20260809183000 +0800" stop="20260809193000 +0800" channel="苏州4电影娱乐">
     <title lang="zh">小靴子星乐园</title>
   </programme>
-  <programme start="20260808180000 +0800" stop="20260808200000 +0800" channel="苏州FM95.7">
-    <title lang="zh">小靴子故事乐园</title>
+  <programme start="20260809193000 +0800" stop="20260809195000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">天天健康</title>
   </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="苏州FM95.7">
-    <title lang="zh">国风讲故事</title>
+  <programme start="20260809195000 +0800" stop="20260809201500 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260808210000 +0800" stop="20260808213000 +0800" channel="苏州FM95.7">
-    <title lang="zh">闭台曲</title>
+  <programme start="20260809201500 +0800" stop="20260809220000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">影视直通车</title>
   </programme>
-  <programme start="20260808050000 +0800" stop="20260808060000 +0800" channel="苏州FM96.5">
-    <title lang="zh">老朋友音乐厅（重播）</title>
+  <programme start="20260809220000 +0800" stop="20260809234000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">白金影院</title>
   </programme>
-  <programme start="20260808060000 +0800" stop="20260808070000 +0800" channel="苏州FM96.5">
-    <title lang="zh">乡邻书场</title>
+  <programme start="20260809234000 +0800" stop="20260810000000 +0800" channel="苏州4电影娱乐">
+    <title lang="zh">钻石影院</title>
   </programme>
-  <programme start="20260808070000 +0800" stop="20260808080000 +0800" channel="苏州FM96.5">
-    <title lang="zh">金乡邻</title>
+  <programme start="20260809070000 +0800" stop="20260809072000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">今日相城</title>
   </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="苏州FM96.5">
-    <title lang="zh">今日相城、吴中之声</title>
+  <programme start="20260809072000 +0800" stop="20260809113000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">早间剧场</title>
   </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州FM96.5">
-    <title lang="zh">阳光地带</title>
+  <programme start="20260809113000 +0800" stop="20260809115000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">联播苏州</title>
   </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="苏州FM96.5">
-    <title lang="zh">金乡邻（暖心版）</title>
+  <programme start="20260809115000 +0800" stop="20260809122500 +0800" channel="苏州5生活资讯">
+    <title lang="zh">李刚评话</title>
   </programme>
-  <programme start="20260808110000 +0800" stop="20260808120000 +0800" channel="苏州FM96.5">
-    <title lang="zh">乡邻书场</title>
+  <programme start="20260809122500 +0800" stop="20260809131000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">小靴子我是TV星</title>
   </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="苏州FM96.5">
-    <title lang="zh">阿万茶楼（精编版）</title>
+  <programme start="20260809131000 +0800" stop="20260809141000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">宝贝看鉴</title>
   </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州FM96.5">
-    <title lang="zh">老虎灶</title>
+  <programme start="20260809141000 +0800" stop="20260809181000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">休闲剧场</title>
   </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="苏州FM96.5">
-    <title lang="zh">广电老年大学</title>
+  <programme start="20260809181000 +0800" stop="20260809185500 +0800" channel="苏州5生活资讯">
+    <title lang="zh">昆剧电视专场</title>
   </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="苏州FM96.5">
-    <title lang="zh">老朋友戏苑</title>
+  <programme start="20260809185500 +0800" stop="20260809191000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">天天健康</title>
   </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="苏州FM96.5">
-    <title lang="zh">天天健康（精编）</title>
+  <programme start="20260809191000 +0800" stop="20260809193000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">吴中报道</title>
   </programme>
-  <programme start="20260808170000 +0800" stop="20260808183000 +0800" channel="苏州FM96.5">
-    <title lang="zh">小姨团</title>
+  <programme start="20260809193000 +0800" stop="20260809195000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">联播苏州</title>
   </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="苏州FM96.5">
-    <title lang="zh">老朋友朗诵社</title>
+  <programme start="20260809195000 +0800" stop="20260809202000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">李刚评话</title>
   </programme>
-  <programme start="20260808190000 +0800" stop="20260808200000 +0800" channel="苏州FM96.5">
-    <title lang="zh">老朋友音乐厅</title>
+  <programme start="20260809202000 +0800" stop="20260809204000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">第一时间</title>
   </programme>
-  <programme start="20260808200000 +0800" stop="20260808203000 +0800" channel="苏州FM96.5">
-    <title lang="zh">声音剧场</title>
+  <programme start="20260809204000 +0800" stop="20260809205500 +0800" channel="苏州5生活资讯">
+    <title lang="zh">苏州财经报道</title>
   </programme>
-  <programme start="20260808000000 +0800" stop="20260808060000 +0800" channel="苏州FM102.8">
-    <title lang="zh">整晚的音乐（RCS）</title>
+  <programme start="20260809205500 +0800" stop="20260809211000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">吴中报道</title>
   </programme>
-  <programme start="20260808060000 +0800" stop="20260808070000 +0800" channel="苏州FM102.8">
-    <title lang="zh">岁月如歌（龙旎）</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808090000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808110000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
-  </programme>
-  <programme start="20260808110000 +0800" stop="20260808130000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州FM102.8">
-    <title lang="zh">越古典越动听（龙旎）</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808160000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808190000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808200000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808230000 +0800" channel="苏州FM102.8">
-    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808233000 +0800" channel="苏州FM102.8">
-    <title lang="zh">那些你来不及亲临现场的夜晚（纯逸）</title>
-  </programme>
-  <programme start="20260808053000 +0800" stop="20260808060000 +0800" channel="苏州FM104.8">
-    <title lang="zh">老歌回忆录（录播）</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808063000 +0800" channel="苏州FM104.8">
-    <title lang="zh">六点辰光（录播）</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="苏州FM104.8">
-    <title lang="zh">转播中国之声《新闻和报纸摘要》</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808080000 +0800" channel="苏州FM104.8">
-    <title lang="zh">直播苏州*与你同行</title>
-  </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="苏州FM104.8">
-    <title lang="zh">直播苏州*与你同行</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州FM104.8">
-    <title lang="zh">直播苏州*与你同行</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808113000 +0800" channel="苏州FM104.8">
-    <title lang="zh">边走边唱</title>
-  </programme>
-  <programme start="20260808113000 +0800" stop="20260808130000 +0800" channel="苏州FM104.8">
-    <title lang="zh">边走边唱</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州FM104.8">
-    <title lang="zh">1048一起笑吧</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808160000 +0800" channel="苏州FM104.8">
-    <title lang="zh">阿万茶楼</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="苏州FM104.8">
-    <title lang="zh">假日高峰</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808190000 +0800" channel="苏州FM104.8">
-    <title lang="zh">假日高峰</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808210000 +0800" channel="苏州FM104.8">
-    <title lang="zh">欢乐都市夜</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="苏州FM104.8">
-    <title lang="zh">欢乐都市夜</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808230000 +0800" channel="苏州FM104.8">
-    <title lang="zh">阿万茶楼（精编版）</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808233000 +0800" channel="苏州FM104.8">
-    <title lang="zh">转播央视新闻《24小时》</title>
-  </programme>
-  <programme start="20260808044500 +0800" stop="20260808050000 +0800" channel="苏州AM846">
-    <title lang="zh">开机音乐（晨晨）</title>
-  </programme>
-  <programme start="20260808050000 +0800" stop="20260808054000 +0800" channel="苏州AM846">
-    <title lang="zh">健康节目1（马晓燕）</title>
-  </programme>
-  <programme start="20260808054000 +0800" stop="20260808060000 +0800" channel="苏州AM846">
-    <title lang="zh">健康节目2</title>
-  </programme>
-  <programme start="20260808060000 +0800" stop="20260808063000 +0800" channel="苏州AM846">
-    <title lang="zh">健康节目3</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808073000 +0800" channel="苏州AM846">
-    <title lang="zh">万鸣书场（阿万茶楼工作室）</title>
-  </programme>
-  <programme start="20260808073000 +0800" stop="20260808083000 +0800" channel="苏州AM846">
-    <title lang="zh">戏迷剧场（首播）</title>
-  </programme>
-  <programme start="20260808083000 +0800" stop="20260808090000 +0800" channel="苏州AM846">
-    <title lang="zh">南腔北调（永春）</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州AM846">
-    <title lang="zh">吴越传音（腔调戏曲工作室）</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="苏州AM846">
-    <title lang="zh">岁月如歌（首播 龙旎）</title>
-  </programme>
-  <programme start="20260808110000 +0800" stop="20260808120000 +0800" channel="苏州AM846">
-    <title lang="zh">养生堂</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="苏州AM846">
-    <title lang="zh">梨园传奇</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州AM846">
-    <title lang="zh">戏迷大舞台（腔调戏曲工作室）</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="苏州AM846">
-    <title lang="zh">经典重温（首播）</title>
-  </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="苏州AM846">
-    <title lang="zh">留影留声</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="苏州AM846">
-    <title lang="zh">评书联播</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808180000 +0800" channel="苏州AM846">
-    <title lang="zh">吴越传音（重播）</title>
-  </programme>
-  <programme start="20260808180000 +0800" stop="20260808190000 +0800" channel="苏州AM846">
-    <title lang="zh">经典重温（重播）</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808200000 +0800" channel="苏州AM846">
-    <title lang="zh">万鸣书场（晚场）（阿万茶楼工作室）</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="苏州AM846">
-    <title lang="zh">岁月如歌（重播）</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808213000 +0800" channel="苏州AM846">
-    <title lang="zh">戏迷剧场（重播）</title>
-  </programme>
-  <programme start="20260808043000 +0800" stop="20260808053000 +0800" channel="苏州AM1080">
-    <title lang="zh">广播书场</title>
-  </programme>
-  <programme start="20260808053000 +0800" stop="20260808063000 +0800" channel="苏州AM1080">
-    <title lang="zh">苏阿姨谈家常</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="苏州AM1080">
-    <title lang="zh">转播中国之声《新闻和报纸摘要》</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808080000 +0800" channel="苏州AM1080">
-    <title lang="zh">苏州新闻</title>
-  </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="苏州AM1080">
-    <title lang="zh">苏州新闻</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州AM1080">
-    <title lang="zh">天天健康（精编版）</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="苏州AM1080">
-    <title lang="zh">我的朋友圈</title>
-  </programme>
-  <programme start="20260808110000 +0800" stop="20260808120000 +0800" channel="苏州AM1080">
-    <title lang="zh">我的朋友圈</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="苏州AM1080">
-    <title lang="zh">亲亲故事会</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州AM1080">
-    <title lang="zh">家长会</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="苏州AM1080">
-    <title lang="zh">一听可乐</title>
-  </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="苏州AM1080">
-    <title lang="zh">广播剧场</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808163000 +0800" channel="苏州AM1080">
-    <title lang="zh">广播剧场</title>
-  </programme>
-  <programme start="20260808163000 +0800" stop="20260808170000 +0800" channel="苏州AM1080">
-    <title lang="zh">孟梓来了</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808183000 +0800" channel="苏州AM1080">
-    <title lang="zh">孟梓来了</title>
-  </programme>
-  <programme start="20260808183000 +0800" stop="20260808190000 +0800" channel="苏州AM1080">
-    <title lang="zh">转播《全国新闻联播》</title>
-  </programme>
-  <programme start="20260808190000 +0800" stop="20260808200000 +0800" channel="苏州AM1080">
-    <title lang="zh">这里是江南</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="苏州AM1080">
-    <title lang="zh">这里是江南</title>
-  </programme>
-  <programme start="20260808210000 +0800" stop="20260808220000 +0800" channel="苏州AM1080">
-    <title lang="zh">转播《直播苏州》</title>
-  </programme>
-  <programme start="20260808220000 +0800" stop="20260808230000 +0800" channel="苏州AM1080">
-    <title lang="zh">《完美欣赏》（含广播微剧）</title>
-  </programme>
-  <programme start="20260808230000 +0800" stop="20260808233000 +0800" channel="苏州AM1080">
-    <title lang="zh">转播央视《24小时》</title>
-  </programme>
-  <programme start="20260808050000 +0800" stop="20260808053000 +0800" channel="苏州AM1521">
-    <title lang="zh">早间音乐</title>
-  </programme>
-  <programme start="20260808053000 +0800" stop="20260808063000 +0800" channel="苏州AM1521">
-    <title lang="zh">早间书场</title>
-  </programme>
-  <programme start="20260808063000 +0800" stop="20260808070000 +0800" channel="苏州AM1521">
-    <title lang="zh">转播中国之声：新闻与报纸摘要</title>
-  </programme>
-  <programme start="20260808070000 +0800" stop="20260808080000 +0800" channel="苏州AM1521">
-    <title lang="zh">佳人有约</title>
-  </programme>
-  <programme start="20260808080000 +0800" stop="20260808090000 +0800" channel="苏州AM1521">
-    <title lang="zh">悠闲假日</title>
-  </programme>
-  <programme start="20260808090000 +0800" stop="20260808100000 +0800" channel="苏州AM1521">
-    <title lang="zh">悠闲假日</title>
-  </programme>
-  <programme start="20260808100000 +0800" stop="20260808110000 +0800" channel="苏州AM1521">
-    <title lang="zh">悠闲假日</title>
-  </programme>
-  <programme start="20260808110000 +0800" stop="20260808120000 +0800" channel="苏州AM1521">
-    <title lang="zh">阳光地带</title>
-  </programme>
-  <programme start="20260808120000 +0800" stop="20260808130000 +0800" channel="苏州AM1521">
-    <title lang="zh">心灵航班</title>
-  </programme>
-  <programme start="20260808130000 +0800" stop="20260808140000 +0800" channel="苏州AM1521">
-    <title lang="zh">心灵航班</title>
-  </programme>
-  <programme start="20260808140000 +0800" stop="20260808150000 +0800" channel="苏州AM1521">
-    <title lang="zh">有戏人生</title>
-  </programme>
-  <programme start="20260808150000 +0800" stop="20260808160000 +0800" channel="苏州AM1521">
-    <title lang="zh">有戏人生</title>
-  </programme>
-  <programme start="20260808160000 +0800" stop="20260808170000 +0800" channel="苏州AM1521">
-    <title lang="zh">金曲典藏、名家名段</title>
-  </programme>
-  <programme start="20260808170000 +0800" stop="20260808180000 +0800" channel="苏州AM1521">
+  <programme start="20260809211000 +0800" stop="20260809232000 +0800" channel="苏州5生活资讯">
     <title lang="zh">经典剧场</title>
   </programme>
-  <programme start="20260808180000 +0800" stop="20260808190000 +0800" channel="苏州AM1521">
-    <title lang="zh">听大戏</title>
+  <programme start="20260809232000 +0800" stop="20260810000000 +0800" channel="苏州5生活资讯">
+    <title lang="zh">再见</title>
   </programme>
-  <programme start="20260808190000 +0800" stop="20260808200000 +0800" channel="苏州AM1521">
-    <title lang="zh">老虎灶（重播）</title>
-  </programme>
-  <programme start="20260808200000 +0800" stop="20260808210000 +0800" channel="苏州AM1521">
+  <programme start="20260809043000 +0800" stop="20260809053000 +0800" channel="苏州FM91.1">
     <title lang="zh">广播书场</title>
   </programme>
-  <programme start="20260808210000 +0800" stop="20260808213000 +0800" channel="苏州AM1521">
+  <programme start="20260809053000 +0800" stop="20260809063000 +0800" channel="苏州FM91.1">
+    <title lang="zh">苏阿姨谈家常</title>
+  </programme>
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="苏州FM91.1">
+    <title lang="zh">转播中国之声《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809080000 +0800" channel="苏州FM91.1">
+    <title lang="zh">苏州新闻</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809090000 +0800" channel="苏州FM91.1">
+    <title lang="zh">苏州新闻</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州FM91.1">
+    <title lang="zh">天天健康（精编版）</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809110000 +0800" channel="苏州FM91.1">
+    <title lang="zh">我的朋友圈</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809120000 +0800" channel="苏州FM91.1">
+    <title lang="zh">我的朋友圈</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="苏州FM91.1">
+    <title lang="zh">亲亲故事会</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州FM91.1">
+    <title lang="zh">家长会</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809150000 +0800" channel="苏州FM91.1">
+    <title lang="zh">一听可乐</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809160000 +0800" channel="苏州FM91.1">
+    <title lang="zh">广播剧场</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809163000 +0800" channel="苏州FM91.1">
+    <title lang="zh">广播剧场</title>
+  </programme>
+  <programme start="20260809163000 +0800" stop="20260809170000 +0800" channel="苏州FM91.1">
+    <title lang="zh">孟梓来了</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809183000 +0800" channel="苏州FM91.1">
+    <title lang="zh">孟梓来了</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="苏州FM91.1">
+    <title lang="zh">转播《全国新闻联播》</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809200000 +0800" channel="苏州FM91.1">
+    <title lang="zh">这里是江南</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="苏州FM91.1">
+    <title lang="zh">这里是江南</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809220000 +0800" channel="苏州FM91.1">
+    <title lang="zh">转播《直播苏州》</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809230000 +0800" channel="苏州FM91.1">
+    <title lang="zh">《完美欣赏》（含广播微剧）</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809233000 +0800" channel="苏州FM91.1">
+    <title lang="zh">转播央视《24小时》</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809070000 +0800" channel="苏州FM95.7">
+    <title lang="zh">转播央视《朝闻天下》</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809090000 +0800" channel="苏州FM95.7">
+    <title lang="zh">大人们的歌</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州FM95.7">
+    <title lang="zh">亲子时光机</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809120000 +0800" channel="苏州FM95.7">
+    <title lang="zh">亲子时光机</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="苏州FM95.7">
+    <title lang="zh">万鸣书场</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州FM95.7">
+    <title lang="zh">爱上幼儿园</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809160000 +0800" channel="苏州FM95.7">
+    <title lang="zh">音乐朗读亭</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809180000 +0800" channel="苏州FM95.7">
+    <title lang="zh">小靴子星乐园</title>
+  </programme>
+  <programme start="20260809180000 +0800" stop="20260809200000 +0800" channel="苏州FM95.7">
+    <title lang="zh">小靴子故事乐园</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="苏州FM95.7">
+    <title lang="zh">国风讲故事</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809213000 +0800" channel="苏州FM95.7">
+    <title lang="zh">闭台曲</title>
+  </programme>
+  <programme start="20260809050000 +0800" stop="20260809060000 +0800" channel="苏州FM96.5">
+    <title lang="zh">老朋友音乐厅（重播）</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809070000 +0800" channel="苏州FM96.5">
+    <title lang="zh">乡邻书场</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809080000 +0800" channel="苏州FM96.5">
+    <title lang="zh">金乡邻</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809090000 +0800" channel="苏州FM96.5">
+    <title lang="zh">今日相城、吴中之声</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州FM96.5">
+    <title lang="zh">阳光地带</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809110000 +0800" channel="苏州FM96.5">
+    <title lang="zh">金乡邻（暖心版）</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809120000 +0800" channel="苏州FM96.5">
+    <title lang="zh">乡邻书场</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="苏州FM96.5">
+    <title lang="zh">阿万茶楼（精编版）</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州FM96.5">
+    <title lang="zh">老虎灶</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809150000 +0800" channel="苏州FM96.5">
+    <title lang="zh">广电老年大学</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809160000 +0800" channel="苏州FM96.5">
+    <title lang="zh">老朋友戏苑</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="苏州FM96.5">
+    <title lang="zh">天天健康（精编）</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809183000 +0800" channel="苏州FM96.5">
+    <title lang="zh">小姨团</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="苏州FM96.5">
+    <title lang="zh">老朋友朗诵社</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809200000 +0800" channel="苏州FM96.5">
+    <title lang="zh">老朋友音乐厅</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809203000 +0800" channel="苏州FM96.5">
+    <title lang="zh">声音剧场</title>
+  </programme>
+  <programme start="20260809000000 +0800" stop="20260809060000 +0800" channel="苏州FM102.8">
+    <title lang="zh">整晚的音乐（RCS）</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809070000 +0800" channel="苏州FM102.8">
+    <title lang="zh">岁月如歌（龙旎）</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809090000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809110000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809130000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州FM102.8">
+    <title lang="zh">越古典越动听（龙旎）</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809160000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（冯莉、曾毅、康澍、党臻、志明、纪毅）</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809190000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809200000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809230000 +0800" channel="苏州FM102.8">
+    <title lang="zh">纯享假日，自在K歌（崔旌、陆忆思、王杉杉、钟祥、何丹青、王纯逸）</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809233000 +0800" channel="苏州FM102.8">
+    <title lang="zh">那些你来不及亲临现场的夜晚（纯逸）</title>
+  </programme>
+  <programme start="20260809053000 +0800" stop="20260809060000 +0800" channel="苏州FM104.8">
+    <title lang="zh">老歌回忆录（录播）</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809063000 +0800" channel="苏州FM104.8">
+    <title lang="zh">六点辰光（录播）</title>
+  </programme>
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="苏州FM104.8">
+    <title lang="zh">转播中国之声《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809080000 +0800" channel="苏州FM104.8">
+    <title lang="zh">直播苏州*与你同行</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809090000 +0800" channel="苏州FM104.8">
+    <title lang="zh">直播苏州*与你同行</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州FM104.8">
+    <title lang="zh">直播苏州*与你同行</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809113000 +0800" channel="苏州FM104.8">
+    <title lang="zh">边走边唱</title>
+  </programme>
+  <programme start="20260809113000 +0800" stop="20260809130000 +0800" channel="苏州FM104.8">
+    <title lang="zh">边走边唱</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州FM104.8">
+    <title lang="zh">1048一起笑吧</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809160000 +0800" channel="苏州FM104.8">
+    <title lang="zh">阿万茶楼</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="苏州FM104.8">
+    <title lang="zh">假日高峰</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809190000 +0800" channel="苏州FM104.8">
+    <title lang="zh">假日高峰</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809210000 +0800" channel="苏州FM104.8">
+    <title lang="zh">欢乐都市夜</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809220000 +0800" channel="苏州FM104.8">
+    <title lang="zh">欢乐都市夜</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809230000 +0800" channel="苏州FM104.8">
+    <title lang="zh">阿万茶楼（精编版）</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809233000 +0800" channel="苏州FM104.8">
+    <title lang="zh">转播央视新闻《24小时》</title>
+  </programme>
+  <programme start="20260809044500 +0800" stop="20260809050000 +0800" channel="苏州AM846">
+    <title lang="zh">开机音乐（晨晨）</title>
+  </programme>
+  <programme start="20260809050000 +0800" stop="20260809054000 +0800" channel="苏州AM846">
+    <title lang="zh">健康节目1（马晓燕）</title>
+  </programme>
+  <programme start="20260809054000 +0800" stop="20260809060000 +0800" channel="苏州AM846">
+    <title lang="zh">健康节目2</title>
+  </programme>
+  <programme start="20260809060000 +0800" stop="20260809063000 +0800" channel="苏州AM846">
+    <title lang="zh">健康节目3</title>
+  </programme>
+  <programme start="20260809063000 +0800" stop="20260809073000 +0800" channel="苏州AM846">
+    <title lang="zh">万鸣书场（阿万茶楼工作室）</title>
+  </programme>
+  <programme start="20260809073000 +0800" stop="20260809083000 +0800" channel="苏州AM846">
+    <title lang="zh">戏迷剧场（首播）</title>
+  </programme>
+  <programme start="20260809083000 +0800" stop="20260809090000 +0800" channel="苏州AM846">
+    <title lang="zh">南腔北调（永春）</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州AM846">
+    <title lang="zh">吴越传音（腔调戏曲工作室）</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809110000 +0800" channel="苏州AM846">
+    <title lang="zh">岁月如歌（首播 龙旎）</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809120000 +0800" channel="苏州AM846">
+    <title lang="zh">养生堂</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="苏州AM846">
+    <title lang="zh">梨园传奇</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州AM846">
+    <title lang="zh">戏迷大舞台（腔调戏曲工作室）</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809150000 +0800" channel="苏州AM846">
+    <title lang="zh">经典重温（首播）</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809160000 +0800" channel="苏州AM846">
+    <title lang="zh">留影留声</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="苏州AM846">
+    <title lang="zh">评书联播</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809180000 +0800" channel="苏州AM846">
+    <title lang="zh">吴越传音（重播）</title>
+  </programme>
+  <programme start="20260809180000 +0800" stop="20260809190000 +0800" channel="苏州AM846">
+    <title lang="zh">经典重温（重播）</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809200000 +0800" channel="苏州AM846">
+    <title lang="zh">万鸣书场（晚场）（阿万茶楼工作室）</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="苏州AM846">
+    <title lang="zh">岁月如歌（重播）</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809213000 +0800" channel="苏州AM846">
+    <title lang="zh">戏迷剧场（重播）</title>
+  </programme>
+  <programme start="20260809043000 +0800" stop="20260809053000 +0800" channel="苏州AM1080">
+    <title lang="zh">广播书场</title>
+  </programme>
+  <programme start="20260809053000 +0800" stop="20260809063000 +0800" channel="苏州AM1080">
+    <title lang="zh">苏阿姨谈家常</title>
+  </programme>
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="苏州AM1080">
+    <title lang="zh">转播中国之声《新闻和报纸摘要》</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809080000 +0800" channel="苏州AM1080">
+    <title lang="zh">苏州新闻</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809090000 +0800" channel="苏州AM1080">
+    <title lang="zh">苏州新闻</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州AM1080">
+    <title lang="zh">天天健康（精编版）</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809110000 +0800" channel="苏州AM1080">
+    <title lang="zh">我的朋友圈</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809120000 +0800" channel="苏州AM1080">
+    <title lang="zh">我的朋友圈</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="苏州AM1080">
+    <title lang="zh">亲亲故事会</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州AM1080">
+    <title lang="zh">家长会</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809150000 +0800" channel="苏州AM1080">
+    <title lang="zh">一听可乐</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809160000 +0800" channel="苏州AM1080">
+    <title lang="zh">广播剧场</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809163000 +0800" channel="苏州AM1080">
+    <title lang="zh">广播剧场</title>
+  </programme>
+  <programme start="20260809163000 +0800" stop="20260809170000 +0800" channel="苏州AM1080">
+    <title lang="zh">孟梓来了</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809183000 +0800" channel="苏州AM1080">
+    <title lang="zh">孟梓来了</title>
+  </programme>
+  <programme start="20260809183000 +0800" stop="20260809190000 +0800" channel="苏州AM1080">
+    <title lang="zh">转播《全国新闻联播》</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809200000 +0800" channel="苏州AM1080">
+    <title lang="zh">这里是江南</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="苏州AM1080">
+    <title lang="zh">这里是江南</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809220000 +0800" channel="苏州AM1080">
+    <title lang="zh">转播《直播苏州》</title>
+  </programme>
+  <programme start="20260809220000 +0800" stop="20260809230000 +0800" channel="苏州AM1080">
+    <title lang="zh">《完美欣赏》（含广播微剧）</title>
+  </programme>
+  <programme start="20260809230000 +0800" stop="20260809233000 +0800" channel="苏州AM1080">
+    <title lang="zh">转播央视《24小时》</title>
+  </programme>
+  <programme start="20260809050000 +0800" stop="20260809053000 +0800" channel="苏州AM1521">
+    <title lang="zh">早间音乐</title>
+  </programme>
+  <programme start="20260809053000 +0800" stop="20260809063000 +0800" channel="苏州AM1521">
+    <title lang="zh">早间书场</title>
+  </programme>
+  <programme start="20260809063000 +0800" stop="20260809070000 +0800" channel="苏州AM1521">
+    <title lang="zh">转播中国之声：新闻与报纸摘要</title>
+  </programme>
+  <programme start="20260809070000 +0800" stop="20260809080000 +0800" channel="苏州AM1521">
+    <title lang="zh">佳人有约</title>
+  </programme>
+  <programme start="20260809080000 +0800" stop="20260809090000 +0800" channel="苏州AM1521">
+    <title lang="zh">悠闲假日</title>
+  </programme>
+  <programme start="20260809090000 +0800" stop="20260809100000 +0800" channel="苏州AM1521">
+    <title lang="zh">悠闲假日</title>
+  </programme>
+  <programme start="20260809100000 +0800" stop="20260809110000 +0800" channel="苏州AM1521">
+    <title lang="zh">悠闲假日</title>
+  </programme>
+  <programme start="20260809110000 +0800" stop="20260809120000 +0800" channel="苏州AM1521">
+    <title lang="zh">阳光地带</title>
+  </programme>
+  <programme start="20260809120000 +0800" stop="20260809130000 +0800" channel="苏州AM1521">
+    <title lang="zh">心灵航班</title>
+  </programme>
+  <programme start="20260809130000 +0800" stop="20260809140000 +0800" channel="苏州AM1521">
+    <title lang="zh">心灵航班</title>
+  </programme>
+  <programme start="20260809140000 +0800" stop="20260809150000 +0800" channel="苏州AM1521">
+    <title lang="zh">有戏人生</title>
+  </programme>
+  <programme start="20260809150000 +0800" stop="20260809160000 +0800" channel="苏州AM1521">
+    <title lang="zh">有戏人生</title>
+  </programme>
+  <programme start="20260809160000 +0800" stop="20260809170000 +0800" channel="苏州AM1521">
+    <title lang="zh">金曲典藏、名家名段</title>
+  </programme>
+  <programme start="20260809170000 +0800" stop="20260809180000 +0800" channel="苏州AM1521">
+    <title lang="zh">经典剧场</title>
+  </programme>
+  <programme start="20260809180000 +0800" stop="20260809190000 +0800" channel="苏州AM1521">
+    <title lang="zh">听大戏</title>
+  </programme>
+  <programme start="20260809190000 +0800" stop="20260809200000 +0800" channel="苏州AM1521">
+    <title lang="zh">老虎灶（重播）</title>
+  </programme>
+  <programme start="20260809200000 +0800" stop="20260809210000 +0800" channel="苏州AM1521">
+    <title lang="zh">广播书场</title>
+  </programme>
+  <programme start="20260809210000 +0800" stop="20260809213000 +0800" channel="苏州AM1521">
     <title lang="zh">佳人有约（重播）</title>
   </programme>
   <programme start="20260525065000 +0800" stop="20260525072000 +0800" channel="镇江1新闻综合">
