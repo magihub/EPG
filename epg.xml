@@ -114,13 +114,13 @@
   <programme start="20260828175500 +0800" stop="20260828182900 +0800" channel="南通1新闻综合">
     <title lang="zh">健康我来了</title>
   </programme>
-  <programme start="20260828182900 +0800" stop="20260828190000 +0800" channel="南通1新闻综合">
+  <programme start="20260828183029 +0800" stop="20260828190000 +0800" channel="南通1新闻综合">
     <title lang="zh">南通新闻</title>
   </programme>
   <programme start="20260828190000 +0800" stop="20260828193100 +0800" channel="南通1新闻综合">
     <title lang="zh">转播中央台新闻联播</title>
   </programme>
-  <programme start="20260828193100 +0800" stop="20260828200500 +0800" channel="南通1新闻综合">
+  <programme start="20260828193122 +0800" stop="20260828200053 +0800" channel="南通1新闻综合">
     <title lang="zh">城市日历</title>
   </programme>
   <programme start="20260828200500 +0800" stop="20260828215000 +0800" channel="南通1新闻综合">
@@ -225,7 +225,7 @@
   <programme start="20260828183000 +0800" stop="20260828190000 +0800" channel="南通3公共频道">
     <title lang="zh">人文纪录</title>
   </programme>
-  <programme start="20260828190000 +0800" stop="20260828192800 +0800" channel="南通3公共频道">
+  <programme start="20260828190001 +0800" stop="20260828192402 +0800" channel="南通3公共频道">
     <title lang="zh">崇川新闻</title>
   </programme>
   <programme start="20260828192800 +0800" stop="20260828195500 +0800" channel="南通3公共频道">
