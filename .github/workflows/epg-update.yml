@@ -128,6 +128,7 @@ jobs:
         continue-on-error: true
         
       - name: Run Nantong EPG via Proxy
+        if: false                # ← 禁用这步
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 10
@@ -140,6 +141,7 @@ jobs:
 
       # 镇江脚本（电视无需代理、广播需要代理）
       - name: Test TinyProxy to zjmc.tv
+        if: false                # ← 禁用这步
         id: test_zjmc
         uses: nick-invision/retry@v2
         with:
@@ -164,6 +166,7 @@ jobs:
         continue-on-error: true
         
       - name: Run Zhenjiang EPG via Proxy
+        if: false                # ← 禁用这步
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 10
