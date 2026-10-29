@@ -104,6 +104,7 @@ jobs:
         
       # 南通脚本（需要代理）
       - name: Test TinyProxy to ntjoy.com
+        if: false                # ← 禁用这步
         id: test_ntjoy
         uses: nick-invision/retry@v2
         with:
@@ -128,7 +129,7 @@ jobs:
         continue-on-error: true
         
       - name: Run Nantong EPG via Proxy
-        # if: false                # ← 禁用这步
+        if: false                # ← 禁用这步
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 10
